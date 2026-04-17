@@ -42,9 +42,7 @@ html, body {
   justify-content: space-between;
   align-items: center;
   padding: 18px 36px;
-  background: rgba(14, 10, 7, 0.52);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(14, 10, 7, 0.38);
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
@@ -110,13 +108,13 @@ html, body {
   align-items: center;
   justify-content: center;
   font-family: var(--sans);
-  font-size: 0.62rem;
+  font-size: 0.82rem;
   font-weight: 400;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: rgba(255, 252, 248, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.28);
-  padding: 13px 40px;
+  padding: 18px 64px;
   border-radius: 2px;
   cursor: pointer;
   text-decoration: none;
@@ -248,20 +246,4 @@ html, body {
 }
 @keyframes fadeIn {
   to { opacity: 1; }
-}
-
-/* ── PAGE TRANSITION OVERLAY ── */
-.page-transition {
-  position: fixed;
-  inset: 0;
-  z-index: 500;
-  background: #0E0B08;
-  clip-path: inset(100% 0 0 0);
-  pointer-events: none;
-  transition: clip-path 0s;
-}
-.page-transition.animating {
-  pointer-events: all;
-  clip-path: inset(0 0 0 0);
-  transition: clip-path 0.55s cubic-bezier(0.76, 0, 0.24, 1);
 }

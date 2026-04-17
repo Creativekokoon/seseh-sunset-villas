@@ -97,7 +97,7 @@ document.querySelectorAll('.villa-card').forEach(card => {
     // 7. Navigate after zoom completes
     setTimeout(() => {
       window.location.href = data.cta;
-    }, 680);
+    }, 1050);
   });
 });
 
