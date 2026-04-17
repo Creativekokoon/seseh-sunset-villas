@@ -10,12 +10,15 @@
 </head>
 <body>
 
-  <!-- Page-in transition cover -->
+  <!-- Page-in wipe -->
   <div class="page-intro" id="pageIntro"></div>
+
+  <!-- Zoom layer — populated by JS -->
+  <div class="zoom-layer" id="zoomLayer"></div>
 
   <!-- Topbar -->
   <header class="topbar">
-    <a class="back-btn" href="../index.html" id="backBtn">
+    <a class="back-btn" href="../index.html">
       <span class="back-arrow">←</span>
       <span>Accueil</span>
     </a>
@@ -26,7 +29,8 @@
   <!-- Villa grid -->
   <main class="villas-grid" id="villasGrid">
 
-    <article class="villa-card" data-villa="elegance" style="--bg: url('../assets/images/facade/facade image one bedroom.jpeg')">
+    <article class="villa-card" data-villa="elegance"
+      style="--bg: url('../assets/images/facade/facade image one bedroom.jpeg')">
       <div class="card-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -39,7 +43,8 @@
       </div>
     </article>
 
-    <article class="villa-card" data-villa="prestige" style="--bg: url('../assets/images/facade/facade image one bedroom.jpeg')">
+    <article class="villa-card" data-villa="prestige"
+      style="--bg: url('../assets/images/facade/facade image one bedroom.jpeg')">
       <div class="card-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -52,7 +57,8 @@
       </div>
     </article>
 
-    <article class="villa-card" data-villa="signature" style="--bg: url('../assets/images/facade/facade image one bedroom.jpeg')">
+    <article class="villa-card" data-villa="signature"
+      style="--bg: url('../assets/images/facade/facade image one bedroom.jpeg')">
       <div class="card-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -65,7 +71,8 @@
       </div>
     </article>
 
-    <article class="villa-card" data-villa="exception" style="--bg: url('../assets/images/facade/facade image one bedroom.jpeg')">
+    <article class="villa-card" data-villa="exception"
+      style="--bg: url('../assets/images/facade/facade image one bedroom.jpeg')">
       <div class="card-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -79,51 +86,6 @@
     </article>
 
   </main>
-
-  <!-- ZOOM LAYER — fills screen when villa clicked -->
-  <div class="zoom-layer" id="zoomLayer">
-    <div class="zoom-bg" id="zoomBg"></div>
-    <div class="zoom-overlay"></div>
-
-    <div class="zoom-content" id="zoomContent">
-      <!-- Back button inside zoom -->
-      <button class="zoom-back" id="zoomBack">
-        <span>←</span> Toutes les villas
-      </button>
-
-      <div class="zoom-info">
-        <div class="zoom-num" id="zNum"></div>
-        <h1 class="zoom-title" id="zTitle"></h1>
-        <div class="zoom-sub" id="zSub"></div>
-
-        <div class="zoom-stats">
-          <div class="zoom-stat">
-            <div class="zs-val" id="zArea"></div>
-            <div class="zs-label">Surface</div>
-          </div>
-          <div class="zoom-stat">
-            <div class="zs-val" id="zBed"></div>
-            <div class="zs-label">Chambre(s)</div>
-          </div>
-          <div class="zoom-stat">
-            <div class="zs-val" id="zBath"></div>
-            <div class="zs-label">Salle(s) de bain</div>
-          </div>
-        </div>
-
-        <div class="zoom-features" id="zFeatures"></div>
-
-        <div class="zoom-price-row">
-          <span class="zoom-from">à partir de</span>
-          <span class="zoom-price" id="zPrice"></span>
-        </div>
-
-        <a class="zoom-cta" id="zCta" href="#">
-          Voir le plan interactif <span>→</span>
-        </a>
-      </div>
-    </div>
-  </div>
 
   <!-- Drawer -->
   <div class="overlay" id="overlay"></div>
