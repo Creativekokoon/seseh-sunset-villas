@@ -1,17 +1,17 @@
 const rooms = {
-  living:   { bg:'linear-gradient(135deg,#3A3028,#2C2420,#4A3C30)' },
-  pool:     { bg:'linear-gradient(135deg,#1E2A30,#243440,#182028)' },
-  terrace:  { bg:'linear-gradient(135deg,#2A2C24,#383C2C,#202218)' },
-  bedroom1: { bg:'linear-gradient(135deg,#2C2820,#3A3428,#241E18)' },
-  bedroom2: { bg:'linear-gradient(135deg,#28261E,#343028,#201E16)' },
-  bath1:    { bg:'linear-gradient(135deg,#202430,#28303C,#181C28)' },
-  bath2:    { bg:'linear-gradient(135deg,#222030,#2C2A3C,#1A1828)' },
-  balcony:  { bg:'linear-gradient(135deg,#242220,#302E2A,#1C1A18)' },
+  living:   { name:'Living · Cuisine',  bg:'linear-gradient(135deg,#3A3028 0%,#2C2420 50%,#4A3C30 100%)' },
+  pool:     { name:'Piscine Privée',    bg:'linear-gradient(135deg,#1A2A32 0%,#1E3040 50%,#142028 100%)' },
+  terrace:  { name:'Terrasse',          bg:'linear-gradient(135deg,#2A2C22 0%,#363C28 50%,#1E2016 100%)' },
+  bedroom1: { name:'Chambre 1',         bg:'linear-gradient(135deg,#2C2820 0%,#3A3428 50%,#221E16 100%)' },
+  bedroom2: { name:'Chambre 2',         bg:'linear-gradient(135deg,#28261C 0%,#343020 50%,#1E1C14 100%)' },
+  bath1:    { name:'Salle de Bain 1',   bg:'linear-gradient(135deg,#1C2030 0%,#242838 50%,#141820 100%)' },
+  bath2:    { name:'Salle de Bain 2',   bg:'linear-gradient(135deg,#201E2E 0%,#2A2838 50%,#181620 100%)' },
+  balcony:  { name:'Balcon',            bg:'linear-gradient(135deg,#222220 0%,#2E2C28 50%,#1A1818 100%)' },
 };
 
 let activeZone = null;
 
-// Cursor label
+// Cursor
 const cursorLabel = document.getElementById('cursorLabel');
 document.addEventListener('mousemove', e => {
   cursorLabel.style.left = e.clientX + 'px';
@@ -30,10 +30,15 @@ function selectRoom(id, zone) {
   const d = rooms[id];
   if (!d) return;
 
-  document.getElementById('imgPlaceholder').classList.add('hidden');
-  const img = document.getElementById('roomImage');
-  img.style.background = d.bg;
-  img.classList.add('visible');
+  // Hide placeholder
+  document.getElementById('detailPlaceholder').classList.add('hidden');
+
+  // Update name + image
+  document.getElementById('detailName').textContent = d.name;
+  document.getElementById('detailImage').style.background = d.bg;
+
+  // Show content
+  document.getElementById('detailContent').classList.add('visible');
 }
 
 function setFloor(idx, btn) {
@@ -43,8 +48,8 @@ function setFloor(idx, btn) {
   document.getElementById('floor-1').style.display = idx === 1 ? 'block' : 'none';
   if (activeZone) activeZone.classList.remove('selected');
   activeZone = null;
-  document.getElementById('imgPlaceholder').classList.remove('hidden');
-  document.getElementById('roomImage').classList.remove('visible');
+  document.getElementById('detailPlaceholder').classList.remove('hidden');
+  document.getElementById('detailContent').classList.remove('visible');
 }
 
 // Drawer
@@ -57,7 +62,7 @@ drawerClose.addEventListener('click', () => { drawer.classList.remove('open'); o
 overlay.addEventListener('click',     () => { drawer.classList.remove('open'); overlay.classList.remove('show'); });
 document.addEventListener('keydown',  e => { if (e.key==='Escape') { drawer.classList.remove('open'); overlay.classList.remove('show'); }});
 
-// Back → villas, simple fade
+// Back — simple fade
 document.getElementById('backBtn').addEventListener('click', function(e) {
   e.preventDefault();
   const dest = this.getAttribute('href');
