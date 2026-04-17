@@ -1,7 +1,7 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --serif: 'Cormorant Garamond', Georgia, serif;
+  --serif: 'the-seasons', Georgia, serif;
   --sans: 'Helvetica Neue', Arial, sans-serif;
 }
 
@@ -48,7 +48,7 @@ html, body {
 
 .brand {
   font-family: var(--serif);
-  font-style: italic;
+  
   font-size: 1.1rem;
   font-weight: 300;
   letter-spacing: 0.06em;
@@ -186,7 +186,7 @@ html, body {
 }
 .drawer-title {
   font-family: var(--serif);
-  font-style: italic;
+  
   font-size: 1.4rem;
   font-weight: 300;
   color: rgba(30, 22, 14, 0.75);
