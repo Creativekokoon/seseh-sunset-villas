@@ -19,7 +19,7 @@ html, body {
   inset: 0;
   z-index: 0;
   /* ⬇ Remplacer par le chemin de votre image */
-  background-image: url('assets/images/interiors/bedroom-interior-onebedroom.png');
+  background-image: url('../assets/images/interiors/bedroom-interior-onebedroom.png');
   /* background-image: url('../assets/images/facade/villa-main.jpg'); */
   background-size: cover;
   background-position: center 35%;
