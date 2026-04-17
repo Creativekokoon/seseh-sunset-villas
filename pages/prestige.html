@@ -12,28 +12,25 @@
   <div class="page-intro"></div>
   <div class="cursor-label" id="cursorLabel">Explorer</div>
 
-  <!-- Topbar -->
   <header class="topbar">
-    <a class="back-btn" href="villas.html">← Les Villas</a>
+    <a class="back-btn" href="villas.html" id="backBtn">← Les Villas</a>
     <div class="topbar-brand">Seseh Sunset Villas</div>
     <button class="menu-btn" id="menuBtn">Menu</button>
   </header>
 
-  <!-- 3-column layout -->
   <div class="layout">
 
-    <!-- COL 1 — DETAILS -->
+    <!-- COL 1 — minimal info -->
     <aside class="col-details">
       <div class="villa-label">Type 02</div>
       <h1 class="villa-title">Prestige</h1>
-      <div class="villa-tagline">Un équilibre entre ouverture et intimité</div>
 
       <div class="divider"></div>
 
-      <div class="stats-row">
+      <div class="stats-col">
         <div class="stat-item">
-          <div class="stat-val">90<span class="stat-unit">,8</span></div>
-          <div class="stat-label">m² surface</div>
+          <div class="stat-val">90,8 <span class="stat-unit">m²</span></div>
+          <div class="stat-label">Surface</div>
         </div>
         <div class="stat-item">
           <div class="stat-val">2</div>
@@ -47,16 +44,6 @@
 
       <div class="divider"></div>
 
-      <ul class="features-list">
-        <li>Cuisine équipée</li>
-        <li>Piscine privée</li>
-        <li>Parking</li>
-        <li>Terrasse</li>
-        <li>Douche extérieure</li>
-      </ul>
-
-      <div class="divider"></div>
-
       <div class="price-block">
         <div class="price-from">à partir de</div>
         <div class="price-num">260 000 €</div>
@@ -65,27 +52,20 @@
       <a class="cta-btn" href="#">Pré-réserver</a>
     </aside>
 
-    <!-- COL 2 — IMAGE (changes on room click) -->
-    <div class="col-image" id="colImage">
-
-      <!-- Default placeholder -->
+    <!-- COL 2 — image changes on room click -->
+    <div class="col-image">
       <div class="image-placeholder" id="imgPlaceholder">
         <div class="placeholder-arrow">→</div>
-        <div class="placeholder-hint">Sélectionnez une pièce<br>sur le plan</div>
+        <div class="placeholder-hint">Sélectionnez<br>une pièce</div>
       </div>
-
-      <!-- Room image (bg set by JS) -->
       <div class="room-image" id="roomImage"></div>
-
-      <!-- Info overlay at bottom -->
-      <div class="room-info-overlay" id="roomOverlay">
-        <div class="room-info-name" id="riName"></div>
-        <div class="room-info-desc" id="riDesc"></div>
-        <div class="room-tags" id="riTags"></div>
+      <div class="room-overlay" id="roomOverlay">
+        <div class="room-overlay-name" id="roName"></div>
+        <div class="room-overlay-tags" id="roTags"></div>
       </div>
     </div>
 
-    <!-- COL 3 — FLOOR PLAN -->
+    <!-- COL 3 — floor plan, large -->
     <div class="col-plan">
       <div class="plan-header">
         <div class="plan-title">Plan Interactif</div>
@@ -97,120 +77,121 @@
 
       <div class="plan-svg-wrap">
 
-        <!-- GROUND FLOOR -->
-        <svg id="floor-0" viewBox="0 0 280 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-          <rect x="6" y="6" width="268" height="368" fill="none" stroke="#C0B8B0" stroke-width="1" stroke-dasharray="6 4"/>
+        <!-- ── GROUND FLOOR ──
+             Based on uploaded plan:
+             Large main zone (39.54m²) = Living + Kitchen
+             Bottom strip = Terrace (5.75m²)
+             Right side = Pool
+        -->
+        <svg id="floor-0" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
 
-          <!-- LIVING / KITCHEN -->
+          <!-- Outer dashed boundary -->
+          <rect x="2" y="2" width="336" height="256" fill="none"
+            stroke="#C04040" stroke-width="1.5" stroke-dasharray="7 4" rx="0"/>
+
+          <!-- LIVING + KITCHEN (top large zone) -->
           <g class="plan-zone" data-room="living" onclick="selectRoom('living',this)">
-            <rect class="zone-fill" x="6" y="6" width="168" height="200" fill="#ECE8E2" stroke="#C0B8B0" stroke-width="0.8"/>
-            <text x="90" y="95" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="8" fill="#8A8078" letter-spacing="1.5">LIVING</text>
-            <text x="90" y="108" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="7" fill="#B0A898" letter-spacing="1">CUISINE · 42 m²</text>
+            <rect class="zone-fill" x="2" y="2" width="240" height="190"
+              fill="white" stroke="#B8B0A8" stroke-width="0.8"/>
           </g>
 
-          <!-- POOL -->
+          <!-- POOL (right zone, full height) -->
           <g class="plan-zone" data-room="pool" onclick="selectRoom('pool',this)">
-            <rect class="zone-fill" x="174" y="6" width="100" height="200" fill="#E6EDF0" stroke="#C0B8B0" stroke-width="0.8"/>
-            <rect x="188" y="28" width="72" height="56" rx="6" fill="#BDD4DC" stroke="#9ABBC4" stroke-width="0.8"/>
-            <text x="224" y="116" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="8" fill="#8A8078" letter-spacing="1.5">PISCINE</text>
+            <rect class="zone-fill" x="242" y="2" width="96" height="190"
+              fill="white" stroke="#B8B0A8" stroke-width="0.8"/>
+            <!-- Pool shape inside -->
+            <rect x="256" y="18" width="68" height="90" rx="6"
+              fill="#D8EAF0" stroke="#9ABBC4" stroke-width="0.8"/>
           </g>
 
-          <line x1="6" y1="206" x2="274" y2="206" stroke="#C0B8B0" stroke-width="0.7"/>
+          <!-- Horizontal divider above terrace -->
+          <line x1="2" y1="192" x2="338" y2="192" stroke="#B8B0A8" stroke-width="0.8"/>
 
-          <!-- TERRACE -->
+          <!-- TERRACE (bottom strip) -->
           <g class="plan-zone" data-room="terrace" onclick="selectRoom('terrace',this)">
-            <rect class="zone-fill" x="6" y="206" width="120" height="168" fill="#EAE6DE" stroke="#C0B8B0" stroke-width="0.8"/>
-            <line x1="6" y1="222" x2="126" y2="222" stroke="#CCC4BC" stroke-width="0.4"/>
-            <line x1="6" y1="238" x2="126" y2="238" stroke="#CCC4BC" stroke-width="0.4"/>
-            <line x1="6" y1="254" x2="126" y2="254" stroke="#CCC4BC" stroke-width="0.4"/>
-            <line x1="6" y1="270" x2="126" y2="270" stroke="#CCC4BC" stroke-width="0.4"/>
-            <line x1="6" y1="286" x2="126" y2="286" stroke="#CCC4BC" stroke-width="0.4"/>
-            <line x1="6" y1="302" x2="126" y2="302" stroke="#CCC4BC" stroke-width="0.4"/>
-            <text x="66" y="350" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="8" fill="#8A8078" letter-spacing="1.5">TERRASSE</text>
+            <rect class="zone-fill" x="2" y="192" width="336" height="66"
+              fill="white" stroke="#B8B0A8" stroke-width="0.8"/>
+            <!-- Wood deck lines -->
+            <line x1="2" y1="206" x2="338" y2="206" stroke="#D8D0C8" stroke-width="0.5"/>
+            <line x1="2" y1="220" x2="338" y2="220" stroke="#D8D0C8" stroke-width="0.5"/>
+            <line x1="2" y1="234" x2="338" y2="234" stroke="#D8D0C8" stroke-width="0.5"/>
+            <line x1="2" y1="248" x2="338" y2="248" stroke="#D8D0C8" stroke-width="0.5"/>
           </g>
 
-          <!-- PARKING -->
-          <g class="plan-zone" data-room="parking" onclick="selectRoom('parking',this)">
-            <rect class="zone-fill" x="126" y="206" width="84" height="168" fill="#E6E2DA" stroke="#C0B8B0" stroke-width="0.8"/>
-            <text x="168" y="298" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="8" fill="#8A8078" letter-spacing="1.5">PARKING</text>
-          </g>
-
-          <!-- OUTDOOR SHOWER -->
-          <g class="plan-zone" data-room="shower" onclick="selectRoom('shower',this)">
-            <rect class="zone-fill" x="210" y="206" width="64" height="168" fill="#E8E6E0" stroke="#C0B8B0" stroke-width="0.8"/>
-            <circle cx="242" cy="280" r="12" fill="none" stroke="#C0B8B0" stroke-width="0.7"/>
-            <text x="242" y="355" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="7" fill="#8A8078" letter-spacing="1">DOUCHE EXT.</text>
-          </g>
-
-          <!-- North -->
-          <g transform="translate(258,20)">
-            <line x1="0" y1="8" x2="0" y2="-3" stroke="#B0A898" stroke-width="0.7"/>
-            <polygon points="0,-6 -2,2 0,0 2,2" fill="#8A8078"/>
-            <text x="0" y="17" text-anchor="middle" font-family="Helvetica Neue" font-size="7" fill="#B0A898">N</text>
-          </g>
         </svg>
 
-        <!-- FIRST FLOOR -->
-        <svg id="floor-1" viewBox="0 0 280 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="display:none">
-          <rect x="6" y="6" width="268" height="368" fill="none" stroke="#C0B8B0" stroke-width="1" stroke-dasharray="6 4"/>
+        <!-- ── FIRST FLOOR ──
+             2 bedrooms, 2 bathrooms, balcony
+        -->
+        <svg id="floor-1" viewBox="0 0 340 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="display:none">
 
-          <!-- BEDROOM 1 -->
+          <rect x="2" y="2" width="336" height="256" fill="none"
+            stroke="#C04040" stroke-width="1.5" stroke-dasharray="7 4" rx="0"/>
+
+          <!-- BEDROOM 1 (left, larger) -->
           <g class="plan-zone" data-room="bedroom1" onclick="selectRoom('bedroom1',this)">
-            <rect class="zone-fill" x="6" y="6" width="148" height="190" fill="#ECE8E2" stroke="#C0B8B0" stroke-width="0.8"/>
-            <rect x="46" y="32" width="72" height="50" rx="2" fill="#DED8D0" stroke="#C0B8B0" stroke-width="0.6"/>
-            <rect x="46" y="32" width="72" height="10" rx="1" fill="#D4CEC8" stroke="#C0B8B0" stroke-width="0.4"/>
-            <rect x="52" y="35" width="26" height="5" rx="1" fill="#C8C2BC"/>
-            <rect x="86" y="35" width="26" height="5" rx="1" fill="#C8C2BC"/>
-            <text x="80" y="145" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="8" fill="#8A8078" letter-spacing="1.5">CHAMBRE 1</text>
-            <text x="80" y="158" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="7" fill="#B0A898" letter-spacing="1">Suite parentale</text>
+            <rect class="zone-fill" x="2" y="2" width="168" height="180"
+              fill="white" stroke="#B8B0A8" stroke-width="0.8"/>
+            <!-- Bed icon -->
+            <rect x="48" y="28" width="80" height="56" rx="2"
+              fill="#EDE8E2" stroke="#C8C0B8" stroke-width="0.6"/>
+            <rect x="48" y="28" width="80" height="12" rx="1"
+              fill="#E0D8D0" stroke="#C8C0B8" stroke-width="0.4"/>
+            <rect x="55" y="31" width="28" height="6" rx="1" fill="#D4CEC8"/>
+            <rect x="93" y="31" width="28" height="6" rx="1" fill="#D4CEC8"/>
           </g>
 
-          <!-- BEDROOM 2 -->
+          <!-- BEDROOM 2 (right) -->
           <g class="plan-zone" data-room="bedroom2" onclick="selectRoom('bedroom2',this)">
-            <rect class="zone-fill" x="154" y="6" width="120" height="190" fill="#EAE6E0" stroke="#C0B8B0" stroke-width="0.8"/>
-            <rect x="178" y="32" width="62" height="44" rx="2" fill="#DED8D0" stroke="#C0B8B0" stroke-width="0.6"/>
-            <rect x="178" y="32" width="62" height="9" rx="1" fill="#D4CEC8" stroke="#C0B8B0" stroke-width="0.4"/>
-            <text x="214" y="145" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="8" fill="#8A8078" letter-spacing="1.5">CHAMBRE 2</text>
+            <rect class="zone-fill" x="170" y="2" width="168" height="180"
+              fill="white" stroke="#B8B0A8" stroke-width="0.8"/>
+            <!-- Bed icon -->
+            <rect x="210" y="28" width="72" height="50" rx="2"
+              fill="#EDE8E2" stroke="#C8C0B8" stroke-width="0.6"/>
+            <rect x="210" y="28" width="72" height="11" rx="1"
+              fill="#E0D8D0" stroke="#C8C0B8" stroke-width="0.4"/>
+            <rect x="217" y="31" width="24" height="5" rx="1" fill="#D4CEC8"/>
+            <rect x="251" y="31" width="24" height="5" rx="1" fill="#D4CEC8"/>
           </g>
 
-          <line x1="6" y1="196" x2="274" y2="196" stroke="#C0B8B0" stroke-width="0.7"/>
+          <!-- Horizontal divider -->
+          <line x1="2" y1="182" x2="338" y2="182" stroke="#B8B0A8" stroke-width="0.8"/>
 
-          <!-- BATHROOM 1 -->
+          <!-- BATHROOM 1 (bottom left) -->
           <g class="plan-zone" data-room="bath1" onclick="selectRoom('bath1',this)">
-            <rect class="zone-fill" x="6" y="196" width="100" height="178" fill="#E6E8F0" stroke="#C0B8B0" stroke-width="0.8"/>
-            <rect x="18" y="216" width="42" height="28" rx="4" fill="#D0D4E4" stroke="#B0B8C8" stroke-width="0.7"/>
-            <text x="56" y="358" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="7" fill="#8A8078" letter-spacing="1">BAIN 1</text>
+            <rect class="zone-fill" x="2" y="182" width="120" height="76"
+              fill="white" stroke="#B8B0A8" stroke-width="0.8"/>
+            <!-- Bath tub -->
+            <rect x="12" y="196" width="48" height="32" rx="5"
+              fill="#E0E8F0" stroke="#B0C0CC" stroke-width="0.7"/>
           </g>
 
           <!-- BATHROOM 2 -->
           <g class="plan-zone" data-room="bath2" onclick="selectRoom('bath2',this)">
-            <rect class="zone-fill" x="106" y="196" width="96" height="178" fill="#EAE6F0" stroke="#C0B8B0" stroke-width="0.8"/>
-            <rect x="118" y="216" width="38" height="26" rx="4" fill="#D0D4E4" stroke="#B0B8C8" stroke-width="0.7"/>
-            <text x="154" y="358" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="7" fill="#8A8078" letter-spacing="1">BAIN 2</text>
+            <rect class="zone-fill" x="122" y="182" width="100" height="76"
+              fill="white" stroke="#B8B0A8" stroke-width="0.8"/>
+            <!-- Shower -->
+            <rect x="134" y="196" width="36" height="36" rx="2"
+              fill="#E0E8F0" stroke="#B0C0CC" stroke-width="0.7"/>
           </g>
 
-          <!-- STAIRS -->
-          <g class="plan-zone" data-room="stairs" onclick="selectRoom('stairs',this)">
-            <rect class="zone-fill" x="202" y="196" width="72" height="178" fill="#E8E4DE" stroke="#C0B8B0" stroke-width="0.8"/>
-            <line x1="202" y1="212" x2="274" y2="212" stroke="#CCC4BC" stroke-width="0.4"/>
-            <line x1="202" y1="228" x2="274" y2="228" stroke="#CCC4BC" stroke-width="0.4"/>
-            <line x1="202" y1="244" x2="274" y2="244" stroke="#CCC4BC" stroke-width="0.4"/>
-            <line x1="202" y1="260" x2="274" y2="260" stroke="#CCC4BC" stroke-width="0.4"/>
-            <line x1="202" y1="276" x2="274" y2="276" stroke="#CCC4BC" stroke-width="0.4"/>
-            <text x="238" y="356" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="7" fill="#8A8078" letter-spacing="1">ESCALIER</text>
+          <!-- BALCONY (bottom right) -->
+          <g class="plan-zone" data-room="balcony" onclick="selectRoom('balcony',this)">
+            <rect class="zone-fill" x="222" y="182" width="116" height="76"
+              fill="white" stroke="#B8B0A8" stroke-width="0.8"/>
+            <!-- Balcony railing hint -->
+            <rect x="230" y="190" width="100" height="4" rx="1"
+              fill="#E0D8D0" stroke="#C8C0B8" stroke-width="0.5"/>
+            <!-- Stairs void (bottom left on plan image) -->
+            <rect x="222" y="218" width="42" height="40"
+              fill="#F0EBE5" stroke="#C8C0B8" stroke-width="0.6"/>
           </g>
 
-          <g transform="translate(258,20)">
-            <line x1="0" y1="8" x2="0" y2="-3" stroke="#B0A898" stroke-width="0.7"/>
-            <polygon points="0,-6 -2,2 0,0 2,2" fill="#8A8078"/>
-            <text x="0" y="17" text-anchor="middle" font-family="Helvetica Neue" font-size="7" fill="#B0A898">N</text>
-          </g>
         </svg>
-
       </div>
     </div>
 
-  </div><!-- /layout -->
+  </div>
 
   <!-- Drawer -->
   <div class="overlay" id="overlay"></div>
