@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Prestige — Seseh Sunset Villas</title>
+  <link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
+  <link rel="stylesheet" href="../css/prestige.css">
+</head>
+<body>
+
+  <!-- Fade-in cover that dissolves to reveal the light page -->
+  <div class="page-intro" id="pageIntro"></div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <a class="back-btn" href="villas.html">
+      <span class="back-arrow">←</span>
+      <span>Les Villas</span>
+    </a>
+    <div class="topbar-brand">Seseh Sunset Villas</div>
+    <button class="menu-btn" id="menuBtn">Menu</button>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <main class="page-layout">
+
+    <!-- LEFT — sticky identity column -->
+    <aside class="col-identity">
+      <div class="identity-inner">
+        <div class="villa-label">Type 02</div>
+        <h1 class="villa-title">Prestige</h1>
+        <div class="villa-tagline">Un équilibre entre<br>ouverture et intimité</div>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Key stats -->
+        <div class="stats-col">
+          <div class="stat-row">
+            <div class="stat-val">90,8</div>
+            <div class="stat-unit">m²</div>
+            <div class="stat-label">Surface totale</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-val">2</div>
+            <div class="stat-unit"></div>
+            <div class="stat-label">Chambres</div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-val">2</div>
+            <div class="stat-unit"></div>
+            <div class="stat-label">Salles de bain</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Features list -->
+        <ul class="features-list">
+          <li>Cuisine équipée</li>
+          <li>Piscine privée</li>
+          <li>Parking</li>
+          <li>Terrasse</li>
+          <li>Douche extérieure</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <!-- Price -->
+        <div class="price-block">
+          <div class="price-from">à partir de</div>
+          <div class="price-num">260 000 €</div>
+        </div>
+
+        <!-- CTA -->
+        <a class="cta-btn" href="#">Pré-réserver</a>
+      </div>
+    </aside>
+
+    <!-- RIGHT — scrollable content -->
+    <section class="col-content">
+
+      <!-- Photo placeholder -->
+      <div class="photo-hero">
+        <div class="photo-placeholder photo-main">
+          <!-- Replace with: <img src="../assets/images/facade/prestige-facade.jpg" alt="Villa Prestige"> -->
+          <div class="photo-label">Façade · Villa Prestige</div>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="content-block">
+        <h2 class="content-heading">Architecture</h2>
+        <p class="content-text">Les volumes s'organisent autour d'un espace de vie central, en lien constant avec la lumière et la nature. La piscine privée prolonge l'espace intérieur vers l'extérieur dans une continuité fluide.</p>
+      </div>
+
+      <!-- Photo grid -->
+      <div class="photo-grid">
+        <div class="photo-placeholder photo-grid-item">
+          <div class="photo-label">Chambre principale</div>
+        </div>
+        <div class="photo-placeholder photo-grid-item">
+          <div class="photo-label">Espace de vie</div>
+        </div>
+      </div>
+
+      <!-- Interactive plan section -->
+      <div class="content-block">
+        <h2 class="content-heading">Plan Interactif</h2>
+        <p class="content-text">Explorez chaque espace de la villa. Sélectionnez une pièce pour en découvrir les détails et les finitions.</p>
+      </div>
+
+      <!-- FLOOR PLAN -->
+      <div class="plan-section">
+        <div class="plan-tabs">
+          <button class="plan-tab active" onclick="setFloor(0, this)">Rez-de-chaussée</button>
+          <button class="plan-tab" onclick="setFloor(1, this)">1er Étage</button>
+        </div>
+
+        <div class="plan-area">
+          <!-- SVG Plan RDC -->
+          <div class="plan-wrap" id="floor-0">
+            <svg width="100%" viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg">
+              <!-- Outer boundary -->
+              <rect x="10" y="10" width="480" height="400" fill="none" stroke="#C0B8B0" stroke-width="1.5" stroke-dasharray="8 5"/>
+
+              <!-- LIVING / KITCHEN zone -->
+              <g class="plan-zone" data-room="living" onclick="selectRoom('living', this)">
+                <rect x="10" y="10" width="300" height="240" fill="#F0ECE8" stroke="#B0A898" stroke-width="1" class="zone-fill"/>
+                <text x="160" y="115" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#8A8078" letter-spacing="2" class="zone-label">LIVING · CUISINE</text>
+                <text x="160" y="132" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="8" fill="#B0A898" letter-spacing="1">42 m²</text>
+              </g>
+
+              <!-- POOL zone -->
+              <g class="plan-zone" data-room="pool" onclick="selectRoom('pool', this)">
+                <rect x="310" y="10" width="180" height="240" fill="#E8EEF0" stroke="#B0A898" stroke-width="1" class="zone-fill"/>
+                <!-- Pool shape -->
+                <rect x="330" y="40" width="140" height="80" rx="8" fill="#C8DDE4" stroke="#9ABBC4" stroke-width="1"/>
+                <text x="400" y="158" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#8A8078" letter-spacing="2" class="zone-label">PISCINE</text>
+                <text x="400" y="174" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="8" fill="#B0A898" letter-spacing="1">privée</text>
+              </g>
+
+              <!-- Divider line -->
+              <line x1="10" y1="250" x2="490" y2="250" stroke="#C0B8B0" stroke-width="0.8"/>
+
+              <!-- TERRACE -->
+              <g class="plan-zone" data-room="terrace" onclick="selectRoom('terrace', this)">
+                <rect x="10" y="250" width="200" height="160" fill="#ECE8E0" stroke="#B0A898" stroke-width="1" class="zone-fill"/>
+                <!-- Terrace wood planks -->
+                <line x1="10" y1="268" x2="210" y2="268" stroke="#C0B8B0" stroke-width="0.5"/>
+                <line x1="10" y1="286" x2="210" y2="286" stroke="#C0B8B0" stroke-width="0.5"/>
+                <line x1="10" y1="304" x2="210" y2="304" stroke="#C0B8B0" stroke-width="0.5"/>
+                <line x1="10" y1="322" x2="210" y2="322" stroke="#C0B8B0" stroke-width="0.5"/>
+                <line x1="10" y1="340" x2="210" y2="340" stroke="#C0B8B0" stroke-width="0.5"/>
+                <text x="110" y="370" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#8A8078" letter-spacing="2" class="zone-label">TERRASSE</text>
+              </g>
+
+              <!-- PARKING -->
+              <g class="plan-zone" data-room="parking" onclick="selectRoom('parking', this)">
+                <rect x="210" y="250" width="140" height="160" fill="#E8E4DC" stroke="#B0A898" stroke-width="1" class="zone-fill"/>
+                <text x="280" y="338" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#8A8078" letter-spacing="2" class="zone-label">PARKING</text>
+              </g>
+
+              <!-- OUTDOOR SHOWER -->
+              <g class="plan-zone" data-room="shower" onclick="selectRoom('shower', this)">
+                <rect x="350" y="250" width="140" height="160" fill="#EAE8E4" stroke="#B0A898" stroke-width="1" class="zone-fill"/>
+                <circle cx="420" cy="310" r="18" fill="none" stroke="#C0B8B0" stroke-width="0.8"/>
+                <text x="420" y="375" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9" fill="#8A8078" letter-spacing="1" class="zone-label">DOUCHE EXT.</text>
+              </g>
+
+              <!-- North -->
+              <g transform="translate(468, 28)">
+                <line x1="0" y1="10" x2="0" y2="-4" stroke="#B0A898" stroke-width="0.8"/>
+                <polygon points="0,-7 -3,2 0,0 3,2" fill="#8A8078"/>
+                <text x="0" y="20" text-anchor="middle" font-family="Helvetica Neue" font-size="8" fill="#B0A898">N</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- SVG Plan Étage -->
+          <div class="plan-wrap" id="floor-1" style="display:none">
+            <svg width="100%" viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg">
+              <rect x="10" y="10" width="480" height="400" fill="none" stroke="#C0B8B0" stroke-width="1.5" stroke-dasharray="8 5"/>
+
+              <!-- BEDROOM 1 -->
+              <g class="plan-zone" data-room="bedroom1" onclick="selectRoom('bedroom1', this)">
+                <rect x="10" y="10" width="240" height="200" fill="#F0ECE8" stroke="#B0A898" stroke-width="1" class="zone-fill"/>
+                <!-- Bed icon -->
+                <rect x="80" y="50" width="100" height="65" rx="3" fill="#E0D8D0" stroke="#C0B8B0" stroke-width="0.8"/>
+                <rect x="80" y="50" width="100" height="14" rx="2" fill="#D8D0C8" stroke="#C0B8B0" stroke-width="0.5"/>
+                <rect x="88" y="55" width="36" height="6" rx="2" fill="#C8C0B8"/>
+                <rect x="136" y="55" width="36" height="6" rx="2" fill="#C8C0B8"/>
+                <text x="130" y="160" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#8A8078" letter-spacing="2" class="zone-label">CHAMBRE 1</text>
+                <text x="130" y="176" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="8" fill="#B0A898" letter-spacing="1">Suite parentale</text>
+              </g>
+
+              <!-- BEDROOM 2 -->
+              <g class="plan-zone" data-room="bedroom2" onclick="selectRoom('bedroom2', this)">
+                <rect x="250" y="10" width="240" height="200" fill="#ECE8E4" stroke="#B0A898" stroke-width="1" class="zone-fill"/>
+                <rect x="310" y="50" width="90" height="60" rx="3" fill="#E0D8D0" stroke="#C0B8B0" stroke-width="0.8"/>
+                <rect x="310" y="50" width="90" height="12" rx="2" fill="#D8D0C8" stroke="#C0B8B0" stroke-width="0.5"/>
+                <text x="370" y="160" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="10" fill="#8A8078" letter-spacing="2" class="zone-label">CHAMBRE 2</text>
+              </g>
+
+              <line x1="10" y1="210" x2="490" y2="210" stroke="#C0B8B0" stroke-width="0.8"/>
+
+              <!-- BATHROOM 1 -->
+              <g class="plan-zone" data-room="bath1" onclick="selectRoom('bath1', this)">
+                <rect x="10" y="210" width="160" height="200" fill="#E8EAF0" stroke="#B0A898" stroke-width="1" class="zone-fill"/>
+                <rect x="30" y="240" width="60" height="38" rx="5" fill="#D8DCE8" stroke="#B0B8C8" stroke-width="0.8"/>
+                <text x="90" y="385" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9" fill="#8A8078" letter-spacing="1" class="zone-label">SALLE DE BAIN 1</text>
+              </g>
+
+              <!-- BATHROOM 2 -->
+              <g class="plan-zone" data-room="bath2" onclick="selectRoom('bath2', this)">
+                <rect x="170" y="210" width="160" height="200" fill="#EAE8F0" stroke="#B0A898" stroke-width="1" class="zone-fill"/>
+                <rect x="190" y="240" width="55" height="35" rx="5" fill="#D8DCE8" stroke="#B0B8C8" stroke-width="0.8"/>
+                <text x="250" y="385" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9" fill="#8A8078" letter-spacing="1" class="zone-label">SALLE DE BAIN 2</text>
+              </g>
+
+              <!-- STAIR / LANDING -->
+              <g class="plan-zone" data-room="landing" onclick="selectRoom('landing', this)">
+                <rect x="330" y="210" width="160" height="200" fill="#EAE6E0" stroke="#B0A898" stroke-width="1" class="zone-fill"/>
+                <line x1="330" y1="228" x2="490" y2="228" stroke="#C8C0B8" stroke-width="0.5"/>
+                <line x1="330" y1="246" x2="490" y2="246" stroke="#C8C0B8" stroke-width="0.5"/>
+                <line x1="330" y1="264" x2="490" y2="264" stroke="#C8C0B8" stroke-width="0.5"/>
+                <line x1="330" y1="282" x2="490" y2="282" stroke="#C8C0B8" stroke-width="0.5"/>
+                <line x1="330" y1="300" x2="490" y2="300" stroke="#C8C0B8" stroke-width="0.5"/>
+                <text x="410" y="385" text-anchor="middle" font-family="Helvetica Neue,Arial,sans-serif" font-size="9" fill="#8A8078" letter-spacing="1" class="zone-label">PALIER</text>
+              </g>
+
+              <g transform="translate(468, 28)">
+                <line x1="0" y1="10" x2="0" y2="-4" stroke="#B0A898" stroke-width="0.8"/>
+                <polygon points="0,-7 -3,2 0,0 3,2" fill="#8A8078"/>
+                <text x="0" y="20" text-anchor="middle" font-family="Helvetica Neue" font-size="8" fill="#B0A898">N</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Room info panel -->
+          <div class="room-info-panel" id="roomPanel">
+            <div class="room-placeholder" id="roomPlaceholder">
+              <div class="room-placeholder-icon">+</div>
+              <div class="room-placeholder-text">Sélectionnez<br>une pièce</div>
+            </div>
+            <div class="room-detail" id="roomDetail" style="display:none">
+              <div class="room-detail-name" id="rdName"></div>
+              <div class="room-detail-area" id="rdArea"></div>
+              <div class="room-detail-desc" id="rdDesc"></div>
+              <div class="room-detail-tags" id="rdTags"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom spacer -->
+      <div style="height:80px"></div>
+    </section>
+  </main>
+
+  <!-- Cursor label -->
+  <div class="cursor-label" id="cursorLabel">Explorer</div>
+
+  <!-- Drawer -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer">
+    <div class="drawer-top">
+      <div class="drawer-title">Seseh</div>
+      <button class="drawer-close" id="drawerClose">✕</button>
+    </div>
+    <nav class="drawer-nav">
+      <a class="drawer-link" href="../index.html">Accueil <span class="dl-arrow">→</span></a>
+      <a class="drawer-link" href="villas.html">Explorer les villas <span class="dl-arrow">→</span></a>
+      <a class="drawer-link" href="#">Explorer Bali <span class="dl-arrow">→</span></a>
+      <a class="drawer-link" href="#">Pré-réserver <span class="dl-arrow">→</span></a>
+    </nav>
+    <div class="drawer-footer">© 2026 Sora Immobilier · sora-immobilier.fr</div>
+  </aside>
+
+  <script src="../js/prestige.js"></script>
+</body>
+</html>
