@@ -1,29 +1,17 @@
 const rooms = {
-  living:   { name:'Living · Cuisine', desc:'Espace ouvert et lumineux. Cuisine sur-mesure intégrée dans le séjour.', tags:['42 m²','Double hauteur','Accès terrasse','Cuisine équipée'],
-               bg:'linear-gradient(135deg,#3A3028,#2C2420,#4A3C30)' },
-  pool:     { name:'Piscine Privée',   desc:'Piscine privée en pierre naturelle avec éclairage immergé.',            tags:['Pierre naturelle','Éclairage immergé','Accès direct living'],
-               bg:'linear-gradient(135deg,#1E2A30,#243440,#182028)' },
-  terrace:  { name:'Terrasse',         desc:'Terrasse en bois naturel, entièrement privative, vue sur le jardin.',   tags:['Bois naturel','Privatif','Vue jardin'],
-               bg:'linear-gradient(135deg,#2A2C24,#383C2C,#202218)' },
-  parking:  { name:'Parking',          desc:'Parking couvert privatif avec rangements intégrés.',                    tags:['Couvert','Privatif'],
-               bg:'linear-gradient(135deg,#282420,#322E28,#201C18)' },
-  shower:   { name:'Douche Extérieure',desc:'Douche extérieure en pierre naturelle, accès direct piscine.',          tags:['Pierre naturelle','Accès piscine'],
-               bg:'linear-gradient(135deg,#243028,#2C3C30,#1C2820)' },
-  bedroom1: { name:'Chambre Principale',desc:'Suite parentale avec dressing intégré. Vue sur jardin tropical.',      tags:['Dressing','Climatisation','Baies vitrées','Vue jardin'],
-               bg:'linear-gradient(135deg,#2C2820,#3A3428,#241E18)' },
-  bedroom2: { name:'Chambre 2',        desc:'Chambre lumineuse avec salle de bain privative.',                       tags:['Salle de bain privative','Rangements','Lumière naturelle'],
-               bg:'linear-gradient(135deg,#28261E,#343028,#201E16)' },
-  bath1:    { name:'Salle de Bain 1',  desc:'Salle de bain en pierre naturelle, baignoire double et douche italienne.', tags:['Baignoire','Douche italienne','Pierre naturelle'],
-               bg:'linear-gradient(135deg,#202430,#28303C,#181C28)' },
-  bath2:    { name:'Salle de Bain 2',  desc:'Salle de bain avec douche et vasque sur-mesure.',                       tags:['Douche','Vasque sur-mesure'],
-               bg:'linear-gradient(135deg,#222030,#2C2A3C,#1A1828)' },
-  stairs:   { name:'Escalier',         desc:'Escalier en béton ciré, garde-corps métal noir mat.',                   tags:['Béton ciré','Vue séjour'],
-               bg:'linear-gradient(135deg,#242220,#302E2A,#1C1A18)' },
+  living:   { bg:'linear-gradient(135deg,#3A3028,#2C2420,#4A3C30)' },
+  pool:     { bg:'linear-gradient(135deg,#1E2A30,#243440,#182028)' },
+  terrace:  { bg:'linear-gradient(135deg,#2A2C24,#383C2C,#202218)' },
+  bedroom1: { bg:'linear-gradient(135deg,#2C2820,#3A3428,#241E18)' },
+  bedroom2: { bg:'linear-gradient(135deg,#28261E,#343028,#201E16)' },
+  bath1:    { bg:'linear-gradient(135deg,#202430,#28303C,#181C28)' },
+  bath2:    { bg:'linear-gradient(135deg,#222030,#2C2A3C,#1A1828)' },
+  balcony:  { bg:'linear-gradient(135deg,#242220,#302E2A,#1C1A18)' },
 };
 
 let activeZone = null;
 
-// Cursor
+// Cursor label
 const cursorLabel = document.getElementById('cursorLabel');
 document.addEventListener('mousemove', e => {
   cursorLabel.style.left = e.clientX + 'px';
@@ -34,29 +22,18 @@ document.querySelectorAll('.plan-zone').forEach(z => {
   z.addEventListener('mouseleave', () => cursorLabel.classList.remove('visible'));
 });
 
-function selectRoom(roomId, zoneEl) {
+function selectRoom(id, zone) {
   if (activeZone) activeZone.classList.remove('selected');
-  activeZone = zoneEl;
-  zoneEl.classList.add('selected');
+  activeZone = zone;
+  zone.classList.add('selected');
 
-  const data = rooms[roomId];
-  if (!data) return;
+  const d = rooms[id];
+  if (!d) return;
 
-  // Hide placeholder
   document.getElementById('imgPlaceholder').classList.add('hidden');
-
-  // Set room image bg (placeholder gradient until real photo)
   const img = document.getElementById('roomImage');
-  img.style.background = data.bg;
-  img.style.backgroundSize = 'cover';
+  img.style.background = d.bg;
   img.classList.add('visible');
-
-  // Update overlay info
-  document.getElementById('riName').textContent = data.name;
-  document.getElementById('riDesc').textContent = data.desc;
-  document.getElementById('riTags').innerHTML = data.tags
-    .map(t => `<div class="room-tag">${t}</div>`).join('');
-  document.getElementById('roomOverlay').classList.add('visible');
 }
 
 function setFloor(idx, btn) {
@@ -64,23 +41,35 @@ function setFloor(idx, btn) {
   btn.classList.add('active');
   document.getElementById('floor-0').style.display = idx === 0 ? 'block' : 'none';
   document.getElementById('floor-1').style.display = idx === 1 ? 'block' : 'none';
-
-  // Reset image
   if (activeZone) activeZone.classList.remove('selected');
   activeZone = null;
   document.getElementById('imgPlaceholder').classList.remove('hidden');
   document.getElementById('roomImage').classList.remove('visible');
-  document.getElementById('roomOverlay').classList.remove('visible');
 }
 
 // Drawer
-const menuBtn = document.getElementById('menuBtn');
-const drawer  = document.getElementById('drawer');
-const overlay = document.getElementById('overlay');
+const menuBtn     = document.getElementById('menuBtn');
+const drawer      = document.getElementById('drawer');
+const overlay     = document.getElementById('overlay');
 const drawerClose = document.getElementById('drawerClose');
-const open  = () => { drawer.classList.add('open');    overlay.classList.add('show'); };
-const close = () => { drawer.classList.remove('open'); overlay.classList.remove('show'); };
-menuBtn.addEventListener('click', open);
-drawerClose.addEventListener('click', close);
-overlay.addEventListener('click', close);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+menuBtn.addEventListener('click',     () => { drawer.classList.add('open');    overlay.classList.add('show'); });
+drawerClose.addEventListener('click', () => { drawer.classList.remove('open'); overlay.classList.remove('show'); });
+overlay.addEventListener('click',     () => { drawer.classList.remove('open'); overlay.classList.remove('show'); });
+document.addEventListener('keydown',  e => { if (e.key==='Escape') { drawer.classList.remove('open'); overlay.classList.remove('show'); }});
+
+// Zoom out → villas
+document.getElementById('backBtn').addEventListener('click', function(e) {
+  e.preventDefault();
+  const dest = this.getAttribute('href');
+  const cover = document.createElement('div');
+  cover.style.cssText = 'position:fixed;inset:0;z-index:500;background:#0E0B08;transform:scale(1);border-radius:0;transition:transform 0.9s cubic-bezier(0.4,0,0.2,1),border-radius 0.9s ease,opacity 0.4s 0.5s ease;';
+  document.body.appendChild(cover);
+  document.querySelector('.layout').style.cssText  = 'transition:opacity 0.3s;opacity:0;';
+  document.querySelector('.topbar').style.cssText  = 'transition:opacity 0.3s;opacity:0;';
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    cover.style.transform    = 'scale(0.1)';
+    cover.style.borderRadius = '50%';
+    cover.style.opacity      = '0';
+  }));
+  setTimeout(() => { window.location.href = dest; }, 880);
+});

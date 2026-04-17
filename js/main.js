@@ -12,14 +12,31 @@ drawerClose.addEventListener('click', closeDrawer);
 overlay.addEventListener('click', closeDrawer);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
-// ── PAGE TRANSITION → VILLAS ──
-const ctaBtn         = document.getElementById('ctaBtn');
-const pageTransition = document.getElementById('pageTransition');
+// ── CINEMATIC TRANSITION → VILLAS ──
+document.getElementById('ctaBtn').addEventListener('click', () => {
 
-ctaBtn.addEventListener('click', () => {
-  // Animate wipe then navigate
-  pageTransition.classList.add('animating');
+  // 1. Create full-screen black cover
+  const cover = document.createElement('div');
+  cover.style.cssText = `
+    position:fixed;inset:0;z-index:500;
+    background:#0E0B08;
+    opacity:0;
+    transition:opacity 0.5s ease;
+    pointer-events:all;
+  `;
+  document.body.appendChild(cover);
+
+  // 2. Fade hero content out first
+  document.querySelector('.hero').style.transition = 'opacity 0.35s ease';
+  document.querySelector('.hero').style.opacity = '0';
+
+  // 3. Fade in the black cover
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    cover.style.opacity = '1';
+  }));
+
+  // 4. Navigate to villas after cover is fully black
   setTimeout(() => {
     window.location.href = 'pages/villas.html';
-  }, 600);
+  }, 550);
 });
