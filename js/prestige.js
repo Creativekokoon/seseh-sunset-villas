@@ -57,19 +57,11 @@ drawerClose.addEventListener('click', () => { drawer.classList.remove('open'); o
 overlay.addEventListener('click',     () => { drawer.classList.remove('open'); overlay.classList.remove('show'); });
 document.addEventListener('keydown',  e => { if (e.key==='Escape') { drawer.classList.remove('open'); overlay.classList.remove('show'); }});
 
-// Zoom out → villas
+// Back → villas, simple fade
 document.getElementById('backBtn').addEventListener('click', function(e) {
   e.preventDefault();
   const dest = this.getAttribute('href');
-  const cover = document.createElement('div');
-  cover.style.cssText = 'position:fixed;inset:0;z-index:500;background:#0E0B08;transform:scale(1);border-radius:0;transition:transform 0.9s cubic-bezier(0.4,0,0.2,1),border-radius 0.9s ease,opacity 0.4s 0.5s ease;';
-  document.body.appendChild(cover);
-  document.querySelector('.layout').style.cssText  = 'transition:opacity 0.3s;opacity:0;';
-  document.querySelector('.topbar').style.cssText  = 'transition:opacity 0.3s;opacity:0;';
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    cover.style.transform    = 'scale(0.1)';
-    cover.style.borderRadius = '50%';
-    cover.style.opacity      = '0';
-  }));
-  setTimeout(() => { window.location.href = dest; }, 880);
+  document.body.style.transition = 'opacity 0.35s ease';
+  document.body.style.opacity = '0';
+  setTimeout(() => { window.location.href = dest; }, 360);
 });

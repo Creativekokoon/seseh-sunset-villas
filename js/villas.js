@@ -109,40 +109,6 @@ drawerClose.addEventListener('click', closeDrawer);
 overlay.addEventListener('click', closeDrawer);
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
-// ── ZOOM-IN ENTRANCE when coming back from a villa page ──
-// Detect if we came from a villa page via referrer
-if (document.referrer && (
-  document.referrer.includes('prestige') ||
-  document.referrer.includes('elegance') ||
-  document.referrer.includes('signature') ||
-  document.referrer.includes('exception')
-)) {
-  // Start with a small dark circle in center, expand to fill, then fade out
-  const intro = document.createElement('div');
-  intro.style.cssText = `
-    position:fixed;inset:0;z-index:200;
-    background:#0E0B08;
-    transform-origin:center center;
-    transform:scale(0.08);
-    border-radius:50%;
-    transition:transform 0.7s cubic-bezier(0.4,0,0.15,1), border-radius 0.7s ease;
-  `;
-  document.body.appendChild(intro);
-
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      intro.style.transform = 'scale(1)';
-      intro.style.borderRadius = '0';
-    });
-  });
-
-  // Then fade out to reveal villas
-  setTimeout(() => {
-    intro.style.transition = 'opacity 0.45s ease';
-    intro.style.opacity = '0';
-    setTimeout(() => intro.remove(), 500);
-  }, 720);
-}
 
 // ── STAGGERED CARD REVEAL ON ENTER ──
 // Run after a short delay to let the page-intro wipe finish
