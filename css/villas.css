@@ -24,7 +24,7 @@ html, body { width:100%;height:100%;overflow:hidden;background:#0E0B08;color:whi
   position:fixed;top:0;left:0;right:0;z-index:50;
   display:flex;justify-content:space-between;align-items:center;
   padding:18px 36px;
-  background:rgba(14,10,7,0.38);
+  background:rgba(14,10,7,0.72);
   
   border-bottom:1px solid rgba(255,255,255,0.04);
   transition: opacity 0.4s ease;
