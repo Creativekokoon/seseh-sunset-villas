@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Explorer Bali — Seseh Sunset Villas</title>
   <link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
-  <link rel="stylesheet" href="../css/vendor/maplibre-gl.css"/>
-  <script src="../js/vendor/maplibre-gl.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css"/>
+  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     :root{--serif:'the-seasons',Georgia,serif;--sans:'Helvetica Neue',Arial,sans-serif;--gold:#c8a86a}
@@ -203,6 +203,8 @@ const POIS = [
   { id:'airport',      cat:'airport',     ll:[-8.7482, 115.1669], name:'Aéroport Ngurah Rai', img:'' },
 ];
 
+let activeId = null;
+
 // ── MAP ──
 const map = new maplibregl.Map({
   container: 'map',
@@ -236,8 +238,6 @@ POIS.forEach(poi => {
     .addTo(map);
   markerMap[poi.id] = { marker: m, el, data: poi };
 });
-
-let activeId = null;
 
 function activatePOI(id) {
   if (activeId === id) { deactivateAll(); resetView(); activeId = null; return; }
