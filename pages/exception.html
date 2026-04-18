@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Exception — Seseh Sunset Villas</title>
+  <link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
+  <link rel="stylesheet" href="../css/villa.css">
+  <style>
+    .plan-coming { flex:1; display:flex; align-items:center; justify-content:center; font-family:'Helvetica Neue',Arial,sans-serif; font-size:0.55rem; letter-spacing:0.22em; text-transform:uppercase; color:rgba(83,78,72,0.38); }
+    .features-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 24px; padding:0 16px; }
+    .feature-item { font-family:'Helvetica Neue',Arial,sans-serif; font-size:0.62rem; letter-spacing:0.12em; color:rgba(57,52,47,0.72); padding:6px 0; border-bottom:1px solid rgba(62,58,54,0.08); }
+  </style>
+</head>
+<body>
+
+  <div id="nav-root"></div>
+  <script src="../js/nav.js"></script>
+
+  <div class="page-intro"></div>
+  <div class="cursor-tip" id="tip">Explorer</div>
+  <div class="bg"></div>
+
+  <div class="page">
+
+    <div class="villa-title">Exception</div>
+
+    <div class="stats">
+      <div class="stats-inner">
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 20 20" fill="none"><rect x="3" y="3" width="14" height="14" stroke="currentColor" stroke-width="1.2"/></svg>
+          <div class="stat-val">190,17 <span class="stat-sm">m²</span></div>
+          <div class="stat-lbl">Surface</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 22 16" fill="none"><rect x="1" y="5" width="20" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/><rect x="1" y="8" width="6" height="7" rx="0.5" stroke="currentColor" stroke-width="1"/></svg>
+          <div class="stat-val">3</div>
+          <div class="stat-lbl">Chambres</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 22 18" fill="none"><path d="M3 9H19Q21 9 21 11V14Q21 16 19 16H3Q1 16 1 14V11Q1 9 3 9Z" stroke="currentColor" stroke-width="1.2"/><path d="M4 9V5Q4 3 6 3H7Q8 3 8 4V5" stroke="currentColor" stroke-width="1.2"/></svg>
+          <div class="stat-val">3</div>
+          <div class="stat-lbl">Salles de bain</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.2"/><text x="10" y="14" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="8" fill="currentColor">€</text></svg>
+          <div class="stat-val">379 000 €</div>
+          <div class="stat-lbl">À partir de</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="dark-block">
+
+      <div class="plan-side">
+        <div class="plan-inner">
+          <div class="plan-top" style="grid-template-columns:1fr;">
+            <div class="plan-title-wrap">
+              <div class="plan-title">Villa · 3 Chambres</div>
+              <div class="plan-subtitle">Une expérience de vie spacieuse et immersive. De larges volumes et une circulation fluide offrent une sensation d'ouverture, entre lumière et tranquillité.</div>
+            </div>
+          </div>
+          <div class="features-grid">
+            <div class="feature-item">3 Chambres</div>
+            <div class="feature-item">Parking</div>
+            <div class="feature-item">3 Salles de bain</div>
+            <div class="feature-item">Piscine privée</div>
+            <div class="feature-item">Cuisine équipée</div>
+            <div class="feature-item">Terrasse</div>
+            <div class="feature-item">Piscine privée</div>
+            <div class="feature-item">Douche extérieure</div>
+            <div class="feature-item">BBQ Area</div>
+          </div>
+          <div class="plan-coming">Plan interactif — bientôt disponible</div>
+        </div>
+      </div>
+
+      <div class="info-side">
+        <div class="room-image" id="roomImg">
+          <div class="room-visual visible" id="visual-main">
+            <div class="scene-card"><div class="room-scene">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="ex1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ddd5c8"/><stop offset="100%" stop-color="#bdb5a8"/></linearGradient>
+                  <linearGradient id="exPool" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ccd4d6"/><stop offset="100%" stop-color="#a8b4b8"/></linearGradient>
+                </defs>
+                <rect width="800" height="600" fill="url(#ex1)"/>
+                <polygon points="90,160 710,130 660,460 145,490" fill="url(#exPool)"/>
+                <polygon points="90,160 710,130 680,165 120,192" fill="#ddd4c4"/>
+                <rect y="480" width="800" height="120" fill="#b0a89c"/>
+                <rect x="520" y="80" width="160" height="40" fill="#c4b8ac" opacity="0.9"/>
+                <rect x="60" y="490" width="120" height="80" fill="#a89e94"/>
+              </svg>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="prereserver-wrap">
+      <a class="prereserver-btn" href="#">Pré-réserver</a>
+    </div>
+
+  </div>
+
+  <script>
+    const tip = document.getElementById('tip');
+    document.addEventListener('mousemove', e => { tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; });
+  </script>
+</body>
+</html>

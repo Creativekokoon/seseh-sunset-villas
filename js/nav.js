@@ -15,33 +15,55 @@
     #site-topbar {
       position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
       display:flex;justify-content:space-between;align-items:center;padding:0 40px;
+    }
+    /* Charcoal variant (index + prestige) */
+    #site-topbar.nav-dark {
       background:rgba(36,34,32,0.94);
     }
+    #site-topbar.nav-dark .nav-back,
+    #site-topbar.nav-dark .nav-brand {
+      color:rgba(255,252,248,0.72);
+    }
+    #site-topbar.nav-dark .nav-back:hover,
+    #site-topbar.nav-dark .nav-brand:hover { color:rgba(255,252,248,0.95); }
+    #site-topbar.nav-dark .nav-menu-btn {
+      color:#2A2420;background:#E8E8E6;
+    }
+    #site-topbar.nav-dark .nav-menu-btn:hover { background:#f0efec; }
+
+    /* Grey variant (villas) */
+    #site-topbar.nav-light {
+      background:#E8E8E6;
+    }
+    #site-topbar.nav-light .nav-back,
+    #site-topbar.nav-light .nav-brand {
+      color:rgba(52,48,44,0.75);
+    }
+    #site-topbar.nav-light .nav-back:hover,
+    #site-topbar.nav-light .nav-brand:hover { color:rgba(52,48,44,1); }
+    #site-topbar.nav-light .nav-menu-btn {
+      color:#E8E8E6;background:rgba(52,48,44,0.88);
+    }
+    #site-topbar.nav-light .nav-menu-btn:hover { background:rgba(36,34,32,1); }
+
     #site-topbar .nav-back {
       font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.72rem;
       letter-spacing:0.22em;text-transform:uppercase;
-      color:rgba(255,252,248,0.65);text-decoration:none;transition:color 0.2s;
-      min-width:120px;
+      text-decoration:none;transition:color 0.2s;min-width:120px;
     }
-    #site-topbar .nav-back:hover { color:rgba(255,252,248,0.95); }
     #site-topbar .nav-brand {
       font-family:'the-seasons',Georgia,serif;font-size:1rem;
-      font-weight:300;letter-spacing:0.12em;
-      color:rgba(255,252,248,0.72);text-decoration:none;
-      transition:color 0.2s;
+      font-weight:500;letter-spacing:0.12em;
+      text-decoration:none;transition:color 0.2s;
     }
-    #site-topbar .nav-brand:hover { color:rgba(255,252,248,0.95); }
     #site-topbar .nav-menu-btn {
       font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.68rem;
       letter-spacing:0.2em;text-transform:uppercase;
-      color:#2A2420;background:rgba(232,226,216,0.92);
       border:none;padding:0 24px;height:36px;
-      border-radius:30px;cursor:pointer;
-      transition:background 0.22s;
+      border-radius:30px;cursor:pointer;transition:background 0.22s;
       min-width:120px;text-align:center;
       display:flex;align-items:center;justify-content:center;
     }
-    #site-topbar .nav-menu-btn:hover { background:rgba(245,240,232,1); }
 
     #nav-overlay {
       position:fixed;inset:0;z-index:600;
@@ -53,7 +75,7 @@
     #nav-drawer {
       position:fixed;top:0;right:0;bottom:0;width:min(340px,72vw);z-index:700;
       background:#E8E8E6;
-      border-left:1px solid rgba(180,170,160,0.3);
+      border-left:1px solid rgba(160,155,148,0.25);
       transform:translateX(100%);transition:transform 0.3s ease;
       display:flex;flex-direction:column;padding:32px 28px;
     }
@@ -138,8 +160,17 @@
         <a class="nav-drawer-link" href="${depth}pages/villas.html">
           Explorer les villas <span class="nav-drawer-arrow">→</span>
         </a>
+        <a class="nav-drawer-link" href="${depth}pages/elegance.html">
+          Élégance <span class="nav-drawer-arrow">→</span>
+        </a>
         <a class="nav-drawer-link" href="${depth}pages/prestige.html">
           Prestige <span class="nav-drawer-arrow">→</span>
+        </a>
+        <a class="nav-drawer-link" href="${depth}pages/signature.html">
+          Signature <span class="nav-drawer-arrow">→</span>
+        </a>
+        <a class="nav-drawer-link" href="${depth}pages/exception.html">
+          Exception <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="#">
           Explorer Bali <span class="nav-drawer-arrow">→</span>
@@ -151,6 +182,14 @@
       <div class="nav-drawer-footer">© 2026 Sora Immobilier · sora-immobilier.fr</div>
     </aside>
   `;
+
+  // ── Apply nav colour theme based on page ──
+  const topbar = document.getElementById('site-topbar');
+  if (path.includes('villas.html')) {
+    topbar.classList.add('nav-light');
+  } else {
+    topbar.classList.add('nav-dark');
+  }
 
   // ── Logic ──
   const overlay    = document.getElementById('nav-overlay');

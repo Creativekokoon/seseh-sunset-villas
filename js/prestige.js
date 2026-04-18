@@ -9,9 +9,28 @@ document.querySelectorAll('.pzone').forEach(z => {
   z.addEventListener('mouseleave', () => tip.classList.remove('visible'));
 });
 
-// ── ROOM SELECTION ──
+// ── ROOM VISUALS MAP ──
 const roomImg = document.getElementById('roomImg');
 const visuals = document.querySelectorAll('.room-visual');
+
+// Map plan zones to visual IDs (some share same visual)
+const visualMap = {
+  living:   'visual-living',
+  kitchen:  'visual-living',
+  storage:  'visual-living',
+  powder:   'visual-bath1',
+  stairs:   'visual-living',
+  parking:  'visual-terrace',
+  garden:   'visual-terrace',
+  terrace:  'visual-terrace',
+  pooldeck: 'visual-pool',
+  pool:     'visual-pool',
+  bedroom1: 'visual-bedroom1',
+  bedroom2: 'visual-bedroom2',
+  bath1:    'visual-bath1',
+  bath2:    'visual-bath2',
+  balcony:  'visual-balcony',
+};
 
 function hideAllVisuals() {
   visuals.forEach(v => v.classList.remove('visible'));
@@ -24,7 +43,8 @@ function pick(id, zone) {
   clearSelections();
   zone.classList.add('selected');
   hideAllVisuals();
-  const activeVisual = document.getElementById('visual-' + id);
+  const targetId = visualMap[id] || ('visual-' + id);
+  const activeVisual = document.getElementById(targetId);
   if (activeVisual) {
     roomImg.classList.remove('empty');
     activeVisual.classList.add('visible');
@@ -42,12 +62,11 @@ function setFloor(idx, btn) {
   roomImg.classList.add('empty');
 }
 
-// Show living room by default on load
+// Show living room by default
 window.addEventListener('load', () => {
-  const livingZone = document.querySelector('.pzone.selected');
-  if (livingZone) {
-    const id = livingZone.getAttribute('onclick').match(/'(\w+)'/)[1];
-    const visual = document.getElementById('visual-' + id);
+  const first = document.querySelector('#f0 .pzone.selected');
+  if (first) {
+    const visual = document.getElementById('visual-living');
     if (visual) { roomImg.classList.remove('empty'); visual.classList.add('visible'); }
   }
 });
