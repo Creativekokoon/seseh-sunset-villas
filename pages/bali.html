@@ -204,6 +204,25 @@ const map = new maplibregl.Map({
 
 map.addControl(new maplibregl.NavigationControl({ showCompass: true }), 'top-left');
 
+map.on('load', () => {
+  // Hide building layers to keep map clean
+  const buildingLayers = [
+    'building', 'building-top', 'building-shadow', 'building-3d',
+    'buildings', 'building_fill', 'building-outline',
+    'poi', 'poi-label', 'poi_label',
+    'place-of-worship', 'aeroway-building'
+  ];
+  buildingLayers.forEach(id => {
+    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
+  });
+  // Also hide any layer with 'building' in its name
+  map.getStyle().layers.forEach(layer => {
+    if (layer.id.includes('building') || layer.id.includes('Building')) {
+      map.setLayoutProperty(layer.id, 'visibility', 'none');
+    }
+  });
+});
+
 // Villa marker
 const villaEl = document.createElement('div');
 villaEl.className = 'villa-pin';
