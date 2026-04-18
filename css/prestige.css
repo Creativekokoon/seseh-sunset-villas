@@ -66,8 +66,8 @@ html,body {
   display:inline-flex;align-items:center;
   gap:0;
   /* lines only as wide as the content */
-  border-top:1px solid var(--charcoal);
-  border-bottom:1px solid var(--charcoal);
+  border-top:0.5px solid rgba(42,42,40,0.3);
+  border-bottom:0.5px solid rgba(42,42,40,0.3);
   padding:14px 0;
 }
 .stat-item {
@@ -108,8 +108,8 @@ html,body {
 .room-image {
   width:100%;height:100%;
   background:#E8E8E4;
-  border:1px solid var(--border);
-  border-radius:2px;
+  border:none;
+  border-radius:0;
   position:relative;overflow:hidden;
   background-size:cover;background-position:center;
   transition:background 0.5s ease;
@@ -138,8 +138,9 @@ html,body {
   flex-shrink:0;
 }
 .plan-label {
-  font-family:var(--sans);font-size:0.55rem;letter-spacing:0.18em;
-  text-transform:uppercase;color:var(--text-soft);
+  font-family:var(--sans);font-size:0.72rem;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--text);
+  font-weight:600;
   flex:1;line-height:1.6;
 }
 .floor-tabs { display:flex;gap:4px;flex-shrink:0; }
@@ -153,7 +154,7 @@ html,body {
 .floor-tab:hover:not(.active) { color:var(--text-mid); }
 
 /* SVG plan — smaller */
-.plan-svg { width:88%;height:auto;display:block;margin:0 auto;flex-shrink:0; }
+.plan-svg { width:70%;height:auto;display:block;margin:0 auto;flex-shrink:0; }
 
 /* Zone styles */
 .pz-fill {
@@ -174,18 +175,18 @@ html,body {
   display:inline-flex;align-items:center;justify-content:center;
   align-self:center;
   font-family:var(--sans);font-size:0.68rem;letter-spacing:0.24em;text-transform:uppercase;
-  color:var(--charcoal);
+  color:#fff;
   border:1px solid var(--charcoal);
   padding:12px 36px;border-radius:2px;text-decoration:none;
-  background:transparent;
+  background:var(--charcoal);
   position:relative;overflow:hidden;
   margin-top:auto;
   animation:glowPulse 2.5s 1s ease-in-out infinite;
   transition:background 0.22s,color 0.22s,border-color 0.22s;
 }
 @keyframes glowPulse {
-  0%,100% { box-shadow:0 0 0 0 rgba(42,42,40,0.0); border-color:var(--charcoal); }
-  50%      { box-shadow:0 0 12px 3px rgba(42,42,40,0.18); border-color:rgba(42,42,40,0.65); }
+  0%,100% { box-shadow:0 0 0 0 rgba(42,42,40,0.0); }
+  50%      { box-shadow:0 0 16px 5px rgba(42,42,40,0.28); }
 }
 .prereserver-btn::before {
   content:'';position:absolute;inset:0;
@@ -194,7 +195,7 @@ html,body {
 }
 .prereserver-btn:hover::before { transform:translateY(0); }
 .prereserver-btn:hover {
-  color:#fff;
+  background:#3A3A38;
   animation-play-state:paused;
 }
 .prereserver-btn span { position:relative;z-index:1; }
