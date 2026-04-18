@@ -10,17 +10,17 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     :root{--serif:'the-seasons',Georgia,serif;--sans:'Helvetica Neue',Arial,sans-serif;--gold:#c8a86a}
-    html,body{width:100%;height:100%;overflow:hidden;background:#0a0806;-webkit-font-smoothing:antialiased}
-    .page-intro{position:fixed;inset:0;z-index:300;background:#0a0806;animation:fadeOut 0.6s 0.2s ease forwards;pointer-events:none}
+    html,body{width:100%;height:100%;overflow:hidden;background:#f0ece4;-webkit-font-smoothing:antialiased}
+    .page-intro{position:fixed;inset:0;z-index:300;background:#f0ece4;animation:fadeOut 0.6s 0.2s ease forwards;pointer-events:none}
     @keyframes fadeOut{to{opacity:0}}
-    .layout{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 340px}
+    .layout{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 420px}
     #map{width:100%;height:100%}
 
-    /* Dark map filter on tiles */
-    .leaflet-tile-pane{filter:brightness(0.45) saturate(0.3) hue-rotate(190deg) contrast(1.1)}
+    .leaflet-tile-pane{filter:none}
     .leaflet-control-attribution{background:rgba(8,6,4,0.7)!important;color:rgba(255,255,255,0.2)!important;font-size:8px!important}
     .leaflet-control-attribution a{color:rgba(255,255,255,0.3)!important}
     .leaflet-control-zoom{display:none}
+    .leaflet-control-attribution{display:none}
 
     .villa-pin{width:13px;height:13px;border-radius:50%;background:var(--gold);animation:pulse 2.5s ease-in-out infinite}
     @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(200,168,106,0.2),0 0 18px rgba(200,168,106,0.4)}50%{box-shadow:0 0 0 9px rgba(200,168,106,0.06),0 0 28px rgba(200,168,106,0.5)}}
@@ -33,32 +33,32 @@
     .poi-pin.cat-nature{background:rgba(100,185,100,0.9)}
     .poi-pin.cat-airport{background:rgba(200,168,106,0.9)}
 
-    .panel{background:rgba(7,5,3,0.97);border-left:1px solid rgba(255,255,255,0.05);display:flex;flex-direction:column;overflow:hidden}
-    .panel-head{padding:28px 32px 0;flex-shrink:0}
-    .panel-eyebrow{font-family:var(--sans);font-size:0.5rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-    .panel-title{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:rgba(255,252,248,0.94);line-height:1.06}
-    .panel-filters{display:flex;flex-wrap:wrap;border-bottom:1px solid rgba(255,255,255,0.06);margin-top:24px;flex-shrink:0}
-    .pf{font-family:var(--sans);font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,252,248,0.28);padding:11px 0;margin-right:18px;cursor:pointer;border-bottom:1.5px solid transparent;transition:all 0.2s}
-    .pf:hover{color:rgba(255,252,248,0.65)}
+    .panel{background:#f2ede6;border-left:1px solid rgba(36,32,28,0.1);display:flex;flex-direction:column;overflow:hidden}
+    .panel-head{padding:28px 36px 0;flex-shrink:0}
+    .panel-eyebrow{font-family:var(--sans);font-size:0.55rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+    .panel-title{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:rgba(36,32,28,0.88);line-height:1.06}
+    .panel-filters{display:flex;flex-wrap:wrap;border-bottom:1px solid rgba(36,32,28,0.1);margin-top:24px;flex-shrink:0}
+    .pf{font-family:var(--sans);font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,32,28,0.38);padding:11px 0;margin-right:18px;cursor:pointer;border-bottom:1.5px solid transparent;transition:all 0.2s}
+    .pf:hover{color:rgba(36,32,28,0.75)}
     .pf.active{color:var(--gold);border-bottom-color:var(--gold)}
-    .poi-list{flex:1;overflow-y:auto;padding:0 32px;scrollbar-width:none}
+    .poi-list{flex:1;overflow-y:auto;padding:0 36px;scrollbar-width:none}
     .poi-list::-webkit-scrollbar{display:none}
-    .villa-entry{padding:20px 0 16px;border-bottom:1px solid rgba(255,255,255,0.05)}
-    .villa-entry-label{font-family:var(--sans);font-size:0.48rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
-    .villa-entry-name{font-family:var(--serif);font-size:1rem;font-weight:300;color:rgba(255,252,248,0.88)}
-    .poi-item{padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;display:grid;grid-template-columns:1fr auto;align-items:start;gap:10px;transition:border-color 0.2s}
-    .poi-item:hover{border-bottom-color:rgba(255,255,255,0.12)}
+    .villa-entry{padding:20px 0 16px;border-bottom:1px solid rgba(36,32,28,0.08)}
+    .villa-entry-label{font-family:var(--sans);font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+    .villa-entry-name{font-family:var(--serif);font-size:1.1rem;font-weight:300;color:rgba(36,32,28,0.85)}
+    .poi-item{padding:20px 0;border-bottom:1px solid rgba(36,32,28,0.08);cursor:pointer;display:grid;grid-template-columns:1fr auto;align-items:start;gap:10px;transition:border-color 0.2s}
+    .poi-item:hover{border-bottom-color:rgba(36,32,28,0.2)}
     .poi-item.active{border-bottom-color:var(--gold)}
-    .poi-name{font-family:var(--serif);font-size:0.95rem;font-weight:300;color:rgba(255,252,248,0.62);transition:color 0.2s}
-    .poi-item:hover .poi-name,.poi-item.active .poi-name{color:rgba(255,252,248,0.96)}
-    .poi-dist{font-family:var(--sans);font-size:0.48rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(255,252,248,0.22);margin-top:4px;transition:color 0.2s}
+    .poi-name{font-family:var(--serif);font-size:1.1rem;font-weight:300;color:rgba(36,32,28,0.55);transition:color 0.2s}
+    .poi-item:hover .poi-name,.poi-item.active .poi-name{color:rgba(36,32,28,0.95)}
+    .poi-dist{font-family:var(--sans);font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(36,32,28,0.35);margin-top:5px;transition:color 0.2s}
     .poi-item.active .poi-dist{color:var(--gold)}
-    .poi-desc{font-family:var(--sans);font-size:0.6rem;line-height:1.55;color:rgba(255,252,248,0.3);max-height:0;overflow:hidden;opacity:0;transition:max-height 0.38s ease,opacity 0.38s ease,margin-top 0.38s}
+    .poi-desc{font-family:var(--sans);font-size:0.72rem;line-height:1.6;color:rgba(36,32,28,0.5);max-height:0;overflow:hidden;opacity:0;transition:max-height 0.38s ease,opacity 0.38s ease,margin-top 0.38s}
     .poi-item.active .poi-desc{max-height:90px;opacity:1;margin-top:8px}
-    .poi-arrow{font-size:0.65rem;color:rgba(255,255,255,0.16);margin-top:3px;transition:color 0.2s,transform 0.2s}
+    .poi-arrow{font-size:0.65rem;color:rgba(36,32,28,0.2);margin-top:3px;transition:color 0.2s,transform 0.2s}
     .poi-item.active .poi-arrow{color:var(--gold);transform:translateX(3px)}
-    .panel-foot{flex-shrink:0;padding:14px 32px 18px;border-top:1px solid rgba(255,255,255,0.04)}
-    .panel-foot-text{font-family:var(--sans);font-size:0.46rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.15)}
+    .panel-foot{flex-shrink:0;padding:14px 32px 18px;border-top:1px solid rgba(36,32,28,0.06)}
+    .panel-foot-text{font-family:var(--sans);font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,32,28,0.25)}
   </style>
 </head>
 <body>
@@ -119,6 +119,12 @@ const POIS = [
 
 // MapTiler dark tiles
 const map = L.map('map', {
+  dragging: false,
+  scrollWheelZoom: false,
+  doubleClickZoom: false,
+  touchZoom: false,
+  boxZoom: false,
+  keyboard: false,
   center: VILLA,
   zoom: 14,
   zoomControl: false,
@@ -126,7 +132,7 @@ const map = L.map('map', {
 });
 
 L.tileLayer(
-  `https://api.maptiler.com/maps/dataviz-dark/{z}/{x}/{y}.png?key=${MAPTILER_KEY}`,
+  `https://api.maptiler.com/maps/bright/{z}/{x}/{y}.png?key=${MAPTILER_KEY}`,
   {
     attribution: '<a href="https://www.maptiler.com">MapTiler</a> &copy; <a href="https://www.openstreetmap.org">OpenStreetMap</a>',
     maxZoom: 19,
