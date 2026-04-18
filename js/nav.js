@@ -122,7 +122,7 @@
   let backHref = '';
   let backLabel = '';
 
-  if (path.includes('villas.html')) {
+  if (path.includes('villas.html') && !path.includes('bali.html')) {
     backHref = depth + 'index.html';
     backLabel = '← Accueil';
   } else if (path.includes('prestige.html') || path.includes('elegance.html') ||
@@ -185,8 +185,10 @@
 
   // ── Apply nav colour theme based on page ──
   const topbar = document.getElementById('site-topbar');
-  if (path.includes('villas.html')) {
+  if (path.includes('villas.html') && !path.includes('bali.html')) {
     topbar.classList.add('nav-light');
+  } else if (path.includes('bali.html')) {
+    topbar.classList.add('nav-dark');
   } else {
     topbar.classList.add('nav-dark');
   }
