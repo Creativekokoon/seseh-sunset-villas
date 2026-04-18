@@ -107,23 +107,35 @@
                 <text x="402" y="109" text-anchor="middle" class="pz-text pz-m2">39,54 m²</text>
               </g>
 
-              <!-- Terrasse avec Piscine -->
+              <!-- Terrasse + Piscine split -->
+              <!-- Terrasse strip (deck lines) -->
               <g class="pzone" onclick="pick('terrace',this)">
-                <rect class="pz-fill" x="111" y="200" width="388" height="118"/>
-                <!-- Terrace lines -->
-                <line x1="111" y1="215" x2="499" y2="215" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
-                <line x1="111" y1="230" x2="499" y2="230" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
-                <line x1="111" y1="245" x2="499" y2="245" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
-                <line x1="111" y1="260" x2="499" y2="260" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
-                <line x1="111" y1="275" x2="499" y2="275" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
-                <line x1="111" y1="290" x2="499" y2="290" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
-                <!-- Label -->
-                <text x="240" y="258" text-anchor="middle" class="pz-text">Terrasse · Piscine</text>
-                <!-- Pool wave icon -->
-                <path d="M340 248 Q347 244 354 248 Q361 252 368 248 Q375 244 382 248" fill="none" stroke="rgba(100,160,180,0.7)" stroke-width="1.4"/>
-                <path d="M340 255 Q347 251 354 255 Q361 259 368 255 Q375 251 382 255" fill="none" stroke="rgba(100,160,180,0.7)" stroke-width="1.4"/>
-                <path d="M340 262 Q347 258 354 262 Q361 266 368 262 Q375 258 382 262" fill="none" stroke="rgba(100,160,180,0.7)" stroke-width="1.4"/>
+                <rect class="pz-fill" x="111" y="200" width="140" height="118"/>
+                <line x1="111" y1="214" x2="251" y2="214" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
+                <line x1="111" y1="228" x2="251" y2="228" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
+                <line x1="111" y1="242" x2="251" y2="242" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
+                <line x1="111" y1="256" x2="251" y2="256" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
+                <line x1="111" y1="270" x2="251" y2="270" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
+                <line x1="111" y1="284" x2="251" y2="284" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
+                <line x1="111" y1="298" x2="251" y2="298" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
+                <line x1="111" y1="312" x2="251" y2="312" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
+                <text x="181" y="258" text-anchor="middle" class="pz-text">Terrasse</text>
               </g>
+
+              <!-- Pool (rectangular with water) -->
+              <g class="pzone" onclick="pick('pool',this)">
+                <rect class="pz-fill" x="251" y="200" width="248" height="118"/>
+                <!-- Pool water fill -->
+                <rect x="260" y="209" width="230" height="100" rx="3" fill="rgba(160,210,230,0.45)" stroke="rgba(100,160,180,0.7)" stroke-width="1.2"/>
+                <!-- Wave lines -->
+                <path d="M268 235 Q278 230 288 235 Q298 240 308 235 Q318 230 328 235 Q338 240 348 235 Q358 230 368 235 Q378 240 388 235 Q398 230 408 235 Q418 240 428 235 Q438 230 448 235 Q458 240 468 235 Q478 230 485 235" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
+                <path d="M268 250 Q278 245 288 250 Q298 255 308 250 Q318 245 328 250 Q338 255 348 250 Q358 245 368 250 Q378 255 388 250 Q398 245 408 250 Q418 255 428 250 Q438 245 448 250 Q458 255 468 250 Q478 245 485 250" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+                <path d="M268 265 Q278 260 288 265 Q298 270 308 265 Q318 260 328 265 Q338 270 348 265 Q358 260 368 265 Q378 270 388 265 Q398 260 408 265 Q418 270 428 265 Q438 260 448 265 Q458 270 468 265 Q478 260 485 265" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
+                <text x="375" y="285" text-anchor="middle" class="pz-text">Piscine</text>
+              </g>
+
+              <!-- Divider terrasse / piscine -->
+              <line x1="251" y1="200" x2="251" y2="318" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
 
             </svg>
 
