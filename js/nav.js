@@ -16,7 +16,6 @@
       position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
       display:flex;justify-content:space-between;align-items:center;padding:0 40px;
       background:rgba(36,34,32,0.94);
-      border-bottom:1px solid rgba(255,255,255,0.05);
     }
     #site-topbar .nav-back {
       font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.72rem;
@@ -26,18 +25,21 @@
     }
     #site-topbar .nav-back:hover { color:rgba(255,252,248,0.95); }
     #site-topbar .nav-brand {
-      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.72rem;
-      letter-spacing:0.28em;text-transform:uppercase;
-      color:rgba(255,252,248,0.30);text-decoration:none;
+      font-family:'the-seasons',Georgia,serif;font-size:1rem;
+      font-weight:300;letter-spacing:0.12em;
+      color:rgba(255,252,248,0.72);text-decoration:none;
       transition:color 0.2s;
     }
-    #site-topbar .nav-brand:hover { color:rgba(255,252,248,0.55); }
+    #site-topbar .nav-brand:hover { color:rgba(255,252,248,0.95); }
     #site-topbar .nav-menu-btn {
-      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.72rem;
+      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.68rem;
       letter-spacing:0.2em;text-transform:uppercase;
       color:#2A2420;background:rgba(232,226,216,0.92);
-      border:none;padding:10px 24px;border-radius:30px;cursor:pointer;
-      transition:background 0.22s;min-width:120px;text-align:right;
+      border:none;padding:0 24px;height:36px;
+      border-radius:30px;cursor:pointer;
+      transition:background 0.22s;
+      min-width:120px;text-align:center;
+      display:flex;align-items:center;justify-content:center;
     }
     #site-topbar .nav-menu-btn:hover { background:rgba(245,240,232,1); }
 
@@ -50,8 +52,8 @@
 
     #nav-drawer {
       position:fixed;top:0;right:0;bottom:0;width:min(340px,72vw);z-index:700;
-      background:rgba(232,226,216,0.98);
-      border-left:1px solid rgba(180,170,160,0.4);
+      background:#E8E8E6;
+      border-left:1px solid rgba(180,170,160,0.3);
       transform:translateX(100%);transition:transform 0.3s ease;
       display:flex;flex-direction:column;padding:32px 28px;
     }
