@@ -10,8 +10,8 @@
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
     :root{--serif:'the-seasons',Georgia,serif;--sans:'Helvetica Neue',Arial,sans-serif;--gold:#c8a86a}
-    html,body{width:100%;height:100%;overflow:hidden;background:#f0ece4;-webkit-font-smoothing:antialiased}
-    .page-intro{position:fixed;inset:0;z-index:300;background:#f0ece4;animation:fadeOut 0.6s 0.2s ease forwards;pointer-events:none}
+    html,body{width:100%;height:100%;overflow:hidden;background:#E8E8E6;-webkit-font-smoothing:antialiased}
+    .page-intro{position:fixed;inset:0;z-index:300;background:#E8E8E6;animation:fadeOut 0.6s 0.2s ease forwards;pointer-events:none}
     @keyframes fadeOut{to{opacity:0}}
     .layout{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 480px}
     #map{width:100%;height:100%}
@@ -33,32 +33,32 @@
     .poi-pin.cat-nature{background:rgba(100,185,100,0.9)}
     .poi-pin.cat-airport{background:rgba(200,168,106,0.9)}
 
-    .panel{background:#f2ede6;border-left:1px solid rgba(36,32,28,0.1);display:flex;flex-direction:column;overflow:hidden}
+    .panel{background:#E8E8E6;border-left:1px solid rgba(36,32,28,0.1);display:flex;flex-direction:column;overflow:hidden}
     .panel-head{padding:28px 36px 0;flex-shrink:0}
     .panel-eyebrow{font-family:var(--sans);font-size:0.55rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-    .panel-title{font-family:var(--serif);font-size:2.2rem;font-weight:300;color:rgba(36,32,28,0.88);line-height:1.06}
+    .panel-title{font-family:var(--serif);font-size:2.2rem;font-weight:500;color:rgba(36,32,28,0.92);line-height:1.06}
     .panel-filters{display:flex;flex-wrap:nowrap;border-bottom:1px solid rgba(36,32,28,0.1);margin-top:20px;flex-shrink:0;overflow:hidden}
-    .pf{font-family:var(--sans);font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,32,28,0.38);padding:11px 0;margin-right:18px;cursor:pointer;border-bottom:1.5px solid transparent;transition:all 0.2s}
+    .pf{font-family:var(--sans);font-size:0.55rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,32,28,0.65);padding:11px 0;margin-right:18px;cursor:pointer;border-bottom:1.5px solid transparent;transition:all 0.2s;white-space:nowrap}
     .pf:hover{color:rgba(36,32,28,0.75)}
     .pf.active{color:var(--gold);border-bottom-color:var(--gold)}
     .poi-list{flex:1;overflow-y:auto;padding:0 36px;scrollbar-width:none}
     .poi-list::-webkit-scrollbar{display:none}
     .villa-entry{padding:20px 0 16px;border-bottom:1px solid rgba(36,32,28,0.08)}
     .villa-entry-label{font-family:var(--sans);font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
-    .villa-entry-name{font-family:var(--serif);font-size:1.1rem;font-weight:300;color:rgba(36,32,28,0.85)}
+    .villa-entry-name{font-family:var(--serif);font-size:1.1rem;font-weight:500;color:rgba(36,32,28,0.92)}
     .poi-item{padding:20px 0;border-bottom:1px solid rgba(36,32,28,0.08);cursor:pointer;display:grid;grid-template-columns:1fr auto;align-items:start;gap:10px;transition:border-color 0.2s}
     .poi-item:hover{border-bottom-color:rgba(36,32,28,0.2)}
     .poi-item.active{border-bottom-color:var(--gold)}
-    .poi-name{font-family:var(--serif);font-size:1.1rem;font-weight:300;color:rgba(36,32,28,0.55);transition:color 0.2s}
+    .poi-name{font-family:var(--serif);font-size:1.1rem;font-weight:500;color:rgba(36,32,28,0.88);transition:color 0.2s}
     .poi-item:hover .poi-name,.poi-item.active .poi-name{color:rgba(36,32,28,1)}
-    .poi-dist{font-family:var(--sans);font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:rgba(36,32,28,0.35);margin-top:5px;transition:color 0.2s}
+    .poi-dist{font-family:var(--sans);font-size:0.58rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(36,32,28,0.62);margin-top:5px;transition:color 0.2s}
     .poi-item.active .poi-dist{color:var(--gold)}
-    .poi-desc{font-family:var(--sans);font-size:0.72rem;line-height:1.6;color:rgba(36,32,28,0.5);max-height:0;overflow:hidden;opacity:0;transition:max-height 0.38s ease,opacity 0.38s ease,margin-top 0.38s}
+    .poi-desc{font-family:var(--sans);font-size:0.72rem;line-height:1.6;color:rgba(36,32,28,0.72);max-height:0;overflow:hidden;opacity:0;transition:max-height 0.38s ease,opacity 0.38s ease,margin-top 0.38s}
     .poi-item.active .poi-desc{max-height:90px;opacity:1;margin-top:8px}
     .poi-arrow{font-size:0.65rem;color:rgba(36,32,28,0.2);margin-top:3px;transition:color 0.2s,transform 0.2s}
     .poi-item.active .poi-arrow{color:var(--gold);transform:translateX(3px)}
     .panel-foot{flex-shrink:0;padding:14px 32px 18px;border-top:1px solid rgba(36,32,28,0.06)}
-    .panel-foot-text{font-family:var(--sans);font-size:0.5rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,32,28,0.25)}
+    .panel-foot-text{font-family:var(--sans);font-size:0.5rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,32,28,0.45)}
 
     .leaflet-control-attribution { display:none !important; }
   </style>
@@ -70,10 +70,6 @@
 
   <div class="layout">
     <div id="map"></div>
-
-      <img id="mapImg" src="" alt="" style="display:none"/>
-      <div class="img-label" id="mapImgLabel"></div>
-    </div>
 
     <div class="panel">
       <div class="panel-head">
@@ -87,9 +83,6 @@
         </div>
       </div>
 
-      <div style="padding:10px 36px 0;flex-shrink:0">
-        <div style="font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(36,32,28,0.38)">Cliquez sur un lieu pour explorer</div>
-      </div>
       <div class="poi-list">
         <div class="villa-entry">
           <div class="villa-entry-label">Emplacement actuel</div>
@@ -105,7 +98,10 @@
         <div class="poi-item" data-id="sisterfields" data-cat="restaurants" onclick="selectItem(this)"><div><div class="poi-name">Sisterfields</div><div class="poi-dist">12 min · Café & Brunch</div><div class="poi-desc">Institution de Seminyak, petit-déjeuner de qualité, café de spécialité et ambiance décontractée.</div></div><div class="poi-arrow">→</div></div>
         <div class="poi-item" data-id="airport"      data-cat="airport"     onclick="selectItem(this)"><div><div class="poi-name">Aéroport Ngurah Rai</div><div class="poi-dist">30 min · International</div><div class="poi-desc">Aéroport international de Bali — liaisons directes vers l'Asie, l'Europe et l'Australie.</div></div><div class="poi-arrow">→</div></div>
       </div>
-      <div class="panel-foot"><div class="panel-foot-text">Seseh · Bali · Indonésie</div></div>
+      <div class="panel-foot">
+        <div class="panel-foot-text">Seseh · Bali · Indonésie</div>
+        <div style="margin-top:6px;font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.55rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:rgba(36,32,28,0.55)">Cliquez sur un lieu pour explorer</div>
+      </div>
     </div>
   </div>
 
@@ -190,14 +186,6 @@ function activatePOI(id) {
 function selectItem(el) { activatePOI(el.dataset.id); }
 
 function deactivateAll() {
-  // Reset image placeholder
-  const mapImg = document.getElementById('mapImg');
-  const imgEmpty = document.getElementById('imgEmpty');
-  const mapImgLabel = document.getElementById('mapImgLabel');
-  if (mapImg) { mapImg.style.display='none'; mapImg.src=''; }
-  if (imgEmpty) imgEmpty.style.display='flex';
-  if (mapImgLabel) mapImgLabel.textContent='';
-
   POIS.forEach(poi => {
     if (markerMap[poi.id]) {
       markerMap[poi.id].marker.setIcon(L.divIcon({
