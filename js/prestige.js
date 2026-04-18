@@ -1,18 +1,5 @@
-const rooms = {
-  living:   { bg:'linear-gradient(135deg,#3A3028,#2C2420,#4A3C30)' },
-  pool:     { bg:'linear-gradient(135deg,#1A2A32,#1E3040,#142028)' },
-  terrace:  { bg:'linear-gradient(135deg,#2A2C22,#363C28,#1E2016)' },
-  bedroom1: { bg:'linear-gradient(135deg,#2C2820,#3A3428,#221E16)' },
-  bedroom2: { bg:'linear-gradient(135deg,#28261C,#343020,#1E1C14)' },
-  bath1:    { bg:'linear-gradient(135deg,#1C2030,#242838,#141820)' },
-  bath2:    { bg:'linear-gradient(135deg,#201E2E,#2A2838,#181620)' },
-  balcony:  { bg:'linear-gradient(135deg,#222220,#2E2C28,#1A1818)' },
-};
-
-let sel = null;
-
-// Cursor
-const tip = document.getElementById('cursorTip');
+// ── CURSOR ──
+const tip = document.getElementById('tip');
 document.addEventListener('mousemove', e => {
   tip.style.left = e.clientX + 'px';
   tip.style.top  = e.clientY + 'px';
@@ -22,22 +9,45 @@ document.querySelectorAll('.pzone').forEach(z => {
   z.addEventListener('mouseleave', () => tip.classList.remove('visible'));
 });
 
-function selectRoom(id, zone) {
-  if (sel) sel.classList.remove('selected');
-  sel = zone;
-  zone.classList.add('selected');
-  const d = rooms[id];
-  if (!d) return;
-  const img = document.getElementById('roomImage');
-  img.style.background = d.bg + ' center/cover';
-  document.getElementById('imgPlaceholder').classList.add('hidden');
+// ── ROOM SELECTION ──
+const roomImg = document.getElementById('roomImg');
+const visuals = document.querySelectorAll('.room-visual');
+
+function hideAllVisuals() {
+  visuals.forEach(v => v.classList.remove('visible'));
+}
+function clearSelections() {
+  document.querySelectorAll('.pzone').forEach(z => z.classList.remove('selected'));
 }
 
+function pick(id, zone) {
+  clearSelections();
+  zone.classList.add('selected');
+  hideAllVisuals();
+  const activeVisual = document.getElementById('visual-' + id);
+  if (activeVisual) {
+    roomImg.classList.remove('empty');
+    activeVisual.classList.add('visible');
+  }
+}
+
+// ── FLOOR SWITCH ──
 function setFloor(idx, btn) {
   document.querySelectorAll('.floor-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('floor-0').style.display = idx === 0 ? 'block' : 'none';
-  document.getElementById('floor-1').style.display = idx === 1 ? 'block' : 'none';
-  if (sel) sel.classList.remove('selected');
-  sel = null;
+  document.getElementById('f0').style.display = idx === 0 ? 'block' : 'none';
+  document.getElementById('f1').style.display = idx === 1 ? 'block' : 'none';
+  clearSelections();
+  hideAllVisuals();
+  roomImg.classList.add('empty');
 }
+
+// Show living room by default on load
+window.addEventListener('load', () => {
+  const livingZone = document.querySelector('.pzone.selected');
+  if (livingZone) {
+    const id = livingZone.getAttribute('onclick').match(/'(\w+)'/)[1];
+    const visual = document.getElementById('visual-' + id);
+    if (visual) { roomImg.classList.remove('empty'); visual.classList.add('visible'); }
+  }
+});
