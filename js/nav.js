@@ -205,4 +205,29 @@
   overlay.addEventListener('click', closeNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 
+
+  // ── Back/forward browser navigation — fade transition ──
+  // Push a state so we can intercept the back button
+  history.pushState({ page: window.location.href }, '', window.location.href);
+
+  window.addEventListener('popstate', (e) => {
+    // Create fade cover
+    const fade = document.createElement('div');
+    fade.style.cssText = 'position:fixed;inset:0;z-index:5000;background:#0E0B08;opacity:0;transition:opacity 0.45s ease;pointer-events:all;';
+    document.body.appendChild(fade);
+
+    // Fade body out
+    document.body.style.transition = 'opacity 0.3s ease';
+    document.body.style.opacity = '0';
+
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      fade.style.opacity = '1';
+    }));
+
+    // Navigate back after fade
+    setTimeout(() => {
+      history.back();
+    }, 460);
+  });
+
 })();
