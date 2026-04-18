@@ -172,7 +172,7 @@
         <a class="nav-drawer-link" href="${depth}pages/exception.html">
           Exception <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="#">
+        <a class="nav-drawer-link" href="${depth}pages/bali.html">
           Explorer Bali <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="#">
