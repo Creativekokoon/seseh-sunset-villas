@@ -8,6 +8,9 @@
   <link rel="stylesheet" href="../css/villas.css">
 </head>
 <body>
+  <div id="nav-root"></div>
+  <script src="../js/nav.js"></script>
+
 
   <!-- Page-in wipe -->
   <div class="page-intro" id="pageIntro"></div>
@@ -16,14 +19,6 @@
   <div class="zoom-layer" id="zoomLayer"></div>
 
   <!-- Topbar -->
-  <header class="topbar">
-    <a class="back-btn" href="../index.html">
-      <span class="back-arrow">←</span>
-      <span>Accueil</span>
-    </a>
-    <div class="topbar-brand">Seseh Sunset Villas</div>
-    <button class="menu-btn" id="menuBtn">Menu</button>
-  </header>
 
   <!-- Villa grid -->
   <main class="villas-grid" id="villasGrid">
@@ -37,14 +32,15 @@
           <h2 class="card-title">Élégance</h2>
           <div class="card-side-info">
             <div class="card-sub">Loft · 1 Chambre</div>
-            </div>
+            <div class="card-price">à partir de 189 000 €</div>
+          </div>
         </div>
         <div class="card-cta">Explorer <span class="cta-arr">→</span></div>
       </div>
     </article>
 
     <article class="villa-card" data-villa="prestige"
-      style="--bg: url('../assets/images/facade/facade image two bedrooms.png')">
+      style="--bg: url('../assets/images/facade/facade image one bedroom.jpeg')">
       <div class="card-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -52,14 +48,15 @@
           <h2 class="card-title">Prestige</h2>
           <div class="card-side-info">
             <div class="card-sub">Villa · 2 Chambres</div>
-            </div>
+            <div class="card-price">à partir de 260 000 €</div>
+          </div>
         </div>
         <div class="card-cta">Explorer <span class="cta-arr">→</span></div>
       </div>
     </article>
 
     <article class="villa-card" data-villa="signature"
-      style="--bg: url('../assets/images/facade/facade twobedroom premium.png')">
+      style="--bg: url('../assets/images/facade/facade image one bedroom.jpeg')">
       <div class="card-bg"></div>
       <div class="card-overlay"></div>
       <div class="card-content">
@@ -67,7 +64,8 @@
           <h2 class="card-title">Signature</h2>
           <div class="card-side-info">
             <div class="card-sub">Villa Premium · 2 Chambres</div>
-           </div>
+            <div class="card-price">à partir de 310 000 €</div>
+          </div>
         </div>
         <div class="card-cta">Explorer <span class="cta-arr">→</span></div>
       </div>
@@ -82,6 +80,7 @@
           <h2 class="card-title">Exception</h2>
           <div class="card-side-info">
             <div class="card-sub">Villa · 3 Chambres</div>
+            <div class="card-price">à partir de 379 000 €</div>
           </div>
         </div>
         <div class="card-cta">Explorer <span class="cta-arr">→</span></div>
@@ -91,20 +90,6 @@
   </main>
 
   <!-- Drawer -->
-  <div class="overlay" id="overlay"></div>
-  <aside class="drawer" id="drawer">
-    <div class="drawer-top">
-      <div class="drawer-title">Seseh</div>
-      <button class="drawer-close" id="drawerClose">✕</button>
-    </div>
-    <nav class="drawer-nav">
-      <a class="drawer-link" href="../index.html">Accueil <span class="dl-arrow">→</span></a>
-      <a class="drawer-link" href="#">Explorer les villas <span class="dl-arrow">→</span></a>
-      <a class="drawer-link" href="#">Explorer Bali <span class="dl-arrow">→</span></a>
-      <a class="drawer-link" href="#">Pré-réserver <span class="dl-arrow">→</span></a>
-    </nav>
-    <div class="drawer-footer">© 2026 Sora Immobilier · sora-immobilier.fr</div>
-  </aside>
 
   <script src="../js/villas.js"></script>
 </body>

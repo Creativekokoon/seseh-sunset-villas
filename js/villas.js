@@ -101,13 +101,7 @@ document.querySelectorAll('.villa-card').forEach(card => {
   });
 });
 
-// ── DRAWER ──
-function openDrawer()  { drawer.classList.add('open');    overlay.classList.add('show'); }
-function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('show'); }
-menuBtn.addEventListener('click', openDrawer);
-drawerClose.addEventListener('click', closeDrawer);
-overlay.addEventListener('click', closeDrawer);
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
 
 
 // ── STAGGERED CARD REVEAL ON ENTER ──

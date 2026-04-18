@@ -8,157 +8,161 @@
   <link rel="stylesheet" href="../css/prestige.css">
 </head>
 <body>
+  <div id="nav-root"></div>
+  <script src="../js/nav.js"></script>
+
 
   <div class="page-intro"></div>
-  <div class="cursor-label" id="cursorLabel">Explorer</div>
+  <div class="cursor-tip" id="cursorTip">Explorer</div>
 
-  <!-- Background image with overlay -->
+  <!-- BG -->
   <div class="bg"></div>
-  <div class="bg-overlay"></div>
 
   <!-- Topbar -->
-  <header class="topbar">
-    <a class="back-btn" href="villas.html" id="backBtn">← Les Villas</a>
-    <div class="topbar-brand">Seseh Sunset Villas</div>
-    <button class="menu-btn" id="menuBtn">Menu</button>
-  </header>
 
-  <!-- Stats bar -->
-  <div class="stats-bar">
-    <div class="stat-item">
-      <div class="stat-val">90,8 <span class="stat-unit">m²</span></div>
-      <div class="stat-label">Surface intérieure</div>
-    </div>
-    <div class="stat-sep"></div>
-    <div class="stat-item">
-      <div class="stat-val">2</div>
-      <div class="stat-label">Chambres</div>
-    </div>
-    <div class="stat-sep"></div>
-    <div class="stat-item">
-      <div class="stat-val">2</div>
-      <div class="stat-label">Salles de bain</div>
-    </div>
-    <div class="stat-sep"></div>
-    <div class="stat-item">
-      <div class="stat-val">260 000 €</div>
-      <div class="stat-label">À partir de</div>
-    </div>
-  </div>
+  <!-- PAGE BODY -->
+  <div class="page-body">
 
-  <!-- Main content: plan left + detail panel right -->
-  <div class="main-area">
+    <!-- ── LEFT COLUMN ── -->
+    <div class="col-left">
 
-    <!-- Floor plan -->
-    <div class="plan-wrap">
-      <div class="plan-tabs">
-        <button class="plan-tab active" onclick="setFloor(0,this)">Rez-de-chaussée</button>
-        <button class="plan-tab" onclick="setFloor(1,this)">1er Étage</button>
+      <!-- Villa name -->
+      <div class="villa-header">
+        <div class="villa-type">Type 02</div>
+        <div class="villa-name">Prestige</div>
+      </div>
+
+      <!-- Stats block — floated, not touching nav -->
+      <div class="stats-block">
+        <div class="stats-inner">
+          <div class="stat-item">
+            <!-- Square icon -->
+            <svg class="stat-icon" viewBox="0 0 20 20" fill="none">
+              <rect x="3" y="3" width="14" height="14" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            <div class="stat-val">90,8 <span class="stat-unit">m²</span></div>
+            <div class="stat-label">Surface</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-item">
+            <!-- Bed icon -->
+            <svg class="stat-icon" viewBox="0 0 20 20" fill="none">
+              <rect x="2" y="8" width="16" height="8" rx="1" stroke="currentColor" stroke-width="1.2"/>
+              <rect x="2" y="11" width="5" height="5" rx="0.5" stroke="currentColor" stroke-width="1"/>
+              <line x1="2" y1="16" x2="2" y2="18" stroke="currentColor" stroke-width="1.2"/>
+              <line x1="18" y1="16" x2="18" y2="18" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            <div class="stat-val">2</div>
+            <div class="stat-label">Chambres</div>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-item">
+            <!-- Bath icon -->
+            <svg class="stat-icon" viewBox="0 0 20 20" fill="none">
+              <path d="M4 10 H17 Q18 10 18 11 V14 Q18 16 16 16 H4 Q2 16 2 14 V11 Q2 10 4 10Z" stroke="currentColor" stroke-width="1.2"/>
+              <path d="M5 10 V6 Q5 4 7 4 H8 Q9 4 9 5 V6" stroke="currentColor" stroke-width="1.2"/>
+              <line x1="5" y1="16" x2="4" y2="18" stroke="currentColor" stroke-width="1.2"/>
+              <line x1="15" y1="16" x2="16" y2="18" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+            <div class="stat-val">2</div>
+            <div class="stat-label">Salles de bain</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image zone — permanent, changes on room click -->
+      <div class="room-image-wrap">
+        <div class="room-image" id="roomImage">
+          <div class="room-image-placeholder" id="imgPlaceholder">
+            <span>Sélectionnez une pièce →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pre-reserver -->
+      <a class="prereserver-btn" href="#">Pré-réserver</a>
+
+    </div>
+
+    <!-- ── RIGHT COLUMN ── -->
+    <div class="col-right">
+
+      <!-- Plan label + floor selector -->
+      <div class="plan-header">
+        <div class="plan-label">Plan Interactif — Sélectionner une pièce pour explorer</div>
+        <div class="floor-tabs">
+          <button class="floor-tab active" onclick="setFloor(0,this)">Rez-de-chaussée</button>
+          <button class="floor-tab" onclick="setFloor(1,this)">1er Étage</button>
+        </div>
       </div>
 
       <!-- RDC -->
-      <svg id="floor-0" class="plan-svg" viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-        <rect x="2" y="2" width="376" height="236" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="6 4"/>
+      <svg id="floor-0" class="plan-svg" viewBox="0 0 360 230" xmlns="http://www.w3.org/2000/svg">
 
         <!-- Living + Kitchen -->
-        <g class="plan-zone" data-room="living" onclick="selectRoom('living',this)">
-          <rect class="zone-fill" x="2" y="2" width="256" height="180" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
-          <text x="130" y="88" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">LIVING</text>
-          <text x="130" y="102" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">CUISINE</text>
+        <g class="pzone" onclick="selectRoom('living',this)">
+          <rect class="pz-fill" x="1" y="1" width="240" height="172"/>
+          <text x="120" y="82" text-anchor="middle" class="pz-text">Living</text>
+          <text x="120" y="100" text-anchor="middle" class="pz-text">Cuisine</text>
         </g>
 
         <!-- Pool -->
-        <g class="plan-zone" data-room="pool" onclick="selectRoom('pool',this)">
-          <rect class="zone-fill" x="258" y="2" width="120" height="180" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
-          <rect x="272" y="16" width="92" height="106" rx="7" fill="rgba(160,210,230,0.15)" stroke="rgba(160,210,230,0.35)" stroke-width="0.8"/>
-          <text x="318" y="148" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">PISCINE</text>
+        <g class="pzone" onclick="selectRoom('pool',this)">
+          <rect class="pz-fill" x="241" y="1" width="118" height="172"/>
+          <text x="300" y="90" text-anchor="middle" class="pz-text">Piscine</text>
         </g>
 
-        <!-- Terrace -->
-        <line x1="2" y1="182" x2="378" y2="182" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-        <g class="plan-zone" data-room="terrace" onclick="selectRoom('terrace',this)">
-          <rect class="zone-fill" x="2" y="182" width="376" height="56" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
-          <line x1="2" y1="196" x2="378" y2="196" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-          <line x1="2" y1="210" x2="378" y2="210" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-          <line x1="2" y1="224" x2="378" y2="224" stroke="rgba(255,255,255,0.08)" stroke-width="0.5"/>
-          <text x="190" y="218" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">TERRASSE</text>
+        <!-- Terrace — bottom strip -->
+        <g class="pzone" onclick="selectRoom('terrace',this)">
+          <rect class="pz-fill" x="1" y="173" width="358" height="56"/>
+          <text x="180" y="207" text-anchor="middle" class="pz-text">Terrasse</text>
         </g>
+
       </svg>
 
-      <!-- Étage -->
-      <svg id="floor-1" class="plan-svg" viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" style="display:none">
-        <rect x="2" y="2" width="376" height="236" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1" stroke-dasharray="6 4"/>
+      <!-- 1er Étage -->
+      <svg id="floor-1" class="plan-svg" viewBox="0 0 360 230" xmlns="http://www.w3.org/2000/svg" style="display:none">
 
         <!-- Bedroom 1 -->
-        <g class="plan-zone" data-room="bedroom1" onclick="selectRoom('bedroom1',this)">
-          <rect class="zone-fill" x="2" y="2" width="186" height="170" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
-          <rect x="46" y="22" width="100" height="62" rx="2" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.6"/>
-          <rect x="46" y="22" width="100" height="12" rx="1" fill="rgba(255,255,255,0.08)"/>
-          <text x="95" y="138" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">CHAMBRE 1</text>
+        <g class="pzone" onclick="selectRoom('bedroom1',this)">
+          <rect class="pz-fill" x="1" y="1" width="178" height="162"/>
+          <text x="90" y="88" text-anchor="middle" class="pz-text">Chambre 1</text>
         </g>
 
         <!-- Bedroom 2 -->
-        <g class="plan-zone" data-room="bedroom2" onclick="selectRoom('bedroom2',this)">
-          <rect class="zone-fill" x="188" y="2" width="190" height="170" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
-          <rect x="228" y="22" width="88" height="56" rx="2" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.6"/>
-          <rect x="228" y="22" width="88" height="11" rx="1" fill="rgba(255,255,255,0.08)"/>
-          <text x="283" y="138" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">CHAMBRE 2</text>
+        <g class="pzone" onclick="selectRoom('bedroom2',this)">
+          <rect class="pz-fill" x="179" y="1" width="180" height="162"/>
+          <text x="269" y="88" text-anchor="middle" class="pz-text">Chambre 2</text>
         </g>
 
-        <line x1="2" y1="172" x2="378" y2="172" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-
         <!-- Bathroom 1 -->
-        <g class="plan-zone" data-room="bath1" onclick="selectRoom('bath1',this)">
-          <rect class="zone-fill" x="2" y="172" width="126" height="66" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
-          <rect x="12" y="184" width="48" height="32" rx="5" fill="rgba(160,210,230,0.1)" stroke="rgba(160,210,230,0.25)" stroke-width="0.7"/>
-          <text x="65" y="228" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="8" fill="rgba(255,255,255,0.3)" letter-spacing="1">BAIN 1</text>
+        <g class="pzone" onclick="selectRoom('bath1',this)">
+          <rect class="pz-fill" x="1" y="163" width="120" height="66"/>
+          <text x="61" y="200" text-anchor="middle" class="pz-text">Salle de Bain 1</text>
         </g>
 
         <!-- Bathroom 2 -->
-        <g class="plan-zone" data-room="bath2" onclick="selectRoom('bath2',this)">
-          <rect class="zone-fill" x="128" y="172" width="114" height="66" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
-          <rect x="140" y="184" width="38" height="38" rx="2" fill="rgba(160,210,230,0.1)" stroke="rgba(160,210,230,0.25)" stroke-width="0.7"/>
-          <text x="185" y="228" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="8" fill="rgba(255,255,255,0.3)" letter-spacing="1">BAIN 2</text>
+        <g class="pzone" onclick="selectRoom('bath2',this)">
+          <rect class="pz-fill" x="121" y="163" width="110" height="66"/>
+          <text x="176" y="200" text-anchor="middle" class="pz-text">Salle de Bain 2</text>
         </g>
 
         <!-- Balcony -->
-        <g class="plan-zone" data-room="balcony" onclick="selectRoom('balcony',this)">
-          <rect class="zone-fill" x="242" y="172" width="136" height="66" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.18)" stroke-width="0.8"/>
-          <rect x="242" y="208" width="48" height="30" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
-          <text x="310" y="218" text-anchor="middle" font-family="Helvetica Neue,sans-serif" font-size="8" fill="rgba(255,255,255,0.3)" letter-spacing="1">BALCON</text>
+        <g class="pzone" onclick="selectRoom('balcony',this)">
+          <rect class="pz-fill" x="231" y="163" width="128" height="66"/>
+          <text x="295" y="200" text-anchor="middle" class="pz-text">Balcon</text>
         </g>
+
       </svg>
+
+      <!-- Pre-réserver always visible below plan -->
+      <a class="prereserver-btn" href="#">Pré-réserver</a>
+
     </div>
 
-    <!-- Detail panel (appears on room click) -->
-    <div class="detail-panel" id="detailPanel">
-      <div class="detail-placeholder" id="detailPlaceholder">
-        <div class="detail-placeholder-text">Sélectionnez<br>une pièce</div>
-      </div>
-      <div class="detail-content" id="detailContent">
-        <div class="detail-room-name" id="detailName"></div>
-        <div class="detail-image" id="detailImage"></div>
-        <a class="prereserver-btn" href="#">Pré-réserver →</a>
-      </div>
-    </div>
-
-  </div><!-- /main-area -->
+  </div><!-- /page-body -->
 
   <!-- Drawer -->
-  <div class="overlay" id="overlay"></div>
-  <aside class="drawer" id="drawer">
-    <div class="drawer-top">
-      <div class="drawer-title">Seseh</div>
-      <button class="drawer-close" id="drawerClose">✕</button>
-    </div>
-    <nav class="drawer-nav">
-      <a class="drawer-link" href="../index.html">Accueil <span class="dl-arrow">→</span></a>
-      <a class="drawer-link" href="villas.html">Explorer les villas <span class="dl-arrow">→</span></a>
-      <a class="drawer-link" href="#">Explorer Bali <span class="dl-arrow">→</span></a>
-      <a class="drawer-link" href="#">Pré-réserver <span class="dl-arrow">→</span></a>
-    </nav>
-    <div class="drawer-footer">© 2026 Sora Immobilier · sora-immobilier.fr</div>
-  </aside>
 
   <script src="../js/prestige.js"></script>
 </body>
