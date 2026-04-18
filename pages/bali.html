@@ -13,7 +13,7 @@
     html,body{width:100%;height:100%;overflow:hidden;background:#E8E8E6;-webkit-font-smoothing:antialiased}
     .page-intro{position:fixed;inset:0;z-index:300;background:#E8E8E6;animation:fadeOut 0.6s 0.2s ease forwards;pointer-events:none}
     @keyframes fadeOut{to{opacity:0}}
-    .layout{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 480px}
+    .layout{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 560px}
     #map{width:100%;height:100%}
 
     /* MapLibre UI overrides */
@@ -40,7 +40,7 @@
     /* Panel */
     .panel{background:#E8E8E6;border-left:1px solid rgba(36,32,28,0.1);display:flex;flex-direction:column;overflow:hidden}
     .panel-head{padding:28px 36px 0;flex-shrink:0}
-    .panel-title{font-family:var(--serif);font-size:2.2rem;font-weight:500;color:rgba(36,32,28,0.92);line-height:1.06;padding-top:4px}
+    .panel-title{font-family:var(--serif);font-size:2.6rem;font-weight:500;color:rgba(36,32,28,0.92);line-height:1.06;padding-top:4px}
     .panel-filters{display:flex;flex-wrap:nowrap;border-bottom:1px solid rgba(36,32,28,0.1);margin-top:20px;flex-shrink:0}
     .pf{font-family:var(--sans);font-size:0.55rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,32,28,0.55);padding:10px 0;margin-right:18px;cursor:pointer;border-bottom:1.5px solid transparent;transition:all 0.2s;white-space:nowrap}
     .pf:hover{color:rgba(36,32,28,0.8)}
@@ -49,22 +49,22 @@
     .poi-list::-webkit-scrollbar{display:none}
     .villa-entry{padding:20px 0 16px;border-bottom:1px solid rgba(36,32,28,0.08)}
     .villa-entry-label{font-family:var(--sans);font-size:0.6rem;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-    .villa-entry-name{font-family:var(--serif);font-size:1.2rem;font-weight:500;color:rgba(36,32,28,0.92)}
+    .villa-entry-name{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:rgba(36,32,28,0.92)}
     .poi-item{padding:20px 0;border-bottom:1px solid rgba(36,32,28,0.08);cursor:pointer;transition:border-color 0.2s}
     .poi-item:hover{border-bottom-color:rgba(36,32,28,0.2)}
     .poi-item.active{border-bottom-color:var(--gold)}
     .poi-item-top{display:grid;grid-template-columns:1fr auto;align-items:start;gap:10px}
-    .poi-name{font-family:var(--serif);font-size:1.2rem;font-weight:500;color:rgba(36,32,28,0.85);transition:color 0.2s}
+    .poi-name{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:rgba(36,32,28,0.85);transition:color 0.2s}
     .poi-item:hover .poi-name,.poi-item.active .poi-name{color:rgba(36,32,28,1)}
-    .poi-dist{font-family:var(--sans);font-size:0.62rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(36,32,28,0.55);margin-top:5px;transition:color 0.2s}
+    .poi-dist{font-family:var(--sans);font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(36,32,28,0.55);margin-top:6px;transition:color 0.2s}
     .poi-item.active .poi-dist{color:var(--gold)}
     .poi-arrow{font-size:0.65rem;color:rgba(36,32,28,0.2);margin-top:4px;transition:color 0.2s,transform 0.2s}
     .poi-item.active .poi-arrow{color:var(--gold);transform:translateX(3px)}
-    .poi-desc{font-family:var(--sans);font-size:0.78rem;line-height:1.6;color:rgba(36,32,28,0.68);max-height:0;overflow:hidden;opacity:0;transition:max-height 0.38s ease,opacity 0.38s ease,margin-top 0.38s}
+    .poi-desc{font-family:var(--sans);font-size:0.88rem;line-height:1.65;color:rgba(36,32,28,0.68);max-height:0;overflow:hidden;opacity:0;transition:max-height 0.38s ease,opacity 0.38s ease,margin-top 0.38s}
     .poi-item.active .poi-desc{max-height:100px;opacity:1;margin-top:8px}
     .panel-foot{flex-shrink:0;padding:14px 36px 18px;border-top:1px solid rgba(36,32,28,0.07)}
     .panel-foot-text{font-family:var(--sans);font-size:0.5rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,32,28,0.38)}
-    .panel-foot-hint{font-family:var(--sans);font-size:0.62rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:rgba(36,32,28,0.55);margin-top:6px}
+    .panel-foot-hint{font-family:var(--sans);font-size:0.7rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(36,32,28,0.55);margin-top:6px}
 
     /* Image overlay */
     .img-overlay{
@@ -102,6 +102,18 @@
     }
     .img-overlay-placeholder svg{width:48px;height:48px;opacity:0.3}
     .img-overlay-placeholder-text{font-family:var(--sans);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,252,248,0.3)}
+
+    /* Camera icon button */
+    .poi-cam{
+      background:none;border:none;cursor:pointer;
+      padding:4px;margin-top:2px;
+      color:rgba(36,32,28,0.3);
+      transition:color 0.2s;
+      flex-shrink:0;
+    }
+    .poi-cam:hover{color:var(--gold)}
+    .poi-cam svg{width:18px;height:18px;display:block}
+    .poi-item.active .poi-cam{color:rgba(36,32,28,0.5)}
   </style>
 </head>
 <body>
@@ -115,13 +127,7 @@
     <div class="panel">
       <div class="panel-head">
         <div class="panel-title">À Proximité</div>
-        <div class="panel-filters">
-          <div class="pf active" data-cat="all" onclick="filterCat(this)">Tout</div>
-          <div class="pf" data-cat="restaurants" onclick="filterCat(this)">Restaurants</div>
-          <div class="pf" data-cat="plages" onclick="filterCat(this)">Plages</div>
-          <div class="pf" data-cat="nature" onclick="filterCat(this)">Nature</div>
-          <div class="pf" data-cat="airport" onclick="filterCat(this)">Aéroport</div>
-        </div>
+
       </div>
 
       <div class="poi-list">
@@ -130,39 +136,24 @@
           <div class="villa-entry-name">Seseh Sunset Villas</div>
         </div>
         <div class="poi-item" data-id="sesehbeach" data-cat="plages" onclick="selectItem(this)">
-          <div class="poi-item-top"><div><div class="poi-name">Plage de Seseh</div><div class="poi-dist">2 min à pied · Plage</div></div><div class="poi-arrow">→</div></div>
+          <div class="poi-item-top">
+            <div><div class="poi-name">Plage de Seseh</div><div class="poi-dist">2 min à pied · Plage</div></div>
+            <button class="poi-cam" onclick="openOverlayById('sesehbeach',event)" title="Voir la photo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          </div>
           <div class="poi-desc">Plage sauvage et préservée, quasiment déserte. Couchers de soleil exceptionnels — accès direct depuis les villas.</div>
         </div>
-        <div class="poi-item" data-id="tanah" data-cat="nature" onclick="selectItem(this)">
-          <div class="poi-item-top"><div><div class="poi-name">Tanah Lot</div><div class="poi-dist">15 min · Temple emblématique</div></div><div class="poi-arrow">→</div></div>
-          <div class="poi-desc">Temple balinais sur rocher en mer. L'un des sites les plus iconiques de Bali, couchers de soleil inoubliables.</div>
-        </div>
-        <div class="poi-item" data-id="lacalita" data-cat="restaurants" onclick="selectItem(this)">
-          <div class="poi-item-top"><div><div class="poi-name">La Calita</div><div class="poi-dist">5 min · Restaurant & Bar</div></div><div class="poi-arrow">→</div></div>
-          <div class="poi-desc">Vue sur l'océan, cuisine méditerranéenne et couchers de soleil spectaculaires. À deux pas des villas.</div>
-        </div>
         <div class="poi-item" data-id="riceterrace" data-cat="nature" onclick="selectItem(this)">
-          <div class="poi-item-top"><div><div class="poi-name">Rizières de Canggu</div><div class="poi-dist">5 min · Nature</div></div><div class="poi-arrow">→</div></div>
+          <div class="poi-item-top">
+            <div><div class="poi-name">Rizières de Canggu</div><div class="poi-dist">5 min · Nature</div></div>
+            <button class="poi-cam" onclick="openOverlayById('riceterrace',event)" title="Voir la photo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          </div>
           <div class="poi-desc">Terrasses de riz en activité, promenades matinales authentiques. Un Bali préservé à portée de villa.</div>
         </div>
-        <div class="poi-item" data-id="berawa" data-cat="plages" onclick="selectItem(this)">
-          <div class="poi-item-top"><div><div class="poi-name">Berawa Beach</div><div class="poi-dist">7 min · Plage & Surf</div></div><div class="poi-arrow">→</div></div>
-          <div class="poi-desc">Beach clubs réputés, vagues régulières. Idéale pour tous niveaux de surf.</div>
-        </div>
-        <div class="poi-item" data-id="mejekawi" data-cat="restaurants" onclick="selectItem(this)">
-          <div class="poi-item-top"><div><div class="poi-name">Mejekawi</div><div class="poi-dist">8 min · Gastronomie</div></div><div class="poi-arrow">→</div></div>
-          <div class="poi-desc">Cuisine balinaise fine, l'une des meilleures tables de Canggu. Cadre contemporain, produits locaux.</div>
-        </div>
-        <div class="poi-item" data-id="batu" data-cat="plages" onclick="selectItem(this)">
-          <div class="poi-item-top"><div><div class="poi-name">Batu Bolong</div><div class="poi-dist">10 min · Plage & Vie locale</div></div><div class="poi-arrow">→</div></div>
-          <div class="poi-desc">Cœur vibrant de Canggu — temples en bord de mer, restaurants de plage et scène sunset animée.</div>
-        </div>
-        <div class="poi-item" data-id="sisterfields" data-cat="restaurants" onclick="selectItem(this)">
-          <div class="poi-item-top"><div><div class="poi-name">Sisterfields</div><div class="poi-dist">12 min · Café & Brunch</div></div><div class="poi-arrow">→</div></div>
-          <div class="poi-desc">Institution de Seminyak, petit-déjeuner de qualité, café de spécialité et ambiance décontractée.</div>
-        </div>
         <div class="poi-item" data-id="airport" data-cat="airport" onclick="selectItem(this)">
-          <div class="poi-item-top"><div><div class="poi-name">Aéroport Ngurah Rai</div><div class="poi-dist">30 min · International</div></div><div class="poi-arrow">→</div></div>
+          <div class="poi-item-top">
+            <div><div class="poi-name">Aéroport Ngurah Rai</div><div class="poi-dist">30 min · International</div></div>
+            <button class="poi-cam" onclick="openOverlayById('airport',event)" title="Voir la photo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          </div>
           <div class="poi-desc">Aéroport international de Bali — liaisons directes vers l'Asie, l'Europe et l'Australie.</div>
         </div>
       </div>
@@ -192,15 +183,9 @@ const VILLA = [-8.6520, 115.1085];
 
 // POI data — add your image paths here when ready
 const POIS = [
-  { id:'sesehbeach',   cat:'plages',      ll:[-8.6515, 115.1055], name:'Plage de Seseh',     img:'' },
-  { id:'tanah',        cat:'nature',      ll:[-8.6205, 115.0868], name:'Tanah Lot',           img:'' },
-  { id:'lacalita',     cat:'restaurants', ll:[-8.6505, 115.1092], name:'La Calita',           img:'' },
-  { id:'riceterrace',  cat:'nature',      ll:[-8.6460, 115.1340], name:'Rizières de Canggu',  img:'' },
-  { id:'berawa',       cat:'plages',      ll:[-8.6630, 115.1365], name:'Berawa Beach',        img:'' },
-  { id:'mejekawi',     cat:'restaurants', ll:[-8.6590, 115.1568], name:'Mejekawi',            img:'' },
-  { id:'batu',         cat:'plages',      ll:[-8.6650, 115.1612], name:'Batu Bolong',         img:'' },
-  { id:'sisterfields', cat:'restaurants', ll:[-8.6822, 115.1695], name:'Sisterfields',        img:'' },
-  { id:'airport',      cat:'airport',     ll:[-8.7482, 115.1669], name:'Aéroport Ngurah Rai', img:'' },
+  { id:'sesehbeach',  cat:'plages',  ll:[-8.6510, 115.1048], name:'Plage de Seseh',    img:'' },
+  { id:'riceterrace', cat:'nature',  ll:[-8.6460, 115.1340], name:'Rizières de Canggu',img:'' },
+  { id:'airport',     cat:'airport', ll:[-8.7482, 115.1669], name:'Aéroport Ngurah Rai',img:'' },
 ];
 
 let activeId = null;
@@ -289,16 +274,11 @@ function filterCat(btn) {
 }
 
 // ── IMAGE OVERLAY ──
-// Click the POI name in panel to open image
-document.querySelectorAll('.poi-item').forEach(item => {
-  item.querySelector('.poi-name').addEventListener('click', (e) => {
-    e.stopPropagation();
-    const id = item.dataset.id;
-    const poi = POIS.find(p => p.id === id);
-    if (!poi) return;
-    openOverlay(poi);
-  });
-});
+function openOverlayById(id, e) {
+  if (e) e.stopPropagation();
+  const poi = POIS.find(p => p.id === id);
+  if (poi) openOverlay(poi);
+}
 
 function openOverlay(poi) {
   const overlay = document.getElementById('imgOverlay');
