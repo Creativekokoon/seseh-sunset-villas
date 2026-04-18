@@ -26,10 +26,8 @@ function selectRoom(id, zone) {
   if (sel) sel.classList.remove('selected');
   sel = zone;
   zone.classList.add('selected');
-
   const d = rooms[id];
   if (!d) return;
-
   const img = document.getElementById('roomImage');
   img.style.background = d.bg + ' center/cover';
   document.getElementById('imgPlaceholder').classList.add('hidden');
