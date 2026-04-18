@@ -51,7 +51,14 @@ document.querySelectorAll('.villa-card').forEach(card => {
       clone.style.transform = `translate(${tx}px,${ty}px) scale(${scale})`;
     });
 
-    setTimeout(() => { window.location.href = data.cta; }, 1050);
+    // Fade to black then navigate
+    setTimeout(() => {
+      const fade = document.createElement('div');
+      fade.style.cssText = 'position:fixed;inset:0;z-index:5000;background:#0E0B08;opacity:0;transition:opacity 0.4s ease;pointer-events:none;';
+      document.body.appendChild(fade);
+      requestAnimationFrame(() => requestAnimationFrame(() => { fade.style.opacity = '1'; }));
+      setTimeout(() => { window.location.href = data.cta; }, 420);
+    }, 750);
   });
 });
 
