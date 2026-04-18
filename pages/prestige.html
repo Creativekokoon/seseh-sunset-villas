@@ -77,137 +77,124 @@
           </div>
 
           <div class="plan-svg-wrap">
-                        <!-- RDC -->
+                                    <!-- RDC -->
             <svg id="f0" class="plan-svg" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
 
-              <!-- Outer boundary -->
-              <rect x="1" y="1" width="498" height="318" fill="none" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
+              <rect x="1" y="1" width="498" height="318" fill="none" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
 
-              <!-- Left grey zone: WC+Escalier top, Parking bottom -->
-              <rect x="1" y="1" width="110" height="200" fill="rgba(200,196,190,0.4)" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
-              <text x="55" y="95" text-anchor="middle" class="pz-text" style="font-size:10px">WC &amp;</text>
-              <text x="55" y="112" text-anchor="middle" class="pz-text" style="font-size:10px">Escalier</text>
+              <!-- Left grey zone top: WC + Escalier -->
+              <rect x="1" y="1" width="110" height="200" fill="rgba(200,196,190,0.4)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+              <text x="55" y="92" text-anchor="middle" class="pz-text">WC &amp;</text>
+              <text x="55" y="110" text-anchor="middle" class="pz-text">Escalier</text>
 
-              <!-- Horizontal separator: WC / Parking -->
-              <line x1="1" y1="200" x2="111" y2="200" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
-
-              <!-- Parking -->
-              <rect x="1" y="200" width="110" height="118" fill="rgba(200,196,190,0.4)" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
+              <!-- Left grey zone bottom: Parking -->
+              <rect x="1" y="200" width="110" height="118" fill="rgba(200,196,190,0.4)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
               <text x="55" y="264" text-anchor="middle" class="pz-text">Parking</text>
 
-              <!-- Vertical separator: left zone / right zone -->
-              <line x1="111" y1="1" x2="111" y2="318" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
-
-              <!-- Horizontal separator: indoor / outdoor -->
-              <line x1="111" y1="200" x2="499" y2="200" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
-
-              <!-- Cuisine (indoor top left) -->
-              <g class="pzone selected" onclick="pick('kitchen',this)">
+              <!-- Cuisine -->
+              <g class="pzone" onclick="pick('kitchen',this)">
                 <rect class="pz-fill" x="111" y="1" width="194" height="199"/>
-                <text x="208" y="95" text-anchor="middle" class="pz-text">Cuisine</text>
+                <text x="208" y="97" text-anchor="middle" class="pz-text">Cuisine</text>
               </g>
 
-              <!-- Dashed opening between Cuisine and Living -->
-              <line x1="305" y1="10" x2="305" y2="190" stroke="rgba(61,57,52,0.85)" stroke-width="1.2" stroke-dasharray="8 5"/>
+              <!-- Dashed opening Cuisine / Living -->
+              <line x1="305" y1="10" x2="305" y2="190" stroke="rgba(61,57,52,0.9)" stroke-width="1" stroke-dasharray="8 5"/>
 
-              <!-- Living Room (indoor top right) -->
+              <!-- Living Room -->
               <g class="pzone" onclick="pick('living',this)">
                 <rect class="pz-fill" x="305" y="1" width="194" height="199"/>
-                <text x="402" y="95" text-anchor="middle" class="pz-text">Living Room</text>
-                <text x="402" y="113" text-anchor="middle" class="pz-text pz-m2">39,54 m²</text>
+                <text x="402" y="90" text-anchor="middle" class="pz-text">Living Room</text>
+                <text x="402" y="109" text-anchor="middle" class="pz-text pz-m2">39,54 m²</text>
               </g>
 
-              <!-- Terrasse avec Piscine (outdoor bottom) -->
+              <!-- Terrasse avec Piscine -->
               <g class="pzone" onclick="pick('terrace',this)">
                 <rect class="pz-fill" x="111" y="200" width="388" height="118"/>
-                <text x="305" y="265" text-anchor="middle" class="pz-text">Terrasse avec Piscine</text>
+                <!-- Terrace lines -->
+                <line x1="111" y1="215" x2="499" y2="215" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+                <line x1="111" y1="230" x2="499" y2="230" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+                <line x1="111" y1="245" x2="499" y2="245" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+                <line x1="111" y1="260" x2="499" y2="260" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+                <line x1="111" y1="275" x2="499" y2="275" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+                <line x1="111" y1="290" x2="499" y2="290" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+                <!-- Label -->
+                <text x="240" y="258" text-anchor="middle" class="pz-text">Terrasse · Piscine</text>
+                <!-- Pool wave icon -->
+                <path d="M340 248 Q347 244 354 248 Q361 252 368 248 Q375 244 382 248" fill="none" stroke="rgba(100,160,180,0.7)" stroke-width="1.4"/>
+                <path d="M340 255 Q347 251 354 255 Q361 259 368 255 Q375 251 382 255" fill="none" stroke="rgba(100,160,180,0.7)" stroke-width="1.4"/>
+                <path d="M340 262 Q347 258 354 262 Q361 266 368 262 Q375 258 382 262" fill="none" stroke="rgba(100,160,180,0.7)" stroke-width="1.4"/>
               </g>
 
             </svg>
 
 
-                        <!-- Étage -->
-            <svg id="f1" class="plan-svg" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" style="display:none">
+                                                                        <!-- Étage -->
+            <svg id="f1" class="plan-svg" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg" style="display:none">
 
-              <!-- Outer boundary -->
-              <rect x="1" y="1" width="498" height="298" fill="none" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
+              <rect x="1" y="1" width="498" height="318" fill="none" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
 
-              <!-- Vertical separator: left third / centre / right third -->
-              <!-- Chambre 1 left: x=1 to x=185 -->
-              <!-- Centre block: x=185 to x=315 -->
-              <!-- Chambre 2 right: x=315 to x=499 -->
-
-              <!-- Horizontal: top (chambres+sdbs) / bottom (escalier+balcon) -->
-              <line x1="1" y1="185" x2="499" y2="185" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
-
-              <!-- ── TOP ZONE ── -->
+              <!-- ── TOP: Chambre1 | SDB stack | Chambre2  y=1..190 ── -->
 
               <!-- Chambre 1 -->
               <g class="pzone bedroom1" onclick="pick('bedroom1',this)">
-                <rect class="pz-fill" x="1" y="1" width="184" height="184"/>
-                <text x="92" y="88" text-anchor="middle" class="pz-text">Chambre 1</text>
-                <text x="92" y="106" text-anchor="middle" class="pz-text pz-m2">45,51 m²</text>
+                <rect class="pz-fill" x="1" y="1" width="174" height="189"/>
+                <text x="88" y="85" text-anchor="middle" class="pz-text">Chambre 1</text>
+                <text x="88" y="103" text-anchor="middle" class="pz-text pz-m2">45,51 m²</text>
               </g>
 
-              <!-- Left vertical: Chambre1 / centre block -->
-              <line x1="185" y1="1" x2="185" y2="184" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
-
-              <!-- Centre block top = SDB 2 -->
-              <!-- SDB 2 top boundary: y=1 to y=105 -->
+              <!-- SDB 2 — top of centre stack -->
               <g class="pzone bath2" onclick="pick('bath2',this)">
-                <rect class="pz-fill" x="185" y="1" width="130" height="104"/>
-                <text x="250" y="56" text-anchor="middle" class="pz-text">SDB 2</text>
+                <rect class="pz-fill" x="175" y="1" width="150" height="94"/>
+                <text x="250" y="52" text-anchor="middle" class="pz-text">SDB 2</text>
               </g>
 
-              <!-- Horizontal separator: SDB2 / SDB1 -->
-              <line x1="185" y1="105" x2="315" y2="105" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
-
-              <!-- SDB 1 bottom of centre — indented (starts lower, doesn't reach full left) -->
+              <!-- SDB 1 — bottom of centre stack, same width -->
               <g class="pzone bath1" onclick="pick('bath1',this)">
-                <rect class="pz-fill" x="185" y="105" width="130" height="80"/>
-                <text x="250" y="149" text-anchor="middle" class="pz-text">SDB 1</text>
+                <rect class="pz-fill" x="175" y="95" width="150" height="95"/>
+                <text x="250" y="147" text-anchor="middle" class="pz-text">SDB 1</text>
               </g>
-
-              <!-- Right vertical: centre / Chambre 2 -->
-              <line x1="315" y1="1" x2="315" y2="184" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
-
-              <!-- Dashed opening: Chambre1 — SDB2 boundary (open) -->
-              <line x1="185" y1="5" x2="185" y2="100" stroke="rgba(61,57,52,0.95)" stroke-width="0" />
-              <!-- vertical dashes chambre1 to sdb2 -->
-              <line x1="185" y1="8" x2="185" y2="100" stroke="rgba(61,57,52,0.85)" stroke-width="1.2" stroke-dasharray="7 5"/>
-
-              <!-- Dashed opening: Chambre2 — SDB2 boundary (open) -->
-              <line x1="315" y1="8" x2="315" y2="100" stroke="rgba(61,57,52,0.85)" stroke-width="1.2" stroke-dasharray="7 5"/>
 
               <!-- Chambre 2 -->
               <g class="pzone bedroom2" onclick="pick('bedroom2',this)">
-                <rect class="pz-fill" x="315" y="1" width="184" height="184"/>
-                <text x="407" y="88" text-anchor="middle" class="pz-text">Chambre 2</text>
-                <text x="407" y="106" text-anchor="middle" class="pz-text pz-m2">+ 3.60</text>
+                <rect class="pz-fill" x="325" y="1" width="174" height="189"/>
+                <text x="412" y="85" text-anchor="middle" class="pz-text">Chambre 2</text>
+                <text x="412" y="103" text-anchor="middle" class="pz-text pz-m2">+ 3.60</text>
               </g>
 
-              <!-- ── BOTTOM ZONE ── -->
+              <!-- Dividers top zone -->
+              <line x1="175" y1="1" x2="175" y2="190" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+              <line x1="325" y1="1" x2="325" y2="190" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+              <line x1="175" y1="95" x2="325" y2="95" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
 
-              <!-- Left grey (escalier void) -->
-              <rect x="1" y="185" width="184" height="113" fill="rgba(200,196,190,0.4)" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
+              <!-- ── BALCON  y=190..255 ── -->
+              <line x1="1" y1="190" x2="499" y2="190" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
 
-              <!-- Vertical separator bottom: grey / balcon -->
-              <!-- Balcon starts at x=185 but SDB1 juts down further — balcon inset -->
-              <!-- The SDB1 bottom edge goes to y=185 (same as floor separator) -->
-              <!-- Balcon: x=185 to x=499, y=185 to y=299 BUT left part has an inner notch -->
+              <rect x="1" y="190" width="498" height="65" fill="rgba(244,240,233,0.58)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+              <text x="250" y="226" text-anchor="middle" class="pz-text">Balcon</text>
 
-              <!-- Inner notch of balcon (SDB1 inset): x=185 to 315, y=185 to 230 is enclosed -->
-              <!-- Actually from sketch: balcon starts where SDB1 ends + a step in -->
-              <line x1="185" y1="185" x2="315" y2="185" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
+              <!-- ── BOTTOM: Grey + Terrasse+Piscine  y=255..318 ── -->
+              <line x1="1" y1="255" x2="499" y2="255" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+              <line x1="135" y1="255" x2="135" y2="318" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
 
-              <!-- Balcon — right side of bottom -->
-              <g class="pzone balcony" onclick="pick('balcony',this)">
-                <rect class="pz-fill" x="185" y="185" width="314" height="113"/>
-                <text x="351" y="244" text-anchor="middle" class="pz-text">Balcon</text>
-              </g>
+              <!-- Grey zone (escalier) -->
+              <rect x="1" y="255" width="134" height="63" fill="rgba(200,196,190,0.4)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+              <text x="68" y="281" text-anchor="middle" class="pz-text" style="font-size:10px">Escalier</text>
+              <text x="68" y="297" text-anchor="middle" class="pz-text" style="font-size:10px">&amp; Balcon</text>
 
-              <!-- Inner step: the SDB1 box extends slightly into balcon zone -->
-              <line x1="315" y1="185" x2="315" y2="298" stroke="rgba(61,57,52,0.95)" stroke-width="1.5"/>
+              <!-- Terrasse + Piscine with lines and pool icon -->
+              <rect x="135" y="255" width="364" height="63" fill="rgba(244,240,233,0.58)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+              <!-- Terrace lines -->
+              <line x1="135" y1="267" x2="499" y2="267" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+              <line x1="135" y1="279" x2="499" y2="279" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+              <line x1="135" y1="291" x2="499" y2="291" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+              <line x1="135" y1="303" x2="499" y2="303" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+              <line x1="135" y1="315" x2="499" y2="315" stroke="rgba(61,57,52,0.2)" stroke-width="0.8"/>
+              <!-- Terrasse label -->
+              
+              <!-- Pool icon — simple wave shape -->
+              <path d="M390 280 Q397 276 404 280 Q411 284 418 280 Q425 276 432 280" fill="none" stroke="rgba(100,160,180,0.6)" stroke-width="1.2"/>
+              <path d="M390 286 Q397 282 404 286 Q411 290 418 286 Q425 282 432 286" fill="none" stroke="rgba(100,160,180,0.6)" stroke-width="1.2"/>
+              <path d="M390 292 Q397 288 404 292 Q411 296 418 292 Q425 288 432 292" fill="none" stroke="rgba(100,160,180,0.6)" stroke-width="1.2"/>
 
             </svg>
 

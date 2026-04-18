@@ -5,7 +5,57 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Élégance — Seseh Sunset Villas</title>
   <link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
-  <link rel="stylesheet" href="../css/elegance.css">
+  <link rel="stylesheet" href="../css/villa.css">
+  <style>
+    .dark-block.no-plan {
+      grid-template-columns: 1fr 1fr;
+    }
+    .villa-description {
+      display:flex;flex-direction:column;gap:18px;
+      padding:24px 28px;
+      justify-content:center;
+    }
+    .villa-desc-text {
+      font-family:'the-seasons',Georgia,serif;
+      font-size:0.95rem;font-weight:300;line-height:1.7;
+      color:rgba(52,48,44,0.78);letter-spacing:0.02em;
+    }
+    .villa-type-label {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+      color:rgba(82,77,71,0.55);
+    }
+    .features-grid {
+      display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;
+    }
+    .feat-item {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:0.65rem;letter-spacing:0.12em;
+      color:rgba(57,52,47,0.72);
+      padding:6px 0;border-bottom:1px solid rgba(62,58,54,0.08);
+    }
+    .plan-placeholder {
+      display:flex;align-items:center;justify-content:center;
+      border-left:1px solid rgba(62,58,54,0.1);
+    }
+    .plan-placeholder-inner {
+      display:flex;flex-direction:column;align-items:center;gap:10px;
+    }
+    .plan-placeholder-icon {
+      width:52px;height:52px;color:rgba(82,77,71,0.3);
+    }
+    .plan-placeholder-icon svg { width:100%;height:100%; }
+    .plan-placeholder-text {
+      font-family:'the-seasons',Georgia,serif;
+      font-size:0.8rem;letter-spacing:0.12em;
+      color:rgba(52,48,44,0.45);
+    }
+    .plan-placeholder-sub {
+      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;
+      color:rgba(82,77,71,0.35);
+    }
+  </style>
 </head>
 <body>
 
@@ -95,7 +145,10 @@
 
   </div><!-- /page -->
 
-  <script src="../js/elegance.js"></script>
+  <script>
+  const tip = document.getElementById('tip');
+  document.addEventListener('mousemove', e => { tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; });
+</script>
 
 
 </body>
