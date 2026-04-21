@@ -90,8 +90,8 @@
     @media (max-width:768px) {
       .nav-hamburger { display:flex; }
       #site-topbar .nav-menu-btn { display:none; }
-      /* Right padding reserves space for the hamburger */
-      #site-topbar { padding-right:88px; }
+      /* Left-align items; right padding reserves space for the hamburger */
+      #site-topbar { padding-right:88px; justify-content:flex-start; }
       /* Brand: left-aligned, no min-width pushing it right */
       #site-topbar .nav-back { min-width:0; }
       #site-topbar .nav-brand { position:static; transform:none; }
