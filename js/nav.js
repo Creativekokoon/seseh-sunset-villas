@@ -65,19 +65,23 @@
       display:flex;align-items:center;justify-content:center;
     }
 
-    /* Hamburger icon (mobile only) */
+    /* Hamburger — fixed above everything, visible on mobile only */
     .nav-hamburger {
       display:none;
+      position:fixed;top:18px;right:44px;z-index:800;
       flex-direction:column;justify-content:center;align-items:center;
       gap:5px;width:40px;height:40px;
       background:none;border:none;cursor:pointer;padding:0;
     }
     .nav-hamburger span {
       display:block;width:22px;height:1.5px;
-      transition:transform 0.3s ease,opacity 0.3s ease;
+      background:rgba(255,252,248,0.85);
+      transition:transform 0.3s ease,opacity 0.3s ease,background 0.2s;
     }
-    #site-topbar.nav-dark .nav-hamburger span { background:rgba(255,252,248,0.85); }
-    #site-topbar.nav-light .nav-hamburger span { background:rgba(52,48,44,0.85); }
+    /* Villas page has a light nav — dark lines */
+    .nav-hamburger--light span { background:rgba(52,48,44,0.85); }
+    /* When open the drawer is always dark — force white */
+    .nav-hamburger.open span { background:rgba(255,252,248,0.9) !important; }
     .nav-hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity:0; }
     .nav-hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
@@ -190,9 +194,6 @@
       }
       <a class="nav-brand" href="${depth}index.html">Seseh Sunset Villas</a>
       <button class="nav-menu-btn" id="nav-menu-btn">Menu</button>
-      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
     </header>
 
     <div id="nav-overlay"></div>
@@ -218,6 +219,10 @@
       </nav>
       <div class="nav-drawer-footer"><div>© 2026 Sora Immobilier</div><a href="https://sora-immobilier.fr" style="color:inherit;text-decoration:none;white-space:nowrap;display:block;margin-top:3px;" target="_blank">sora-immobilier.fr</a></div>
     </aside>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   `;
 
   // ── Apply nav colour theme based on page ──
@@ -235,8 +240,12 @@
   const drawer     = document.getElementById('nav-drawer');
   const menuBtn    = document.getElementById('nav-menu-btn');
   const closeBtn   = document.getElementById('nav-drawer-close');
+  const hamburger  = document.getElementById('nav-hamburger');
 
-  const hamburger = document.getElementById('nav-hamburger');
+  // Match hamburger line colour to nav theme
+  if (hamburger && path.includes('villas.html') && !path.includes('bali.html')) {
+    hamburger.classList.add('nav-hamburger--light');
+  }
 
   function openNav()  {
     drawer.classList.add('open');
@@ -256,30 +265,5 @@
   closeBtn.addEventListener('click', closeNav);
   overlay.addEventListener('click', closeNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
-
-
-  // ── Back/forward browser navigation — fade transition ──
-  // Push a state so we can intercept the back button
-  history.pushState({ page: window.location.href }, '', window.location.href);
-
-  window.addEventListener('popstate', (e) => {
-    // Create fade cover
-    const fade = document.createElement('div');
-    fade.style.cssText = 'position:fixed;inset:0;z-index:5000;background:#0E0B08;opacity:0;transition:opacity 0.3s ease;pointer-events:all;';
-    document.body.appendChild(fade);
-
-    // Fade body out
-    document.body.style.transition = 'opacity 0.22s ease';
-    document.body.style.opacity = '0';
-
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      fade.style.opacity = '1';
-    }));
-
-    // Navigate back after fade
-    setTimeout(() => {
-      history.back();
-    }, 320);
-  });
 
 })();
