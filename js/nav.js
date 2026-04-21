@@ -206,7 +206,10 @@
         ? `<a class="nav-back" href="${backHref}">${backLabel}</a>`
         : `<div class="nav-back"></div>`
       }
-      <a class="nav-brand" href="${depth}index.html">Seseh Sunset Villas</a>
+      <a class="nav-brand" href="${depth}index.html">
+        <span class="nav-brand-text">Seseh Sunset Villas</span>
+        <img class="nav-brand-logo" src="${depth}assets/logos/SS%20logo.png" alt="Seseh Sunset Villas">
+      </a>
       <button class="nav-menu-btn" id="nav-menu-btn">Menu</button>
     </header>
 
