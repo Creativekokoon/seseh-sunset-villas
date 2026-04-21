@@ -90,10 +90,17 @@
     @media (max-width:768px) {
       .nav-hamburger { display:flex; }
       #site-topbar .nav-menu-btn { display:none; }
+      /* Keep brand centred and clear of the hamburger */
+      #site-topbar {
+        padding-right:88px;
+      }
+      #site-topbar .nav-brand {
+        position:absolute;left:50%;transform:translateX(-50%);
+      }
 
       #nav-drawer {
         width:100% !important;
-        background:rgba(36,34,32,0.98) !important;
+        background:rgba(36,34,32,1) !important;
         border-left:none !important;
         padding:40px 32px !important;
       }
