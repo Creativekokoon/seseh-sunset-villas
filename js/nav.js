@@ -225,15 +225,9 @@
     </button>
   `;
 
-  // ── Apply nav colour theme based on page ──
+  // ── Apply nav colour theme — always dark ──
   const topbar = document.getElementById('site-topbar');
-  if (path.includes('villas.html') && !path.includes('bali.html')) {
-    topbar.classList.add('nav-light');
-  } else if (path.includes('bali.html')) {
-    topbar.classList.add('nav-dark');
-  } else {
-    topbar.classList.add('nav-dark');
-  }
+  topbar.classList.add('nav-dark');
 
   // ── Logic ──
   const overlay    = document.getElementById('nav-overlay');
@@ -242,10 +236,6 @@
   const closeBtn   = document.getElementById('nav-drawer-close');
   const hamburger  = document.getElementById('nav-hamburger');
 
-  // Match hamburger line colour to nav theme
-  if (hamburger && path.includes('villas.html') && !path.includes('bali.html')) {
-    hamburger.classList.add('nav-hamburger--light');
-  }
 
   function openNav()  {
     drawer.classList.add('open');

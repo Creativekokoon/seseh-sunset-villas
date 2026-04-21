@@ -72,3 +72,18 @@ function revealCards() {
 window.addEventListener('load', () => {
   setTimeout(revealCards, 300);
 });
+
+// ── BFCACHE RESTORE ──
+// Browsers freeze the page state on navigation (opacity:0, zoom clone, fade overlay).
+// When user presses back, restore everything before showing the page.
+window.addEventListener('pageshow', (e) => {
+  if (!e.persisted) return;
+  const zoomLayer = document.getElementById('zoomLayer');
+  if (zoomLayer) { zoomLayer.style.visibility = 'hidden'; zoomLayer.innerHTML = ''; }
+  const grid = document.getElementById('villasGrid');
+  if (grid) grid.classList.remove('fading');
+  const siteNav = document.getElementById('site-topbar');
+  if (siteNav) { siteNav.style.transition = 'none'; siteNav.style.opacity = '1'; }
+  document.querySelectorAll('[style*="z-index:5000"]').forEach(el => el.remove());
+  revealCards();
+});
