@@ -102,11 +102,11 @@
       padding:19px 0;border-bottom:1px solid rgba(80,60,40,0.10);
       text-decoration:none;color:rgba(30,22,14,0.75);
       font-family:'Helvetica Neue',Arial,sans-serif;
-      font-size:0.72rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;
+      font-size:0.72rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;
       transition:color 0.22s,padding-left 0.22s;
     }
     .nav-drawer-link:hover { color:rgba(30,22,14,0.95);padding-left:6px; }
-    .nav-drawer-arrow { opacity:0.25;transition:opacity 0.22s,transform 0.22s; }
+    .nav-drawer-arrow { opacity:0.25;font-weight:400;transition:opacity 0.22s,transform 0.22s; }
     .nav-drawer-link:hover .nav-drawer-arrow { opacity:0.75;transform:translateX(4px); }
 
     .nav-drawer-footer {
@@ -167,7 +167,7 @@
           Pré-réserver <span class="nav-drawer-arrow">→</span>
         </a>
       </nav>
-      <div class="nav-drawer-footer">© 2026 Sora Immobilier · sora-immobilier.fr</div>
+      <div class="nav-drawer-footer"><div>© 2026 Sora Immobilier</div><a href="https://sora-immobilier.fr" style="color:inherit;text-decoration:none;white-space:nowrap;display:block;margin-top:3px;" target="_blank">sora-immobilier.fr</a></div>
     </aside>
   `;
 
