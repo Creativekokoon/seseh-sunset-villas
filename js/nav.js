@@ -27,13 +27,13 @@
     #site-topbar.nav-dark .nav-back:hover,
     #site-topbar.nav-dark .nav-brand:hover { color:rgba(255,252,248,0.95); }
     #site-topbar.nav-dark .nav-menu-btn {
-      color:#2A2420;background:#E8E8E6;
+      color:#2A2420;background:#F0EAE0;
     }
     #site-topbar.nav-dark .nav-menu-btn:hover { background:#f0efec; }
 
-    /* Grey variant (villas) */
+    /* Cream variant (villas) */
     #site-topbar.nav-light {
-      background:#E8E8E6;
+      background:#F0EAE0;
     }
     #site-topbar.nav-light .nav-back,
     #site-topbar.nav-light .nav-brand {
@@ -42,7 +42,7 @@
     #site-topbar.nav-light .nav-back:hover,
     #site-topbar.nav-light .nav-brand:hover { color:rgba(52,48,44,1); }
     #site-topbar.nav-light .nav-menu-btn {
-      color:#E8E8E6;background:rgba(52,48,44,0.88);
+      color:#F0EAE0;background:rgba(52,48,44,0.88);
     }
     #site-topbar.nav-light .nav-menu-btn:hover { background:rgba(36,34,32,1); }
 
@@ -97,11 +97,8 @@
         color:rgba(255,252,248,0.85) !important;
         font-size:1.6rem !important;
       }
-      .nav-drawer-close {
-        background:rgba(255,255,255,0.08) !important;
-        border-color:rgba(255,255,255,0.15) !important;
-        color:rgba(255,252,248,0.75) !important;
-      }
+      .nav-drawer-close { display:none !important; }
+      .nav-drawer-top { margin-bottom:32px !important; }
       .nav-drawer-link {
         color:rgba(255,252,248,0.65) !important;
         border-bottom-color:rgba(255,255,255,0.08) !important;
@@ -123,7 +120,7 @@
 
     #nav-drawer {
       position:fixed;top:0;right:0;bottom:0;width:min(340px,72vw);z-index:700;
-      background:#E8E8E6;
+      background:#F0EAE0;
       border-left:1px solid rgba(160,155,148,0.25);
       transform:translateX(100%);transition:transform 0.3s ease;
       display:flex;flex-direction:column;padding:32px 28px;
@@ -253,7 +250,9 @@
   }
 
   menuBtn.addEventListener('click', openNav);
-  if (hamburger) hamburger.addEventListener('click', openNav);
+  if (hamburger) hamburger.addEventListener('click', () => {
+    drawer.classList.contains('open') ? closeNav() : openNav();
+  });
   closeBtn.addEventListener('click', closeNav);
   overlay.addEventListener('click', closeNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
@@ -266,11 +265,11 @@
   window.addEventListener('popstate', (e) => {
     // Create fade cover
     const fade = document.createElement('div');
-    fade.style.cssText = 'position:fixed;inset:0;z-index:5000;background:#0E0B08;opacity:0;transition:opacity 0.45s ease;pointer-events:all;';
+    fade.style.cssText = 'position:fixed;inset:0;z-index:5000;background:#0E0B08;opacity:0;transition:opacity 0.3s ease;pointer-events:all;';
     document.body.appendChild(fade);
 
     // Fade body out
-    document.body.style.transition = 'opacity 0.3s ease';
+    document.body.style.transition = 'opacity 0.22s ease';
     document.body.style.opacity = '0';
 
     requestAnimationFrame(() => requestAnimationFrame(() => {
@@ -280,7 +279,7 @@
     // Navigate back after fade
     setTimeout(() => {
       history.back();
-    }, 460);
+    }, 320);
   });
 
 })();

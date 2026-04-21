@@ -54,11 +54,11 @@ document.querySelectorAll('.villa-card').forEach(card => {
     // Fade to black then navigate
     setTimeout(() => {
       const fade = document.createElement('div');
-      fade.style.cssText = 'position:fixed;inset:0;z-index:5000;background:#0E0B08;opacity:0;transition:opacity 0.4s ease;pointer-events:none;';
+      fade.style.cssText = 'position:fixed;inset:0;z-index:5000;background:#0E0B08;opacity:0;transition:opacity 0.28s ease;pointer-events:none;';
       document.body.appendChild(fade);
       requestAnimationFrame(() => requestAnimationFrame(() => { fade.style.opacity = '1'; }));
-      setTimeout(() => { window.location.href = data.cta; }, 420);
-    }, 750);
+      setTimeout(() => { window.location.href = data.cta; }, 300);
+    }, 520);
   });
 });
 
@@ -70,12 +70,5 @@ function revealCards() {
 }
 
 window.addEventListener('load', () => {
-  // Fade in nav
-  const siteNav = document.getElementById('site-topbar');
-  if (siteNav) {
-    siteNav.style.opacity = '0';
-    siteNav.style.transition = 'opacity 0.6s ease';
-    setTimeout(() => { siteNav.style.opacity = '1'; }, 80);
-  }
   setTimeout(revealCards, 300);
 });

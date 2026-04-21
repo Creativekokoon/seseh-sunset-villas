@@ -11,19 +11,19 @@
 
 html,body {
   width:100%;height:100%;overflow:hidden;
-  background:#E8E8E6;
+  background:#F0EAE0;
   -webkit-font-smoothing:antialiased;
 }
 
 /* ── PAGE INTRO ── */
 .page-intro {
-  position:fixed;inset:0;z-index:300;background:#1A1410;
-  animation:fadeOut 0.5s 0.1s ease forwards;pointer-events:none;
+  position:fixed;inset:0;z-index:550;background:#1A1410;
+  animation:fadeOut 0.32s 0.05s ease forwards;pointer-events:none;
 }
 @keyframes fadeOut { to { opacity:0; } }
 
 /* ── BG ── */
-.bg { position:fixed;inset:0;z-index:0;background:#E8E8E6; }
+.bg { position:fixed;inset:0;z-index:0;background:#F0EAE0; }
 
 /* ── PAGE — sits below 64px nav from nav.js ── */
 .page {
