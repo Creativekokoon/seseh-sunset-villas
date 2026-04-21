@@ -90,13 +90,13 @@
     @media (max-width:768px) {
       .nav-hamburger { display:flex; }
       #site-topbar .nav-menu-btn { display:none; }
-      /* Keep brand centred and clear of the hamburger */
-      #site-topbar {
-        padding-right:88px;
-      }
-      #site-topbar .nav-brand {
-        position:absolute;left:50%;transform:translateX(-50%);
-      }
+      /* Right padding reserves space for the hamburger */
+      #site-topbar { padding-right:88px; }
+      /* Brand: left-aligned, no min-width pushing it right */
+      #site-topbar .nav-back { min-width:0; }
+      #site-topbar .nav-brand { position:static; transform:none; }
+      /* Hide brand on pages that already show a back breadcrumb */
+      #site-topbar.has-back .nav-brand { display:none; }
 
       #nav-drawer {
         width:100% !important;
@@ -235,6 +235,7 @@
   // ── Apply nav colour theme — always dark ──
   const topbar = document.getElementById('site-topbar');
   topbar.classList.add('nav-dark');
+  if (backLabel) topbar.classList.add('has-back');
 
   // ── Logic ──
   const overlay    = document.getElementById('nav-overlay');

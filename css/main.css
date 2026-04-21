@@ -281,7 +281,7 @@ html, body {
     padding:0 16px;
   }
   .hero-cta { padding:14px 32px;font-size:0.72rem;letter-spacing:0.22em; }
-  .bg { background-position:62% center; }
+  .bg { background-position:center center; }
 }
 
 /* Large desktop */
