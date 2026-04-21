@@ -66,7 +66,7 @@
     }
 
     /* Logo image — hidden on desktop, shown on mobile */
-    .nav-brand-logo { display:none;height:34px;width:auto; }
+    .nav-brand-logo { display:none;height:44px;width:auto; }
     .nav-brand-text { }
 
     /* Hamburger — fixed above everything, visible on mobile only */
