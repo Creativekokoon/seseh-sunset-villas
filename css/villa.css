@@ -274,7 +274,7 @@ html,body {
 @media (max-width:767px) and (orientation:portrait) {
   html,body { overflow-y:auto; }
   .page { position:relative;top:76px;height:auto;padding:0 16px 20px; }
-  .villa-title { font-size:1.8rem;padding:20px 0 10px; }
+  .villa-title { font-size:1.8rem;padding:20px 0 24px; }
 
   /* Stats — vertical stack */
   .stats { padding:4px 0 10px; }
