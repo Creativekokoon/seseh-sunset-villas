@@ -66,7 +66,7 @@
     }
 
     /* Logo image — hidden on desktop, shown on mobile */
-    .nav-brand-logo { display:none;height:44px;width:auto; }
+    .nav-brand-logo { display:none;height:52px;width:auto; }
     .nav-brand-text { }
 
     /* Hamburger — fixed above everything, visible on mobile only */
@@ -94,8 +94,8 @@
     @media (max-width:768px) {
       .nav-hamburger { display:flex; }
       #site-topbar .nav-menu-btn { display:none; }
-      /* Right padding reserves space for the hamburger */
-      #site-topbar { padding-right:88px; justify-content:flex-start; }
+      /* Right padding reserves space for the hamburger, reduce left for breadcrumbs */
+      #site-topbar { padding-left:20px; padding-right:88px; justify-content:flex-start; }
       #site-topbar .nav-back { min-width:0; }
       /* Logo centred in the bar on all pages */
       #site-topbar .nav-brand { position:absolute;left:50%;top:50%;transform:translate(-50%,-50%); }
