@@ -13,8 +13,8 @@
   const style = document.createElement('style');
   style.textContent = `
     #site-topbar {
-      position:fixed;top:0;left:0;right:0;z-index:500;height:64px;
-      display:flex;justify-content:space-between;align-items:center;padding:0 40px;
+      position:fixed;top:0;left:0;right:0;z-index:500;height:76px;
+      display:flex;justify-content:space-between;align-items:center;padding:0 44px;
     }
     /* Charcoal variant (index + prestige) */
     #site-topbar.nav-dark {
@@ -47,20 +47,20 @@
     #site-topbar.nav-light .nav-menu-btn:hover { background:rgba(36,34,32,1); }
 
     #site-topbar .nav-back {
-      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.72rem;
+      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.78rem;
       letter-spacing:0.22em;text-transform:uppercase;
       text-decoration:none;transition:color 0.2s;min-width:120px;
     }
     #site-topbar .nav-brand {
-      font-family:'the-seasons',Georgia,serif;font-size:1rem;
+      font-family:'the-seasons',Georgia,serif;font-size:1.15rem;
       font-weight:500;letter-spacing:0.12em;
       text-decoration:none;transition:color 0.2s;
     }
     #site-topbar .nav-menu-btn {
-      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.68rem;
-      letter-spacing:0.2em;text-transform:uppercase;
-      border:none;padding:0 24px;height:36px;
-      border-radius:30px;cursor:pointer;transition:background 0.22s;
+      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.72rem;
+      letter-spacing:0.22em;text-transform:uppercase;
+      border:none;padding:0 28px;height:40px;
+      border-radius:0;cursor:pointer;transition:background 0.22s;
       min-width:120px;text-align:center;
       display:flex;align-items:center;justify-content:center;
     }
@@ -159,18 +159,6 @@
         </a>
         <a class="nav-drawer-link" href="${depth}pages/villas.html">
           Explorer les villas <span class="nav-drawer-arrow">→</span>
-        </a>
-        <a class="nav-drawer-link" href="${depth}pages/elegance.html">
-          Élégance <span class="nav-drawer-arrow">→</span>
-        </a>
-        <a class="nav-drawer-link" href="${depth}pages/prestige.html">
-          Prestige <span class="nav-drawer-arrow">→</span>
-        </a>
-        <a class="nav-drawer-link" href="${depth}pages/signature.html">
-          Signature <span class="nav-drawer-arrow">→</span>
-        </a>
-        <a class="nav-drawer-link" href="${depth}pages/exception.html">
-          Exception <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="${depth}pages/bali.html">
           Explorer Bali <span class="nav-drawer-arrow">→</span>
