@@ -54,6 +54,7 @@ document.querySelectorAll('.villa-card').forEach(card => {
     // Fade to black then navigate
     setTimeout(() => {
       const fade = document.createElement('div');
+      fade.id = 'page-fade-out';
       fade.style.cssText = 'position:fixed;inset:0;z-index:5000;background:#0E0B08;opacity:0;transition:opacity 0.28s ease;pointer-events:none;';
       document.body.appendChild(fade);
       requestAnimationFrame(() => requestAnimationFrame(() => { fade.style.opacity = '1'; }));
@@ -81,9 +82,10 @@ window.addEventListener('pageshow', (e) => {
   const zoomLayer = document.getElementById('zoomLayer');
   if (zoomLayer) { zoomLayer.style.visibility = 'hidden'; zoomLayer.innerHTML = ''; }
   const grid = document.getElementById('villasGrid');
-  if (grid) grid.classList.remove('fading');
+  if (grid) { grid.classList.remove('fading'); grid.style.opacity = ''; }
   const siteNav = document.getElementById('site-topbar');
   if (siteNav) { siteNav.style.transition = 'none'; siteNav.style.opacity = '1'; }
-  document.querySelectorAll('[style*="z-index:5000"]').forEach(el => el.remove());
+  const fadeOut = document.getElementById('page-fade-out');
+  if (fadeOut) fadeOut.remove();
   revealCards();
 });
