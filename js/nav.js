@@ -52,13 +52,13 @@
       text-decoration:none;transition:color 0.2s;min-width:120px;
     }
     #site-topbar .nav-brand {
-      font-family:'the-seasons',Georgia,serif;font-size:1.25rem;
-      font-weight:600;letter-spacing:0.12em;
+      font-family:'the-seasons',Georgia,serif;font-size:1.08rem;
+      font-weight:500;letter-spacing:0.12em;
       text-decoration:none;transition:color 0.2s;
     }
     #site-topbar .nav-menu-btn {
-      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.78rem;font-weight:600;
-      letter-spacing:0.2em;text-transform:uppercase;
+      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.75rem;font-weight:400;
+      letter-spacing:0.24em;text-transform:uppercase;
       border:none;padding:0 28px;height:40px;
       border-radius:0;cursor:pointer;transition:background 0.22s;
       min-width:120px;text-align:center;
@@ -85,8 +85,8 @@
       display:flex;justify-content:space-between;align-items:center;margin-bottom:48px;
     }
     .nav-drawer-title {
-      font-family:'the-seasons',Georgia,serif;font-size:1.4rem;font-weight:300;
-      color:rgba(30,22,14,0.75);
+      font-family:'the-seasons',Georgia,serif;font-size:1.4rem;font-weight:500;
+      color:rgba(30,22,14,0.85);
     }
     .nav-drawer-close {
       width:36px;height:36px;background:rgba(80,60,40,0.08);
@@ -100,9 +100,9 @@
     .nav-drawer-link {
       display:flex;align-items:center;justify-content:space-between;
       padding:19px 0;border-bottom:1px solid rgba(80,60,40,0.10);
-      text-decoration:none;color:rgba(30,22,14,0.65);
+      text-decoration:none;color:rgba(30,22,14,0.75);
       font-family:'Helvetica Neue',Arial,sans-serif;
-      font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;
+      font-size:0.72rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;
       transition:color 0.22s,padding-left 0.22s;
     }
     .nav-drawer-link:hover { color:rgba(30,22,14,0.95);padding-left:6px; }
@@ -111,8 +111,8 @@
 
     .nav-drawer-footer {
       padding-top:20px;font-family:'Helvetica Neue',Arial,sans-serif;
-      font-size:0.56rem;letter-spacing:0.2em;text-transform:uppercase;
-      color:rgba(30,22,14,0.28);
+      font-size:0.56rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
+      color:rgba(30,22,14,0.5);
     }
   `;
   document.head.appendChild(style);
@@ -150,7 +150,7 @@
 
     <aside id="nav-drawer">
       <div class="nav-drawer-top">
-        <div class="nav-drawer-title">Seseh</div>
+        <div class="nav-drawer-title">Seseh Sunset Villas</div>
         <button class="nav-drawer-close" id="nav-drawer-close">✕</button>
       </div>
       <nav class="nav-drawer-links">
