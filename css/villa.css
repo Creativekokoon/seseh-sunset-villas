@@ -270,6 +270,45 @@ html,body {
   .prereserver-btn { padding:12px 36px; }
 }
 
+/* Mobile portrait (covers all portrait phones up to 767px) */
+@media (max-width:767px) and (orientation:portrait) {
+  html,body { overflow-y:auto; }
+  .page { position:relative;top:76px;height:auto;padding:0 16px 20px; }
+  .villa-title { font-size:1.8rem;padding:20px 0 10px; }
+
+  /* Stats — vertical stack */
+  .stats { padding:4px 0 10px; }
+  .stats-inner { display:flex;flex-direction:column;width:100%;border-top:none;border-bottom:none;padding:0; }
+  .stat-sep { display:none; }
+  .stat { flex-direction:row;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid rgba(62,58,54,0.10); }
+  .stat:last-child { border-bottom:none; }
+  .stat-icon { flex-shrink:0; }
+  .stat-val { font-size:1.35rem;flex:1;line-height:1; }
+  .stat-lbl { font-size:0.52rem;letter-spacing:0.2em; }
+
+  /* Main block — single column, scrollable */
+  .dark-block { grid-template-columns:1fr;height:auto;margin-top:12px; }
+
+  /* Plan side */
+  .plan-side { height:auto;padding:12px 4px 8px; }
+  .plan-inner { width:100%;gap:8px; }
+
+  /* Plan header — centred, smaller */
+  .plan-top { display:flex;flex-direction:column;align-items:center;gap:8px; }
+  .plan-title-wrap { align-items:center; }
+  .plan-title { font-size:0.8rem;letter-spacing:0.15em;text-align:center; }
+  .plan-subtitle { font-size:0.6rem;letter-spacing:0.12em;text-align:center; }
+  .floor-tabs { align-self:center; }
+
+  /* SVG needs explicit height when parent is auto */
+  .plan-svg-wrap { height:260px;flex:none; }
+
+  /* Image side */
+  .info-side { height:260px; }
+  .prereserver-btn { padding:12px 28px;font-size:0.65rem; }
+}
+
+/* Mobile landscape */
 @media (max-width:767px) and (orientation:landscape) {
   html,body { overflow-y:auto; }
   .page { position:relative;top:76px;height:auto; }
@@ -283,24 +322,6 @@ html,body {
   .stat-icon { flex-shrink:0; }
   .stat-val { font-size:1rem;flex:1;line-height:1; }
   .stat-lbl { font-size:0.48rem;letter-spacing:0.2em; }
-}
-
-@media (max-width:600px) {
-  html,body { overflow-y:auto; }
-  .page { position:relative;top:76px;height:auto;padding:0 16px 20px; }
-  .villa-title { font-size:1.8rem;padding:20px 0 10px; }
-  .stats { padding:4px 0 8px; }
-  .stats-inner { display:flex;flex-direction:column;width:100%;border-top:none;border-bottom:none;padding:0; }
-  .stat-sep { display:none; }
-  .stat { flex-direction:row;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid rgba(62,58,54,0.10); }
-  .stat:last-child { border-bottom:none; }
-  .stat-icon { flex-shrink:0; }
-  .stat-val { font-size:1.1rem;flex:1;line-height:1; }
-  .stat-lbl { font-size:0.5rem;letter-spacing:0.2em; }
-  .dark-block { grid-template-columns:1fr;height:auto;margin-top:12px; }
-  .plan-side { height:320px; }
-  .info-side { height:260px; }
-  .prereserver-btn { padding:12px 28px;font-size:0.65rem; }
 }
 
 @media (min-width:1920px) {
