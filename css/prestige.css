@@ -296,7 +296,7 @@ html,body {
   .stat-lbl { font-size:0.52rem;letter-spacing:0.2em; }
 
   /* Main block — single column, scrollable */
-  .dark-block { grid-template-columns:1fr;height:auto;margin-top:12px; }
+  .dark-block { grid-template-columns:1fr;height:auto;margin-top:28px; }
 
   /* Plan side */
   .plan-side { height:auto;padding:12px 4px 8px; }
