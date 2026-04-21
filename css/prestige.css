@@ -197,6 +197,9 @@ html,body {
   width:100%;height:100%;display:block;
   filter:grayscale(16%) saturate(0.62) brightness(1.02);
 }
+.scene-card img {
+  width:100%;height:100%;display:block;object-fit:cover;
+}
 
 /* ── PRE-RESERVER ── */
 .prereserver-wrap {
