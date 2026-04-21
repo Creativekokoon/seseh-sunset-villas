@@ -58,7 +58,7 @@ document.querySelectorAll('.villa-card').forEach(card => {
       document.body.appendChild(fade);
       requestAnimationFrame(() => requestAnimationFrame(() => { fade.style.opacity = '1'; }));
       setTimeout(() => { window.location.href = data.cta; }, 300);
-    }, 520);
+    }, 720);
   });
 });
 
