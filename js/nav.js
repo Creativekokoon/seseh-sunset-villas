@@ -65,6 +65,10 @@
       display:flex;align-items:center;justify-content:center;
     }
 
+    /* Logo image — hidden on desktop, shown on mobile */
+    .nav-brand-logo { display:none;height:34px;width:auto; }
+    .nav-brand-text { }
+
     /* Hamburger — fixed above everything, visible on mobile only */
     .nav-hamburger {
       display:none;
@@ -90,13 +94,13 @@
     @media (max-width:768px) {
       .nav-hamburger { display:flex; }
       #site-topbar .nav-menu-btn { display:none; }
-      /* Left-align items; right padding reserves space for the hamburger */
+      /* Right padding reserves space for the hamburger */
       #site-topbar { padding-right:88px; justify-content:flex-start; }
-      /* Brand: left-aligned, no min-width pushing it right */
       #site-topbar .nav-back { min-width:0; }
-      #site-topbar .nav-brand { position:static; transform:none; }
-      /* Hide brand on pages that already show a back breadcrumb */
-      #site-topbar.has-back .nav-brand { display:none; }
+      /* Logo centred in the bar on all pages */
+      #site-topbar .nav-brand { position:absolute;left:50%;top:50%;transform:translate(-50%,-50%); }
+      .nav-brand-text { display:none; }
+      .nav-brand-logo { display:block; }
 
       #nav-drawer {
         width:100% !important;
