@@ -296,3 +296,27 @@ html,body {
   .villa-title { font-size:3rem; }
   .stat-val { font-size:2.6rem; }
 }
+
+/* ── ENTRANCE ANIMATIONS ── */
+.villa-title {
+  opacity:0;
+  transform:translateY(12px);
+  animation:villaTitleIn 0.9s 0.15s ease forwards;
+}
+.stats {
+  opacity:0;
+  transform:translateY(8px);
+  animation:villaTitleIn 0.8s 0.35s ease forwards;
+}
+.dark-block {
+  opacity:0;
+  transform:translateY(10px);
+  animation:villaTitleIn 0.85s 0.5s ease forwards;
+}
+.prereserver-wrap {
+  opacity:0;
+  animation:villaTitleIn 0.7s 0.75s ease forwards;
+}
+@keyframes villaTitleIn {
+  to { opacity:1; transform:translateY(0); }
+}

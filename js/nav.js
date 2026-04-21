@@ -65,6 +65,55 @@
       display:flex;align-items:center;justify-content:center;
     }
 
+    /* Hamburger icon (mobile only) */
+    .nav-hamburger {
+      display:none;
+      flex-direction:column;justify-content:center;align-items:center;
+      gap:5px;width:40px;height:40px;
+      background:none;border:none;cursor:pointer;padding:0;
+    }
+    .nav-hamburger span {
+      display:block;width:22px;height:1.5px;
+      transition:transform 0.3s ease,opacity 0.3s ease;
+    }
+    #site-topbar.nav-dark .nav-hamburger span { background:rgba(255,252,248,0.85); }
+    #site-topbar.nav-light .nav-hamburger span { background:rgba(52,48,44,0.85); }
+    .nav-hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity:0; }
+    .nav-hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+
+    /* Mobile full-screen dark drawer */
+    @media (max-width:768px) {
+      .nav-hamburger { display:flex; }
+      #site-topbar .nav-menu-btn { display:none; }
+
+      #nav-drawer {
+        width:100% !important;
+        background:rgba(36,34,32,0.98) !important;
+        border-left:none !important;
+        padding:40px 32px !important;
+      }
+      .nav-drawer-title {
+        color:rgba(255,252,248,0.85) !important;
+        font-size:1.6rem !important;
+      }
+      .nav-drawer-close {
+        background:rgba(255,255,255,0.08) !important;
+        border-color:rgba(255,255,255,0.15) !important;
+        color:rgba(255,252,248,0.75) !important;
+      }
+      .nav-drawer-link {
+        color:rgba(255,252,248,0.65) !important;
+        border-bottom-color:rgba(255,255,255,0.08) !important;
+        font-size:0.85rem !important;
+        padding:22px 0 !important;
+      }
+      .nav-drawer-link:hover { color:rgba(255,252,248,0.98) !important; }
+      .nav-drawer-footer {
+        color:rgba(255,252,248,0.28) !important;
+      }
+    }
+
     #nav-overlay {
       position:fixed;inset:0;z-index:600;
       background:rgba(20,16,12,0.22);
@@ -144,6 +193,9 @@
       }
       <a class="nav-brand" href="${depth}index.html">Seseh Sunset Villas</a>
       <button class="nav-menu-btn" id="nav-menu-btn">Menu</button>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </header>
 
     <div id="nav-overlay"></div>
@@ -187,10 +239,21 @@
   const menuBtn    = document.getElementById('nav-menu-btn');
   const closeBtn   = document.getElementById('nav-drawer-close');
 
-  function openNav()  { drawer.classList.add('open');    overlay.classList.add('open'); }
-  function closeNav() { drawer.classList.remove('open'); overlay.classList.remove('open'); }
+  const hamburger = document.getElementById('nav-hamburger');
+
+  function openNav()  {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    if (hamburger) hamburger.classList.add('open');
+  }
+  function closeNav() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    if (hamburger) hamburger.classList.remove('open');
+  }
 
   menuBtn.addEventListener('click', openNav);
+  if (hamburger) hamburger.addEventListener('click', openNav);
   closeBtn.addEventListener('click', closeNav);
   overlay.addEventListener('click', closeNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
