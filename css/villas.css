@@ -229,3 +229,70 @@ html, body { width:100%;height:100%;overflow:hidden;background:#0E0B08;color:whi
   opacity: 1;
   transform: translateY(0) scale(1);
 }
+
+/* ── RESPONSIVE — Breakpoints ── */
+/* 
+  Screens:
+  Mobile portrait:  < 600px
+  Mobile landscape: 600–767px  
+  Tablet portrait:  768–1023px  ← PRIMARY TARGET
+  Tablet landscape: 1024–1279px ← PRIMARY TARGET
+  Desktop:          1280–1919px
+  Large desktop:    1920px+
+*/
+
+/* Tablet portrait (768–1023px) — stack 2x2 but smaller */
+@media (max-width:1023px) and (min-width:768px) {
+  .villas-grid {
+    top:76px;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr 1fr;
+  }
+  .card-title { font-size:clamp(1.3rem,2.5vw,2rem); }
+  .card-sub { font-size:0.68rem; }
+}
+
+/* Mobile landscape + tablet portrait narrow — 2 cols, scroll */
+@media (max-width:767px) and (orientation:landscape) {
+  html,body { overflow:auto; }
+  .villas-grid {
+    position:relative;
+    top:0;
+    margin-top:76px;
+    height:auto;
+    min-height:calc(100vh - 76px);
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:50vw 50vw;
+  }
+  .villa-card { height:50vw; }
+}
+
+/* Mobile portrait — single column, scroll */
+@media (max-width:600px) {
+  html,body { overflow-y:auto; overflow-x:hidden; }
+  .villas-grid {
+    position:relative;
+    top:0;
+    margin-top:76px;
+    height:auto;
+    grid-template-columns:1fr;
+    grid-template-rows:repeat(4, 75vw);
+  }
+  .villa-card { height:75vw; }
+  .card-content { padding:20px 24px 28px; }
+  .card-title { font-size:clamp(1.6rem,7vw,2.4rem); }
+  .card-sub { font-size:0.72rem; }
+}
+
+/* Large desktop 1920px+ — ensure images fill properly */
+@media (min-width:1920px) {
+  .villas-grid { top:76px; }
+  .card-title { font-size:clamp(2rem,1.8vw,3.2rem); }
+  .card-sub { font-size:0.9rem; }
+  .card-cta { font-size:0.8rem; }
+}
+
+/* Fix nav height offset for all sizes */
+@media (min-width:1px) {
+  .villas-grid { top:76px; }
+}

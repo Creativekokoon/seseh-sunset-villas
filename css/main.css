@@ -254,3 +254,38 @@ html, body {
 @keyframes fadeIn {
   to { opacity: 1; }
 }
+
+/* ── RESPONSIVE — index.html ── */
+
+/* Nav offset update */
+.hero { padding-top:76px; }
+
+/* Tablet portrait */
+@media (max-width:1023px) and (min-width:768px) {
+  .hero-title { font-size:clamp(1.6rem,4vw,3rem);letter-spacing:0.16em; }
+  .hero-cta { padding:16px 48px;font-size:0.78rem; }
+}
+
+/* Mobile landscape */
+@media (max-width:767px) and (orientation:landscape) {
+  .hero-title { font-size:clamp(1.4rem,4vw,2.2rem);margin-bottom:20px; }
+  .hero-cta { padding:14px 36px;font-size:0.72rem; }
+}
+
+/* Mobile portrait */
+@media (max-width:600px) {
+  .hero-title {
+    font-size:clamp(1.4rem,8vw,2.4rem);
+    white-space:normal;
+    letter-spacing:0.14em;
+    padding:0 16px;
+  }
+  .hero-cta { padding:14px 32px;font-size:0.72rem;letter-spacing:0.22em; }
+  .bg { background-position:center center; }
+}
+
+/* Large desktop */
+@media (min-width:1920px) {
+  .hero-title { font-size:clamp(3rem,3.5vw,5rem); }
+  .hero-cta { padding:22px 80px;font-size:0.9rem; }
+}
