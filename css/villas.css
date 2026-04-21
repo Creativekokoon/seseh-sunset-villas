@@ -1,3 +1,12 @@
+/* ── NAV FLICKER FIX — pre-set before nav.js runs ── */
+#site-topbar { background:#E8E8E6 !important; }
+#site-topbar .nav-back,
+#site-topbar .nav-brand { color:rgba(52,48,44,0.75) !important; }
+#site-topbar .nav-back:hover,
+#site-topbar .nav-brand:hover { color:rgba(52,48,44,1) !important; }
+#site-topbar .nav-menu-btn { color:#E8E8E6 !important; background:rgba(52,48,44,0.88) !important; }
+#site-topbar .nav-menu-btn:hover { background:rgba(36,34,32,1) !important; }
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -5,6 +14,16 @@
   --sans: 'Helvetica Neue', Arial, sans-serif;
   --gold: rgba(210, 185, 140, 0.9);
 }
+
+
+/* ── NAV COLOUR PRE-SET — prevents flicker on villas page ── */
+#site-topbar { background:#E8E8E6 !important; }
+#site-topbar .nav-back,
+#site-topbar .nav-brand { color:rgba(52,48,44,0.75) !important; }
+#site-topbar .nav-back:hover,
+#site-topbar .nav-brand:hover { color:rgba(52,48,44,1) !important; }
+#site-topbar .nav-menu-btn { color:#E8E8E6 !important; background:rgba(52,48,44,0.88) !important; }
+#site-topbar .nav-menu-btn:hover { background:rgba(36,34,32,1) !important; }
 
 html, body { width:100%;height:100%;overflow:hidden;background:#0E0B08;color:white;-webkit-font-smoothing:antialiased; }
 
