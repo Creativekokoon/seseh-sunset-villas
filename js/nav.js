@@ -179,13 +179,16 @@
   let backHref = '';
   let backLabel = '';
 
-  if (path.includes('villas.html') && !path.includes('bali.html')) {
+  if (path.includes('villas.html')) {
     backHref = depth + 'index.html';
     backLabel = '← Accueil';
   } else if (path.includes('prestige.html') || path.includes('elegance.html') ||
              path.includes('signature.html') || path.includes('exception.html')) {
     backHref = depth + 'pages/villas.html';
     backLabel = '← Les Villas';
+  } else if (path.includes('bali.html')) {
+    backHref = depth + 'index.html';
+    backLabel = '← Accueil';
   } else {
     backHref = '';
     backLabel = '';
