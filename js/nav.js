@@ -84,8 +84,8 @@
     }
     /* Villas page has a light nav — dark lines */
     .nav-hamburger--light span { background:rgba(52,48,44,0.85); }
-    /* When open the drawer is always dark — force white */
-    .nav-hamburger.open span { background:rgba(255,252,248,0.9) !important; }
+    /* When open the drawer is cream — force dark lines */
+    .nav-hamburger.open span { background:rgba(52,48,44,0.9) !important; }
     .nav-hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
     .nav-hamburger.open span:nth-child(2) { opacity:0; }
     .nav-hamburger.open span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
@@ -104,25 +104,18 @@
 
       #nav-drawer {
         width:100% !important;
-        background:rgba(36,34,32,1) !important;
+        background:#F0EAE0 !important;
         border-left:none !important;
         padding:40px 32px !important;
       }
       .nav-drawer-title {
-        color:rgba(255,252,248,0.85) !important;
         font-size:1.6rem !important;
       }
       .nav-drawer-close { display:none !important; }
       .nav-drawer-top { margin-bottom:32px !important; }
       .nav-drawer-link {
-        color:rgba(255,252,248,0.65) !important;
-        border-bottom-color:rgba(255,255,255,0.08) !important;
         font-size:0.85rem !important;
         padding:22px 0 !important;
-      }
-      .nav-drawer-link:hover { color:rgba(255,252,248,0.98) !important; }
-      .nav-drawer-footer {
-        color:rgba(255,252,248,0.28) !important;
       }
     }
 
