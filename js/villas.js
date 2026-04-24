@@ -41,10 +41,8 @@ document.querySelectorAll('.villa-card').forEach(card => {
     const tx = (vw / 2) - (rect.left + rect.width  / 2);
     const ty = (vh / 2) - (rect.top  + rect.height / 2);
 
-    // Fade out grid + nav
+    // Fade out grid only — nav stays fixed
     document.getElementById('villasGrid').classList.add('fading');
-    const siteNav = document.getElementById('site-topbar');
-    if (siteNav) { siteNav.style.transition = 'opacity 0.4s'; siteNav.style.opacity = '0'; }
 
     requestAnimationFrame(() => {
       clone.classList.add('animating');
@@ -83,8 +81,6 @@ window.addEventListener('pageshow', (e) => {
   if (zoomLayer) { zoomLayer.style.visibility = 'hidden'; zoomLayer.innerHTML = ''; }
   const grid = document.getElementById('villasGrid');
   if (grid) { grid.classList.remove('fading'); grid.style.opacity = ''; }
-  const siteNav = document.getElementById('site-topbar');
-  if (siteNav) { siteNav.style.transition = 'none'; siteNav.style.opacity = '1'; }
   const fadeOut = document.getElementById('page-fade-out');
   if (fadeOut) fadeOut.remove();
   revealCards();
