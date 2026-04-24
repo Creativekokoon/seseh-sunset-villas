@@ -306,8 +306,9 @@ html,body {
   /* SVG needs explicit height when parent is auto */
   .plan-svg-wrap { height:260px;flex:none; }
 
-  /* Image side */
+  /* Image side — hidden until a room is selected; button sits right under the plan */
   .info-side { height:260px; }
+  .info-side:not(:has(.room-visual.visible)) { display:none; }
   .prereserver-btn { padding:12px 28px;font-size:0.65rem; }
 }
 
