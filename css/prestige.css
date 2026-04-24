@@ -97,14 +97,13 @@ html,body {
   min-width:0;min-height:0;
 }
 .plan-inner {
-  width:95%;margin:0 auto;
+  width:100%;max-width:720px;margin:0 auto;
   display:flex;flex-direction:column;
-  gap:10px;flex:1;min-height:0;
+  gap:28px;flex:1;min-height:0;
 }
 .plan-top {
-  display:grid;grid-template-columns:1fr auto;
-  align-items:end;gap:14px;
-  flex-shrink:0;width:100%;
+  display:flex;justify-content:space-between;align-items:end;gap:32px;
+  flex-shrink:0;width:100%;max-width:520px;margin:0 auto;
 }
 .plan-title-wrap { display:flex;flex-direction:column;gap:5px;min-width:0; }
 .plan-title {
