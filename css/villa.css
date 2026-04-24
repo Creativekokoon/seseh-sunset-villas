@@ -78,12 +78,16 @@ html,body {
 /* ── MAIN BLOCK ── */
 .dark-block {
   display:grid;
-  grid-template-columns:1.08fr 1.22fr;
+  grid-template-columns:1fr 0fr;
   max-width:1240px;width:100%;
   margin:48px auto 0;
   height:420px;
   min-height:0;
   background:transparent;
+  transition:grid-template-columns 0.55s cubic-bezier(0.4,0,0.2,1);
+}
+.dark-block:has(.room-visual.visible) {
+  grid-template-columns:1.08fr 1.22fr;
 }
 
 /* LEFT — plan */
@@ -93,14 +97,13 @@ html,body {
   min-width:0;min-height:0;
 }
 .plan-inner {
-  width:95%;margin:0 auto;
+  width:100%;max-width:640px;margin:0 auto;
   display:flex;flex-direction:column;
-  gap:10px;flex:1;min-height:0;
+  gap:14px;flex:1;min-height:0;
 }
 .plan-top {
-  display:grid;grid-template-columns:1fr auto;
-  align-items:end;gap:14px;
-  flex-shrink:0;width:100%;
+  display:flex;justify-content:space-between;align-items:end;gap:32px;
+  flex-shrink:0;width:100%;max-width:520px;margin:0 auto;
 }
 .plan-title-wrap { display:flex;flex-direction:column;gap:5px;min-width:0; }
 .plan-title {
@@ -163,6 +166,12 @@ html,body {
 .info-side {
   display:flex;flex-direction:column;
   padding:12px;min-width:0;min-height:0;
+  overflow:hidden;
+  opacity:0;
+  transition:opacity 0.4s ease 0.15s;
+}
+.dark-block:has(.room-visual.visible) .info-side {
+  opacity:1;
 }
 .room-image {
   flex:1;position:relative;overflow:hidden;
@@ -295,7 +304,9 @@ html,body {
   .stat-lbl { font-size:0.52rem;letter-spacing:0.2em; }
 
   /* Main block — single column, scrollable */
-  .dark-block { grid-template-columns:1fr;height:auto;margin-top:28px; }
+  .dark-block,
+  .dark-block:has(.room-visual.visible) { grid-template-columns:1fr;height:auto;margin-top:28px; }
+  .info-side { opacity:1; }
 
   /* Plan side */
   .plan-side { height:auto;padding:12px 4px 8px; }
@@ -320,8 +331,10 @@ html,body {
 /* Mobile landscape */
 @media (max-width:767px) and (orientation:landscape) {
   html,body { overflow-y:auto; }
-  .page { position:relative;top:76px;height:auto; }
-  .dark-block { grid-template-columns:1fr 1fr;height:280px; }
+  .page { position:relative;top:76px;height:auto;min-height:calc(100vh - 76px); }
+  .dark-block,
+  .dark-block:has(.room-visual.visible) { grid-template-columns:1fr 1fr;height:280px; }
+  .info-side { opacity:1; }
   .villa-title { font-size:1.6rem;padding:16px 0 8px; }
   .stats { padding:2px 0 6px; }
   .stats-inner { display:flex;flex-direction:column;width:100%;border-top:none;border-bottom:none;padding:0; }
