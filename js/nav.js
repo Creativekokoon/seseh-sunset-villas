@@ -127,7 +127,7 @@
     #nav-overlay.open { opacity:1;pointer-events:all; }
 
     #nav-drawer {
-      position:fixed;top:0;right:0;bottom:0;width:min(340px,72vw);z-index:700;
+      position:fixed;top:0;right:0;bottom:0;width:min(440px,86vw);z-index:700;
       background:#E8E4DC;
       border-left:1px solid rgba(160,155,148,0.25);
       transform:translateX(100%);transition:transform 0.3s ease;
@@ -165,9 +165,11 @@
 
     .nav-drawer-footer {
       padding-top:20px;font-family:'Helvetica Neue',Arial,sans-serif;
-      font-size:0.56rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
+      font-size:0.52rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
       color:rgba(94,89,82,0.6);
+      white-space:nowrap;
     }
+    .nav-drawer-footer a { color:inherit;text-decoration:none; }
   `;
   document.head.appendChild(style);
 
@@ -194,7 +196,7 @@
   // ── Inject HTML ──
   const root = document.getElementById('nav-root');
   root.innerHTML = `
-    <header id="site-topbar">
+    <header id="site-topbar" class="nav-dark${backLabel ? ' has-back' : ''}">
       ${backLabel
         ? `<a class="nav-back" href="${backHref}">${backLabel}</a>`
         : `<div class="nav-back"></div>`
@@ -227,7 +229,7 @@
           Pré-réserver <span class="nav-drawer-arrow">→</span>
         </a>
       </nav>
-      <div class="nav-drawer-footer"><div>© 2026 Sora Immobilier</div><a href="https://sora-immobilier.fr" style="color:inherit;text-decoration:none;white-space:nowrap;display:block;margin-top:3px;" target="_blank">sora-immobilier.fr</a></div>
+      <div class="nav-drawer-footer">© 2026 Sora Immobilier | <a href="https://sora-immobilier.fr" target="_blank">sora-immobilier.fr</a></div>
     </aside>
 
     <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
@@ -235,10 +237,8 @@
     </button>
   `;
 
-  // ── Apply nav colour theme — always dark ──
+  // ── Topbar reference (class preset in template to avoid load-flash) ──
   const topbar = document.getElementById('site-topbar');
-  topbar.classList.add('nav-dark');
-  if (backLabel) topbar.classList.add('has-back');
 
   // ── Logic ──
   const overlay    = document.getElementById('nav-overlay');
