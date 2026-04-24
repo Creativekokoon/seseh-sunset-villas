@@ -11,8 +11,10 @@
     *{box-sizing:border-box;margin:0;padding:0}
     :root{--serif:'the-seasons',Georgia,serif;--sans:'Helvetica Neue',Arial,sans-serif;--gold:#c8a86a}
     html,body{width:100%;height:100%;overflow:hidden;background:#E8E4DC;-webkit-font-smoothing:antialiased}
-    .page-intro{position:fixed;inset:0;z-index:200;background:#E8E4DC;animation:fadeOut 0.38s 0.1s ease forwards;pointer-events:none}
-    @keyframes fadeOut{to{opacity:0}}
+    .page-intro{position:fixed;inset:0;z-index:850;background:#242220;display:flex;align-items:center;justify-content:center;animation:introFadeOut 0.4s 0.9s ease forwards;pointer-events:none}
+    .intro-logo{height:96px;width:auto;opacity:0;transform:scale(0.88);animation:introLogoIn 0.5s 0.1s cubic-bezier(0.25,0.46,0.45,0.94) forwards}
+    @keyframes introLogoIn{to{opacity:1;transform:scale(1)}}
+    @keyframes introFadeOut{to{opacity:0}}
     .layout{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 560px}
     #map{width:100%;height:100%}
 
@@ -119,7 +121,7 @@
 <body>
   <div id="nav-root"></div>
   <script src="../js/nav.js"></script>
-  <div class="page-intro"></div>
+  <div class="page-intro"><img class="intro-logo" src="../assets/logos/SS%20logo%20light.svg" alt=""></div>
 
   <div class="layout">
     <div id="map"></div>
