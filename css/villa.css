@@ -322,15 +322,9 @@ html,body {
   /* SVG needs explicit height when parent is auto */
   .plan-svg-wrap { height:260px;flex:none; }
 
-  /* Image side — collapsed until a room is selected, then expands with a fade */
-  .info-side {
-    height:auto;
-    max-height:0;
-    transition:max-height 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease 0.15s;
-  }
-  .dark-block:has(.room-visual.visible) .info-side {
-    max-height:300px;
-  }
+  /* Image side — hidden until a room is selected; button sits right under the plan */
+  .info-side { height:260px; }
+  .info-side:not(:has(.room-visual.visible)) { display:none; }
   .prereserver-btn { padding:12px 28px;font-size:0.65rem; }
 }
 
