@@ -356,6 +356,12 @@ html,body {
   .stat-lbl { font-size:0.48rem;letter-spacing:0.2em; }
 }
 
+/* iPad Pro 13" (both orientations) — fill extra vertical space */
+@media (min-width:1000px) and (max-width:1400px) and (min-height:900px) {
+  .dark-block { height:580px; }
+  .prereserver-wrap { margin-top:auto; padding-bottom:24px; }
+}
+
 /* Large desktop */
 @media (min-width:1920px) {
   .dark-block { height:520px;max-width:1440px; }
