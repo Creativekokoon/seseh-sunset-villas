@@ -156,7 +156,7 @@
       padding:19px 0;border-bottom:1px solid rgba(80,60,40,0.10);
       text-decoration:none;color:rgba(52,48,44,0.85);
       font-family:'Helvetica Neue',Arial,sans-serif;
-      font-size:0.72rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;
+      font-size:0.82rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;
       transition:color 0.22s,padding-left 0.22s;
     }
     .nav-drawer-link:hover { color:rgba(52,48,44,0.98);padding-left:6px; }
@@ -165,7 +165,7 @@
 
     .nav-drawer-footer {
       padding-top:20px;font-family:'Helvetica Neue',Arial,sans-serif;
-      font-size:0.52rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
+      font-size:0.62rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
       color:rgba(94,89,82,0.6);
       white-space:nowrap;
     }
