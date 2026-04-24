@@ -69,7 +69,7 @@ function revealCards() {
 }
 
 window.addEventListener('load', () => {
-  setTimeout(revealCards, 300);
+  setTimeout(revealCards, 900);
 });
 
 // ── BFCACHE RESTORE ──
