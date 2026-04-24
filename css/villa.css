@@ -4,26 +4,26 @@
   --serif:'the-seasons',Georgia,serif;
   --sans:'Helvetica Neue',Arial,sans-serif;
   --gold:#c8a86a;
-  --charcoal:#3c3935;
+  --charcoal:#34302C;
   --charcoal-soft:#5e5952;
   --line:#4a4641;
 }
 
 html,body {
   width:100%;height:100%;overflow:hidden;
-  background:#F0EAE0;
+  background:#E8E4DC;
   -webkit-font-smoothing:antialiased;
 }
 
 /* ── PAGE INTRO ── */
 .page-intro {
-  position:fixed;inset:0;z-index:200;background:#F0EAE0;
+  position:fixed;inset:0;z-index:200;background:#E8E4DC;
   animation:fadeOut 0.32s 0.05s ease forwards;pointer-events:none;
 }
 @keyframes fadeOut { to { opacity:0; } }
 
 /* ── BG ── */
-.bg { position:fixed;inset:0;z-index:0;background:#F0EAE0; }
+.bg { position:fixed;inset:0;z-index:0;background:#E8E4DC; }
 
 /* ── PAGE — sits below 64px nav from nav.js ── */
 .page {
@@ -63,12 +63,12 @@ html,body {
 .stat-icon { width:18px;height:18px;color:var(--gold); }
 .stat-val {
   font-family:var(--serif);font-size:2.2rem;font-weight:500;
-  color:rgba(44,41,37,0.95);line-height:1;
+  color:rgba(52,48,44,0.95);line-height:1;
 }
 .stat-sm { font-size:0.82rem; }
 .stat-lbl {
   font-family:var(--sans);font-size:0.55rem;letter-spacing:0.22em;
-  text-transform:uppercase;color:rgba(74,69,64,0.54);
+  text-transform:uppercase;color:rgba(94,89,82,0.6);
 }
 .stat-sep { width:1px;height:26px;background:rgba(62,58,54,0.14);flex-shrink:0; }
 
@@ -103,22 +103,22 @@ html,body {
 .plan-title {
   font-family:var(--sans);font-size:0.98rem;
   letter-spacing:0.18em;text-transform:uppercase;
-  color:rgba(57,52,47,0.95);font-weight:600;line-height:1;
+  color:rgba(52,48,44,0.95);font-weight:600;line-height:1;
 }
 .plan-subtitle {
   font-family:var(--sans);font-size:0.74rem;
   letter-spacing:0.15em;text-transform:uppercase;
-  color:rgba(82,77,71,0.62);line-height:1.2;
+  color:rgba(94,89,82,0.7);line-height:1.2;
 }
 .floor-tabs { display:flex;gap:7px;flex-shrink:0;align-self:end; }
 .floor-tab {
   font-family:var(--sans);font-size:0.76rem;letter-spacing:0.14em;text-transform:uppercase;
-  color:rgba(58,54,49,0.78);padding:8px 18px;
+  color:rgba(52,48,44,0.78);padding:8px 18px;
   border:1px solid rgba(75,70,64,0.26);border-radius:0;
   background:rgba(244,243,240,0.55);cursor:pointer;transition:all 0.18s;
 }
 .floor-tab.active {
-  color:rgba(42,39,36,0.98);
+  color:rgba(52,48,44,0.98);
   border-color:rgba(70,65,60,0.48);
   background:rgba(255,255,255,0.66);
 }
@@ -146,12 +146,12 @@ html,body {
 .pzone.selected .pz-fill { fill:rgba(223,214,197,0.95);stroke:var(--gold);stroke-width:1.8; }
 .pz-text {
   font-family:'the-seasons',Georgia,serif;font-size:11px;
-  letter-spacing:0.04em;fill:rgba(83,78,72,0.85);pointer-events:none;
+  letter-spacing:0.04em;fill:rgba(52,48,44,0.9);pointer-events:none;
   transition:all 0.15s ease;
 }
 .pz-m2 {
   font-family:'Helvetica Neue',Arial,sans-serif;font-size:9px;
-  letter-spacing:0.06em;fill:rgba(83,78,72,0.55);
+  letter-spacing:0.06em;fill:rgba(94,89,82,0.6);
 }
 .pzone:hover .pz-text,.pzone.selected .pz-text { fill:rgba(52,48,44,0.95); }
 .pzone:hover .pz-m2,.pzone.selected .pz-m2 { fill:rgba(52,48,44,0.75); }

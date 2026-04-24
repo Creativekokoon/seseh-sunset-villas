@@ -27,13 +27,13 @@
     #site-topbar.nav-dark .nav-back:hover,
     #site-topbar.nav-dark .nav-brand:hover { color:rgba(255,252,248,0.95); }
     #site-topbar.nav-dark .nav-menu-btn {
-      color:#2A2420;background:#F0EAE0;
+      color:#2A2420;background:#E8E4DC;
     }
     #site-topbar.nav-dark .nav-menu-btn:hover { background:#f0efec; }
 
     /* Cream variant (villas) */
     #site-topbar.nav-light {
-      background:#F0EAE0;
+      background:#E8E4DC;
     }
     #site-topbar.nav-light .nav-back,
     #site-topbar.nav-light .nav-brand {
@@ -42,7 +42,7 @@
     #site-topbar.nav-light .nav-back:hover,
     #site-topbar.nav-light .nav-brand:hover { color:rgba(52,48,44,1); }
     #site-topbar.nav-light .nav-menu-btn {
-      color:#F0EAE0;background:rgba(52,48,44,0.88);
+      color:#E8E4DC;background:rgba(52,48,44,0.88);
     }
     #site-topbar.nav-light .nav-menu-btn:hover { background:rgba(36,34,32,1); }
 
@@ -104,7 +104,7 @@
 
       #nav-drawer {
         width:100% !important;
-        background:#F0EAE0 !important;
+        background:#E8E4DC !important;
         border-left:none !important;
         padding:40px 32px !important;
       }
@@ -128,7 +128,7 @@
 
     #nav-drawer {
       position:fixed;top:0;right:0;bottom:0;width:min(340px,72vw);z-index:700;
-      background:#F0EAE0;
+      background:#E8E4DC;
       border-left:1px solid rgba(160,155,148,0.25);
       transform:translateX(100%);transition:transform 0.3s ease;
       display:flex;flex-direction:column;padding:32px 28px;
@@ -140,12 +140,12 @@
     }
     .nav-drawer-title {
       font-family:'the-seasons',Georgia,serif;font-size:1.4rem;font-weight:500;
-      color:rgba(30,22,14,0.85);
+      color:rgba(52,48,44,0.9);
     }
     .nav-drawer-close {
       width:36px;height:36px;background:rgba(80,60,40,0.08);
       border:1px solid rgba(80,60,40,0.18);border-radius:50%;
-      color:rgba(30,22,14,0.65);font-size:0.9rem;cursor:pointer;
+      color:rgba(52,48,44,0.75);font-size:0.9rem;cursor:pointer;
       display:flex;align-items:center;justify-content:center;transition:background 0.2s;
     }
     .nav-drawer-close:hover { background:rgba(80,60,40,0.15); }
@@ -154,19 +154,19 @@
     .nav-drawer-link {
       display:flex;align-items:center;justify-content:space-between;
       padding:19px 0;border-bottom:1px solid rgba(80,60,40,0.10);
-      text-decoration:none;color:rgba(30,22,14,0.75);
+      text-decoration:none;color:rgba(52,48,44,0.85);
       font-family:'Helvetica Neue',Arial,sans-serif;
       font-size:0.72rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;
       transition:color 0.22s,padding-left 0.22s;
     }
-    .nav-drawer-link:hover { color:rgba(30,22,14,0.95);padding-left:6px; }
+    .nav-drawer-link:hover { color:rgba(52,48,44,0.98);padding-left:6px; }
     .nav-drawer-arrow { opacity:0.25;font-weight:400;transition:opacity 0.22s,transform 0.22s; }
     .nav-drawer-link:hover .nav-drawer-arrow { opacity:0.75;transform:translateX(4px); }
 
     .nav-drawer-footer {
       padding-top:20px;font-family:'Helvetica Neue',Arial,sans-serif;
       font-size:0.56rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
-      color:rgba(30,22,14,0.5);
+      color:rgba(94,89,82,0.6);
     }
   `;
   document.head.appendChild(style);

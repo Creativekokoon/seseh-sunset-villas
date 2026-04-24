@@ -196,14 +196,14 @@ html, body {
   
   font-size: 1.4rem;
   font-weight: 300;
-  color: rgba(30, 22, 14, 0.75);
+  color: rgba(52, 48, 44, 0.85);
 }
 .drawer-close {
   width: 36px; height: 36px;
   background: rgba(80, 60, 40, 0.08);
   border: 1px solid rgba(80, 60, 40, 0.18);
   border-radius: 50%;
-  color: rgba(30, 22, 14, 0.65);
+  color: rgba(52, 48, 44, 0.75);
   font-size: 0.85rem;
   cursor: pointer;
   display: flex;
@@ -222,14 +222,14 @@ html, body {
   padding: 19px 0;
   border-bottom: 1px solid rgba(80, 60, 40, 0.10);
   text-decoration: none;
-  color: rgba(30, 22, 14, 0.62);
+  color: rgba(52, 48, 44, 0.75);
   font-family: var(--sans);
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   transition: color 0.22s, padding-left 0.22s;
 }
-.drawer-link:hover { color: rgba(30, 22, 14, 0.95); padding-left: 6px; }
+.drawer-link:hover { color: rgba(52, 48, 44, 0.98); padding-left: 6px; }
 
 .dl-arrow {
   opacity: 0.25;
@@ -244,7 +244,7 @@ html, body {
   font-size: 0.56rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(30, 22, 14, 0.28);
+  color: rgba(94, 89, 82, 0.5);
 }
 
 /* ── ANIMATIONS ── */
