@@ -289,8 +289,8 @@ html,body {
 
 /* Mobile portrait (covers all portrait phones up to 767px) */
 @media (max-width:767px) and (orientation:portrait) {
-  html,body { overflow-y:auto; }
-  .page { position:relative;top:76px;height:auto;padding:0 16px 20px; }
+  html,body { height:auto;overflow-y:auto;overflow-x:hidden; }
+  .page { position:relative;top:0;margin-top:76px;height:auto;padding:0 16px 20px; }
   .villa-title { font-size:1.8rem;padding:20px 0 24px; }
 
   /* Stats — vertical stack */
@@ -330,8 +330,8 @@ html,body {
 
 /* Mobile landscape */
 @media (max-width:767px) and (orientation:landscape) {
-  html,body { overflow-y:auto; }
-  .page { position:relative;top:76px;height:auto;min-height:calc(100vh - 76px); }
+  html,body { height:auto;overflow-y:auto;overflow-x:hidden; }
+  .page { position:relative;top:0;margin-top:76px;height:auto;padding:0 16px 20px; }
   .dark-block,
   .dark-block:has(.room-visual.visible) { grid-template-columns:1fr 1fr;height:280px; }
   .info-side { opacity:1; }
