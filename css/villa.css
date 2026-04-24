@@ -26,6 +26,7 @@ html,body {
 .bg {
   position:fixed;inset:0;z-index:0;
   background:#E8E4DC url('../assets/images/background/villa-bg.jpg') center/cover no-repeat;
+  opacity:0.4;
 }
 
 /* ── PAGE — sits below 64px nav from nav.js ── */
