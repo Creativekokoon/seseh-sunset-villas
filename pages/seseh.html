@@ -342,6 +342,8 @@
     /* ── Mobile (portrait + landscape) ── */
     @media (max-width:767px){
       html,body{height:auto;overflow-y:auto;overflow-x:hidden}
+
+      /* Layout: header → map → list */
       .layout{
         position:relative;
         top:0;margin-top:76px;
@@ -350,40 +352,46 @@
         flex-direction:column;
         height:auto;
       }
-      .map-frame{
-        width:100%;
-        height:auto;
-        aspect-ratio:5272/4082;
-      }
-
-      /* Panel */
       .panel{
-        border-left:none;
-        border-top:none;
-        height:auto;
-        overflow:visible;
+        display:contents; /* let header & list become flex children of .layout */
       }
       .panel-header{
-        padding:30px 20px 18px;
-        margin:0 18px;
-        border-bottom:1px solid rgba(36,32,28,0.12);
+        order:1;
+        padding:32px 20px 22px;
+        margin:0;
+        text-align:center;
+        border-bottom:none;
       }
-      .panel-title{font-size:1.9rem;letter-spacing:0.1em}
-      .panel-hint{font-size:0.58rem;letter-spacing:0.16em;margin-top:12px}
-
-      /* List spacing */
+      .map-frame{
+        order:2;
+        width:100%;
+        height:auto;
+        aspect-ratio:4/5; /* taller image so the area is more readable */
+      }
       .poi-list{
+        order:3;
         overflow-y:visible;
-        padding:8px 18px 36px;
+        padding:24px 18px 40px;
       }
 
-      /* Default item — text-only, comfortable touch target */
+      /* Header typo */
+      .panel-title{font-size:2rem;letter-spacing:0.1em}
+      .panel-hint{font-size:0.58rem;letter-spacing:0.16em;margin-top:10px}
+
+      /* POI markers on the map are visual-only on mobile */
+      .poi-label{
+        font-size:0.55rem;padding:4px 7px;letter-spacing:0.08em;
+        pointer-events:none;cursor:default;
+      }
+
+      /* List item — always-expanded info card */
       .poi-item{
         grid-template-columns:1fr;
         gap:0;
         padding:18px 14px;
         min-height:64px;
         align-items:start;
+        cursor:default;
       }
       .poi-item:hover{padding-left:14px}
       .poi-item.active{padding-left:14px}
@@ -391,21 +399,25 @@
       .poi-item-name{font-size:1.15rem;line-height:1.25}
       .poi-item-dist{font-size:0.62rem;letter-spacing:0.14em;margin-top:6px}
       .poi-item-dist svg{width:13px;height:13px}
-      .poi-cam{padding:6px;margin:-4px -6px 0 0}
+      .poi-cam{padding:6px;margin:-4px -6px 0 0;pointer-events:auto;cursor:pointer}
       .poi-cam svg{width:22px;height:22px}
-      .poi-item-desc{font-size:0.84rem;line-height:1.55}
-      .poi-item.active .poi-item-desc{max-height:220px;margin-top:10px}
+
+      /* Description always visible (no expand-on-tap) */
+      .poi-item-desc,
+      .poi-item.active .poi-item-desc{
+        font-size:0.84rem;line-height:1.55;
+        max-height:none;opacity:1;overflow:visible;
+        margin-top:10px;
+        transition:none;
+      }
 
       /* Featured (Seseh Sunset Villas) */
       .poi-item.featured{
-        margin:10px 0 18px;
+        margin:0 0 18px;
         padding:22px 18px;
       }
       .poi-item.featured .poi-item-name{font-size:1.3rem}
       .poi-item.featured .poi-item-desc{font-size:0.86rem}
-
-      /* Map labels stay small */
-      .poi-label{font-size:0.55rem;padding:4px 7px;letter-spacing:0.08em}
 
       /* Lightbox */
       .img-overlay{padding:32px 16px}
@@ -661,7 +673,7 @@
     if (poiEl) poiEl.classList.add('active');
     if (itemEl){
       itemEl.classList.add('active');
-      if (opts.scroll !== false){
+      if (opts.scroll !== false && window.innerWidth > 767){
         itemEl.scrollIntoView({behavior:'smooth', block:'center'});
       }
     }
