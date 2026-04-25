@@ -12,19 +12,8 @@
     "distance": "Vous êtes ici"
   },
   {
-    "id": "canggu-beach",
-    "number": 2,
-    "name": "Plage de Canggu",
-    "position": { "top": "34.74%", "left": "32.05%" },
-    "lineHeight": 40,
-    "category": "beach",
-    "image": "../assets/images/seseh/poi/canggu-beach.jpg",
-    "description": "Le cœur vibrant de Canggu — surf, beach clubs et une scène expat animée.",
-    "distance": "12 min"
-  },
-  {
     "id": "seseh-beach",
-    "number": 3,
+    "number": 2,
     "name": "Plage de Seseh",
     "position": { "top": "47.5%", "left": "73.5%" },
     "lineHeight": 80,
@@ -32,6 +21,17 @@
     "image": "../assets/images/seseh/poi/seseh-beach.jpg",
     "description": "Plage de sable noir paisible, connue pour son atmosphère sereine et ses couchers de soleil exceptionnels.",
     "distance": "5 min"
+  },
+  {
+    "id": "river-rice-fields-view",
+    "number": 3,
+    "name": "Rivière & Rizières",
+    "position": { "top": "86.79%", "left": "75.06%" },
+    "lineHeight": 70,
+    "category": "nature",
+    "image": "../assets/images/seseh/riziere-seseh.jpg",
+    "description": "Rizières balinaises emblématiques et vues sur la rivière à votre porte.",
+    "distance": "Adjacent"
   },
   {
     "id": "restaurants-beach-clubs",
@@ -45,15 +45,15 @@
     "distance": "5 à 10 min"
   },
   {
-    "id": "river-rice-fields-view",
+    "id": "canggu-beach",
     "number": 5,
-    "name": "Rivière & Rizières",
-    "position": { "top": "86.79%", "left": "75.06%" },
-    "lineHeight": 70,
-    "category": "nature",
-    "image": "../assets/images/seseh/riziere-seseh.jpg",
-    "description": "Rizières balinaises emblématiques et vues sur la rivière à votre porte.",
-    "distance": "Adjacent"
+    "name": "Plage de Canggu",
+    "position": { "top": "34.74%", "left": "32.05%" },
+    "lineHeight": 40,
+    "category": "beach",
+    "image": "../assets/images/seseh/poi/canggu-beach.jpg",
+    "description": "Le cœur vibrant de Canggu — surf, beach clubs et une scène expat animée.",
+    "distance": "12 min"
   },
   {
     "id": "airport",
