@@ -161,6 +161,11 @@
       object-fit:cover;
       display:block;
     }
+    /* Zoom-in sur l'image de Julie Chatelain (4e pilier) */
+    .pillar:nth-child(4) .pillar-image img{
+      transform:scale(1.2);
+      transform-origin:center 30%;
+    }
     .pillar-image-fallback{
       font-family:var(--serif);
       font-size:2.4rem;font-weight:500;
@@ -392,6 +397,34 @@
       .prereserver-btn{padding:12px 36px;font-size:0.66rem}
     }
 
+    /* iPad Pro 13" portrait — fill extra vertical space with bigger cards */
+    @media (min-width:1024px) and (max-width:1400px) and (min-height:1100px){
+      .team-title{padding:80px 0 14px}
+      .team-intro{margin-bottom:90px}
+      .pillars-grid{margin-bottom:60px}
+      .pillar{height:560px}
+      .pillar-image{height:340px}
+      .pillar-front-body{padding:24px 22px 26px;gap:6px}
+      .pillar-front-title{font-size:1.3rem}
+      .pillar-front-person{font-size:0.84rem}
+      .pillar-back{padding:36px 26px 26px}
+      .pillar-back-title{font-size:1.4rem}
+      .pillar-back-person{font-size:0.82rem}
+      .pillar-back-desc{font-size:0.86rem;line-height:1.6}
+    }
+
+    /* iPad Pro 13" landscape — moderate bump */
+    @media (min-width:1024px) and (max-width:1400px) and (min-height:900px) and (max-height:1099px){
+      .team-title{padding:60px 0 12px}
+      .team-intro{margin-bottom:70px}
+      .pillars-grid{margin-bottom:48px}
+      .pillar{height:440px}
+      .pillar-image{height:260px}
+      .pillar-front-body{padding:20px 18px 22px}
+      .pillar-back{padding:32px 24px 24px}
+      .pillar-back-desc{font-size:0.8rem}
+    }
+
     /* Large desktop */
     @media (min-width:1920px){
       .team-title{font-size:3.4rem;padding:56px 0 14px}
@@ -423,7 +456,6 @@
       <article class="pillar" role="button" tabindex="0" aria-label="Sora Immobilier — Voir les détails">
         <div class="pillar-inner">
           <div class="pillar-front">
-            <div class="pillar-number">01</div>
             <div class="pillar-image">
               <img src="../assets/images/team/Gabriel-lapierre.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'GL'}))">
             </div>
@@ -449,7 +481,6 @@
       <article class="pillar" role="button" tabindex="0" aria-label="Vienna Lux Corporation — Voir les détails">
         <div class="pillar-inner">
           <div class="pillar-front">
-            <div class="pillar-number">02</div>
             <div class="pillar-image">
               <img src="../assets/images/team/vienna-lux.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'VLC'}))">
             </div>
@@ -474,7 +505,6 @@
       <article class="pillar" role="button" tabindex="0" aria-label="ILA — Voir les détails">
         <div class="pillar-inner">
           <div class="pillar-front">
-            <div class="pillar-number">03</div>
             <div class="pillar-image">
               <img src="../assets/images/team/ila.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'ILA'}))">
             </div>
@@ -499,7 +529,6 @@
       <article class="pillar" role="button" tabindex="0" aria-label="Julie Chatelain — Voir les détails">
         <div class="pillar-inner">
           <div class="pillar-front">
-            <div class="pillar-number">04</div>
             <div class="pillar-image">
               <img src="../assets/images/team/Julie_Chatelain.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'JC'}))">
             </div>
