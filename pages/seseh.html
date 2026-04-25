@@ -47,16 +47,10 @@
       overflow:hidden;
       background:#0a0a0a;
       width:100%;height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
     }
     .map-image-wrap{
-      position:relative;
-      width:100%;
-      aspect-ratio:5272/4082;
-      max-height:100%;
-      max-width:calc(100% * 5272 / 4082);
+      position:absolute;inset:0;
+      width:100%;height:100%;
     }
     .map-image-wrap picture{
       position:absolute;inset:0;
@@ -88,14 +82,12 @@
       position:absolute;
       transform:translate(-50%,-100%);
       display:flex;flex-direction:column;align-items:center;
-      cursor:pointer;
       z-index:5;
-      background:none;border:none;padding:0;
-      font-family:inherit;
+      pointer-events:none;
     }
-    .poi:focus-visible{outline:none}
-    .poi:focus-visible .poi-label{box-shadow:0 0 0 2px var(--gold)}
     .poi-label{
+      pointer-events:auto;
+      cursor:pointer;
       background:rgba(20,18,14,0.88);
       border:0.5px solid rgba(201,168,106,0.45);
       color:rgba(255,252,248,0.96);
@@ -106,9 +98,8 @@
       white-space:nowrap;
       transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease;
     }
-    .poi:hover .poi-label{
-      border-color:var(--gold);
-    }
+    .poi-label:hover{border-color:var(--gold)}
+    .poi-label:focus-visible{outline:none;box-shadow:0 0 0 2px var(--gold)}
     .poi-line{
       width:1px;
       height:var(--line-h,50px);
@@ -356,11 +347,7 @@
       .map-frame{
         width:100%;
         height:auto;
-        display:block;
-      }
-      .map-image-wrap{
-        max-height:none;
-        max-width:100%;
+        aspect-ratio:5272/4082;
       }
       .panel{
         border-left:none;
@@ -473,34 +460,79 @@
     pois.forEach(poi => {
       const el = document.createElement('div');
       el.className = 'poi' + (poi.isMainLocation ? ' poi--featured' : '');
-      el.style.left = poi.position.left;
-      el.style.top = poi.position.top;
       el.dataset.id = poi.id;
-      el.setAttribute('role', 'button');
-      el.setAttribute('tabindex', '0');
-      el.setAttribute('aria-label', poi.name);
 
       const lineH = poi.lineHeight || 50;
-      el.innerHTML =
-        '<div class="poi-label">' + escapeHTML(poi.name) + '</div>' +
-        '<div class="poi-line" style="--line-h:' + lineH + 'px"></div>' +
-        '<div class="poi-dot"></div>';
 
-      el.addEventListener('click', e => {
+      const label = document.createElement('div');
+      label.className = 'poi-label';
+      label.textContent = poi.name;
+      label.setAttribute('role', 'button');
+      label.setAttribute('tabindex', '0');
+      label.setAttribute('aria-label', poi.name);
+      label.addEventListener('click', e => {
         e.stopPropagation();
         activatePoi(poi.id);
       });
-      el.addEventListener('keydown', e => {
+      label.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' '){
           e.preventDefault();
           activatePoi(poi.id);
         }
       });
 
+      const line = document.createElement('div');
+      line.className = 'poi-line';
+      line.style.setProperty('--line-h', lineH + 'px');
+
+      const dot = document.createElement('div');
+      dot.className = 'poi-dot';
+
+      el.appendChild(label);
+      el.appendChild(line);
+      el.appendChild(dot);
+
       fragment.appendChild(el);
     });
     mapImageWrap.appendChild(fragment);
+    updatePoiPositions();
   }
+
+  // ── Compute pixel positions of POIs based on actual rendered image bounds ──
+  // The image fills the wrap via object-fit:cover, so it's scaled and possibly
+  // cropped. POI percentages are relative to the IMAGE, not the wrap, so we map
+  // them to pixel coordinates inside the wrap.
+  const IMG_RATIO = 5272 / 4082;
+  function updatePoiPositions(){
+    if (!mapImageWrap) return;
+    const w = mapImageWrap.offsetWidth;
+    const h = mapImageWrap.offsetHeight;
+    if (!w || !h) return;
+    const wrapRatio = w / h;
+    let imgW, imgH, imgL, imgT;
+    if (wrapRatio > IMG_RATIO){
+      // Wrap wider than image — image fills width, overflow vertically
+      imgW = w;
+      imgH = w / IMG_RATIO;
+      imgL = 0;
+      imgT = (h - imgH) / 2;
+    } else {
+      // Wrap taller than image — image fills height, overflow horizontally
+      imgH = h;
+      imgW = h * IMG_RATIO;
+      imgT = 0;
+      imgL = (w - imgW) / 2;
+    }
+    pois.forEach(poi => {
+      const el = mapImageWrap.querySelector('.poi[data-id="' + CSS.escape(poi.id) + '"]');
+      if (!el) return;
+      const topPct = parseFloat(poi.position.top);
+      const leftPct = parseFloat(poi.position.left);
+      el.style.left = (imgL + (leftPct / 100) * imgW) + 'px';
+      el.style.top  = (imgT + (topPct  / 100) * imgH) + 'px';
+    });
+  }
+  window.addEventListener('resize', updatePoiPositions);
 
   // ── Render sidebar items ──
   function renderSidebar(){
