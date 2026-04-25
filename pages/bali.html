@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <title>Vivre à Seseh — Seseh Sunset Villas</title>
+  <title>Seseh — Seseh Sunset Villas</title>
   <link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,7 +35,8 @@
     /* ── LAYOUT ── */
     .layout{
       position:fixed;
-      top:64px;left:0;right:0;bottom:0;
+      top:76px;left:0;right:0;bottom:0;
+      z-index:1;
       display:grid;
       grid-template-columns:62fr 38fr;
     }
@@ -96,7 +97,6 @@
       transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease;
     }
     .poi:hover .poi-label{
-      background:rgba(20,18,14,0.96);
       border-color:var(--gold);
     }
     .poi-line{
@@ -402,7 +402,7 @@
 
     <aside class="panel">
       <div class="panel-header">
-        <h1 class="panel-title">Vivre à Seseh</h1>
+        <h1 class="panel-title">Seseh</h1>
         <div class="panel-hint">Cliquez sur un lieu pour explorer</div>
       </div>
       <div class="poi-list" id="poiList">
@@ -458,6 +458,9 @@
       pois = Array.isArray(data) ? data : [];
       renderPois();
       renderSidebar();
+      // Pre-select the main location on load
+      const main = pois.find(p => p.isMainLocation) || pois[0];
+      if (main) activatePoi(main.id, {scroll:false});
     })
     .catch(() => { /* silent */ });
 
@@ -562,8 +565,9 @@
   }
 
   // ── Activate / toggle POI (highlights only — no map popup) ──
-  function activatePoi(id){
-    if (activeId === id){
+  function activatePoi(id, opts){
+    opts = opts || {};
+    if (activeId === id && !opts.force){
       deactivateAll();
       return;
     }
@@ -575,7 +579,9 @@
     if (poiEl) poiEl.classList.add('active');
     if (itemEl){
       itemEl.classList.add('active');
-      itemEl.scrollIntoView({behavior:'smooth', block:'center'});
+      if (opts.scroll !== false){
+        itemEl.scrollIntoView({behavior:'smooth', block:'center'});
+      }
     }
   }
 

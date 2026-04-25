@@ -223,7 +223,7 @@
           Explorer les villas <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="${depth}pages/bali.html">
-          Vivre à Seseh <span class="nav-drawer-arrow">→</span>
+          Seseh <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="#">
           Pré-réserver <span class="nav-drawer-arrow">→</span>
