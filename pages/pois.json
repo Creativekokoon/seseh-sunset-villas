@@ -4,7 +4,7 @@
     "number": 1,
     "name": "Seseh Sunset Villas",
     "position": { "top": "53.15%", "left": "49.48%" },
-    "lineHeight": 45,
+    "lineHeight": 70,
     "category": "villa",
     "isMainLocation": true,
     "image": "../assets/images/seseh/poi/seseh-sunset-villas.jpg",
@@ -37,8 +37,8 @@
     "id": "seseh-beach",
     "number": 4,
     "name": "Plage de Seseh",
-    "position": { "top": "25.59%", "left": "66.91%" },
-    "lineHeight": 55,
+    "position": { "top": "20%", "left": "70%" },
+    "lineHeight": 80,
     "category": "beach",
     "image": "../assets/images/seseh/poi/seseh-beach.jpg",
     "description": "Plage de sable noir paisible, connue pour son atmosphère sereine et ses couchers de soleil exceptionnels.",
@@ -60,21 +60,10 @@
     "number": 6,
     "name": "Rivière & Rizières",
     "position": { "top": "62.85%", "left": "69.69%" },
-    "lineHeight": 40,
+    "lineHeight": 70,
     "category": "nature",
     "image": "../assets/images/seseh/poi/rice-fields.jpg",
     "description": "Rizières balinaises emblématiques et vues sur la rivière à votre porte.",
     "distance": "Adjacent"
-  },
-  {
-    "id": "airport",
-    "number": 7,
-    "name": "Aéroport International Ngurah Rai",
-    "position": { "top": "16%", "left": "41.31%" },
-    "lineHeight": 32,
-    "category": "transport",
-    "image": "../assets/images/seseh/poi/airport.jpg",
-    "description": "L'aéroport international principal de Bali, votre porte d'entrée vers le paradis.",
-    "distance": "45 min"
   }
 ]

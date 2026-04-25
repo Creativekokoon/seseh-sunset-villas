@@ -173,25 +173,23 @@
     .poi-list::-webkit-scrollbar-thumb{background:rgba(52,48,44,0.18);border-radius:2px}
 
     .poi-item{
-      padding:14px 0;
+      padding:14px 12px;
       border-bottom:1px solid rgba(36,32,28,0.08);
       cursor:pointer;
       display:grid;
-      grid-template-columns:84px 1fr;
+      grid-template-columns:1fr;
       gap:14px;
       align-items:start;
-      transition:padding-left 0.22s ease;
+      border-radius:3px;
+      transition:padding-left 0.22s ease, background 0.25s ease;
     }
-    .poi-item:hover{padding-left:6px}
-    .poi-item-thumb,
-    .poi-item-placeholder{
+    .poi-item:hover{padding-left:18px}
+    .poi-item.has-thumb{grid-template-columns:84px 1fr}
+    .poi-item-thumb{
       width:84px;height:62px;
       object-fit:cover;
       display:block;
       border-radius:2px;
-    }
-    .poi-item-placeholder{
-      background:var(--gold);
     }
     .poi-item-text{min-width:0}
     .poi-item-row{
@@ -214,6 +212,11 @@
       color:rgba(36,32,28,0.55);
       margin-top:5px;
       transition:color 0.2s;
+    }
+    .poi-item.active{
+      background:rgba(201,168,106,0.13);
+      box-shadow:inset 3px 0 0 var(--gold);
+      padding-left:18px;
     }
     .poi-item.active .poi-item-name{color:#000}
     .poi-item.active .poi-item-dist{color:var(--gold)}
@@ -504,7 +507,7 @@
       item.setAttribute('tabindex', '0');
       item.setAttribute('aria-label', poi.name);
 
-      // Thumbnail or placeholder
+      // Thumbnail (only if image present and loads successfully)
       if (poi.image){
         const img = document.createElement('img');
         img.className = 'poi-item-thumb';
@@ -512,15 +515,11 @@
         img.alt = poi.imageAlt || poi.name;
         img.loading = 'lazy';
         img.addEventListener('error', () => {
-          const ph = document.createElement('div');
-          ph.className = 'poi-item-placeholder';
-          img.replaceWith(ph);
+          item.classList.remove('has-thumb');
+          img.remove();
         });
+        item.classList.add('has-thumb');
         item.appendChild(img);
-      } else {
-        const ph = document.createElement('div');
-        ph.className = 'poi-item-placeholder';
-        item.appendChild(ph);
       }
 
       // Text column
