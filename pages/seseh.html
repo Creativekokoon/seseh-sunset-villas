@@ -46,16 +46,24 @@
       position:relative;
       overflow:hidden;
       background:#0a0a0a;
+      width:100%;height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .map-image-wrap{
+      position:relative;
       width:100%;
       aspect-ratio:5272/4082;
-      align-self:start;
+      max-height:100%;
+      max-width:calc(100% * 5272 / 4082);
     }
-    .map-frame picture{
+    .map-image-wrap picture{
       position:absolute;inset:0;
       width:100%;height:100%;
       display:block;
     }
-    .map-frame picture img{
+    .map-image-wrap picture img{
       width:100%;height:100%;
       object-fit:cover;
       display:block;
