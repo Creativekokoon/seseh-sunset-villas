@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>L'Équipe — Seseh Sunset Villas</title>
+  <link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --serif:'the-seasons',Georgia,serif;
+      --sans:'Inter','Helvetica Neue',Arial,sans-serif;
+      --gold:#c8a86a;
+      --cream:#E8E4DC;
+    }
+
+    html,body{
+      width:100%;
+      min-height:100%;
+      background:var(--cream);
+      -webkit-font-smoothing:antialiased;
+      font-family:var(--sans);
+      overflow-x:hidden;
+    }
+
+    /* ── PAGE INTRO ── */
+    .page-intro{
+      position:fixed;top:0;left:0;
+      width:100vw;
+      height:100vh;height:100lvh;
+      z-index:200;background:var(--cream);
+      animation:fadeOut 0.32s 0.05s ease forwards;
+      pointer-events:none;
+    }
+    @keyframes fadeOut{to{opacity:0}}
+
+    /* ── BG ── */
+    .bg{
+      position:fixed;inset:0;z-index:0;
+      background:var(--cream) url('../assets/images/background/villa-bg.jpg') center/cover no-repeat;
+      opacity:0.4;
+    }
+
+    /* ── PAGE ── */
+    .page{
+      position:relative;
+      z-index:10;
+      margin-top:76px;
+      padding:0 34px 60px;
+      max-width:1280px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    /* ── TITLE BLOCK ── */
+    .team-title{
+      font-family:var(--serif);
+      font-size:2.8rem;font-weight:500;
+      letter-spacing:0.11em;text-transform:uppercase;
+      color:rgba(52,48,44,0.92);
+      text-align:center;
+      padding:48px 0 14px;
+    }
+    .team-subtitle{
+      font-family:var(--sans);
+      font-size:0.78rem;font-weight:500;
+      letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--gold);
+      text-align:center;
+      margin-bottom:6px;
+    }
+    .team-intro{
+      font-family:var(--sans);
+      font-size:0.95rem;line-height:1.6;
+      color:rgba(94,89,82,0.85);
+      text-align:center;
+      max-width:640px;
+      margin:0 auto 48px;
+    }
+
+    /* ── PILLARS GRID ── */
+    .pillars-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:32px;
+      margin:0 auto 56px;
+    }
+
+    .pillar{
+      background:rgba(255,255,255,0.5);
+      border:1px solid rgba(62,58,54,0.08);
+      padding:0;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      transition:transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .pillar:hover{
+      transform:translateY(-3px);
+      box-shadow:0 12px 36px rgba(52,48,44,0.08);
+    }
+
+    .pillar-number{
+      position:absolute;
+      top:18px;left:24px;
+      font-family:var(--serif);
+      font-size:0.95rem;font-weight:500;
+      color:var(--gold);
+      letter-spacing:0.1em;
+      z-index:2;
+      background:rgba(232,228,220,0.85);
+      padding:4px 10px;
+      backdrop-filter:blur(4px);
+    }
+
+    .pillar-image{
+      width:100%;
+      height:240px;
+      background:var(--gold);
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .pillar-image img{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    .pillar-image-fallback{
+      font-family:var(--serif);
+      font-size:3rem;font-weight:500;
+      letter-spacing:0.06em;
+      color:rgba(255,252,248,0.95);
+    }
+
+    .pillar-body{
+      padding:26px 28px 32px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+
+    .pillar-role{
+      font-family:var(--sans);
+      font-size:0.62rem;font-weight:500;
+      letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:2px;
+    }
+
+    .pillar-title{
+      font-family:var(--serif);
+      font-size:1.55rem;font-weight:500;
+      color:rgba(52,48,44,0.95);
+      letter-spacing:0.03em;
+      line-height:1.2;
+    }
+
+    .pillar-person{
+      font-family:var(--sans);
+      font-size:0.86rem;font-weight:500;
+      letter-spacing:0.04em;
+      color:rgba(52,48,44,0.78);
+      margin-top:-2px;
+    }
+
+    .pillar-desc{
+      font-family:var(--sans);
+      font-size:0.85rem;line-height:1.6;
+      color:rgba(94,89,82,0.85);
+      margin-top:6px;
+      flex:1;
+    }
+
+    .pillar-link{
+      font-family:var(--sans);
+      font-size:0.65rem;font-weight:500;
+      letter-spacing:0.2em;text-transform:uppercase;
+      color:var(--gold);
+      text-decoration:none;
+      align-self:flex-start;
+      margin-top:8px;
+      padding:6px 0;
+      border-bottom:1px solid rgba(201,168,106,0.45);
+      transition:color 0.22s, border-color 0.22s, padding 0.22s;
+    }
+    .pillar-link:hover{
+      color:rgba(201,168,106,0.75);
+      border-color:var(--gold);
+      padding-left:4px;
+    }
+
+    /* ── PRE-RESERVER ── */
+    .prereserver-wrap{
+      display:flex;justify-content:center;
+      padding:24px 20px 10px;
+    }
+    .prereserver-btn{
+      font-family:var(--sans);font-size:0.72rem;
+      letter-spacing:0.24em;text-transform:uppercase;
+      color:rgba(249,245,239,0.98);
+      border:none;
+      padding:14px 52px;border-radius:0;text-decoration:none;
+      position:relative;
+      display:inline-block;
+      overflow:hidden;
+      background:linear-gradient(
+        90deg,
+        #3c3935 0%,
+        #3c3935 30%,
+        #5a5550 48%,
+        #6b6460 54%,
+        #5a5550 60%,
+        #3c3935 78%,
+        #3c3935 100%
+      );
+      background-size:250% 100%;
+      background-position:100% 0;
+      animation:shimmer 2.4s ease-in-out infinite alternate;
+      transition:color 0.25s;
+    }
+    @keyframes shimmer{
+      0%{background-position:0% 0}
+      100%{background-position:100% 0}
+    }
+    .prereserver-btn:hover{
+      color:#fff;
+      animation-play-state:paused;
+      background-position:50% 0;
+    }
+
+    /* ── ENTRANCE ANIMATIONS ── */
+    .team-title,.team-subtitle,.team-intro{
+      opacity:0;
+      transform:translateY(10px);
+      animation:fadeUp 0.85s ease forwards;
+    }
+    .team-subtitle{animation-delay:0.1s}
+    .team-title{animation-delay:0.2s}
+    .team-intro{animation-delay:0.35s}
+    .pillar{
+      opacity:0;
+      transform:translateY(14px);
+      animation:fadeUp 0.7s ease forwards;
+    }
+    .pillar:nth-child(1){animation-delay:0.5s}
+    .pillar:nth-child(2){animation-delay:0.6s}
+    .pillar:nth-child(3){animation-delay:0.7s}
+    .pillar:nth-child(4){animation-delay:0.8s}
+    .prereserver-wrap{
+      opacity:0;
+      animation:fadeUp 0.7s 1s ease forwards;
+    }
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+    /* ── RESPONSIVE ── */
+    /* Tablet portrait */
+    @media (max-width:1023px) and (min-width:768px){
+      .team-title{font-size:2.4rem;padding:38px 0 12px}
+      .pillars-grid{gap:22px}
+      .pillar-image{height:200px}
+      .pillar-body{padding:22px 22px 26px}
+      .pillar-title{font-size:1.4rem}
+    }
+
+    /* Mobile (portrait + landscape) */
+    @media (max-width:767px){
+      .page{
+        padding:0 16px 40px;
+        margin-top:76px;
+      }
+      .team-title{font-size:1.9rem;padding:32px 0 10px;letter-spacing:0.08em}
+      .team-subtitle{font-size:0.62rem;letter-spacing:0.18em}
+      .team-intro{font-size:0.86rem;margin-bottom:32px}
+
+      .pillars-grid{
+        grid-template-columns:1fr;
+        gap:22px;
+        margin-bottom:36px;
+      }
+      .pillar-image{height:200px}
+      .pillar-body{padding:22px 20px 26px;gap:6px}
+      .pillar-number{font-size:0.85rem;top:14px;left:18px;padding:3px 8px}
+      .pillar-title{font-size:1.4rem}
+      .pillar-person{font-size:0.82rem}
+      .pillar-desc{font-size:0.84rem}
+      .prereserver-btn{padding:12px 36px;font-size:0.66rem}
+    }
+
+    /* Large desktop */
+    @media (min-width:1920px){
+      .team-title{font-size:3.2rem}
+      .pillars-grid{gap:40px}
+      .pillar-image{height:280px}
+      .pillar-title{font-size:1.7rem}
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-root"></div>
+  <script src="../js/nav.js"></script>
+
+  <div class="page-intro"></div>
+  <div class="bg"></div>
+
+  <main class="page">
+
+    <div class="team-subtitle">Notre Engagement</div>
+    <h1 class="team-title">L'Équipe</h1>
+    <p class="team-intro">Quatre piliers complémentaires pour donner vie à votre projet — de la promotion à la livraison, du droit au design intérieur.</p>
+
+    <div class="pillars-grid">
+
+      <!-- Pillar 1: Sora Immobilier -->
+      <article class="pillar">
+        <div class="pillar-number">01</div>
+        <div class="pillar-image">
+          <img src="../assets/images/team/sora-gabriel.jpg" alt="Gabriel Lapierre — Sora Immobilier" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'GL'}))">
+        </div>
+        <div class="pillar-body">
+          <div class="pillar-role">Promotion & Pilotage</div>
+          <h2 class="pillar-title">Sora Immobilier</h2>
+          <div class="pillar-person">Gabriel Lapierre</div>
+          <p class="pillar-desc">Porteur de projet et promoteur, Sora Immobilier pilote l'ensemble du projet de A à Z — coordination des intervenants, suivi des phases et garantie de livraison.</p>
+          <a class="pillar-link" href="https://sora-immobilier.com/" target="_blank" rel="noopener">sora-immobilier.com →</a>
+        </div>
+      </article>
+
+      <!-- Pillar 2: Vienna Lux Corporation -->
+      <article class="pillar">
+        <div class="pillar-number">02</div>
+        <div class="pillar-image">
+          <img src="../assets/images/team/vienna-lux.jpg" alt="Vienna Lux Corporation" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'VLC'}))">
+        </div>
+        <div class="pillar-body">
+          <div class="pillar-role">Maître d'œuvre</div>
+          <h2 class="pillar-title">Vienna Lux Corporation</h2>
+          <div class="pillar-person">Architecture &amp; Ingénierie</div>
+          <p class="pillar-desc">Maître d'œuvre du projet, Vienna Lux Corporation prend en charge l'ensemble des travaux — conception architecturale, ingénierie et exécution sur site.</p>
+        </div>
+      </article>
+
+      <!-- Pillar 3: ILA -->
+      <article class="pillar">
+        <div class="pillar-number">03</div>
+        <div class="pillar-image">
+          <img src="../assets/images/team/ila.jpg" alt="ILA" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'ILA'}))">
+        </div>
+        <div class="pillar-body">
+          <div class="pillar-role">Cadre Juridique</div>
+          <h2 class="pillar-title">ILA</h2>
+          <div class="pillar-person">Sécurité juridique &amp; fiscale</div>
+          <p class="pillar-desc">ILA assure le cadre juridique, fiscal et notarial du projet — sécurisation des actes, accompagnement des acquéreurs et conformité réglementaire en Indonésie comme en France.</p>
+        </div>
+      </article>
+
+      <!-- Pillar 4: Julie Chatelain -->
+      <article class="pillar">
+        <div class="pillar-number">04</div>
+        <div class="pillar-image">
+          <img src="../assets/images/team/julie-chatelain.jpg" alt="Julie Chatelain — Architecte d'intérieur" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'JC'}))">
+        </div>
+        <div class="pillar-body">
+          <div class="pillar-role">Design Intérieur</div>
+          <h2 class="pillar-title">Julie Chatelain</h2>
+          <div class="pillar-person">Architecte d'intérieur</div>
+          <p class="pillar-desc">Architecte reconnue à l'international (50 min Inside, page Décoration), Julie Chatelain signe le design intérieur des villas et accompagne les acquéreurs dans la personnalisation de leur futur lieu de vie.</p>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="prereserver-wrap">
+      <a class="prereserver-btn" href="#">Pré-réserver</a>
+    </div>
+
+  </main>
+
+</body>
+</html>

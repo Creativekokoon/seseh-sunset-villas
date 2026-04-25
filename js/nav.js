@@ -188,6 +188,9 @@
   } else if (path.includes('seseh.html') || path.includes('bali.html')) {
     backHref = depth + 'index.html';
     backLabel = '← Accueil';
+  } else if (path.includes('equipe.html')) {
+    backHref = depth + 'index.html';
+    backLabel = '← Accueil';
   } else {
     backHref = '';
     backLabel = '';
@@ -224,6 +227,9 @@
         </a>
         <a class="nav-drawer-link" href="${depth}pages/seseh.html">
           Vivre à Seseh <span class="nav-drawer-arrow">→</span>
+        </a>
+        <a class="nav-drawer-link" href="${depth}pages/equipe.html">
+          L'Équipe <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="#">
           Pré-réserver <span class="nav-drawer-arrow">→</span>
