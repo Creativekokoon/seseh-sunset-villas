@@ -17,7 +17,7 @@ html,body {
 
 /* ── PAGE INTRO ── */
 .page-intro {
-  position:fixed;inset:0;z-index:200;background:#E8E4DC;
+  position:fixed;inset:0;height:100dvh;z-index:200;background:#E8E4DC;
   animation:fadeOut 0.32s 0.05s ease forwards;pointer-events:none;
 }
 @keyframes fadeOut { to { opacity:0; } }
