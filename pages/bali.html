@@ -8,117 +8,376 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css"/>
-  <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
-    :root{--serif:'the-seasons',Georgia,serif;--sans:'Inter','Helvetica Neue',Arial,sans-serif;--gold:#c8a86a}
-    html,body{width:100%;height:100%;overflow:hidden;background:#E8E4DC;-webkit-font-smoothing:antialiased}
+
+    :root{
+      --serif:'the-seasons',Georgia,serif;
+      --sans:'Inter','Helvetica Neue',Arial,sans-serif;
+      --gold:#c8a86a;
+      --cream:#E8E4DC;
+      --anthracite:#1a1a1a;
+    }
+
+    html,body{
+      width:100%;height:100%;overflow:hidden;
+      background:var(--cream);
+      -webkit-font-smoothing:antialiased;
+      font-family:var(--sans);
+    }
+
+    /* ── PAGE INTRO ── */
     .page-intro{position:fixed;inset:0;z-index:850;background:#242220;display:flex;align-items:center;justify-content:center;animation:introFadeOut 0.4s 0.9s ease forwards;pointer-events:none}
     .intro-logo{height:96px;width:auto;opacity:0;transform:scale(0.88);animation:introLogoIn 0.5s 0.1s cubic-bezier(0.25,0.46,0.45,0.94) forwards}
     @keyframes introLogoIn{to{opacity:1;transform:scale(1)}}
     @keyframes introFadeOut{to{opacity:0}}
-    .layout{position:fixed;top:64px;left:0;right:0;bottom:0;display:grid;grid-template-columns:1fr 560px}
-    #map{width:100%;height:100%}
 
-    /* MapLibre UI overrides */
-    .maplibregl-ctrl-attrib{display:none!important}
-    .maplibregl-ctrl-group{background:rgba(36,34,32,0.94)!important;border:none!important;border-radius:0!important;box-shadow:none!important}
-    .maplibregl-ctrl-group button{background:rgba(36,34,32,0.94)!important;border-bottom:1px solid rgba(255,255,255,0.08)!important}
-    .maplibregl-ctrl-icon{filter:invert(1) opacity(0.7)}
-    .maplibregl-ctrl-group button:hover .maplibregl-ctrl-icon{filter:invert(1) opacity(1)}
-    .maplibregl-ctrl-group button+button{border-top:none!important}
-
-    /* Villa marker */
-    .villa-pin{width:14px;height:14px;border-radius:50%;background:var(--gold);animation:pulse 2.5s ease-in-out infinite;cursor:default}
-    @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(200,168,106,0.2),0 0 18px rgba(200,168,106,0.4)}50%{box-shadow:0 0 0 9px rgba(200,168,106,0.06),0 0 28px rgba(200,168,106,0.5)}}
-
-    /* POI markers */
-    .poi-pin{width:11px;height:11px;border-radius:50%;cursor:pointer;border:2px solid rgba(255,255,255,0.9);transition:transform 0.25s ease,box-shadow 0.25s;box-shadow:0 1px 4px rgba(0,0,0,0.2)}
-    .poi-pin:hover{transform:scale(1.7)}
-    .poi-pin.active{transform:scale(2);box-shadow:0 0 14px rgba(200,168,106,0.6);border-color:var(--gold)!important}
-    .poi-pin.cat-restaurants{background:#e8a030}
-    .poi-pin.cat-plages{background:#4a9ec8}
-    .poi-pin.cat-nature{background:#5a9850}
-    .poi-pin.cat-airport{background:#8a7060}
-
-    /* Panel */
-    .panel{background:#E8E4DC;border-left:1px solid rgba(36,32,28,0.1);display:flex;flex-direction:column;overflow:hidden}
-    .panel-head{padding:28px 36px 0;flex-shrink:0}
-    .panel-title{font-family:var(--serif);font-size:2.4rem;font-weight:500;letter-spacing:0.11em;text-transform:uppercase;color:rgba(52,48,44,0.92);text-align:center;padding:32px 0 14px;flex-shrink:0}
-    .panel-filters{display:flex;flex-wrap:nowrap;border-bottom:1px solid rgba(36,32,28,0.1);margin-top:20px;flex-shrink:0}
-    .pf{font-family:var(--sans);font-size:0.55rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,32,28,0.55);padding:10px 0;margin-right:18px;cursor:pointer;border-bottom:1.5px solid transparent;transition:all 0.2s;white-space:nowrap}
-    .pf:hover{color:rgba(36,32,28,0.8)}
-    .pf.active{color:var(--gold);border-bottom-color:var(--gold)}
-    .poi-list{flex:1;overflow-y:auto;padding:0 36px;scrollbar-width:none}
-    .poi-list::-webkit-scrollbar{display:none}
-    .villa-entry{padding:20px 0 16px;border-bottom:1px solid rgba(36,32,28,0.08)}
-    .villa-entry-label{font-family:var(--sans);font-size:0.6rem;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-    .villa-entry-name{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:rgba(36,32,28,0.92)}
-    .poi-item{padding:20px 0;border-bottom:1px solid rgba(36,32,28,0.08);cursor:pointer;transition:border-color 0.2s}
-    .poi-item:hover{border-bottom-color:rgba(36,32,28,0.2)}
-    .poi-item.active{border-bottom-color:var(--gold)}
-    .poi-item-top{display:grid;grid-template-columns:1fr auto;align-items:start;gap:10px}
-    .poi-name{font-family:var(--serif);font-size:1.4rem;font-weight:500;color:rgba(36,32,28,0.85);transition:color 0.2s}
-    .poi-item:hover .poi-name,.poi-item.active .poi-name{color:rgba(36,32,28,1)}
-    .poi-dist{font-family:var(--sans);font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(36,32,28,0.55);margin-top:6px;transition:color 0.2s}
-    .poi-item.active .poi-dist{color:var(--gold)}
-    .poi-arrow{font-size:0.65rem;color:rgba(36,32,28,0.2);margin-top:4px;transition:color 0.2s,transform 0.2s}
-    .poi-item.active .poi-arrow{color:var(--gold);transform:translateX(3px)}
-    .poi-desc{font-family:var(--sans);font-size:0.88rem;line-height:1.65;color:rgba(36,32,28,0.68);max-height:0;overflow:hidden;opacity:0;transition:max-height 0.38s ease,opacity 0.38s ease,margin-top 0.38s}
-    .poi-item.active .poi-desc{max-height:100px;opacity:1;margin-top:8px}
-    .panel-foot{flex-shrink:0;padding:14px 36px 18px;border-top:1px solid rgba(36,32,28,0.07)}
-    .panel-foot-text{font-family:var(--sans);font-size:0.5rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:rgba(36,32,28,0.38)}
-    .panel-foot-hint{font-family:var(--sans);font-size:0.7rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(36,32,28,0.55);margin-top:6px}
-
-    /* Image overlay */
-    .img-overlay{
-      position:fixed;inset:0;z-index:800;
-      background:rgba(10,8,6,0.85);
-      display:flex;align-items:center;justify-content:center;
-      opacity:0;pointer-events:none;
-      transition:opacity 0.35s ease;
+    /* ── LAYOUT ── */
+    .layout{
+      position:fixed;
+      top:64px;left:0;right:0;bottom:0;
+      display:grid;
+      grid-template-columns:62fr 38fr;
     }
-    .img-overlay.visible{opacity:1;pointer-events:all}
-    .img-overlay-inner{
-      position:relative;max-width:900px;width:90%;
+
+    /* ── MAP FRAME ── */
+    .map-frame{
+      position:relative;
+      overflow:hidden;
+      background:#0a0a0a;
+      width:100%;
+      height:100%;
     }
-    .img-overlay-img{
-      width:100%;max-height:70vh;object-fit:cover;
+    .map-frame picture{
+      position:absolute;inset:0;
+      width:100%;height:100%;
       display:block;
     }
-    .img-overlay-caption{
-      padding:16px 20px;background:rgba(10,8,6,0.9);
+    .map-frame picture img{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
     }
-    .img-overlay-name{font-family:var(--serif);font-size:1.4rem;font-weight:300;color:rgba(255,252,248,0.95);margin-bottom:4px}
-    .img-overlay-desc{font-family:var(--sans);font-size:0.72rem;line-height:1.5;color:rgba(255,252,248,0.55)}
-    .img-overlay-close{
-      position:absolute;top:-44px;right:0;
-      font-family:var(--sans);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
-      color:rgba(255,252,248,0.6);cursor:pointer;
-      background:none;border:none;padding:8px;
-      transition:color 0.2s;
+    .map-overlay-top,
+    .map-overlay-bottom{
+      position:absolute;left:0;right:0;
+      pointer-events:none;
+      z-index:2;
     }
-    .img-overlay-close:hover{color:rgba(255,252,248,1)}
-    .img-overlay-placeholder{
-      width:100%;height:420px;
-      background:rgba(36,34,32,0.8);
-      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+    .map-overlay-top{
+      top:0;height:24%;
+      background:linear-gradient(to bottom,rgba(10,8,6,0.5),transparent);
     }
-    .img-overlay-placeholder svg{width:48px;height:48px;opacity:0.3}
-    .img-overlay-placeholder-text{font-family:var(--sans);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,252,248,0.3)}
+    .map-overlay-bottom{
+      bottom:0;height:28%;
+      background:linear-gradient(to top,rgba(10,8,6,0.5),transparent);
+    }
 
-    /* Camera icon button */
-    .poi-cam{
-      background:none;border:none;cursor:pointer;
-      padding:4px;margin-top:2px;
-      color:rgba(36,32,28,0.3);
-      transition:color 0.2s;
+    /* ── POI MARKER (label + line + dot) ── */
+    .poi{
+      position:absolute;
+      transform:translate(-50%,-100%);
+      display:flex;flex-direction:column;align-items:center;
+      cursor:pointer;
+      z-index:5;
+      background:none;border:none;padding:0;
+      font-family:inherit;
+    }
+    .poi:focus-visible{outline:none}
+    .poi:focus-visible .poi-label{box-shadow:0 0 0 2px var(--gold)}
+    .poi-label{
+      background:rgba(20,18,14,0.88);
+      border:0.5px solid rgba(201,168,106,0.45);
+      color:rgba(255,252,248,0.96);
+      font-family:var(--sans);
+      font-size:0.66rem;font-weight:500;
+      letter-spacing:0.1em;text-transform:uppercase;
+      padding:6px 11px;
+      white-space:nowrap;
+      transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease;
+    }
+    .poi:hover .poi-label{
+      background:rgba(20,18,14,0.96);
+      border-color:var(--gold);
+    }
+    .poi-line{
+      width:1px;
+      height:var(--line-h,50px);
+      background:rgba(255,255,255,0.85);
+      transition:background 0.25s ease,width 0.25s ease;
+    }
+    .poi-dot{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 0 2px rgba(201,168,106,0.18),0 1px 4px rgba(0,0,0,0.4);
+      transition:transform 0.25s ease,background 0.25s ease,box-shadow 0.25s ease;
+    }
+
+    /* Featured (Seseh Sunset Villas) */
+    .poi--featured .poi-label{
+      background:rgba(201,168,106,0.95);
+      color:#1a1208;
+      font-weight:600;
+      border-color:rgba(255,255,255,0.4);
+    }
+
+    /* Active POI */
+    .poi.active .poi-label{
+      background:rgba(201,168,106,0.98);
+      color:#1a1208;
+      font-weight:600;
+      border-color:rgba(255,255,255,0.5);
+    }
+    .poi.active .poi-line{
+      background:var(--gold);
+      width:1.5px;
+    }
+    .poi.active .poi-dot{
+      transform:scale(1.4);
+      background:#fff;
+      box-shadow:0 0 0 3px rgba(201,168,106,0.55),0 1px 6px rgba(0,0,0,0.5);
+    }
+
+    /* ── POPUP ── */
+    .poi-popup{
+      position:absolute;
+      width:240px;
+      background:rgba(15,15,15,0.97);
+      border:1px solid rgba(201,168,106,0.5);
+      border-radius:8px;
+      color:rgba(255,252,248,0.92);
+      box-shadow:0 8px 32px rgba(0,0,0,0.4);
+      z-index:10;
+      opacity:0;
+      transform:translateY(8px);
+      transition:opacity 0.28s ease,transform 0.28s ease;
+      pointer-events:none;
+      overflow:hidden;
+      /* default: right of POI, vertical centre */
+      left:calc(100% + 14px);
+      top:50%;
+      transform:translateY(calc(-50% + 8px));
+    }
+    .poi-popup.visible{
+      opacity:1;
+      transform:translateY(-50%);
+      pointer-events:auto;
+    }
+    /* Variant: popup to left */
+    .poi.popup-left .poi-popup{
+      left:auto;
+      right:calc(100% + 14px);
+    }
+    /* Variant: popup below */
+    .poi.popup-below .poi-popup{
+      top:calc(100% + 14px);
+      transform:translateY(8px);
+    }
+    .poi.popup-below .poi-popup.visible{
+      transform:translateY(0);
+    }
+    /* Variant: popup above */
+    .poi.popup-above .poi-popup{
+      top:auto;
+      bottom:calc(100% + 14px);
+      transform:translateY(-8px);
+    }
+    .poi.popup-above .poi-popup.visible{
+      transform:translateY(0);
+    }
+
+    .poi-popup-img{
+      width:100%;height:130px;
+      object-fit:cover;
+      display:block;
+    }
+    .poi-popup-body{padding:14px 16px 16px}
+    .poi-popup-title{
+      font-family:var(--serif);
+      font-size:1.05rem;font-weight:500;
+      letter-spacing:0.04em;text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:6px;
+    }
+    .poi-popup-desc{
+      font-family:var(--sans);
+      font-size:0.72rem;line-height:1.5;
+      color:rgba(255,252,248,0.7);
+      margin-bottom:10px;
+    }
+    .poi-popup-dist{
+      font-family:var(--sans);
+      font-size:0.6rem;font-weight:500;
+      letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--gold);
+    }
+    .poi-popup-close{
+      position:absolute;
+      top:6px;right:6px;
+      background:rgba(0,0,0,0.4);
+      border:none;
+      width:26px;height:26px;border-radius:50%;
+      color:rgba(255,252,248,0.85);
+      font-size:1rem;line-height:1;
+      cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      z-index:2;
+      transition:background 0.2s,color 0.2s;
+    }
+    .poi-popup-close:hover{background:rgba(0,0,0,0.7);color:#fff}
+
+    /* ── PANEL (sidebar) ── */
+    .panel{
+      background:var(--cream);
+      border-left:1px solid rgba(36,32,28,0.1);
+      display:flex;flex-direction:column;
+      overflow:hidden;
+      height:100%;
+    }
+    .panel-title{
+      font-family:var(--serif);
+      font-size:2.4rem;font-weight:500;
+      letter-spacing:0.11em;text-transform:uppercase;
+      color:rgba(52,48,44,0.92);
+      text-align:center;
+      padding:32px 0 18px;
       flex-shrink:0;
     }
-    .poi-cam:hover{color:var(--gold)}
-    .poi-cam svg{width:18px;height:18px;display:block}
-    .poi-item.active .poi-cam{color:rgba(36,32,28,0.5)}
+    .poi-list{
+      flex:1;overflow-y:auto;
+      padding:0 28px 16px;
+      scrollbar-width:thin;
+    }
+    .poi-list::-webkit-scrollbar{width:4px}
+    .poi-list::-webkit-scrollbar-thumb{background:rgba(52,48,44,0.18);border-radius:2px}
+
+    .poi-item{
+      padding:14px 0;
+      border-bottom:1px solid rgba(36,32,28,0.08);
+      cursor:pointer;
+      display:grid;
+      grid-template-columns:84px 1fr;
+      gap:14px;
+      align-items:center;
+      transition:padding-left 0.22s ease;
+    }
+    .poi-item:hover{padding-left:6px}
+    .poi-item-thumb,
+    .poi-item-placeholder{
+      width:84px;height:62px;
+      object-fit:cover;
+      display:block;
+      border-radius:2px;
+    }
+    .poi-item-placeholder{
+      background:var(--gold);
+      color:#fff;
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--serif);
+      font-size:1.5rem;font-weight:500;
+      letter-spacing:0.02em;
+    }
+    .poi-item-text{min-width:0}
+    .poi-item-name{
+      font-family:var(--serif);
+      font-size:1.1rem;font-weight:500;
+      color:rgba(36,32,28,0.92);
+      letter-spacing:0.02em;
+      transition:color 0.2s;
+    }
+    .poi-item-dist{
+      font-family:var(--sans);
+      font-size:0.62rem;font-weight:500;
+      letter-spacing:0.16em;text-transform:uppercase;
+      color:rgba(36,32,28,0.55);
+      margin-top:5px;
+      transition:color 0.2s;
+    }
+    .poi-item.active{background:rgba(36,32,28,0.04)}
+    .poi-item.active .poi-item-name{color:#000}
+    .poi-item.active .poi-item-dist{color:var(--gold)}
+
+    /* Featured sidebar item (Seseh Sunset Villas) */
+    .poi-item.featured{
+      background:var(--anthracite);
+      border-left:3px solid var(--gold);
+      padding:18px 16px;
+      margin:0 0 14px;
+      border-bottom:none;
+      border-radius:2px;
+    }
+    .poi-item.featured:hover{padding-left:18px}
+    .poi-item.featured .poi-item-name{
+      color:#fff;
+      letter-spacing:0.04em;
+      font-size:1.2rem;
+    }
+    .poi-item.featured .poi-item-dist{
+      color:var(--gold);
+    }
+    .poi-item.featured.active{background:#222}
+
+    .panel-foot{
+      flex-shrink:0;
+      padding:14px 28px 18px;
+      border-top:1px solid rgba(36,32,28,0.07);
+    }
+    .panel-foot-text{
+      font-family:var(--sans);
+      font-size:0.5rem;font-weight:500;
+      letter-spacing:0.2em;text-transform:uppercase;
+      color:rgba(36,32,28,0.38);
+    }
+    .panel-foot-hint{
+      font-family:var(--sans);
+      font-size:0.65rem;font-weight:500;
+      letter-spacing:0.12em;text-transform:uppercase;
+      color:rgba(36,32,28,0.55);
+      margin-top:6px;
+    }
+
+    /* ── RESPONSIVE ── */
+    /* iPad portrait */
+    @media (min-width:768px) and (max-width:1023px){
+      .layout{grid-template-columns:55fr 45fr}
+      .panel-title{font-size:2rem}
+      .poi-label{font-size:0.6rem;padding:5px 9px}
+    }
+
+    /* Mobile (portrait + landscape) */
+    @media (max-width:767px){
+      html,body{height:auto;overflow-y:auto;overflow-x:hidden}
+      .layout{
+        position:relative;
+        top:0;margin-top:76px;
+        bottom:auto;
+        display:flex;
+        flex-direction:column;
+        height:auto;
+      }
+      .map-frame{
+        aspect-ratio:5272/3948;
+        width:100%;
+        height:auto;
+      }
+      .panel{
+        border-left:none;
+        border-top:1px solid rgba(36,32,28,0.1);
+        height:auto;
+        overflow:visible;
+      }
+      .panel-title{font-size:1.8rem;padding:24px 0 12px}
+      .poi-list{
+        overflow-y:visible;
+        padding:0 16px 16px;
+      }
+      .poi-popup{width:200px}
+      .poi-label{font-size:0.55rem;padding:4px 7px;letter-spacing:0.08em}
+      .poi-item{grid-template-columns:64px 1fr;gap:12px;padding:12px 0}
+      .poi-item-thumb,.poi-item-placeholder{width:64px;height:48px}
+      .poi-item-placeholder{font-size:1.2rem}
+      .poi-item.featured{padding:14px 12px}
+    }
   </style>
 </head>
 <body>
@@ -127,211 +386,247 @@
   <div class="page-intro"><img class="intro-logo" src="../assets/logos/SS%20logo%20light.svg" alt=""></div>
 
   <div class="layout">
-    <div id="map"></div>
+    <div class="map-frame" id="mapFrame">
+      <picture>
+        <source media="(min-width:768px)" type="image/webp" srcset="../assets/images/seseh/seseh-aerial-2400.webp">
+        <source media="(max-width:767px)" type="image/webp" srcset="../assets/images/seseh/seseh-aerial-1200.webp">
+        <source media="(min-width:768px)" srcset="../assets/images/seseh/seseh-aerial-2400.jpg">
+        <img src="../assets/images/seseh/seseh-aerial-1200.jpg" alt="Vue aérienne de Seseh Sunset Villas et de ses environs">
+      </picture>
+      <div class="map-overlay-top"></div>
+      <div class="map-overlay-bottom"></div>
+      <!-- POIs injected by JS -->
+    </div>
 
-    <div class="panel">
-      <div class="panel-title">À Proximité</div>
-      <div class="panel-head" style="padding-top:0">
-
+    <aside class="panel">
+      <h1 class="panel-title">Vivre à Seseh</h1>
+      <div class="poi-list" id="poiList">
+        <!-- Items injected by JS -->
       </div>
-
-      <div class="poi-list">
-        <div class="villa-entry">
-          <div class="villa-entry-label">Emplacement actuel</div>
-          <div class="villa-entry-name">Seseh Sunset Villas</div>
-        </div>
-        <div class="poi-item" data-id="sesehbeach" data-cat="plages" onclick="selectItem(this)">
-          <div class="poi-item-top">
-            <div><div class="poi-name">Plage de Seseh</div><div class="poi-dist">2 min à pied · Plage</div></div>
-            <button class="poi-cam" onclick="openOverlayById('sesehbeach',event)" title="Voir la photo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          </div>
-          <div class="poi-desc">Plage sauvage et préservée, quasiment déserte. Couchers de soleil exceptionnels — accès direct depuis les villas.</div>
-        </div>
-        <div class="poi-item" data-id="riceterrace" data-cat="nature" onclick="selectItem(this)">
-          <div class="poi-item-top">
-            <div><div class="poi-name">Rizières de Canggu</div><div class="poi-dist">5 min · Nature</div></div>
-            <button class="poi-cam" onclick="openOverlayById('riceterrace',event)" title="Voir la photo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          </div>
-          <div class="poi-desc">Terrasses de riz en activité, promenades matinales authentiques. Un Bali préservé à portée de villa.</div>
-        </div>
-        <div class="poi-item" data-id="airport" data-cat="airport" onclick="selectItem(this)">
-          <div class="poi-item-top">
-            <div><div class="poi-name">Aéroport Ngurah Rai</div><div class="poi-dist">30 min · International</div></div>
-            <button class="poi-cam" onclick="openOverlayById('airport',event)" title="Voir la photo"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          </div>
-          <div class="poi-desc">Aéroport international de Bali — liaisons directes vers l'Asie, l'Europe et l'Australie.</div>
-        </div>
-      </div>
-
       <div class="panel-foot">
         <div class="panel-foot-text">Seseh · Bali · Indonésie</div>
         <div class="panel-foot-hint">Cliquez sur un lieu pour explorer</div>
       </div>
-    </div>
-  </div>
-
-  <!-- Image overlay -->
-  <div class="img-overlay" id="imgOverlay" onclick="closeOverlay(event)">
-    <div class="img-overlay-inner" onclick="event.stopPropagation()">
-      <button class="img-overlay-close" onclick="closeOverlay()">✕ Fermer</button>
-      <div id="imgContent"></div>
-      <div class="img-overlay-caption">
-        <div class="img-overlay-name" id="overlayName"></div>
-        <div class="img-overlay-desc" id="overlayDesc"></div>
-      </div>
-    </div>
+    </aside>
   </div>
 
 <script>
-const MAPTILER_KEY = 'qNK53pJMm78pucu8WcXc';
-const VILLA = [-8.6520, 115.1085];
+(function(){
+  const mapFrame = document.getElementById('mapFrame');
+  const poiListEl = document.getElementById('poiList');
+  let pois = [];
+  let activeId = null;
 
-// POI data — add your image paths here when ready
-const POIS = [
-  { id:'sesehbeach',  cat:'plages',  ll:[-8.6510, 115.1048], name:'Plage de Seseh',    img:'' },
-  { id:'riceterrace', cat:'nature',  ll:[-8.6460, 115.1340], name:'Rizières de Canggu',img:'' },
-  { id:'airport',     cat:'airport', ll:[-8.7482, 115.1669], name:'Aéroport Ngurah Rai',img:'' },
-];
+  function escapeHTML(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, c =>
+      ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])
+    );
+  }
 
-let activeId = null;
+  // ── Load POI data ──
+  fetch('pois.json')
+    .then(r => r.json())
+    .then(data => {
+      pois = Array.isArray(data) ? data : [];
+      renderPois();
+      renderSidebar();
+    })
+    .catch(() => {
+      // Silent fail — page still usable, no POI overlay
+    });
 
-// ── MAP ──
-const map = new maplibregl.Map({
-  container: 'map',
-  style: `https://api.maptiler.com/maps/outdoor/style.json?key=${MAPTILER_KEY}`,
-  center: [VILLA[1], VILLA[0]],
-  zoom: 14.5,
-  pitch: 45,
-  bearing: -15,
-  antialias: true,
-  attributionControl: false
-});
+  // ── Render POI markers on map ──
+  function renderPois(){
+    const fragment = document.createDocumentFragment();
+    pois.forEach(poi => {
+      const el = document.createElement('div');
+      el.className = 'poi' + (poi.isMainLocation ? ' poi--featured' : '');
+      el.style.left = poi.position.left;
+      el.style.top = poi.position.top;
+      el.dataset.id = poi.id;
+      el.setAttribute('role', 'button');
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('aria-label', poi.name);
+      el.setAttribute('aria-expanded', 'false');
 
-map.addControl(new maplibregl.NavigationControl({ showCompass: true }), 'top-left');
+      const lineH = poi.lineHeight || 50;
+      el.innerHTML =
+        '<div class="poi-label">' + escapeHTML(poi.name) + '</div>' +
+        '<div class="poi-line" style="--line-h:' + lineH + 'px"></div>' +
+        '<div class="poi-dot"></div>';
 
-map.on('load', () => {
-  // Hide building layers to keep map clean
-  const buildingLayers = [
-    'building', 'building-top', 'building-shadow', 'building-3d',
-    'buildings', 'building_fill', 'building-outline',
-    'poi', 'poi-label', 'poi_label',
-    'place-of-worship', 'aeroway-building'
-  ];
-  buildingLayers.forEach(id => {
-    if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
-  });
-  // Also hide any layer with 'building' in its name
-  map.getStyle().layers.forEach(layer => {
-    if (layer.id.includes('building') || layer.id.includes('Building')) {
-      map.setLayoutProperty(layer.id, 'visibility', 'none');
-    }
-  });
-});
+      el.addEventListener('click', e => {
+        e.stopPropagation();
+        activatePoi(poi.id);
+      });
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          activatePoi(poi.id);
+        }
+      });
 
-// Villa marker
-const villaEl = document.createElement('div');
-villaEl.className = 'villa-pin';
-new maplibregl.Marker({ element: villaEl, anchor: 'center' })
-  .setLngLat([VILLA[1], VILLA[0]])
-  .addTo(map);
+      fragment.appendChild(el);
+    });
+    mapFrame.appendChild(fragment);
+  }
 
-// POI markers
-const markerMap = {};
-POIS.forEach(poi => {
-  const el = document.createElement('div');
-  el.className = `poi-pin cat-${poi.cat}`;
-  el.addEventListener('click', () => activatePOI(poi.id));
-  el.title = poi.name;
-  const m = new maplibregl.Marker({ element: el, anchor: 'center' })
-    .setLngLat([poi.ll[1], poi.ll[0]])
-    .addTo(map);
-  markerMap[poi.id] = { marker: m, el, data: poi };
-});
+  // ── Render sidebar items ──
+  function renderSidebar(){
+    poiListEl.innerHTML = '';
+    pois.forEach(poi => {
+      const item = document.createElement('div');
+      item.className = 'poi-item' + (poi.isMainLocation ? ' featured' : '');
+      item.dataset.id = poi.id;
+      item.setAttribute('role', 'button');
+      item.setAttribute('tabindex', '0');
+      item.setAttribute('aria-label', poi.name);
 
-function activatePOI(id) {
-  if (activeId === id) { deactivateAll(); resetView(); activeId = null; return; }
-  deactivateAll();
-  activeId = id;
+      const text =
+        '<div class="poi-item-text">' +
+          '<div class="poi-item-name">' + escapeHTML(poi.name) + '</div>' +
+          '<div class="poi-item-dist">' + escapeHTML(poi.distance || '') + '</div>' +
+        '</div>';
 
-  markerMap[id]?.el.classList.add('active');
+      if (poi.image){
+        const img = document.createElement('img');
+        img.className = 'poi-item-thumb';
+        img.src = poi.image;
+        img.alt = poi.imageAlt || poi.name;
+        img.loading = 'lazy';
+        img.addEventListener('error', () => {
+          const ph = document.createElement('div');
+          ph.className = 'poi-item-placeholder';
+          ph.textContent = poi.number != null ? poi.number : '';
+          img.replaceWith(ph);
+        });
+        item.appendChild(img);
+      } else {
+        const ph = document.createElement('div');
+        ph.className = 'poi-item-placeholder';
+        ph.textContent = poi.number != null ? poi.number : '';
+        item.appendChild(ph);
+      }
+      item.insertAdjacentHTML('beforeend', text);
 
-  const item = document.querySelector(`.poi-item[data-id="${id}"]`);
-  if (item) { item.classList.add('active'); item.scrollIntoView({ behavior:'smooth', block:'nearest' }); }
+      item.addEventListener('click', () => activatePoi(poi.id));
+      item.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          activatePoi(poi.id);
+        }
+      });
 
-  const poi = POIS.find(p => p.id === id);
-  if (poi) {
-    map.flyTo({
-      center: [poi.ll[1], poi.ll[0]],
-      zoom: id === 'airport' ? 13 : 15.5,
-      pitch: 50,
-      bearing: -15,
-      duration: 1400,
-      easing: t => t < 0.5 ? 2*t*t : -1+(4-2*t)*t
+      poiListEl.appendChild(item);
     });
   }
-}
 
-function selectItem(el) { activatePOI(el.dataset.id); }
+  // ── Activate / toggle POI ──
+  function activatePoi(id){
+    if (activeId === id){
+      deactivateAll();
+      return;
+    }
+    deactivateAll();
+    activeId = id;
 
-function deactivateAll() {
-  Object.values(markerMap).forEach(m => m.el.classList.remove('active'));
-  document.querySelectorAll('.poi-item').forEach(el => el.classList.remove('active'));
-}
+    const poi = pois.find(p => p.id === id);
+    if (!poi) return;
 
-function resetView() {
-  map.flyTo({ center:[VILLA[1], VILLA[0]], zoom:14.5, pitch:45, bearing:-15, duration:1200 });
-}
+    const poiEl = mapFrame.querySelector('.poi[data-id="' + CSS.escape(id) + '"]');
+    const itemEl = poiListEl.querySelector('.poi-item[data-id="' + CSS.escape(id) + '"]');
 
-function filterCat(btn) {
-  const cat = btn.dataset.cat;
-  document.querySelectorAll('.pf').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  Object.values(markerMap).forEach(m => {
-    m.el.style.display = (cat==='all' || m.data.cat===cat) ? '' : 'none';
-  });
-  document.querySelectorAll('.poi-item').forEach(el => {
-    el.style.display = (cat==='all' || el.dataset.cat===cat) ? '' : 'none';
-  });
-  if (activeId && markerMap[activeId]?.el.style.display==='none') {
-    deactivateAll(); resetView(); activeId = null;
+    if (poiEl){
+      poiEl.classList.add('active');
+      poiEl.setAttribute('aria-expanded', 'true');
+      showPopup(poiEl, poi);
+    }
+    if (itemEl){
+      itemEl.classList.add('active');
+      itemEl.scrollIntoView({behavior:'smooth', block:'center'});
+    }
   }
-}
 
-// ── IMAGE OVERLAY ──
-function openOverlayById(id, e) {
-  if (e) e.stopPropagation();
-  const poi = POIS.find(p => p.id === id);
-  if (poi) openOverlay(poi);
-}
-
-function openOverlay(poi) {
-  const overlay = document.getElementById('imgOverlay');
-  const content = document.getElementById('imgContent');
-  document.getElementById('overlayName').textContent = poi.name;
-  const desc = document.querySelector(`.poi-item[data-id="${poi.id}"] .poi-desc`);
-  document.getElementById('overlayDesc').textContent = desc ? desc.textContent : '';
-
-  if (poi.img) {
-    content.innerHTML = `<img class="img-overlay-img" src="${poi.img}" alt="${poi.name}"/>`;
-  } else {
-    content.innerHTML = `
-      <div class="img-overlay-placeholder">
-        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="4" y="8" width="40" height="32" rx="2" stroke="white" stroke-width="1.5"/>
-          <circle cx="16" cy="20" r="4" stroke="white" stroke-width="1.5"/>
-          <path d="M4 32 L14 22 L22 30 L30 22 L44 32" stroke="white" stroke-width="1.5" fill="none"/>
-        </svg>
-        <div class="img-overlay-placeholder-text">Photo à venir — ${poi.name}</div>
-      </div>`;
+  function deactivateAll(){
+    activeId = null;
+    mapFrame.querySelectorAll('.poi.active').forEach(el => {
+      el.classList.remove('active','popup-left','popup-above','popup-below');
+      el.setAttribute('aria-expanded', 'false');
+      const popup = el.querySelector('.poi-popup');
+      if (popup) popup.remove();
+    });
+    poiListEl.querySelectorAll('.poi-item.active').forEach(el => el.classList.remove('active'));
   }
-  overlay.classList.add('visible');
-}
 
-function closeOverlay(e) {
-  document.getElementById('imgOverlay').classList.remove('visible');
-}
+  // ── Popup with smart positioning ──
+  function showPopup(poiEl, poi){
+    const popup = document.createElement('div');
+    popup.className = 'poi-popup';
 
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeOverlay(); });
+    const closeBtn = '<button class="poi-popup-close" aria-label="Fermer" type="button">×</button>';
+    const body =
+      '<div class="poi-popup-body">' +
+        '<div class="poi-popup-title">' + escapeHTML(poi.name) + '</div>' +
+        (poi.description ? '<div class="poi-popup-desc">' + escapeHTML(poi.description) + '</div>' : '') +
+        (poi.distance ? '<div class="poi-popup-dist">' + escapeHTML(poi.distance) + '</div>' : '') +
+      '</div>';
+
+    if (poi.image){
+      const img = document.createElement('img');
+      img.className = 'poi-popup-img';
+      img.src = poi.image;
+      img.alt = poi.imageAlt || poi.name;
+      img.addEventListener('error', () => img.remove());
+      popup.insertAdjacentHTML('beforeend', closeBtn);
+      popup.appendChild(img);
+      popup.insertAdjacentHTML('beforeend', body);
+    } else {
+      popup.innerHTML = closeBtn + body;
+    }
+
+    popup.querySelector('.poi-popup-close').addEventListener('click', e => {
+      e.stopPropagation();
+      deactivateAll();
+    });
+    popup.addEventListener('click', e => e.stopPropagation());
+
+    poiEl.appendChild(popup);
+
+    // Smart positioning: measure after layout
+    requestAnimationFrame(() => {
+      const frameRect = mapFrame.getBoundingClientRect();
+      const poiRect = poiEl.getBoundingClientRect();
+      const popupRect = popup.getBoundingClientRect();
+
+      // Horizontal: if popup-right would overflow, flip to left
+      if (poiRect.right + popupRect.width + 14 > frameRect.right - 8){
+        poiEl.classList.add('popup-left');
+      }
+      // Vertical: if vertical-centred popup overflows top → place below; overflows bottom → place above
+      const verticalCenter = poiRect.top + poiRect.height / 2;
+      if (verticalCenter - popupRect.height / 2 < frameRect.top + 8){
+        poiEl.classList.add('popup-below');
+      } else if (verticalCenter + popupRect.height / 2 > frameRect.bottom - 8){
+        poiEl.classList.add('popup-above');
+      }
+
+      popup.classList.add('visible');
+    });
+  }
+
+  // ── Click outside closes ──
+  document.addEventListener('click', e => {
+    if (!activeId) return;
+    if (e.target.closest('.poi') || e.target.closest('.poi-item') || e.target.closest('.poi-popup')) return;
+    deactivateAll();
+  });
+
+  // ── Escape closes ──
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && activeId) deactivateAll();
+  });
+})();
 </script>
+
 </body>
 </html>
