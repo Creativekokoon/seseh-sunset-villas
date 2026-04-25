@@ -147,7 +147,7 @@
     }
     .panel-header{
       flex-shrink:0;
-      padding:56px 0 28px;
+      padding:56px 0 48px;
       text-align:center;
     }
     .panel-title{
@@ -200,7 +200,7 @@
     }
     .poi-item-name{
       font-family:var(--serif);
-      font-size:1.3rem;font-weight:500;
+      font-size:1.2rem;font-weight:500;
       color:rgba(36,32,28,0.92);
       letter-spacing:0.02em;
       transition:color 0.2s;
@@ -246,13 +246,14 @@
     /* Featured sidebar item (Seseh Sunset Villas) */
     .poi-item.featured{
       background:var(--anthracite);
-      border-left:3px solid var(--gold);
+      border-left:2px solid var(--gold);
       padding:18px 16px;
       margin:0 0 14px;
       border-bottom:none;
       border-radius:0;
     }
     .poi-item.featured:hover{padding-left:18px}
+    .poi-item.featured.active{box-shadow:none}
     .poi-item.featured .poi-item-name{
       color:#fff;
       letter-spacing:0.04em;
@@ -265,17 +266,6 @@
     .poi-item.featured .poi-cam:focus-visible{color:var(--gold)}
     .poi-item.featured.active{background:#222}
 
-    .panel-foot{
-      flex-shrink:0;
-      padding:14px 28px 18px;
-      border-top:1px solid rgba(36,32,28,0.07);
-    }
-    .panel-foot-text{
-      font-family:var(--sans);
-      font-size:0.5rem;font-weight:500;
-      letter-spacing:0.2em;text-transform:uppercase;
-      color:rgba(36,32,28,0.38);
-    }
 
     /* ── IMAGE OVERLAY (lightbox) ── */
     .img-overlay{
@@ -339,7 +329,7 @@
     /* iPad portrait */
     @media (min-width:768px) and (max-width:1023px){
       .layout{grid-template-columns:55fr 45fr}
-      .panel-header{padding:44px 0 22px}
+      .panel-header{padding:44px 0 38px}
       .panel-title{font-size:2rem}
       .poi-label{font-size:0.6rem;padding:5px 9px}
     }
@@ -356,7 +346,7 @@
         height:auto;
       }
       .map-frame{
-        aspect-ratio:5272/3948;
+        aspect-ratio:5272/4082;
         width:100%;
         height:auto;
       }
@@ -366,7 +356,7 @@
         height:auto;
         overflow:visible;
       }
-      .panel-header{padding:32px 0 20px}
+      .panel-header{padding:32px 0 32px}
       .panel-title{font-size:1.8rem}
       .panel-hint{font-size:0.6rem;margin-top:10px}
       .poi-list{
@@ -407,9 +397,6 @@
       </div>
       <div class="poi-list" id="poiList">
         <!-- Items injected by JS -->
-      </div>
-      <div class="panel-foot">
-        <div class="panel-foot-text">Seseh · Bali · Indonésie</div>
       </div>
     </aside>
   </div>
@@ -565,10 +552,21 @@
   }
 
   // ── Activate / toggle POI (highlights only — no map popup) ──
+  // Seseh Sunset Villas (main location) is the resting default — clicks always
+  // fall back to it instead of leaving nothing selected.
+  function getMainId(){
+    const m = pois.find(p => p.isMainLocation);
+    return m ? m.id : null;
+  }
+
   function activatePoi(id, opts){
     opts = opts || {};
+    const mainId = getMainId();
+    // Toggle handling: clicking the active POI falls back to main (or stays if it IS main)
     if (activeId === id && !opts.force){
-      deactivateAll();
+      if (mainId && id !== mainId){
+        activatePoi(mainId, {scroll:false});
+      }
       return;
     }
     deactivateAll();
@@ -589,6 +587,13 @@
     activeId = null;
     mapFrame.querySelectorAll('.poi.active').forEach(el => el.classList.remove('active'));
     poiListEl.querySelectorAll('.poi-item.active').forEach(el => el.classList.remove('active'));
+  }
+
+  function fallbackToMain(){
+    const mainId = getMainId();
+    if (mainId && activeId !== mainId){
+      activatePoi(mainId, {scroll:false});
+    }
   }
 
   // ── Image overlay (lightbox) ──
@@ -631,18 +636,17 @@
     if (e.target === overlay) closeOverlay();
   });
 
-  // ── Click outside POI/sidebar closes selection ──
+  // ── Click outside POI/sidebar falls back to Seseh Sunset Villas ──
   document.addEventListener('click', e => {
-    if (!activeId) return;
     if (e.target.closest('.poi') || e.target.closest('.poi-item')) return;
-    deactivateAll();
+    fallbackToMain();
   });
 
-  // ── Escape closes overlay or active POI ──
+  // ── Escape closes overlay or falls back to Seseh Sunset Villas ──
   document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
     if (overlay.classList.contains('visible')) closeOverlay();
-    else if (activeId) deactivateAll();
+    else fallbackToMain();
   });
 })();
 </script>
