@@ -339,7 +339,7 @@
       .poi-label{font-size:0.6rem;padding:5px 9px}
     }
 
-    /* Mobile (portrait + landscape) */
+    /* ── Mobile (portrait + landscape) ── */
     @media (max-width:767px){
       html,body{height:auto;overflow-y:auto;overflow-x:hidden}
       .layout{
@@ -355,23 +355,59 @@
         height:auto;
         aspect-ratio:5272/4082;
       }
+
+      /* Panel */
       .panel{
         border-left:none;
-        border-top:1px solid rgba(36,32,28,0.1);
+        border-top:none;
         height:auto;
         overflow:visible;
       }
-      .panel-header{padding:32px 0 32px}
-      .panel-title{font-size:1.8rem}
-      .panel-hint{font-size:0.6rem;margin-top:10px}
+      .panel-header{
+        padding:38px 20px 22px;
+        margin:0 18px;
+        border-bottom:1px solid rgba(36,32,28,0.12);
+      }
+      .panel-title{font-size:1.9rem;letter-spacing:0.1em}
+      .panel-hint{font-size:0.58rem;letter-spacing:0.16em;margin-top:12px}
+
+      /* List spacing */
       .poi-list{
         overflow-y:visible;
-        padding:0 16px 16px;
+        padding:8px 18px 36px;
       }
+
+      /* Default item — text-only, comfortable touch target */
+      .poi-item{
+        grid-template-columns:1fr;
+        gap:0;
+        padding:18px 14px;
+        min-height:64px;
+        align-items:start;
+      }
+      .poi-item:hover{padding-left:14px}
+      .poi-item.active{padding-left:14px}
+      .poi-item-row{gap:10px}
+      .poi-item-name{font-size:1.15rem;line-height:1.25}
+      .poi-item-dist{font-size:0.62rem;letter-spacing:0.14em;margin-top:6px}
+      .poi-item-dist svg{width:13px;height:13px}
+      .poi-cam{padding:6px;margin:-4px -6px 0 0}
+      .poi-cam svg{width:22px;height:22px}
+      .poi-item-desc{font-size:0.84rem;line-height:1.55}
+      .poi-item.active .poi-item-desc{max-height:220px;margin-top:10px}
+
+      /* Featured (Seseh Sunset Villas) */
+      .poi-item.featured{
+        margin:10px 0 18px;
+        padding:22px 18px;
+      }
+      .poi-item.featured .poi-item-name{font-size:1.3rem}
+      .poi-item.featured .poi-item-desc{font-size:0.86rem}
+
+      /* Map labels stay small */
       .poi-label{font-size:0.55rem;padding:4px 7px;letter-spacing:0.08em}
-      .poi-item{grid-template-columns:64px 1fr;gap:12px;padding:12px 0}
-      .poi-item-thumb,.poi-item-placeholder{width:64px;height:48px}
-      .poi-item.featured{padding:14px 12px}
+
+      /* Lightbox */
       .img-overlay{padding:32px 16px}
       .img-overlay-img,.img-overlay-empty{height:280px}
       .img-overlay-close{top:-36px;font-size:0.55rem}
