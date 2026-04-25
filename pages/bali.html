@@ -16,7 +16,7 @@
       --sans:'Inter','Helvetica Neue',Arial,sans-serif;
       --gold:#c8a86a;
       --cream:#E8E4DC;
-      --anthracite:#1a1a1a;
+      --anthracite:#242220;
     }
 
     html,body{
@@ -45,8 +45,7 @@
       position:relative;
       overflow:hidden;
       background:#0a0a0a;
-      width:100%;
-      height:100%;
+      width:100%;height:100%;
     }
     .map-frame picture{
       position:absolute;inset:0;
@@ -138,94 +137,6 @@
       box-shadow:0 0 0 3px rgba(201,168,106,0.55),0 1px 6px rgba(0,0,0,0.5);
     }
 
-    /* ── POPUP ── */
-    .poi-popup{
-      position:absolute;
-      width:240px;
-      background:rgba(15,15,15,0.97);
-      border:1px solid rgba(201,168,106,0.5);
-      border-radius:8px;
-      color:rgba(255,252,248,0.92);
-      box-shadow:0 8px 32px rgba(0,0,0,0.4);
-      z-index:10;
-      opacity:0;
-      transform:translateY(8px);
-      transition:opacity 0.28s ease,transform 0.28s ease;
-      pointer-events:none;
-      overflow:hidden;
-      /* default: right of POI, vertical centre */
-      left:calc(100% + 14px);
-      top:50%;
-      transform:translateY(calc(-50% + 8px));
-    }
-    .poi-popup.visible{
-      opacity:1;
-      transform:translateY(-50%);
-      pointer-events:auto;
-    }
-    /* Variant: popup to left */
-    .poi.popup-left .poi-popup{
-      left:auto;
-      right:calc(100% + 14px);
-    }
-    /* Variant: popup below */
-    .poi.popup-below .poi-popup{
-      top:calc(100% + 14px);
-      transform:translateY(8px);
-    }
-    .poi.popup-below .poi-popup.visible{
-      transform:translateY(0);
-    }
-    /* Variant: popup above */
-    .poi.popup-above .poi-popup{
-      top:auto;
-      bottom:calc(100% + 14px);
-      transform:translateY(-8px);
-    }
-    .poi.popup-above .poi-popup.visible{
-      transform:translateY(0);
-    }
-
-    .poi-popup-img{
-      width:100%;height:130px;
-      object-fit:cover;
-      display:block;
-    }
-    .poi-popup-body{padding:14px 16px 16px}
-    .poi-popup-title{
-      font-family:var(--serif);
-      font-size:1.05rem;font-weight:500;
-      letter-spacing:0.04em;text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:6px;
-    }
-    .poi-popup-desc{
-      font-family:var(--sans);
-      font-size:0.72rem;line-height:1.5;
-      color:rgba(255,252,248,0.7);
-      margin-bottom:10px;
-    }
-    .poi-popup-dist{
-      font-family:var(--sans);
-      font-size:0.6rem;font-weight:500;
-      letter-spacing:0.18em;text-transform:uppercase;
-      color:var(--gold);
-    }
-    .poi-popup-close{
-      position:absolute;
-      top:6px;right:6px;
-      background:rgba(0,0,0,0.4);
-      border:none;
-      width:26px;height:26px;border-radius:50%;
-      color:rgba(255,252,248,0.85);
-      font-size:1rem;line-height:1;
-      cursor:pointer;
-      display:flex;align-items:center;justify-content:center;
-      z-index:2;
-      transition:background 0.2s,color 0.2s;
-    }
-    .poi-popup-close:hover{background:rgba(0,0,0,0.7);color:#fff}
-
     /* ── PANEL (sidebar) ── */
     .panel{
       background:var(--cream);
@@ -234,14 +145,24 @@
       overflow:hidden;
       height:100%;
     }
+    .panel-header{
+      flex-shrink:0;
+      padding:56px 0 28px;
+      text-align:center;
+    }
     .panel-title{
       font-family:var(--serif);
       font-size:2.4rem;font-weight:500;
       letter-spacing:0.11em;text-transform:uppercase;
       color:rgba(52,48,44,0.92);
-      text-align:center;
-      padding:32px 0 18px;
-      flex-shrink:0;
+      margin:0;
+    }
+    .panel-hint{
+      font-family:var(--sans);
+      font-size:0.65rem;font-weight:500;
+      letter-spacing:0.18em;text-transform:uppercase;
+      color:rgba(36,32,28,0.55);
+      margin-top:14px;
     }
     .poi-list{
       flex:1;overflow-y:auto;
@@ -258,7 +179,7 @@
       display:grid;
       grid-template-columns:84px 1fr;
       gap:14px;
-      align-items:center;
+      align-items:start;
       transition:padding-left 0.22s ease;
     }
     .poi-item:hover{padding-left:6px}
@@ -271,13 +192,14 @@
     }
     .poi-item-placeholder{
       background:var(--gold);
-      color:#fff;
-      display:flex;align-items:center;justify-content:center;
-      font-family:var(--serif);
-      font-size:1.5rem;font-weight:500;
-      letter-spacing:0.02em;
     }
     .poi-item-text{min-width:0}
+    .poi-item-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      align-items:start;
+      gap:8px;
+    }
     .poi-item-name{
       font-family:var(--serif);
       font-size:1.1rem;font-weight:500;
@@ -293,9 +215,30 @@
       margin-top:5px;
       transition:color 0.2s;
     }
-    .poi-item.active{background:rgba(36,32,28,0.04)}
     .poi-item.active .poi-item-name{color:#000}
     .poi-item.active .poi-item-dist{color:var(--gold)}
+
+    .poi-cam{
+      background:none;border:none;cursor:pointer;
+      padding:4px;margin-top:-2px;
+      color:rgba(36,32,28,0.35);
+      transition:color 0.22s;
+    }
+    .poi-cam:hover,
+    .poi-cam:focus-visible{color:var(--gold);outline:none}
+    .poi-cam svg{width:18px;height:18px;display:block}
+    .poi-item.active .poi-cam{color:var(--gold)}
+
+    .poi-item-desc{
+      font-family:var(--sans);
+      font-size:0.78rem;line-height:1.55;
+      color:rgba(36,32,28,0.7);
+      max-height:0;overflow:hidden;opacity:0;
+      transition:max-height 0.4s ease,opacity 0.35s ease,margin-top 0.4s ease;
+    }
+    .poi-item.active .poi-item-desc{
+      max-height:140px;opacity:1;margin-top:8px;
+    }
 
     /* Featured sidebar item (Seseh Sunset Villas) */
     .poi-item.featured{
@@ -312,9 +255,11 @@
       letter-spacing:0.04em;
       font-size:1.2rem;
     }
-    .poi-item.featured .poi-item-dist{
-      color:var(--gold);
-    }
+    .poi-item.featured .poi-item-dist{color:var(--gold)}
+    .poi-item.featured .poi-item-desc{color:rgba(255,252,248,0.65)}
+    .poi-item.featured .poi-cam{color:rgba(255,252,248,0.4)}
+    .poi-item.featured .poi-cam:hover,
+    .poi-item.featured .poi-cam:focus-visible{color:var(--gold)}
     .poi-item.featured.active{background:#222}
 
     .panel-foot{
@@ -328,18 +273,70 @@
       letter-spacing:0.2em;text-transform:uppercase;
       color:rgba(36,32,28,0.38);
     }
-    .panel-foot-hint{
-      font-family:var(--sans);
-      font-size:0.65rem;font-weight:500;
-      letter-spacing:0.12em;text-transform:uppercase;
-      color:rgba(36,32,28,0.55);
-      margin-top:6px;
+
+    /* ── IMAGE OVERLAY (lightbox) ── */
+    .img-overlay{
+      position:fixed;inset:0;z-index:900;
+      background:rgba(8,6,4,0.92);
+      display:flex;align-items:center;justify-content:center;
+      padding:48px 24px;
+      opacity:0;pointer-events:none;
+      transition:opacity 0.32s ease;
     }
+    .img-overlay.visible{opacity:1;pointer-events:auto}
+    .img-overlay-inner{
+      position:relative;
+      max-width:960px;width:100%;
+      max-height:100%;
+      display:flex;flex-direction:column;
+    }
+    .img-overlay-img{
+      width:100%;
+      max-height:72vh;
+      object-fit:cover;
+      display:block;
+    }
+    .img-overlay-empty{
+      width:100%;height:380px;
+      background:rgba(36,34,32,0.7);
+      display:flex;align-items:center;justify-content:center;
+      font-family:var(--sans);
+      font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;
+      color:rgba(255,252,248,0.42);
+    }
+    .img-overlay-caption{
+      background:rgba(10,8,6,0.92);
+      padding:20px 24px;
+    }
+    .img-overlay-name{
+      font-family:var(--serif);
+      font-size:1.4rem;font-weight:500;
+      letter-spacing:0.04em;text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:6px;
+    }
+    .img-overlay-desc{
+      font-family:var(--sans);
+      font-size:0.78rem;line-height:1.5;
+      color:rgba(255,252,248,0.72);
+    }
+    .img-overlay-close{
+      position:absolute;top:-44px;right:0;
+      background:none;border:none;
+      font-family:var(--sans);
+      font-size:0.6rem;font-weight:500;
+      letter-spacing:0.2em;text-transform:uppercase;
+      color:rgba(255,252,248,0.6);
+      cursor:pointer;padding:8px;
+      transition:color 0.2s;
+    }
+    .img-overlay-close:hover{color:#fff}
 
     /* ── RESPONSIVE ── */
     /* iPad portrait */
     @media (min-width:768px) and (max-width:1023px){
       .layout{grid-template-columns:55fr 45fr}
+      .panel-header{padding:44px 0 22px}
       .panel-title{font-size:2rem}
       .poi-label{font-size:0.6rem;padding:5px 9px}
     }
@@ -366,17 +363,19 @@
         height:auto;
         overflow:visible;
       }
-      .panel-title{font-size:1.8rem;padding:24px 0 12px}
+      .panel-header{padding:32px 0 20px}
+      .panel-title{font-size:1.8rem}
+      .panel-hint{font-size:0.6rem;margin-top:10px}
       .poi-list{
         overflow-y:visible;
         padding:0 16px 16px;
       }
-      .poi-popup{width:200px}
       .poi-label{font-size:0.55rem;padding:4px 7px;letter-spacing:0.08em}
       .poi-item{grid-template-columns:64px 1fr;gap:12px;padding:12px 0}
       .poi-item-thumb,.poi-item-placeholder{width:64px;height:48px}
-      .poi-item-placeholder{font-size:1.2rem}
       .poi-item.featured{padding:14px 12px}
+      .img-overlay{padding:32px 16px}
+      .img-overlay-close{top:-36px;font-size:0.55rem}
     }
   </style>
 </head>
@@ -399,23 +398,49 @@
     </div>
 
     <aside class="panel">
-      <h1 class="panel-title">Vivre à Seseh</h1>
+      <div class="panel-header">
+        <h1 class="panel-title">Vivre à Seseh</h1>
+        <div class="panel-hint">Cliquez sur un lieu pour explorer</div>
+      </div>
       <div class="poi-list" id="poiList">
         <!-- Items injected by JS -->
       </div>
       <div class="panel-foot">
         <div class="panel-foot-text">Seseh · Bali · Indonésie</div>
-        <div class="panel-foot-hint">Cliquez sur un lieu pour explorer</div>
       </div>
     </aside>
+  </div>
+
+  <!-- Image overlay (lightbox) -->
+  <div class="img-overlay" id="imgOverlay" role="dialog" aria-modal="true" aria-label="Galerie photo">
+    <div class="img-overlay-inner">
+      <button class="img-overlay-close" id="overlayClose" type="button">✕ Fermer</button>
+      <div id="overlayImgWrap"></div>
+      <div class="img-overlay-caption">
+        <div class="img-overlay-name" id="overlayName"></div>
+        <div class="img-overlay-desc" id="overlayDesc"></div>
+      </div>
+    </div>
   </div>
 
 <script>
 (function(){
   const mapFrame = document.getElementById('mapFrame');
   const poiListEl = document.getElementById('poiList');
+  const overlay = document.getElementById('imgOverlay');
+  const overlayImgWrap = document.getElementById('overlayImgWrap');
+  const overlayName = document.getElementById('overlayName');
+  const overlayDesc = document.getElementById('overlayDesc');
+  const overlayClose = document.getElementById('overlayClose');
+
   let pois = [];
   let activeId = null;
+
+  const CAM_SVG =
+    '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+      '<path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>' +
+      '<circle cx="12" cy="13" r="4" stroke="currentColor" stroke-width="1.5"/>' +
+    '</svg>';
 
   function escapeHTML(str){
     return String(str == null ? '' : str).replace(/[&<>"']/g, c =>
@@ -431,9 +456,7 @@
       renderPois();
       renderSidebar();
     })
-    .catch(() => {
-      // Silent fail — page still usable, no POI overlay
-    });
+    .catch(() => { /* silent */ });
 
   // ── Render POI markers on map ──
   function renderPois(){
@@ -447,7 +470,6 @@
       el.setAttribute('role', 'button');
       el.setAttribute('tabindex', '0');
       el.setAttribute('aria-label', poi.name);
-      el.setAttribute('aria-expanded', 'false');
 
       const lineH = poi.lineHeight || 50;
       el.innerHTML =
@@ -482,12 +504,7 @@
       item.setAttribute('tabindex', '0');
       item.setAttribute('aria-label', poi.name);
 
-      const text =
-        '<div class="poi-item-text">' +
-          '<div class="poi-item-name">' + escapeHTML(poi.name) + '</div>' +
-          '<div class="poi-item-dist">' + escapeHTML(poi.distance || '') + '</div>' +
-        '</div>';
-
+      // Thumbnail or placeholder
       if (poi.image){
         const img = document.createElement('img');
         img.className = 'poi-item-thumb';
@@ -497,17 +514,41 @@
         img.addEventListener('error', () => {
           const ph = document.createElement('div');
           ph.className = 'poi-item-placeholder';
-          ph.textContent = poi.number != null ? poi.number : '';
           img.replaceWith(ph);
         });
         item.appendChild(img);
       } else {
         const ph = document.createElement('div');
         ph.className = 'poi-item-placeholder';
-        ph.textContent = poi.number != null ? poi.number : '';
         item.appendChild(ph);
       }
-      item.insertAdjacentHTML('beforeend', text);
+
+      // Text column
+      const text = document.createElement('div');
+      text.className = 'poi-item-text';
+      text.innerHTML =
+        '<div class="poi-item-row">' +
+          '<div>' +
+            '<div class="poi-item-name">' + escapeHTML(poi.name) + '</div>' +
+            '<div class="poi-item-dist">' + escapeHTML(poi.distance || '') + '</div>' +
+          '</div>' +
+          '<button class="poi-cam" type="button" aria-label="Voir la photo">' + CAM_SVG + '</button>' +
+        '</div>' +
+        (poi.description ? '<div class="poi-item-desc">' + escapeHTML(poi.description) + '</div>' : '');
+      item.appendChild(text);
+
+      const camBtn = item.querySelector('.poi-cam');
+      camBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        openOverlay(poi.id);
+      });
+      camBtn.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          e.stopPropagation();
+          openOverlay(poi.id);
+        }
+      });
 
       item.addEventListener('click', () => activatePoi(poi.id));
       item.addEventListener('keydown', e => {
@@ -521,7 +562,7 @@
     });
   }
 
-  // ── Activate / toggle POI ──
+  // ── Activate / toggle POI (highlights only — no map popup) ──
   function activatePoi(id){
     if (activeId === id){
       deactivateAll();
@@ -530,17 +571,9 @@
     deactivateAll();
     activeId = id;
 
-    const poi = pois.find(p => p.id === id);
-    if (!poi) return;
-
     const poiEl = mapFrame.querySelector('.poi[data-id="' + CSS.escape(id) + '"]');
     const itemEl = poiListEl.querySelector('.poi-item[data-id="' + CSS.escape(id) + '"]');
-
-    if (poiEl){
-      poiEl.classList.add('active');
-      poiEl.setAttribute('aria-expanded', 'true');
-      showPopup(poiEl, poi);
-    }
+    if (poiEl) poiEl.classList.add('active');
     if (itemEl){
       itemEl.classList.add('active');
       itemEl.scrollIntoView({behavior:'smooth', block:'center'});
@@ -549,81 +582,62 @@
 
   function deactivateAll(){
     activeId = null;
-    mapFrame.querySelectorAll('.poi.active').forEach(el => {
-      el.classList.remove('active','popup-left','popup-above','popup-below');
-      el.setAttribute('aria-expanded', 'false');
-      const popup = el.querySelector('.poi-popup');
-      if (popup) popup.remove();
-    });
+    mapFrame.querySelectorAll('.poi.active').forEach(el => el.classList.remove('active'));
     poiListEl.querySelectorAll('.poi-item.active').forEach(el => el.classList.remove('active'));
   }
 
-  // ── Popup with smart positioning ──
-  function showPopup(poiEl, poi){
-    const popup = document.createElement('div');
-    popup.className = 'poi-popup';
+  // ── Image overlay (lightbox) ──
+  function openOverlay(id){
+    const poi = pois.find(p => p.id === id);
+    if (!poi) return;
 
-    const closeBtn = '<button class="poi-popup-close" aria-label="Fermer" type="button">×</button>';
-    const body =
-      '<div class="poi-popup-body">' +
-        '<div class="poi-popup-title">' + escapeHTML(poi.name) + '</div>' +
-        (poi.description ? '<div class="poi-popup-desc">' + escapeHTML(poi.description) + '</div>' : '') +
-        (poi.distance ? '<div class="poi-popup-dist">' + escapeHTML(poi.distance) + '</div>' : '') +
-      '</div>';
+    overlayName.textContent = poi.name || '';
+    overlayDesc.textContent = poi.description || '';
+    overlayImgWrap.innerHTML = '';
 
     if (poi.image){
       const img = document.createElement('img');
-      img.className = 'poi-popup-img';
+      img.className = 'img-overlay-img';
       img.src = poi.image;
       img.alt = poi.imageAlt || poi.name;
-      img.addEventListener('error', () => img.remove());
-      popup.insertAdjacentHTML('beforeend', closeBtn);
-      popup.appendChild(img);
-      popup.insertAdjacentHTML('beforeend', body);
+      img.addEventListener('error', () => {
+        const empty = document.createElement('div');
+        empty.className = 'img-overlay-empty';
+        empty.textContent = 'Photo bientôt disponible';
+        img.replaceWith(empty);
+      });
+      overlayImgWrap.appendChild(img);
     } else {
-      popup.innerHTML = closeBtn + body;
+      const empty = document.createElement('div');
+      empty.className = 'img-overlay-empty';
+      empty.textContent = 'Photo bientôt disponible';
+      overlayImgWrap.appendChild(empty);
     }
 
-    popup.querySelector('.poi-popup-close').addEventListener('click', e => {
-      e.stopPropagation();
-      deactivateAll();
-    });
-    popup.addEventListener('click', e => e.stopPropagation());
-
-    poiEl.appendChild(popup);
-
-    // Smart positioning: measure after layout
-    requestAnimationFrame(() => {
-      const frameRect = mapFrame.getBoundingClientRect();
-      const poiRect = poiEl.getBoundingClientRect();
-      const popupRect = popup.getBoundingClientRect();
-
-      // Horizontal: if popup-right would overflow, flip to left
-      if (poiRect.right + popupRect.width + 14 > frameRect.right - 8){
-        poiEl.classList.add('popup-left');
-      }
-      // Vertical: if vertical-centred popup overflows top → place below; overflows bottom → place above
-      const verticalCenter = poiRect.top + poiRect.height / 2;
-      if (verticalCenter - popupRect.height / 2 < frameRect.top + 8){
-        poiEl.classList.add('popup-below');
-      } else if (verticalCenter + popupRect.height / 2 > frameRect.bottom - 8){
-        poiEl.classList.add('popup-above');
-      }
-
-      popup.classList.add('visible');
-    });
+    overlay.classList.add('visible');
   }
 
-  // ── Click outside closes ──
+  function closeOverlay(){
+    overlay.classList.remove('visible');
+  }
+
+  overlayClose.addEventListener('click', closeOverlay);
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) closeOverlay();
+  });
+
+  // ── Click outside POI/sidebar closes selection ──
   document.addEventListener('click', e => {
     if (!activeId) return;
-    if (e.target.closest('.poi') || e.target.closest('.poi-item') || e.target.closest('.poi-popup')) return;
+    if (e.target.closest('.poi') || e.target.closest('.poi-item')) return;
     deactivateAll();
   });
 
-  // ── Escape closes ──
+  // ── Escape closes overlay or active POI ──
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && activeId) deactivateAll();
+    if (e.key !== 'Escape') return;
+    if (overlay.classList.contains('visible')) closeOverlay();
+    else if (activeId) deactivateAll();
   });
 })();
 </script>

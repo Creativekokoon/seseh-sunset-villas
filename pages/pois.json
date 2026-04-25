@@ -12,48 +12,48 @@
     "distance": "Vous êtes ici"
   },
   {
-    "id": "seseh-beach",
+    "id": "pererenan-beach",
     "number": 2,
-    "name": "Plage de Seseh",
+    "name": "Plage de Pererenan",
     "position": { "top": "20.06%", "left": "44.15%" },
     "lineHeight": 50,
     "category": "beach",
-    "image": "../assets/images/seseh/poi/seseh-beach.jpg",
-    "description": "Plage de sable noir paisible, connue pour son atmosphère sereine et ses couchers de soleil exceptionnels.",
-    "distance": "5 min en voiture"
-  },
-  {
-    "id": "pererenan-beach",
-    "number": 3,
-    "name": "Plage de Pererenan",
-    "position": { "top": "15.32%", "left": "32.05%" },
-    "lineHeight": 45,
-    "category": "beach",
     "image": "../assets/images/seseh/poi/pererenan-beach.jpg",
     "description": "Plage tendance avec un excellent surf, des cafés en bord de mer et une ambiance détendue.",
-    "distance": "8 min en voiture"
-  },
-  {
-    "id": "airport",
-    "number": 4,
-    "name": "Aéroport International Ngurah Rai",
-    "position": { "top": "8.64%", "left": "41.31%" },
-    "lineHeight": 50,
-    "category": "transport",
-    "image": "../assets/images/seseh/poi/airport.jpg",
-    "description": "L'aéroport international principal de Bali, votre porte d'entrée vers le paradis.",
-    "distance": "45 min en voiture"
+    "distance": "8 min"
   },
   {
     "id": "canggu-beach",
-    "number": 5,
+    "number": 3,
     "name": "Plage de Canggu",
-    "position": { "top": "25.59%", "left": "66.91%" },
-    "lineHeight": 55,
+    "position": { "top": "15.32%", "left": "32.05%" },
+    "lineHeight": 30,
     "category": "beach",
     "image": "../assets/images/seseh/poi/canggu-beach.jpg",
     "description": "Le cœur vibrant de Canggu — surf, beach clubs et une scène expat animée.",
-    "distance": "12 min en voiture"
+    "distance": "12 min"
+  },
+  {
+    "id": "seseh-beach",
+    "number": 4,
+    "name": "Plage de Seseh",
+    "position": { "top": "25.59%", "left": "66.91%" },
+    "lineHeight": 55,
+    "category": "beach",
+    "image": "../assets/images/seseh/poi/seseh-beach.jpg",
+    "description": "Plage de sable noir paisible, connue pour son atmosphère sereine et ses couchers de soleil exceptionnels.",
+    "distance": "5 min"
+  },
+  {
+    "id": "restaurants-beach-clubs",
+    "number": 5,
+    "name": "Restaurants & Beach Clubs",
+    "position": { "top": "27.19%", "left": "52.33%" },
+    "lineHeight": 35,
+    "category": "lifestyle",
+    "image": "../assets/images/seseh/poi/restaurants.jpg",
+    "description": "Sélection de fine dining, warungs et beach clubs à proximité.",
+    "distance": "5 à 10 min"
   },
   {
     "id": "river-rice-fields-view",
@@ -67,14 +67,14 @@
     "distance": "Adjacent"
   },
   {
-    "id": "restaurants-beach-clubs",
+    "id": "airport",
     "number": 7,
-    "name": "Restaurants & Beach Clubs",
-    "position": { "top": "27.19%", "left": "52.33%" },
-    "lineHeight": 35,
-    "category": "lifestyle",
-    "image": "../assets/images/seseh/poi/restaurants.jpg",
-    "description": "Sélection de fine dining, warungs et beach clubs à proximité.",
-    "distance": "5 à 10 min en voiture"
+    "name": "Aéroport International Ngurah Rai",
+    "position": { "top": "16%", "left": "41.31%" },
+    "lineHeight": 32,
+    "category": "transport",
+    "image": "../assets/images/seseh/poi/airport.jpg",
+    "description": "L'aéroport international principal de Bali, votre porte d'entrée vers le paradis.",
+    "distance": "45 min"
   }
 ]
