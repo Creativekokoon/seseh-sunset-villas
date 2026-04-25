@@ -2,7 +2,7 @@
 
 :root {
   --serif: 'the-seasons', Georgia, serif;
-  --sans: 'Helvetica Neue', Arial, sans-serif;
+  --sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
 }
 
 html, body {

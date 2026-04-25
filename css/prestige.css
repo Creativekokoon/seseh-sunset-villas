@@ -2,7 +2,7 @@
 
 :root {
   --serif:'the-seasons',Georgia,serif;
-  --sans:'Helvetica Neue',Arial,sans-serif;
+  --sans:'Inter','Helvetica Neue',Arial,sans-serif;
   --gold:#c8a86a;
   --charcoal:#34302C;
   --charcoal-soft:#5e5952;
@@ -157,7 +157,7 @@ html,body {
   transition:all 0.15s ease;
 }
 .pz-m2 {
-  font-family:'Helvetica Neue',Arial,sans-serif;font-size:9px;
+  font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:9px;
   letter-spacing:0.06em;fill:rgba(94,89,82,0.6);
 }
 .pzone:hover .pz-text,.pzone.selected .pz-text { fill:rgba(52,48,44,0.95); }

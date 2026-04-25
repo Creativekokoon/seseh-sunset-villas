@@ -47,7 +47,7 @@
     #site-topbar.nav-light .nav-menu-btn:hover { background:rgba(36,34,32,1); }
 
     #site-topbar .nav-back {
-      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.82rem;font-weight:500;
+      font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:0.82rem;font-weight:500;
       letter-spacing:0.2em;text-transform:uppercase;
       text-decoration:none;transition:color 0.2s;min-width:120px;
     }
@@ -57,7 +57,7 @@
       text-decoration:none;transition:color 0.2s;
     }
     #site-topbar .nav-menu-btn {
-      font-family:'Helvetica Neue',Arial,sans-serif;font-size:0.75rem;font-weight:400;
+      font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:0.75rem;font-weight:400;
       letter-spacing:0.24em;text-transform:uppercase;
       border:none;padding:0 28px;height:40px;
       border-radius:0;cursor:pointer;transition:background 0.22s;
@@ -155,7 +155,7 @@
       display:flex;align-items:center;justify-content:space-between;
       padding:19px 0;border-bottom:1px solid rgba(80,60,40,0.10);
       text-decoration:none;color:rgba(52,48,44,0.85);
-      font-family:'Helvetica Neue',Arial,sans-serif;
+      font-family:'Inter','Helvetica Neue',Arial,sans-serif;
       font-size:0.92rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;
       transition:color 0.22s,padding-left 0.22s;
     }
@@ -164,7 +164,7 @@
     .nav-drawer-link:hover .nav-drawer-arrow { opacity:0.75;transform:translateX(4px); }
 
     .nav-drawer-footer {
-      padding-top:20px;font-family:'Helvetica Neue',Arial,sans-serif;
+      padding-top:20px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;
       font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
       color:rgba(94,89,82,0.6);
       white-space:nowrap;
@@ -223,7 +223,7 @@
           Explorer les villas <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="${depth}pages/bali.html">
-          Explorer Bali <span class="nav-drawer-arrow">→</span>
+          Vivre à Seseh <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="#">
           Pré-réserver <span class="nav-drawer-arrow">→</span>
