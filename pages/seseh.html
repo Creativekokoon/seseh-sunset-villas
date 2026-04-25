@@ -46,7 +46,9 @@
       position:relative;
       overflow:hidden;
       background:#0a0a0a;
-      width:100%;height:100%;
+      width:100%;
+      aspect-ratio:5272/4082;
+      align-self:start;
     }
     .map-frame picture{
       position:absolute;inset:0;
@@ -277,18 +279,18 @@
     .img-overlay.visible{opacity:1;pointer-events:auto}
     .img-overlay-inner{
       position:relative;
-      max-width:720px;width:100%;
+      max-width:960px;width:100%;
       max-height:100%;
       display:flex;flex-direction:column;
     }
     .img-overlay-img{
       width:100%;
-      height:480px;
+      height:600px;
       object-fit:cover;
       display:block;
     }
     .img-overlay-empty{
-      width:100%;height:480px;
+      width:100%;height:600px;
       background:rgba(36,34,32,0.7);
       display:flex;align-items:center;justify-content:center;
       font-family:var(--sans);
