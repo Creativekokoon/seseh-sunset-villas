@@ -60,6 +60,7 @@
     .map-image-wrap picture img{
       width:100%;height:100%;
       object-fit:cover;
+      object-position:50% 60%;
       display:block;
     }
     .map-overlay-top,
@@ -503,6 +504,8 @@
   // cropped. POI percentages are relative to the IMAGE, not the wrap, so we map
   // them to pixel coordinates inside the wrap.
   const IMG_RATIO = 5272 / 4082;
+  const OBJ_POS_X = 50; // % — must match CSS object-position X
+  const OBJ_POS_Y = 60; // % — must match CSS object-position Y (shifts image up to show less sky)
   function updatePoiPositions(){
     if (!mapImageWrap) return;
     const w = mapImageWrap.offsetWidth;
@@ -514,15 +517,13 @@
       // Wrap wider than image — image fills width, overflow vertically
       imgW = w;
       imgH = w / IMG_RATIO;
-      imgL = 0;
-      imgT = (h - imgH) / 2;
     } else {
       // Wrap taller than image — image fills height, overflow horizontally
       imgH = h;
       imgW = h * IMG_RATIO;
-      imgT = 0;
-      imgL = (w - imgW) / 2;
     }
+    imgL = (w - imgW) * (OBJ_POS_X / 100);
+    imgT = (h - imgH) * (OBJ_POS_Y / 100);
     pois.forEach(poi => {
       const el = mapImageWrap.querySelector('.poi[data-id="' + CSS.escape(poi.id) + '"]');
       if (!el) return;
