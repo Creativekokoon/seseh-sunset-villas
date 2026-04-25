@@ -354,9 +354,13 @@
         height:auto;
       }
       .map-frame{
-        aspect-ratio:5272/4082;
         width:100%;
         height:auto;
+        display:block;
+      }
+      .map-image-wrap{
+        max-height:none;
+        max-width:100%;
       }
       .panel{
         border-left:none;
@@ -388,15 +392,17 @@
 
   <div class="layout">
     <div class="map-frame" id="mapFrame">
-      <picture>
-        <source media="(min-width:768px)" type="image/webp" srcset="../assets/images/seseh/seseh-aerial-2400.webp">
-        <source media="(max-width:767px)" type="image/webp" srcset="../assets/images/seseh/seseh-aerial-1200.webp">
-        <source media="(min-width:768px)" srcset="../assets/images/seseh/seseh-aerial-2400.jpg">
-        <img src="../assets/images/seseh/seseh-aerial-1200.jpg" alt="Vue aérienne de Seseh Sunset Villas et de ses environs">
-      </picture>
-      <div class="map-overlay-top"></div>
-      <div class="map-overlay-bottom"></div>
-      <!-- POIs injected by JS -->
+      <div class="map-image-wrap" id="mapImageWrap">
+        <picture>
+          <source media="(min-width:768px)" type="image/webp" srcset="../assets/images/seseh/seseh-aerial-2400.webp">
+          <source media="(max-width:767px)" type="image/webp" srcset="../assets/images/seseh/seseh-aerial-1200.webp">
+          <source media="(min-width:768px)" srcset="../assets/images/seseh/seseh-aerial-2400.jpg">
+          <img src="../assets/images/seseh/seseh-aerial-1200.jpg" alt="Vue aérienne de Seseh Sunset Villas et de ses environs">
+        </picture>
+        <div class="map-overlay-top"></div>
+        <div class="map-overlay-bottom"></div>
+        <!-- POIs injected by JS -->
+      </div>
     </div>
 
     <aside class="panel">
@@ -425,6 +431,7 @@
 <script>
 (function(){
   const mapFrame = document.getElementById('mapFrame');
+  const mapImageWrap = document.getElementById('mapImageWrap');
   const poiListEl = document.getElementById('poiList');
   const overlay = document.getElementById('imgOverlay');
   const overlayImgWrap = document.getElementById('overlayImgWrap');
@@ -492,7 +499,7 @@
 
       fragment.appendChild(el);
     });
-    mapFrame.appendChild(fragment);
+    mapImageWrap.appendChild(fragment);
   }
 
   // ── Render sidebar items ──
