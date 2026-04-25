@@ -185,7 +185,7 @@
              path.includes('signature.html') || path.includes('exception.html')) {
     backHref = depth + 'pages/villas.html';
     backLabel = '← Les Villas';
-  } else if (path.includes('bali.html')) {
+  } else if (path.includes('seseh.html') || path.includes('bali.html')) {
     backHref = depth + 'index.html';
     backLabel = '← Accueil';
   } else {
@@ -222,8 +222,8 @@
         <a class="nav-drawer-link" href="${depth}pages/villas.html">
           Explorer les villas <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="${depth}pages/bali.html">
-          Seseh <span class="nav-drawer-arrow">→</span>
+        <a class="nav-drawer-link" href="${depth}pages/seseh.html">
+          Vivre à Seseh <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="#">
           Pré-réserver <span class="nav-drawer-arrow">→</span>
