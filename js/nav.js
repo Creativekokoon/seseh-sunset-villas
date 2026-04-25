@@ -229,7 +229,7 @@
           Vivre à Seseh <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="${depth}pages/equipe.html">
-          L'Équipe <span class="nav-drawer-arrow">→</span>
+          Nos Équipes <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="#">
           Pré-réserver <span class="nav-drawer-arrow">→</span>
