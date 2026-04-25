@@ -12,19 +12,8 @@
     "distance": "Vous êtes ici"
   },
   {
-    "id": "seseh-beach",
-    "number": 2,
-    "name": "Plage de Seseh",
-    "position": { "top": "47.5%", "left": "73.5%" },
-    "lineHeight": 80,
-    "category": "beach",
-    "image": "../assets/images/seseh/poi/seseh-beach.jpg",
-    "description": "Plage de sable noir paisible, connue pour son atmosphère sereine et ses couchers de soleil exceptionnels.",
-    "distance": "5 min"
-  },
-  {
     "id": "river-rice-fields-view",
-    "number": 3,
+    "number": 2,
     "name": "Rivière & Rizières",
     "position": { "top": "86.79%", "left": "75.06%" },
     "lineHeight": 70,
@@ -32,6 +21,17 @@
     "image": "../assets/images/seseh/riziere-seseh.jpg",
     "description": "Rizières balinaises emblématiques et vues sur la rivière à votre porte.",
     "distance": "Adjacent"
+  },
+  {
+    "id": "seseh-beach",
+    "number": 3,
+    "name": "Plage de Seseh",
+    "position": { "top": "47.5%", "left": "73.5%" },
+    "lineHeight": 80,
+    "category": "beach",
+    "image": "../assets/images/seseh/poi/seseh-beach.jpg",
+    "description": "Plage de sable noir paisible, connue pour son atmosphère sereine et ses couchers de soleil exceptionnels.",
+    "distance": "5 min"
   },
   {
     "id": "restaurants-beach-clubs",
