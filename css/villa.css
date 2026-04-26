@@ -355,7 +355,7 @@ html,body {
   .prereserver-wrap { margin-top:auto;padding-bottom:24px; }
   /* Pull SVG up so it stays close to the Plan Interactif header */
   .plan-svg-wrap { align-items:flex-start; }
-  .plan-inner { gap:8px; }
+  .plan-inner { gap:20px; }
 }
 
 /* iPad Pro 13" (portrait + landscape) — constrain SVG to header width (520px) */
