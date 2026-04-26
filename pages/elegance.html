@@ -16,8 +16,8 @@
     @media (min-width:1024px) and (min-height:900px) {
       .plan-svg { max-width: 760px; }
     }
-    /* Match Chambre / Salle de bain text size with the Escalier label (14px) */
-    #f1 .pz-text { font-size: 14px; }
+    /* Match interactive labels with the Escalier label (14px) */
+    #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
     .dark-block.no-plan {
       grid-template-columns: 1fr 1fr;
     }
@@ -88,7 +88,7 @@
           <svg class="stat-icon" viewBox="0 0 20 20" fill="none">
             <rect x="3" y="3" width="14" height="14" stroke="currentColor" stroke-width="1.2"/>
           </svg>
-          <div class="stat-val">48,74 <span class="stat-sm">m²</span></div>
+          <div class="stat-val">46 <span class="stat-sm">m²</span></div>
           <div class="stat-lbl">Surface</div>
         </div>
         <div class="stat-sep"></div>
@@ -132,11 +132,103 @@
               <div class="plan-title">Plan Interactif</div>
               <div class="plan-subtitle">Sélectionnez une pièce pour explorer</div>
             </div>
+            <div class="floor-tabs">
+              <button type="button" class="floor-tab active" data-floor="f0" onclick="setFloor('f0', this)">RDC</button>
+              <button type="button" class="floor-tab" data-floor="f1" onclick="setFloor('f1', this)">Étage</button>
+            </div>
           </div>
 
           <div class="plan-svg-wrap">
 
-            <svg id="f1" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320">
+            <svg id="f0" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320">
+
+              <!-- BACKGROUND : non-interactive zones (Escalier + Douche + Jacuzzi) -->
+              <g id="f0-shell" pointer-events="none">
+                <polygon points="141.8,0 0,0 0,157.8 55.8,157.8 55.8,54.6 141.8,54.6"
+                         fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
+                  <line x1="0" y1="75.2" x2="55.8" y2="75.2"/>
+                  <line x1="0" y1="95.9" x2="55.8" y2="95.9"/>
+                  <line x1="0" y1="116.5" x2="55.8" y2="116.5"/>
+                  <line x1="0" y1="137.2" x2="55.8" y2="137.2"/>
+                  <line x1="77.3" y1="0" x2="77.3" y2="54.6"/>
+                  <line x1="98.8" y1="0" x2="98.8" y2="54.6"/>
+                  <line x1="120.3" y1="0" x2="120.3" y2="54.6"/>
+                </g>
+                <text x="28" y="35"
+                      font-family="'the-seasons', Georgia, serif" font-size="14"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.85)">Escalier</text>
+              </g>
+
+              <!-- TERRASSE (cliquable) -->
+              <g class="pzone terrace" onclick="pick('terrace', this)" onmouseenter="tip.textContent='Terrasse'">
+                <rect class="pz-fill" x="348.5" y="0" width="151.5" height="320"/>
+              </g>
+
+              <!-- TERRASSE DECORATIONS -->
+              <g pointer-events="none">
+                <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
+                  <line x1="348.5" y1="20" x2="500" y2="20"/>
+                  <line x1="348.5" y1="40" x2="500" y2="40"/>
+                  <line x1="348.5" y1="60" x2="500" y2="60"/>
+                  <line x1="348.5" y1="80" x2="500" y2="80"/>
+                  <line x1="348.5" y1="100" x2="500" y2="100"/>
+                  <line x1="348.5" y1="220" x2="500" y2="220"/>
+                  <line x1="348.5" y1="240" x2="500" y2="240"/>
+                  <line x1="348.5" y1="260" x2="500" y2="260"/>
+                  <line x1="348.5" y1="280" x2="500" y2="280"/>
+                  <line x1="348.5" y1="300" x2="500" y2="300"/>
+                </g>
+                <text x="424" y="270" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="14"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.85)">Terrasse</text>
+                <rect x="396.7" y="30.4" width="93.9" height="65.5"
+                      fill="rgba(244,240,233,0.55)" stroke="rgba(61,57,52,0.85)" stroke-width="0.8"/>
+                <text x="443.7" y="60" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="9"
+                      letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.8)">Douche</text>
+                <text x="443.7" y="74" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="9"
+                      letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.8)">extérieure</text>
+                <circle cx="450.2" cy="146" r="40.3"
+                        fill="rgba(178,210,225,0.65)" stroke="rgba(95,135,160,0.85)" stroke-width="1"/>
+                <text x="450.2" y="150" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="11"
+                      letter-spacing="0.04em"
+                      fill="rgba(50,80,100,0.9)">Jacuzzi</text>
+              </g>
+
+              <!-- LIVING -->
+              <g class="pzone living" onclick="pick('living', this)" onmouseenter="tip.textContent='Living'">
+                <polygon class="pz-fill" points="141.8,0 348.5,0 348.5,320 183,320 183,157.8 55.8,157.8 55.8,54.6 141.8,54.6"
+                         style="stroke:none"/>
+                <text class="pz-text" x="245" y="105" text-anchor="middle">Living</text>
+              </g>
+
+              <!-- CUISINE -->
+              <g class="pzone kitchen" onclick="pick('kitchen', this)" onmouseenter="tip.textContent='Cuisine'">
+                <polygon class="pz-fill" points="0,157.8 183,157.8 183,320 0,320"
+                         style="stroke:none"/>
+                <text class="pz-text" x="91" y="245" text-anchor="middle">Cuisine</text>
+              </g>
+
+              <!-- OUTLINE OVERLAY -->
+              <g pointer-events="none" fill="none">
+                <path d="M 141.8 0 L 348.5 0 L 348.5 320 L 0 320 L 0 157.8 L 55.8 157.8 L 55.8 54.6 L 141.8 54.6 Z"
+                      stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <line x1="55.8" y1="157.8" x2="183" y2="157.8"
+                      stroke="rgba(61,57,52,0.55)" stroke-width="0.7" stroke-dasharray="4 3"/>
+                <line x1="183" y1="157.8" x2="183" y2="320"
+                      stroke="rgba(61,57,52,0.55)" stroke-width="0.7" stroke-dasharray="4 3"/>
+              </g>
+
+            </svg>
+
+            <svg id="f1" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" style="display:none">
 
               <!-- BACKGROUND : non-interactive zones -->
               <g id="f1-shell" pointer-events="none">
@@ -303,6 +395,18 @@
             </div></div>
           </div>
 
+          <div class="room-visual" id="visual-terrace">
+            <div class="scene-card"><div class="room-scene">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="tbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e0d8cc"/><stop offset="100%" stop-color="#bdb2a4"/></linearGradient></defs>
+                <rect width="800" height="600" fill="url(#tbg)"/>
+                <rect y="380" width="800" height="220" fill="#a89e90"/>
+                <ellipse cx="500" cy="340" rx="180" ry="50" fill="rgba(178,210,225,0.6)" stroke="rgba(95,135,160,0.7)" stroke-width="2"/>
+                <rect x="120" y="200" width="160" height="120" fill="#f0ebe4" opacity="0.85"/>
+              </svg>
+            </div></div>
+          </div>
+
           <div class="room-visual" id="visual-bath2">
             <div class="room-image">
               <div class="room-scene">
@@ -335,6 +439,14 @@
   const roomImg = document.getElementById('roomImg');
   const visuals = document.querySelectorAll('.room-visual');
 
+  const visualMap = {
+    living:  'visual-living',
+    kitchen: 'visual-kitchen',
+    terrace: 'visual-terrace',
+    bedroom1: 'visual-bedroom1',
+    bath2:    'visual-bath2',
+  };
+
   function hideAllVisuals() { visuals.forEach(v => v.classList.remove('visible')); }
   function clearSelections() { document.querySelectorAll('.pzone').forEach(z => z.classList.remove('selected')); }
 
@@ -342,8 +454,18 @@
     clearSelections();
     zone.classList.add('selected');
     hideAllVisuals();
-    const v = document.getElementById('visual-' + id);
+    const v = document.getElementById(visualMap[id] || ('visual-' + id));
     if (v) { roomImg.classList.remove('empty'); v.classList.add('visible'); }
+  }
+
+  function setFloor(floorId, btn) {
+    document.getElementById('f0').style.display = (floorId === 'f0') ? '' : 'none';
+    document.getElementById('f1').style.display = (floorId === 'f1') ? '' : 'none';
+    document.querySelectorAll('.floor-tab').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    document.querySelectorAll('.pzone.selected').forEach(p => p.classList.remove('selected'));
+    hideAllVisuals();
+    roomImg.classList.add('empty');
   }
 
 </script>
