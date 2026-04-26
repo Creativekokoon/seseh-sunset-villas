@@ -13,23 +13,18 @@ document.querySelectorAll('.pzone').forEach(z => {
 const roomImg = document.getElementById('roomImg');
 const visuals = document.querySelectorAll('.room-visual');
 
-// Map plan zones to visual IDs (some share same visual)
+// Map plan zones to visual IDs
 const visualMap = {
-  living:   'visual-living',
-  kitchen:  'visual-living',
-  storage:  'visual-living',
-  powder:   'visual-bath1',
-  stairs:   'visual-living',
-  parking:  'visual-terrace',
-  garden:   'visual-terrace',
-  terrace:  'visual-terrace',
-  pooldeck: 'visual-pool',
-  pool:     'visual-pool',
-  bedroom1: 'visual-bedroom1',
-  bedroom2: 'visual-bedroom2',
-  bath1:    'visual-bath1',
-  bath2:    'visual-bath2',
-  balcony:  'visual-balcony',
+  // Ground floor
+  kitchen:   'visual-kitchen',
+  living:    'visual-living',
+  workspace: 'visual-workspace',
+  terrace:   'visual-terrace',
+  // First floor
+  bedroom1:  'visual-bedroom1',
+  bedroom2:  'visual-bedroom2',
+  bath1:     'visual-bath1',
+  bath2:     'visual-bath2',
 };
 
 function hideAllVisuals() {

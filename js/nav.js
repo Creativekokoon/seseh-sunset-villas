@@ -163,6 +163,20 @@
     .nav-drawer-arrow { opacity:0.25;font-weight:400;transition:opacity 0.22s,transform 0.22s; }
     .nav-drawer-link:hover .nav-drawer-arrow { opacity:0.75;transform:translateX(4px); }
 
+    .nav-drawer-cta {
+      display:flex;align-items:center;justify-content:center;
+      margin:24px 0 16px;
+      padding:14px 20px;
+      font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+      font-size:0.78rem;font-weight:500;letter-spacing:0.24em;text-transform:uppercase;
+      color:rgba(249,245,239,0.98);
+      background:linear-gradient(90deg,#3c3935 0%,#3c3935 30%,#5a5550 48%,#6b6460 54%,#5a5550 60%,#3c3935 78%,#3c3935 100%);
+      background-size:250% 100%;
+      background-position:0% 0;
+      text-decoration:none;
+      transition:background-position 0.6s ease, color 0.25s;
+    }
+    .nav-drawer-cta:hover { background-position:100% 0; color:#fff; }
     .nav-drawer-footer {
       padding-top:20px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;
       font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
