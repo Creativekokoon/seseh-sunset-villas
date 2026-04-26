@@ -204,110 +204,110 @@
               <g id="f1-shell" pointer-events="none">
 
                 <!-- Landing/couloir au-dessus des chambres (autour de l'escalier) -->
-                <rect x="0" y="0" width="302" height="76"
+                <rect x="0" y="0" width="302" height="99"
                       fill="rgba(225,222,215,0.5)" stroke="none"/>
 
                 <!-- Escalier (rectangle plus marqué dans le landing) -->
-                <rect x="43" y="0" width="192" height="43"
+                <rect x="43" y="0" width="192" height="56"
                       fill="rgba(225,222,215,0.7)" stroke="none"/>
                 <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
-                  <line x1="64" y1="0" x2="64" y2="43"/>
-                  <line x1="86" y1="0" x2="86" y2="43"/>
-                  <line x1="107" y1="0" x2="107" y2="43"/>
-                  <line x1="128" y1="0" x2="128" y2="43"/>
-                  <line x1="150" y1="0" x2="150" y2="43"/>
-                  <line x1="171" y1="0" x2="171" y2="43"/>
-                  <line x1="193" y1="0" x2="193" y2="43"/>
-                  <line x1="214" y1="0" x2="214" y2="43"/>
+                  <line x1="64" y1="0" x2="64" y2="56"/>
+                  <line x1="86" y1="0" x2="86" y2="56"/>
+                  <line x1="107" y1="0" x2="107" y2="56"/>
+                  <line x1="128" y1="0" x2="128" y2="56"/>
+                  <line x1="150" y1="0" x2="150" y2="56"/>
+                  <line x1="171" y1="0" x2="171" y2="56"/>
+                  <line x1="193" y1="0" x2="193" y2="56"/>
+                  <line x1="214" y1="0" x2="214" y2="56"/>
                 </g>
-                <text x="139" y="26" text-anchor="middle"
+                <text x="139" y="33" text-anchor="middle"
                       font-family="'the-seasons', Georgia, serif" font-size="12"
                       letter-spacing="0.04em"
                       fill="rgba(52,48,44,0.85)">Escalier</text>
 
                 <!-- Terrasse grisée (visible mais accès RDC seulement) -->
-                <rect x="0" y="210" width="401" height="171"
+                <rect x="0" y="276" width="401" height="105"
                       fill="rgba(225,222,215,0.5)" stroke="none"/>
                 <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
-                  <line x1="0" y1="210" x2="401" y2="381"/>
-                  <line x1="401" y1="210" x2="0" y2="381"/>
+                  <line x1="0" y1="276" x2="401" y2="381"/>
+                  <line x1="401" y1="276" x2="0" y2="381"/>
                 </g>
-                <text x="200.5" y="290" text-anchor="middle"
+                <text x="200.5" y="325" text-anchor="middle"
                       font-family="'the-seasons', Georgia, serif" font-size="14"
                       font-weight="500" letter-spacing="0.04em"
                       fill="rgba(94,89,82,0.55)">Terrasse</text>
-                <text x="200.5" y="306" text-anchor="middle"
+                <text x="200.5" y="341" text-anchor="middle"
                       font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="8"
                       letter-spacing="0.06em"
                       fill="rgba(94,89,82,0.45)">accès rez-de-chaussée</text>
 
                 <!-- Parking grisé -->
-                <rect x="401" y="210" width="99" height="171"
+                <rect x="401" y="276" width="99" height="105"
                       fill="rgba(225,222,215,0.5)" stroke="none"/>
                 <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
-                  <line x1="401" y1="210" x2="500" y2="381"/>
-                  <line x1="500" y1="210" x2="401" y2="381"/>
+                  <line x1="401" y1="276" x2="500" y2="381"/>
+                  <line x1="500" y1="276" x2="401" y2="381"/>
                 </g>
-                <text x="450.5" y="298" text-anchor="middle"
+                <text x="450.5" y="332" text-anchor="middle"
                       font-family="'the-seasons', Georgia, serif" font-size="13"
                       font-weight="500" letter-spacing="0.04em"
                       fill="rgba(94,89,82,0.55)">Parking</text>
 
               </g>
 
-              <!-- WALLS (rendered BEFORE pzones so hover-gold polygon strokes render on top) -->
+              <!-- WALLS (avant les pzones pour que le hover stroke des polygones passe au-dessus) -->
               <g pointer-events="none" fill="none"
-                 stroke="rgba(61,57,52,0.95)" stroke-width="1.5" stroke-linecap="square">
-                <!-- Périmètre extérieur global -->
+                 stroke="rgba(61,57,52,0.95)" stroke-width="1" stroke-linecap="square">
+                <!-- Périmètre extérieur global (identique au f0) -->
                 <path d="M 0 0 L 500 0 L 500 381 L 0 381 Z"/>
-                <!-- Séparation habité / terrasse-parking (à y=210, identique au f0) -->
-                <path d="M 0 210 L 500 210"/>
+                <!-- Séparation habité / terrasse-parking (à y=276 pour l'étage) -->
+                <path d="M 0 276 L 500 276"/>
                 <!-- Séparation Terrasse / Parking -->
-                <path d="M 401 210 L 401 381"/>
-                <!-- Mur bas du landing/escalier (forme L : sous escalier puis remontée) -->
-                <path d="M 0 76 L 302 76 L 302 0"/>
-                <!-- Mur haut interne de Chambre 1 (entre l'angle de SDB1 et le retour vers le landing) -->
-                <path d="M 302 76 L 346 76"/>
+                <path d="M 401 276 L 401 381"/>
+                <!-- Mur bas du landing/escalier (forme L) -->
+                <path d="M 0 99 L 302 99 L 302 0"/>
+                <!-- Petit mur entre l'angle SDB1 et le retour vers le landing -->
+                <path d="M 302 99 L 346 99"/>
                 <!-- Mur entre Chambre 2 et Bureau/SDB2 -->
-                <path d="M 160 76 L 160 210"/>
+                <path d="M 160 99 L 160 276"/>
                 <!-- Mur horizontal entre Bureau et SDB2 -->
-                <path d="M 160 124 L 254 124"/>
+                <path d="M 160 163 L 254 163"/>
                 <!-- Mur entre Bureau/SDB2 et SDB1 -->
-                <path d="M 254 76 L 254 210"/>
+                <path d="M 254 99 L 254 276"/>
                 <!-- Mur entre SDB1 et Chambre 1 -->
-                <path d="M 346 76 L 346 210"/>
+                <path d="M 346 99 L 346 276"/>
               </g>
 
               <!-- CHAMBRE 1 (forme L : bandeau haut-droit + zone droite) -->
               <g class="pzone bedroom1" onclick="pick('bedroom1', this)" onmouseenter="tip.textContent='Chambre 1'">
-                <polygon class="pz-fill" points="302,0 500,0 500,210 346,210 346,76 302,76 302,0" style="stroke:none"/>
-                <text class="pz-text" x="423" y="120" text-anchor="middle">Chambre 1</text>
+                <polygon class="pz-fill" points="302,0 500,0 500,276 346,276 346,99 302,99 302,0" style="stroke:none"/>
+                <text class="pz-text" x="423" y="155" text-anchor="middle">Chambre 1</text>
               </g>
 
               <!-- CHAMBRE 2 (gauche) -->
               <g class="pzone bedroom2" onclick="pick('bedroom2', this)" onmouseenter="tip.textContent='Chambre 2'">
-                <polygon class="pz-fill" points="0,76 160,76 160,210 0,210" style="stroke:none"/>
-                <text class="pz-text" x="80" y="148" text-anchor="middle">Chambre 2</text>
+                <polygon class="pz-fill" points="0,99 160,99 160,276 0,276" style="stroke:none"/>
+                <text class="pz-text" x="80" y="192" text-anchor="middle">Chambre 2</text>
               </g>
 
               <!-- BUREAU (top-center, petit) -->
               <g class="pzone office" onclick="pick('office', this)" onmouseenter="tip.textContent='Bureau'">
-                <polygon class="pz-fill" points="160,76 254,76 254,124 160,124" style="stroke:none"/>
-                <text class="pz-text" x="207" y="108" text-anchor="middle" style="font-size:14px">Bureau</text>
+                <polygon class="pz-fill" points="160,99 254,99 254,163 160,163" style="stroke:none"/>
+                <text class="pz-text" x="207" y="135" text-anchor="middle" style="font-size:13px">Bureau</text>
               </g>
 
               <!-- SALLE DE BAIN 2 (sous le bureau) -->
               <g class="pzone bath2" onclick="pick('bath2', this)" onmouseenter="tip.textContent='Salle de bain 2'">
-                <polygon class="pz-fill" points="160,124 254,124 254,210 160,210" style="stroke:none"/>
-                <text class="pz-text" x="207" y="160" text-anchor="middle" style="font-size:13px">Salle de</text>
-                <text class="pz-text" x="207" y="178" text-anchor="middle" style="font-size:13px">bain 2</text>
+                <polygon class="pz-fill" points="160,163 254,163 254,276 160,276" style="stroke:none"/>
+                <text class="pz-text" x="207" y="215" text-anchor="middle" style="font-size:12px">Salle de</text>
+                <text class="pz-text" x="207" y="231" text-anchor="middle" style="font-size:12px">bain 2</text>
               </g>
 
               <!-- SALLE DE BAIN 1 (entre SDB2 et Chambre 1) -->
               <g class="pzone bath1" onclick="pick('bath1', this)" onmouseenter="tip.textContent='Salle de bain 1'">
-                <polygon class="pz-fill" points="254,76 346,76 346,210 254,210" style="stroke:none"/>
-                <text class="pz-text" x="300" y="135" text-anchor="middle" style="font-size:13px">Salle de</text>
-                <text class="pz-text" x="300" y="153" text-anchor="middle" style="font-size:13px">bain 1</text>
+                <polygon class="pz-fill" points="254,99 346,99 346,276 254,276" style="stroke:none"/>
+                <text class="pz-text" x="300" y="180" text-anchor="middle" style="font-size:12px">Salle de</text>
+                <text class="pz-text" x="300" y="196" text-anchor="middle" style="font-size:12px">bain 1</text>
               </g>
 
             </svg>
