@@ -353,6 +353,9 @@ html,body {
 @media (min-width:1000px) and (min-height:900px) {
   .dark-block { flex:1 1 auto;height:auto;min-height:440px;max-height:620px; }
   .prereserver-wrap { margin-top:auto;padding-bottom:24px; }
+  /* Pull SVG up so it stays close to the Plan Interactif header */
+  .plan-svg-wrap { align-items:flex-start; }
+  .plan-inner { gap:8px; }
 }
 
 /* Large desktop — cap max width, allow taller plan */
