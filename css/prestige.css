@@ -360,7 +360,7 @@ html,body {
 
 /* Tablets & desktops with vertical room — plan fills space, button pinned to bottom */
 @media (min-width:1000px) and (min-height:900px) {
-  .dark-block { flex:1 1 auto;height:auto;min-height:440px;max-height:620px;margin-top:64px; }
+  .dark-block { flex:1 1 auto;height:auto;min-height:440px;max-height:620px;margin-top:40px; }
   .prereserver-wrap { margin-top:auto;padding-bottom:24px; }
   /* Pull SVG up so it stays close to the Plan Interactif header */
   .plan-svg-wrap { align-items:flex-start; }
@@ -371,7 +371,7 @@ html,body {
 @media (min-width:1024px) and (max-width:1400px) and (min-height:1100px),
        (min-width:1024px) and (max-width:1400px) and (hover:none) {
   .plan-svg { max-width:520px; }
-  .dark-block { margin-top:64px; }
+  .dark-block { margin-top:40px; }
 }
 
 /* Large desktop — cap max width, allow taller plan */
