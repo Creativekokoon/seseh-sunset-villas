@@ -12,8 +12,45 @@
     "distance": "Vous êtes ici"
   },
   {
-    "id": "bien-etre-sport",
+    "id": "river-rice-fields-view",
     "number": 2,
+    "name": "Rivière & Rizières",
+    "position": { "top": "86.79%", "left": "75.06%" },
+    "lineHeight": 70,
+    "category": "nature",
+    "image": "../assets/images/seseh/riziere-seseh.jpg",
+    "description": "Rizières balinaises emblématiques et vues sur la rivière à votre porte.",
+    "distance": "Adjacent"
+  },
+  {
+    "id": "seseh-beach",
+    "number": 3,
+    "name": "Plage de Seseh",
+    "position": { "top": "47.5%", "left": "73.5%" },
+    "lineHeight": 110,
+    "category": "beach",
+    "image": "../assets/images/seseh/poi/seseh-beach.jpg",
+    "description": "Plage de sable noir paisible, connue pour son atmosphère sereine et ses couchers de soleil exceptionnels.",
+    "distance": "5 min"
+  },
+  {
+    "id": "restaurants-beach-clubs",
+    "number": 4,
+    "name": "Restaurants & Cafés",
+    "position": { "top": "48.3%", "left": "57.9%" },
+    "lineHeight": 75,
+    "category": "lifestyle",
+    "description": "Sélection de tables et cafés à proximité immédiate.",
+    "distance": "5 à 10 min",
+    "destinations": [
+      { "name": "Café local", "description": "Brunch & specialty coffee", "icon": "coffee", "image": "../assets/images/seseh/destinations/cafe.jpg" },
+      { "name": "French Bakery", "description": "Pâtisserie française authentique", "icon": "bakery", "image": "../assets/images/seseh/destinations/bakery.jpg" },
+      { "name": "Restaurant signature", "description": "Cuisine indo-fusion", "icon": "restaurant", "image": "../assets/images/seseh/destinations/resto.jpg" }
+    ]
+  },
+  {
+    "id": "bien-etre-sport",
+    "number": 5,
     "name": "Bien-être & Sport",
     "position": { "top": "52%", "left": "63%" },
     "lineHeight": 60,
@@ -27,43 +64,6 @@
       { "name": "Gym", "description": "Salle de sport complète", "icon": "gym", "image": "../assets/images/seseh/destinations/gym.jpg" },
       { "name": "Spa", "description": "Massages & soins traditionnels", "icon": "spa", "image": "../assets/images/seseh/destinations/spa.jpg" },
       { "name": "Hôtel 5★ Anantara Dragon Seseh", "description": "Hôtel de luxe (en construction)", "icon": "hotel", "image": "../assets/images/seseh/destinations/anantara.jpg" }
-    ]
-  },
-  {
-    "id": "seseh-beach",
-    "number": 3,
-    "name": "Plage de Seseh",
-    "position": { "top": "47.5%", "left": "73.5%" },
-    "lineHeight": 80,
-    "category": "beach",
-    "image": "../assets/images/seseh/poi/seseh-beach.jpg",
-    "description": "Plage de sable noir paisible, connue pour son atmosphère sereine et ses couchers de soleil exceptionnels.",
-    "distance": "5 min"
-  },
-  {
-    "id": "river-rice-fields-view",
-    "number": 4,
-    "name": "Rivière & Rizières",
-    "position": { "top": "86.79%", "left": "75.06%" },
-    "lineHeight": 70,
-    "category": "nature",
-    "image": "../assets/images/seseh/riziere-seseh.jpg",
-    "description": "Rizières balinaises emblématiques et vues sur la rivière à votre porte.",
-    "distance": "Adjacent"
-  },
-  {
-    "id": "restaurants-beach-clubs",
-    "number": 5,
-    "name": "Restaurants & Cafés",
-    "position": { "top": "48.3%", "left": "57.9%" },
-    "lineHeight": 40,
-    "category": "lifestyle",
-    "description": "Sélection de tables et cafés à proximité immédiate.",
-    "distance": "5 à 10 min",
-    "destinations": [
-      { "name": "Café local", "description": "Brunch & specialty coffee", "icon": "coffee", "image": "../assets/images/seseh/destinations/cafe.jpg" },
-      { "name": "French Bakery", "description": "Pâtisserie française authentique", "icon": "bakery", "image": "../assets/images/seseh/destinations/bakery.jpg" },
-      { "name": "Restaurant signature", "description": "Cuisine indo-fusion", "icon": "restaurant", "image": "../assets/images/seseh/destinations/resto.jpg" }
     ]
   },
   {
