@@ -18,6 +18,25 @@
     }
     /* Match interactive labels with the Escalier label (14px) */
     #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
+    /* Loft only — uniform stroke width across all map lines, no flicker on tap */
+    #f0 .pz-fill, #f1 .pz-fill {
+      stroke-width: 1;
+      transition: fill 0.15s, stroke 0.15s;
+    }
+    #f0 .pzone:hover .pz-fill, #f1 .pzone:hover .pz-fill,
+    #f0 .pzone.selected .pz-fill, #f1 .pzone.selected .pz-fill {
+      stroke-width: 1;
+    }
+    /* Touch devices: avoid sticky hover state after tap */
+    @media (hover: none) {
+      #f0 .pzone:hover .pz-fill, #f1 .pzone:hover .pz-fill {
+        fill: rgba(244,240,233,0.58);
+        stroke: rgba(61,57,52,0.95);
+      }
+      #f0 .pzone.terrace:hover .pz-fill, #f1 .pzone.bath2:hover .pz-fill {
+        fill: rgba(236,233,229,0.74);
+      }
+    }
     .dark-block.no-plan {
       grid-template-columns: 1fr 1fr;
     }
@@ -140,7 +159,7 @@
 
           <div class="plan-svg-wrap">
 
-            <svg id="f0" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320">
+            <svg id="f0" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 502 322">
 
               <!-- BACKGROUND : non-interactive zones (Escalier + Douche + Jacuzzi) -->
               <g id="f0-shell" pointer-events="none">
@@ -228,7 +247,7 @@
 
             </svg>
 
-            <svg id="f1" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320" style="display:none">
+            <svg id="f1" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 502 322" style="display:none">
 
               <!-- BACKGROUND : non-interactive zones -->
               <g id="f1-shell" pointer-events="none">
