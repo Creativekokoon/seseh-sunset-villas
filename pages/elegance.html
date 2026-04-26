@@ -18,25 +18,6 @@
     }
     /* Match interactive labels with the Escalier label (14px) */
     #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
-    /* Loft only — uniform stroke width across all map lines, no flicker on tap */
-    #f0 .pz-fill, #f1 .pz-fill {
-      stroke-width: 1;
-      transition: fill 0.15s, stroke 0.15s;
-    }
-    #f0 .pzone:hover .pz-fill, #f1 .pzone:hover .pz-fill,
-    #f0 .pzone.selected .pz-fill, #f1 .pzone.selected .pz-fill {
-      stroke-width: 1;
-    }
-    /* Touch devices: avoid sticky hover state after tap */
-    @media (hover: none) {
-      #f0 .pzone:hover .pz-fill, #f1 .pzone:hover .pz-fill {
-        fill: rgba(244,240,233,0.58);
-        stroke: rgba(61,57,52,0.95);
-      }
-      #f0 .pzone.terrace:hover .pz-fill, #f1 .pzone.bath2:hover .pz-fill {
-        fill: rgba(236,233,229,0.74);
-      }
-    }
     .dark-block.no-plan {
       grid-template-columns: 1fr 1fr;
     }
@@ -223,26 +204,14 @@
 
               <!-- LIVING -->
               <g class="pzone living" onclick="pick('living', this)" onmouseenter="tip.textContent='Living'">
-                <polygon class="pz-fill" points="141.8,0 348.5,0 348.5,320 183,320 183,157.8 55.8,157.8 55.8,54.6 141.8,54.6"
-                         style="stroke:none"/>
+                <polygon class="pz-fill" points="141.8,0 348.5,0 348.5,320 183,320 183,157.8 55.8,157.8 55.8,54.6 141.8,54.6"/>
                 <text class="pz-text" x="245" y="105" text-anchor="middle">Living</text>
               </g>
 
               <!-- CUISINE -->
               <g class="pzone kitchen" onclick="pick('kitchen', this)" onmouseenter="tip.textContent='Cuisine'">
-                <polygon class="pz-fill" points="0,157.8 183,157.8 183,320 0,320"
-                         style="stroke:none"/>
+                <polygon class="pz-fill" points="0,157.8 183,157.8 183,320 0,320"/>
                 <text class="pz-text" x="91" y="245" text-anchor="middle">Cuisine</text>
-              </g>
-
-              <!-- OUTLINE OVERLAY -->
-              <g pointer-events="none" fill="none">
-                <path d="M 141.8 0 L 348.5 0 L 348.5 320 L 0 320 L 0 157.8 L 55.8 157.8 L 55.8 54.6 L 141.8 54.6 Z"
-                      stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
-                <line x1="55.8" y1="157.8" x2="183" y2="157.8"
-                      stroke="rgba(61,57,52,0.55)" stroke-width="0.7" stroke-dasharray="4 3"/>
-                <line x1="183" y1="157.8" x2="183" y2="320"
-                      stroke="rgba(61,57,52,0.55)" stroke-width="0.7" stroke-dasharray="4 3"/>
               </g>
 
             </svg>
