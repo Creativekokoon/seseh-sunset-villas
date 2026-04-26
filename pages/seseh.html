@@ -550,12 +550,6 @@
   const overlayName = document.getElementById('overlayName');
   const overlayDesc = document.getElementById('overlayDesc');
   const overlayClose = document.getElementById('overlayClose');
-  const destOverlay = document.getElementById('destOverlay');
-  const destOverlayTag = document.getElementById('destOverlayTag');
-  const destOverlayTitle = document.getElementById('destOverlayTitle');
-  const destOverlayDesc = document.getElementById('destOverlayDesc');
-  const destOverlayLink = document.getElementById('destOverlayLink');
-  const destOverlayClose = document.getElementById('destOverlayClose');
 
   let pois = [];
   let activeId = null;
@@ -862,34 +856,6 @@
     if (e.target === overlay) closeOverlay();
   });
 
-  // ── Destination overlay (real venue + link button) ──
-  function openDestOverlay(dest){
-    if (!dest) return;
-    const venue = dest.venue && dest.venue.trim();
-    if (venue){
-      destOverlayTag.textContent = dest.name || '';
-      destOverlayTag.style.display = '';
-      destOverlayTitle.textContent = venue;
-    } else {
-      destOverlayTag.style.display = 'none';
-      destOverlayTitle.textContent = dest.name || '';
-    }
-    destOverlayDesc.textContent = dest.description || '';
-    if (dest.link){
-      destOverlayLink.href = dest.link;
-      destOverlayLink.style.display = '';
-    } else {
-      destOverlayLink.style.display = 'none';
-    }
-    destOverlay.classList.add('visible');
-  }
-  function closeDestOverlay(){
-    destOverlay.classList.remove('visible');
-  }
-  destOverlayClose.addEventListener('click', closeDestOverlay);
-  destOverlay.addEventListener('click', e => {
-    if (e.target === destOverlay) closeDestOverlay();
-  });
 
   // ── Click outside POI/sidebar falls back to Seseh Sunset Villas ──
   // (overlay clicks ignored — closing an overlay should preserve the active POI)
