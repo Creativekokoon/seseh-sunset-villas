@@ -845,8 +845,9 @@
   });
 
   // ── Click outside POI/sidebar falls back to Seseh Sunset Villas ──
+  // (lightbox clicks ignored — closing the lightbox should preserve the active POI)
   document.addEventListener('click', e => {
-    if (e.target.closest('.poi') || e.target.closest('.poi-item')) return;
+    if (e.target.closest('.poi') || e.target.closest('.poi-item') || e.target.closest('.img-overlay')) return;
     fallbackToMain();
   });
 
