@@ -273,4 +273,30 @@
   overlay.addEventListener('click', closeNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 
+  // ── Villa-to-villa prev/next arrows ──
+  const villaOrder = ['elegance', 'prestige', 'signature', 'exception'];
+  const villaLabels = {
+    elegance: 'Élégance',
+    prestige: 'Prestige',
+    signature: 'Signature',
+    exception: 'Exception',
+  };
+  const currentVilla = villaOrder.find(v => path.includes(v + '.html'));
+  if (currentVilla) {
+    const idx = villaOrder.indexOf(currentVilla);
+    const prev = villaOrder[(idx - 1 + villaOrder.length) % villaOrder.length];
+    const next = villaOrder[(idx + 1) % villaOrder.length];
+    const arrowsHTML = `
+      <a class="villa-nav-arrow villa-nav-prev" href="${depth}pages/${prev}.html" aria-label="Villa précédente: ${villaLabels[prev]}">
+        <span class="van-arrow">←</span>
+        <span class="van-label">${villaLabels[prev]}</span>
+      </a>
+      <a class="villa-nav-arrow villa-nav-next" href="${depth}pages/${next}.html" aria-label="Villa suivante: ${villaLabels[next]}">
+        <span class="van-label">${villaLabels[next]}</span>
+        <span class="van-arrow">→</span>
+      </a>
+    `;
+    document.body.insertAdjacentHTML('beforeend', arrowsHTML);
+  }
+
 })();
