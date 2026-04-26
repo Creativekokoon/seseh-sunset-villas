@@ -286,14 +286,67 @@
     const idx = villaOrder.indexOf(currentVilla);
     const prev = villaOrder[(idx - 1 + villaOrder.length) % villaOrder.length];
     const next = villaOrder[(idx + 1) % villaOrder.length];
+    const arrowsCSS = `
+      .villa-nav-arrow,
+      .villa-nav-arrow:visited,
+      .villa-nav-arrow:active {
+        position:fixed; bottom:28px; z-index:15;
+        display:flex; align-items:center; gap:12px;
+        text-decoration:none;
+        font-family:'the-seasons',Georgia,serif;
+        font-size:0.92rem; font-weight:500; letter-spacing:0.08em;
+        color:rgba(52,48,44,0.88);
+        transition:color 0.25s, transform 0.25s;
+      }
+      .villa-nav-prev { left:28px; }
+      .villa-nav-next { right:28px; }
+      .van-arrow {
+        width:36px; height:36px;
+        border:1px solid rgba(52,48,44,0.4);
+        border-radius:50%;
+        display:flex; align-items:center; justify-content:center;
+        color:rgba(52,48,44,0.78);
+        background:transparent;
+        transition:border-color 0.25s, color 0.25s, background 0.25s, transform 0.25s;
+      }
+      .van-arrow svg { width:20px; height:20px; display:block; }
+      .villa-nav-arrow:hover { color:rgba(52,48,44,0.98); }
+      .villa-nav-arrow:hover .van-arrow {
+        border-color:#c8a86a;
+        color:#c8a86a;
+      }
+      .villa-nav-prev:hover .van-arrow { transform:translateX(-2px); }
+      .villa-nav-next:hover .van-arrow { transform:translateX(2px); }
+      @media (max-width:600px) {
+        .villa-nav-arrow { bottom:18px; gap:8px; font-size:0.76rem; }
+        .villa-nav-prev { left:16px; }
+        .villa-nav-next { right:16px; }
+        .van-arrow { width:32px; height:32px; }
+        .van-arrow svg { width:17px; height:17px; }
+        .van-label { display:none; }
+      }
+    `;
+    const styleEl = document.createElement('style');
+    styleEl.textContent = arrowsCSS;
+    document.head.appendChild(styleEl);
     const arrowsHTML = `
       <a class="villa-nav-arrow villa-nav-prev" href="${depth}pages/${prev}.html" aria-label="Villa précédente: ${villaLabels[prev]}">
-        <span class="van-arrow">←</span>
+        <span class="van-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="20" y1="12" x2="4" y2="12"/>
+            <polyline points="8 7 4 12 8 17"/>
+          </svg>
+        </span>
         <span class="van-label">${villaLabels[prev]}</span>
       </a>
       <a class="villa-nav-arrow villa-nav-next" href="${depth}pages/${next}.html" aria-label="Villa suivante: ${villaLabels[next]}">
         <span class="van-label">${villaLabels[next]}</span>
-        <span class="van-arrow">→</span>
+        <span class="van-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="12" x2="20" y2="12"/>
+            <polyline points="16 7 20 12 16 17"/>
+          </svg>
+        </span>
       </a>
     `;
     document.body.insertAdjacentHTML('beforeend', arrowsHTML);
