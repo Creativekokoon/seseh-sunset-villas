@@ -13,6 +13,18 @@
     .plan-coming { flex:1; display:flex; align-items:center; justify-content:center; font-family:'Inter','Helvetica Neue',Arial,sans-serif; font-size:0.55rem; letter-spacing:0.22em; text-transform:uppercase; color:rgba(83,78,72,0.38); }
     .features-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 24px; padding:0 16px; }
     .feature-item { font-family:'Inter','Helvetica Neue',Arial,sans-serif; font-size:0.62rem; letter-spacing:0.12em; color:rgba(57,52,47,0.72); padding:6px 0; border-bottom:1px solid rgba(62,58,54,0.08); }
+    /* Match plan size with Élégance / Prestige across breakpoints */
+    .plan-svg { max-width: 720px; }
+    @media (min-width:1024px) and (min-height:900px) {
+      .plan-svg { max-width: 760px; }
+    }
+    /* iPad Pro 13" portrait + landscape — constrain to header width */
+    @media (min-width:1024px) and (max-width:1400px) and (min-height:1100px),
+           (min-width:1024px) and (max-width:1400px) and (hover:none) {
+      .plan-svg { max-width: 520px; }
+    }
+    /* Match interactive labels (slightly larger to compensate for taller viewBox 500×381) */
+    #f0 .pz-text, #f1 .pz-text { font-size: 16px; }
   </style>
 </head>
 <body>
@@ -76,19 +88,16 @@
             <!-- RDC -->
             <svg id="f0" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 381">
 
-              <!-- BACKGROUND : non-interactive zones (Toilettes + Escalier + Piscine + Garden + Parking) -->
               <g id="f0-shell" pointer-events="none">
-
-                <!-- TOILETTES (top-left) -->
-                <rect x="2" y="0" width="75" height="54"
-                      fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
-                <text x="39.5" y="32" text-anchor="middle"
+                <rect x="0" y="0" width="77" height="54"
+                      fill="rgba(225,222,215,0.5)" stroke="none"/>
+                <text x="38.5" y="32" text-anchor="middle"
                       font-family="'the-seasons', Georgia, serif" font-size="10"
-                      letter-spacing="0.04em" fill="rgba(52,48,44,0.85)">Toilettes</text>
+                      letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.85)">Toilettes</text>
 
-                <!-- ESCALIER (top-center) -->
                 <rect x="77" y="0" width="202" height="54"
-                      fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                      fill="rgba(225,222,215,0.5)" stroke="none"/>
                 <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
                   <line x1="100" y1="0" x2="100" y2="54"/>
                   <line x1="123" y1="0" x2="123" y2="54"/>
@@ -101,17 +110,15 @@
                 </g>
                 <text x="178" y="32" text-anchor="middle"
                       font-family="'the-seasons', Georgia, serif" font-size="12"
-                      letter-spacing="0.04em" fill="rgba(52,48,44,0.85)">Escalier</text>
-
+                      letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.85)">Escalier</text>
               </g>
 
-              <!-- TERRASSE (cliquable) -->
               <g class="pzone terrace" onclick="pick('terrace', this)" onmouseenter="tip.textContent='Terrasse'">
                 <rect class="pz-fill" x="0" y="210" width="500" height="171"/>
                 <text class="pz-text" x="250" y="232" text-anchor="middle">Terrasse</text>
               </g>
 
-              <!-- Terrace decorative deck lines -->
               <g pointer-events="none" fill="none">
                 <g stroke="rgba(61,57,52,0.25)" stroke-width="0.5">
                   <line x1="0" y1="222" x2="500" y2="222"/>
@@ -119,19 +126,22 @@
                 </g>
               </g>
 
-              <!-- PISCINE (decorative) -->
               <g pointer-events="none">
-                <rect x="0.5" y="252" width="209" height="129"
-                      fill="rgba(178,210,225,0.55)" stroke="rgba(95,135,160,0.85)" stroke-width="1"/>
-                <text x="105" y="320" text-anchor="middle"
+                <rect x="0" y="252" width="209" height="129"
+                      fill="rgba(178,210,225,0.55)" stroke="none"/>
+                <path d="M 20 275 Q 30 271 40 275 Q 50 279 60 275 Q 70 271 80 275 Q 90 279 100 275 Q 110 271 120 275 Q 130 279 140 275 Q 150 271 160 275 Q 170 279 180 275"
+                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                <path d="M 20 289 Q 30 285 40 289 Q 50 293 60 289 Q 70 285 80 289 Q 90 293 100 289 Q 110 285 120 289 Q 130 293 140 289 Q 150 285 160 289 Q 170 293 180 289"
+                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                <text x="104.5" y="320" text-anchor="middle"
                       font-family="'the-seasons', Georgia, serif" font-size="14"
-                      letter-spacing="0.04em" fill="rgba(50,80,100,0.9)">Piscine</text>
+                      letter-spacing="0.04em"
+                      fill="rgba(50,80,100,0.9)">Piscine</text>
               </g>
 
-              <!-- GARDEN (decorative) -->
               <g pointer-events="none">
                 <rect x="257" y="252" width="137" height="129"
-                      fill="rgba(190,205,180,0.5)" stroke="rgba(110,135,100,0.75)" stroke-width="1"/>
+                      fill="rgba(190,205,180,0.5)" stroke="none"/>
                 <g fill="rgba(110,135,100,0.55)" stroke="none">
                   <circle cx="278" cy="272" r="2.5"/>
                   <circle cx="305" cy="285" r="2.5"/>
@@ -145,39 +155,46 @@
                 </g>
                 <text x="325.5" y="320" text-anchor="middle"
                       font-family="'the-seasons', Georgia, serif" font-size="14"
-                      letter-spacing="0.04em" fill="rgba(60,80,55,0.9)">Garden</text>
+                      letter-spacing="0.04em"
+                      fill="rgba(60,80,55,0.9)">Garden</text>
               </g>
 
-              <!-- PARKING (decorative) -->
               <g pointer-events="none">
                 <rect x="394" y="252" width="106" height="129"
-                      fill="rgba(225,222,215,0.65)" stroke="rgba(61,57,52,0.85)" stroke-width="1"/>
+                      fill="rgba(225,222,215,0.65)" stroke="none"/>
                 <text x="447" y="320" text-anchor="middle"
                       font-family="'the-seasons', Georgia, serif" font-size="14"
-                      letter-spacing="0.04em" fill="rgba(52,48,44,0.85)">Parking</text>
+                      letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.85)">Parking</text>
               </g>
 
-              <!-- KITCHEN (cliquable, moitié gauche) -->
               <g class="pzone kitchen" onclick="pick('kitchen', this)" onmouseenter="tip.textContent='Cuisine'">
-                <polygon class="pz-fill" points="2,54 250,54 250,210 2,210" style="stroke:none"/>
-                <text class="pz-text" x="126" y="135" text-anchor="middle">Kitchen</text>
+                <polygon class="pz-fill" points="0,54 250,54 250,210 0,210" style="stroke:none"/>
+                <text class="pz-text" x="125" y="135" text-anchor="middle">Kitchen</text>
               </g>
 
-              <!-- DINING/LIVING (cliquable, moitié droite + bandeau haut-droit en L à côté de l'escalier) -->
               <g class="pzone living" onclick="pick('living', this)" onmouseenter="tip.textContent='Dining / Living'">
                 <polygon class="pz-fill" points="279,0 500,0 500,210 250,210 250,54 279,54 279,0" style="stroke:none"/>
                 <text class="pz-text" x="389" y="120" text-anchor="middle">Dining /</text>
                 <text class="pz-text" x="389" y="138" text-anchor="middle">Living</text>
               </g>
 
-              <!-- OUTLINE OVERLAY : périmètre extérieur + murs internes -->
-              <g pointer-events="none" fill="none">
-                <path d="M 2 0 L 500 0 L 500 210 L 2 210 Z M 77 0 L 77 54 M 2 54 L 279 54 M 279 0 L 279 54"
-                      stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
-                <!-- Dashed separator: Kitchen | Dining/Living -->
-                <line x1="250" y1="54" x2="250" y2="210"
-                      stroke="rgba(61,57,52,0.55)" stroke-width="0.7" stroke-dasharray="4 3"/>
+              <!-- TOUS les murs dans UN seul groupe = épaisseur identique partout -->
+              <g pointer-events="none" fill="none"
+                 stroke="rgba(61,57,52,0.95)" stroke-width="1" stroke-linecap="square">
+                <path d="M 0 0 L 500 0 L 500 210 L 0 210 Z"/>
+                <path d="M 77 0 L 77 54"/>
+                <path d="M 0 54 L 279 54"/>
+                <path d="M 279 0 L 279 54"/>
+                <path d="M 0 210 L 0 381 L 500 381 L 500 210"/>
+                <path d="M 0 252 L 209 252 L 209 381"/>
+                <path d="M 257 381 L 257 252 L 394 252 L 394 381"/>
+                <path d="M 394 252 L 500 252"/>
               </g>
+
+              <line x1="250" y1="54" x2="250" y2="210"
+                    stroke="rgba(61,57,52,0.55)" stroke-width="0.7" stroke-dasharray="4 3"
+                    pointer-events="none"/>
 
             </svg>
 
