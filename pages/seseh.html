@@ -248,6 +248,139 @@
       max-height:160px;opacity:1;margin-top:10px;
     }
 
+    /* ── DESTINATIONS list (sidebar + map popup) ── */
+    .poi-item-destinations{
+      max-height:0;overflow:hidden;opacity:0;
+      transition:max-height 0.45s ease,opacity 0.35s ease,margin-top 0.45s ease;
+    }
+    .poi-item.active .poi-item-destinations{
+      max-height:600px;opacity:1;margin-top:10px;
+    }
+
+    /* Sidebar destination items — light theme */
+    .poi-item-destinations .dest-item{
+      display:flex;gap:12px;
+      padding:10px 4px;
+      align-items:center;
+      cursor:default;
+      transition:background 0.2s ease;
+    }
+    .poi-item-destinations .dest-item--clickable{cursor:pointer}
+    .poi-item-destinations .dest-item:not(:last-child){
+      border-bottom:0.5px solid rgba(36,32,28,0.08);
+    }
+    .poi-item-destinations .dest-item--clickable:hover{
+      background:rgba(201,168,106,0.08);
+    }
+    .poi-item-destinations .dest-item--clickable:hover .dest-arrow{
+      color:var(--gold);transform:translateX(2px);
+    }
+    .poi-item-destinations .dest-name{color:rgba(36,32,28,0.92)}
+    .poi-item-destinations .dest-description{color:rgba(36,32,28,0.55)}
+    .poi-item-destinations .dest-arrow{color:rgba(201,168,106,0.65)}
+
+    /* Generic destination styles (used in both sidebar + popup) */
+    .dest-icon{
+      width:28px;height:28px;flex-shrink:0;
+      color:var(--gold);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .dest-icon svg{
+      width:100%;height:100%;
+      stroke:currentColor;stroke-width:1.4;
+      fill:none;
+      stroke-linecap:round;stroke-linejoin:round;
+    }
+    .dest-info{flex:1;min-width:0}
+    .dest-name{
+      font-family:var(--sans);
+      font-size:12px;font-weight:500;
+      margin-bottom:2px;
+    }
+    .dest-description{
+      font-family:var(--sans);
+      font-size:10px;
+      letter-spacing:0.02em;
+    }
+    .dest-arrow{
+      font-size:14px;
+      flex-shrink:0;
+      transition:color 0.2s ease,transform 0.2s ease;
+    }
+
+    /* ── DESTINATIONS popup (map, desktop only) ── */
+    .dest-popup{
+      position:fixed;z-index:20;
+      width:320px;max-height:520px;
+      overflow-y:auto;
+      background:rgba(15,15,15,0.97);
+      border:1px solid rgba(201,168,106,0.5);
+      border-radius:8px;
+      padding:18px 20px;
+      color:#fff;
+      box-shadow:0 8px 32px rgba(0,0,0,0.4);
+      opacity:0;transform:translateY(8px);
+      transition:opacity 0.28s ease,transform 0.28s ease;
+      pointer-events:auto;
+    }
+    .dest-popup.visible{opacity:1;transform:translateY(0)}
+    .dest-popup-close{
+      position:absolute;top:8px;right:10px;
+      background:rgba(0,0,0,0.4);border:none;
+      width:24px;height:24px;border-radius:50%;
+      color:rgba(255,252,248,0.85);
+      font-size:0.95rem;line-height:1;
+      cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:background 0.2s,color 0.2s;
+    }
+    .dest-popup-close:hover{background:rgba(0,0,0,0.7);color:#fff}
+    .dest-popup-title{
+      font-family:var(--serif);
+      font-size:1rem;font-weight:500;
+      letter-spacing:0.04em;text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:4px;padding-right:24px;
+    }
+    .dest-popup-dist{
+      font-family:var(--sans);
+      font-size:0.6rem;font-weight:500;
+      letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--gold);opacity:0.85;
+      margin-bottom:8px;
+    }
+    .dest-popup-desc{
+      font-family:var(--sans);
+      font-size:0.72rem;line-height:1.5;
+      color:rgba(255,255,255,0.75);
+      margin-bottom:12px;
+    }
+    .dest-popup-sep{
+      height:1px;background:rgba(201,168,106,0.2);
+      margin:0 -4px 6px;
+    }
+    /* Popup destination items — dark theme */
+    .dest-popup .dest-item{
+      display:flex;gap:14px;
+      padding:10px 4px;
+      align-items:center;
+      cursor:default;
+      transition:background 0.2s ease;
+    }
+    .dest-popup .dest-item--clickable{cursor:pointer}
+    .dest-popup .dest-item:not(:last-child){
+      border-bottom:0.5px solid rgba(255,255,255,0.06);
+    }
+    .dest-popup .dest-item--clickable:hover{
+      background:rgba(201,168,106,0.06);
+    }
+    .dest-popup .dest-item--clickable:hover .dest-arrow{
+      color:var(--gold);transform:translateX(2px);
+    }
+    .dest-popup .dest-name{color:#fff}
+    .dest-popup .dest-description{color:rgba(255,255,255,0.55)}
+    .dest-popup .dest-arrow{color:rgba(201,168,106,0.6)}
+
     /* Featured sidebar item (Seseh Sunset Villas) */
     .poi-item.featured{
       background:var(--anthracite);
@@ -411,6 +544,14 @@
         margin-top:12px;
         transition:none;
       }
+      /* Destinations list always visible on active item (mobile) */
+      .poi-item.active .poi-item-destinations{
+        max-height:none;opacity:1;overflow:visible;
+        margin-top:12px;
+        transition:none;
+      }
+      .poi-item-destinations .dest-name{font-size:13px}
+      .poi-item-destinations .dest-description{font-size:11px}
 
       /* Featured (Seseh Sunset Villas) */
       .poi-item.featured{
@@ -485,6 +626,19 @@
   let pois = [];
   let activeId = null;
 
+  // ── Destination icons (Lucide-style outline, 24x24 viewBox) ──
+  const DEST_ICONS = {
+    coffee:     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>',
+    bakery:     '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5c-3 0-5 2-5 5 0 1.5.5 2.5 1.5 3.5L12 20l3.5-7c1-1 1.5-2 1.5-3.5 0-3-2-5-5-5z"/><path d="M9 9.5c.5-.5 1-1 2-1"/><path d="M15 9.5c-.5-.5-1-1-2-1"/></svg>',
+    restaurant: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>',
+    yoga:       '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2"/><path d="M12 7v5"/><path d="M5 11l7 1 7-1"/><path d="M9 22l3-10 3 10"/></svg>',
+    padel:      '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="10" r="6"/><line x1="13.5" y1="14" x2="20" y2="20.5"/><circle cx="20" cy="20.5" r="0.8" fill="currentColor"/></svg>',
+    pilates:    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h18"/><circle cx="6" cy="12" r="2"/><circle cx="18" cy="12" r="2"/><path d="M9 8c0-1 1-2 3-2s3 1 3 2"/><path d="M9 16c0 1 1 2 3 2s3-1 3-2"/></svg>',
+    gym:        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v16M18 4v16M2 8v8M22 8v8M6 12h12"/></svg>',
+    spa:        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c-3-3-6-6-6-10a6 6 0 0 1 12 0c0 4-3 7-6 10z"/><path d="M12 14c-2-2-2-5 0-7 2 2 2 5 0 7z"/></svg>',
+    hotel:      '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h2M13 9h2M9 13h2M13 13h2M9 17h2M13 17h2"/></svg>'
+  };
+
   const CAT_ICONS = {
     transport: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>',
     beach:     '<svg viewBox="0 0 512 512" fill="currentColor" aria-hidden="true"><path d="M469.53,341.77c-13.51,1.14-27.28.5-40.54-2.33-6.27-1.34-10.28-2.52-16.01-4.74-5.74-2.23-11.3-4.9-16.62-7.99-10.19-5.92-18.52-12.64-25.7-20.36-7.52-8.09-13.94-17.19-19.06-26.98-.57-1.1-1.11-2.21-1.67-3.31-.08-.15-.14-.27-.2-.39-.01-.03-.03-.06-.04-.09-.25-.56-.5-1.12-.75-1.68-1.1-2.51-2.11-5.06-3.03-7.64-1.76-4.93-3.2-9.97-4.29-15.09-.27-1.29-.53-2.59-.75-3.9-.04-.25-.26-1.65-.38-2.37-.08-.74-.28-2.42-.32-2.82-.14-1.43-.25-2.86-.32-4.3-.12-2.27-.17-4.55-.14-6.82.02-1.27.06-2.53.13-3.79.03-.48.07-.97.09-1.45.29-2.37.6-4.73,1.06-7.07.21-1.07.43-2.14.68-3.2.12-.53.27-1.05.39-1.58.01-.05.02-.09.03-.13.02-.05.03-.09.05-.14.99-3.05,2.14-5.99,3.31-8.98.05-.12.09-.23.13-.32.29-.57.57-1.14.87-1.7.88-1.67,1.83-3.31,2.83-4.91.26-.42.53-.83.81-1.25,1.09-1.18,1.97-2.61,3.01-3.85.59-.7,1.22-1.61,1.91-2.35.18-.12.39-.28.56-.44.78-.72,1.54-1.46,2.33-2.17,1.05-.93,2.13-1.83,3.23-2.7.55-.43,1.11-.84,1.67-1.27.02-.02.04-.03.06-.05.04-.02.08-.04.12-.06,2.74-1.46,5.27-3.23,8.09-4.58.62-.3,1.24-.57,1.87-.86.15-.07.25-.12.33-.15.06-.02.11-.04.17-.06,1.29-.47,2.57-.93,3.88-1.34,2.94-.92,5.95-1.63,8.99-2.13,1.25-.21,2.52-.38,3.78-.51-.16.04,2.86-.13,3.32-.13,3.16-.05,6.32.11,9.46.5,6.54.79,11.43,2.15,17.15,4.53,5.89,2.45,11.41-2.48,14.55-7.03,2.98-4.32,6.8-13.08,2.72-17.96-20.51-24.48-51.27-36.03-82.81-35.29-34.06.8-65.21,13.9-90.94,36.07-14.18,12.22-26.4,26.54-36.87,42.02-10.58,15.65-18.02,33.18-25.42,50.48-1.64,3.82-3.27,7.65-4.95,11.45-.93,2.11-1.88,4.21-2.84,6.31-.21.46-.43.92-.64,1.37-.05.08-1.25,2.56-1.47,3.01-1.94,3.9-3.99,7.75-6.19,11.51-.92,1.58-1.87,3.15-2.85,4.7-.55.88-1.13,1.74-1.7,2.6-.23.32-1.02,1.47-1.4,1.98-2.32,3.15-4.8,6.18-7.42,9.09-.73.81-1.48,1.6-2.22,2.39-.02.03-.04.05-.07.07-.14.13-.3.28-.49.45-1.6,1.48-3.15,2.99-4.79,4.43-1.63,1.43-3.31,2.82-5.01,4.17-.68.54-1.37,1.07-2.07,1.59.15-.11-1.05.76-1.7,1.25-.63.42-2.04,1.4-1.88,1.29-.73.48-1.46.95-2.19,1.42-2.02,1.28-4.08,2.49-6.17,3.65-15.74,8.72-34.02,13.84-53.08,13.89-20.47.05-40.37-4.97-58.28-14.88-6.03-3.34-13.12,3.94-15.71,8.72-2.45,4.53-5.91,14.53.3,17.97,32.2,17.82,71.88,21.53,106.58,8.96,35.71-12.94,63.45-39.4,80.8-72.92,8.49-16.4,15.07-33.65,22.77-50.41-.02.04.46-.98.8-1.73.35-.73,1.01-2.1.99-2.05.91-1.86,1.85-3.7,2.81-5.53,2.14-4.06,4.41-8.05,6.86-11.93.61-.97,1.24-1.93,1.88-2.89.02-.02.03-.04.04-.06,1.25-1.74,2.5-3.47,3.79-5.18,2.65-3.5,5.41-6.91,8.29-10.23,1.3-1.5,2.62-2.97,3.97-4.43.68-.74,1.37-1.47,2.07-2.2.1-.1.2-.2.33-.32,3.14-3.09,6.35-6.1,9.69-8.97,3.17-2.71,6.44-5.29,9.81-7.74.21-.15.34-.25.43-.32.15-.1.32-.21.52-.34.73-.48,1.45-.97,2.18-1.45,2.01-1.31,4.05-2.56,6.12-3.77,13.26-7.69,26.42-12.09,42.17-14.28,4.38-.61,5.9-.75,10.35-.93,4.08-.16,8.16-.14,12.23.1,7.89.45,15.75,1.67,23.36,3.79.14.04.28.08.42.12-7.46,2.77-14.64,6.69-21.35,11.72-23.75,17.8-36.95,47.44-38.68,76.57-2.78,46.75,25.3,93.56,65.94,115.81,26.1,14.29,56.53,18.45,85.94,14.3,6.54-3.66,9.91-10.75,8.47-17.19-1.5-6.71-7.59-9.8-8.47-10.23Z"/></svg>',
@@ -502,6 +656,30 @@
     return String(str == null ? '' : str).replace(/[&<>"']/g, c =>
       ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])
     );
+  }
+
+  // Build inner HTML for a list of destination items (no wrapper)
+  function renderDestinationItems(destinations){
+    return destinations.map((d, i) => {
+      const clickable = !!d.image;
+      const cls = 'dest-item' + (clickable ? ' dest-item--clickable' : '');
+      const icon = DEST_ICONS[d.icon] || '';
+      const arrow = clickable ? '<span class="dest-arrow">↗</span>' : '';
+      return (
+        '<div class="' + cls + '" data-index="' + i + '">' +
+          '<div class="dest-icon">' + icon + '</div>' +
+          '<div class="dest-info">' +
+            '<div class="dest-name">' + escapeHTML(d.name) + '</div>' +
+            '<div class="dest-description">' + escapeHTML(d.description || '') + '</div>' +
+          '</div>' +
+          arrow +
+        '</div>'
+      );
+    }).join('');
+  }
+  // Sidebar wrapper (collapsed by default, expanded when item is active)
+  function renderDestinationsHTML(destinations){
+    return '<div class="poi-item-destinations">' + renderDestinationItems(destinations) + '</div>';
   }
 
   // ── Load POI data ──
@@ -616,31 +794,47 @@
       // Thumbnail intentionally not rendered in sidebar — keeping it text-only.
 
       // Text column
+      const hasDestinations = poi.destinations && poi.destinations.length > 0;
       const text = document.createElement('div');
       text.className = 'poi-item-text';
+      const camHTML = hasDestinations
+        ? ''
+        : '<button class="poi-cam" type="button" aria-label="Voir la photo">' + CAM_SVG + '</button>';
       text.innerHTML =
         '<div class="poi-item-row">' +
           '<div>' +
             '<div class="poi-item-name">' + escapeHTML(poi.name) + '</div>' +
             '<div class="poi-item-dist">' + (CAT_ICONS[poi.category] || '') + '<span>' + escapeHTML(poi.distance || '') + '</span></div>' +
           '</div>' +
-          '<button class="poi-cam" type="button" aria-label="Voir la photo">' + CAM_SVG + '</button>' +
+          camHTML +
         '</div>' +
-        (poi.description ? '<div class="poi-item-desc">' + escapeHTML(poi.description) + '</div>' : '');
+        (poi.description ? '<div class="poi-item-desc">' + escapeHTML(poi.description) + '</div>' : '') +
+        (hasDestinations ? renderDestinationsHTML(poi.destinations) : '');
       item.appendChild(text);
 
-      const camBtn = item.querySelector('.poi-cam');
-      camBtn.addEventListener('click', e => {
-        e.stopPropagation();
-        openOverlay(poi.id);
-      });
-      camBtn.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' '){
-          e.preventDefault();
+      if (!hasDestinations){
+        const camBtn = item.querySelector('.poi-cam');
+        camBtn.addEventListener('click', e => {
           e.stopPropagation();
           openOverlay(poi.id);
-        }
-      });
+        });
+        camBtn.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            e.stopPropagation();
+            openOverlay(poi.id);
+          }
+        });
+      } else {
+        // Wire destination clicks → lightbox
+        item.querySelectorAll('.dest-item--clickable').forEach((el, i) => {
+          el.addEventListener('click', e => {
+            e.stopPropagation();
+            const dest = poi.destinations[+el.dataset.index];
+            if (dest && dest.image) openOverlayWithImage(dest.image, dest.name, dest.description);
+          });
+        });
+      }
 
       item.addEventListener('click', () => activatePoi(poi.id));
       item.addEventListener('keydown', e => {
@@ -674,6 +868,7 @@
     }
     deactivateAll();
     activeId = id;
+    const poi = pois.find(p => p.id === id);
 
     const poiEl = mapFrame.querySelector('.poi[data-id="' + CSS.escape(id) + '"]');
     const itemEl = poiListEl.querySelector('.poi-item[data-id="' + CSS.escape(id) + '"]');
@@ -685,12 +880,79 @@
         itemEl.scrollIntoView({behavior:'smooth', block});
       }
     }
+
+    // Desktop only: show map popup for multi-destination POIs
+    if (poi && poi.destinations && poi.destinations.length && poiEl && window.innerWidth > 767){
+      openDestPopup(poiEl, poi);
+    }
   }
 
   function deactivateAll(){
     activeId = null;
     mapFrame.querySelectorAll('.poi.active').forEach(el => el.classList.remove('active'));
     poiListEl.querySelectorAll('.poi-item.active').forEach(el => el.classList.remove('active'));
+    closeDestPopup();
+  }
+
+  // ── Destination popup (desktop, on map) ──
+  function openDestPopup(poiEl, poi){
+    closeDestPopup();
+    const popup = document.createElement('div');
+    popup.className = 'dest-popup';
+    popup.innerHTML =
+      '<button class="dest-popup-close" type="button" aria-label="Fermer">×</button>' +
+      '<div class="dest-popup-title">' + escapeHTML(poi.name) + '</div>' +
+      (poi.distance ? '<div class="dest-popup-dist">' + escapeHTML(poi.distance) + '</div>' : '') +
+      (poi.description ? '<div class="dest-popup-desc">' + escapeHTML(poi.description) + '</div>' : '') +
+      '<div class="dest-popup-sep"></div>' +
+      '<div class="dest-popup-list">' + renderDestinationItems(poi.destinations) + '</div>';
+
+    document.body.appendChild(popup);
+
+    // Wire destination clicks
+    popup.querySelectorAll('.dest-item--clickable').forEach(el => {
+      el.addEventListener('click', e => {
+        e.stopPropagation();
+        const dest = poi.destinations[+el.dataset.index];
+        if (dest && dest.image) openOverlayWithImage(dest.image, dest.name, dest.description);
+      });
+    });
+    popup.querySelector('.dest-popup-close').addEventListener('click', e => {
+      e.stopPropagation();
+      deactivateAll();
+    });
+    popup.addEventListener('click', e => e.stopPropagation());
+
+    positionDestPopup(poiEl, popup);
+    requestAnimationFrame(() => popup.classList.add('visible'));
+  }
+
+  function closeDestPopup(){
+    document.querySelectorAll('.dest-popup').forEach(p => p.remove());
+  }
+
+  function positionDestPopup(poiEl, popup){
+    const poiRect = poiEl.getBoundingClientRect();
+    const popupRect = popup.getBoundingClientRect();
+    const margin = 14;
+    const vw = window.innerWidth, vh = window.innerHeight;
+
+    // Default: right of POI, vertically centred on the dot
+    let left = poiRect.right + margin;
+    let top = poiRect.bottom - popupRect.height / 2;
+
+    // Flip horizontally if overflows right
+    if (left + popupRect.width + 8 > vw){
+      left = poiRect.left - popupRect.width - margin;
+    }
+    // Clamp horizontally
+    left = Math.max(8, Math.min(left, vw - popupRect.width - 8));
+    // Clamp vertically
+    if (top + popupRect.height > vh - 8) top = vh - popupRect.height - 8;
+    if (top < 8) top = 8;
+
+    popup.style.left = left + 'px';
+    popup.style.top = top + 'px';
   }
 
   function fallbackToMain(){
@@ -704,16 +966,20 @@
   function openOverlay(id){
     const poi = pois.find(p => p.id === id);
     if (!poi) return;
+    openOverlayWithImage(poi.image, poi.name, poi.description, poi.imageAlt);
+  }
 
-    overlayName.textContent = poi.name || '';
-    overlayDesc.textContent = poi.description || '';
+  // Generic helper — used by camera button (POI image) and destination items
+  function openOverlayWithImage(image, name, description, alt){
+    overlayName.textContent = name || '';
+    overlayDesc.textContent = description || '';
     overlayImgWrap.innerHTML = '';
 
-    if (poi.image){
+    if (image){
       const img = document.createElement('img');
       img.className = 'img-overlay-img';
-      img.src = poi.image;
-      img.alt = poi.imageAlt || poi.name;
+      img.src = image;
+      img.alt = alt || name || '';
       img.addEventListener('error', () => {
         const empty = document.createElement('div');
         empty.className = 'img-overlay-empty';
