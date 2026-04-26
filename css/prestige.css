@@ -371,6 +371,7 @@ html,body {
 @media (min-width:1024px) and (max-width:1400px) and (min-height:1100px),
        (min-width:1024px) and (max-width:1400px) and (hover:none) {
   .plan-svg { max-width:520px; }
+  .dark-block { margin-top:24px; }
 }
 
 /* Large desktop — cap max width, allow taller plan */
