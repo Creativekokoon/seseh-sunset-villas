@@ -14,6 +14,10 @@
     @media (min-width:1024px) and (min-height:900px) {
       .plan-svg { max-width: 760px; }
     }
+    /* iPad Pro 13" portrait — constrain SVG to header width */
+    @media (min-width:1024px) and (max-width:1400px) and (min-height:1100px) {
+      .plan-svg { max-width: 520px; }
+    }
     /* Match interactive labels with the Escalier label (14px) — same as Élégance */
     #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
   </style>

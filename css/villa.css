@@ -358,6 +358,11 @@ html,body {
   .plan-inner { gap:8px; }
 }
 
+/* iPad Pro 13" portrait — constrain SVG to header width (520px) */
+@media (min-width:1024px) and (max-width:1400px) and (min-height:1100px) {
+  .plan-svg { max-width:520px; }
+}
+
 /* Large desktop — cap max width, allow taller plan */
 @media (min-width:1920px) {
   .dark-block { max-width:1440px;max-height:700px; }
