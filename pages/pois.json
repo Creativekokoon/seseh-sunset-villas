@@ -12,15 +12,22 @@
     "distance": "Vous êtes ici"
   },
   {
-    "id": "river-rice-fields-view",
+    "id": "bien-etre-sport",
     "number": 2,
-    "name": "Rivière & Rizières",
-    "position": { "top": "86.79%", "left": "75.06%" },
-    "lineHeight": 70,
-    "category": "nature",
-    "image": "../assets/images/seseh/riziere-seseh.jpg",
-    "description": "Rizières balinaises emblématiques et vues sur la rivière à votre porte.",
-    "distance": "Adjacent"
+    "name": "Bien-être & Sport",
+    "position": { "top": "52%", "left": "63%" },
+    "lineHeight": 60,
+    "category": "lifestyle",
+    "description": "Tout pour une vie active et équilibrée à deux pas.",
+    "distance": "5 à 10 min",
+    "destinations": [
+      { "name": "Yoga", "description": "Studio yoga & méditation", "icon": "yoga", "image": "../assets/images/seseh/destinations/yoga.jpg" },
+      { "name": "Padel", "description": "Courts de padel", "icon": "padel", "image": "../assets/images/seseh/destinations/padel.jpg" },
+      { "name": "Pilates", "description": "Reformer & mat pilates", "icon": "pilates", "image": "../assets/images/seseh/destinations/pilates.jpg" },
+      { "name": "Gym", "description": "Salle de sport complète", "icon": "gym", "image": "../assets/images/seseh/destinations/gym.jpg" },
+      { "name": "Spa", "description": "Massages & soins traditionnels", "icon": "spa", "image": "../assets/images/seseh/destinations/spa.jpg" },
+      { "name": "Hôtel 5★ Anantara Dragon Seseh", "description": "Hôtel de luxe (en construction)", "icon": "hotel", "image": "../assets/images/seseh/destinations/anantara.jpg" }
+    ]
   },
   {
     "id": "seseh-beach",
@@ -34,19 +41,34 @@
     "distance": "5 min"
   },
   {
-    "id": "restaurants-beach-clubs",
+    "id": "river-rice-fields-view",
     "number": 4,
-    "name": "Restaurants & Beach Clubs",
+    "name": "Rivière & Rizières",
+    "position": { "top": "86.79%", "left": "75.06%" },
+    "lineHeight": 70,
+    "category": "nature",
+    "image": "../assets/images/seseh/riziere-seseh.jpg",
+    "description": "Rizières balinaises emblématiques et vues sur la rivière à votre porte.",
+    "distance": "Adjacent"
+  },
+  {
+    "id": "restaurants-beach-clubs",
+    "number": 5,
+    "name": "Restaurants & Cafés",
     "position": { "top": "48.3%", "left": "57.9%" },
     "lineHeight": 40,
     "category": "lifestyle",
-    "image": "../assets/images/seseh/poi/restaurants.jpg",
-    "description": "Sélection de fine dining, warungs et beach clubs à proximité.",
-    "distance": "5 à 10 min"
+    "description": "Sélection de tables et cafés à proximité immédiate.",
+    "distance": "5 à 10 min",
+    "destinations": [
+      { "name": "Café local", "description": "Brunch & specialty coffee", "icon": "coffee", "image": "../assets/images/seseh/destinations/cafe.jpg" },
+      { "name": "French Bakery", "description": "Pâtisserie française authentique", "icon": "bakery", "image": "../assets/images/seseh/destinations/bakery.jpg" },
+      { "name": "Restaurant signature", "description": "Cuisine indo-fusion", "icon": "restaurant", "image": "../assets/images/seseh/destinations/resto.jpg" }
+    ]
   },
   {
     "id": "canggu-beach",
-    "number": 5,
+    "number": 6,
     "name": "Plage de Canggu",
     "position": { "top": "34.74%", "left": "32.05%" },
     "lineHeight": 40,
@@ -57,7 +79,7 @@
   },
   {
     "id": "airport",
-    "number": 6,
+    "number": 7,
     "name": "Aéroport International Ngurah Rai",
     "position": { "top": "30.71%", "left": "43.66%" },
     "lineHeight": 70,
