@@ -180,7 +180,7 @@
     .poi-list::-webkit-scrollbar-thumb{background:rgba(52,48,44,0.18);border-radius:2px}
 
     .poi-item{
-      padding:14px 12px;
+      padding:14px 16px;
       border-bottom:1px solid rgba(36,32,28,0.08);
       cursor:pointer;
       display:grid;
@@ -188,9 +188,8 @@
       gap:14px;
       align-items:start;
       border-radius:0;
-      transition:padding-left 0.22s ease, background 0.25s ease;
+      transition:background 0.25s ease;
     }
-    .poi-item:hover{padding-left:18px}
     .poi-item-text{min-width:0}
     .poi-item-row{
       display:grid;
@@ -221,7 +220,6 @@
     .poi-item.active{
       background:rgba(201,168,106,0.13);
       box-shadow:inset 3px 0 0 var(--gold);
-      padding-left:18px;
     }
     .poi-item.active .poi-item-name{color:#000}
     .poi-item.active .poi-item-dist{color:var(--gold)}
@@ -316,7 +314,6 @@
       border-bottom:none;
       border-radius:0;
     }
-    .poi-item.featured:hover{padding-left:18px}
     .poi-item.featured.active{box-shadow:none}
     .poi-item.featured .poi-item-name{
       color:#fff;
@@ -455,7 +452,6 @@
       }
       .poi-item.active{
         display:grid;
-        padding-left:14px;
       }
       .poi-item-row{gap:10px}
       .poi-item-name{font-size:1.2rem;line-height:1.25}
