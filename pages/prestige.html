@@ -133,6 +133,12 @@
 
               </g>
 
+              <!-- WALLS (rendered BEFORE pzones so hover-gold polygon strokes render on top) -->
+              <g pointer-events="none" fill="none">
+                <path d="M 73 0 L 500 0 L 500 158 L 143 158 L 143 220 L 0 220 L 0 93 M 0 158 L 43 158 L 43 133 L 73 133 L 73 0"
+                      stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+              </g>
+
               <!-- TERRACE (cliquable en entier) -->
               <g class="pzone terrace" onclick="pick('terrace', this)" onmouseenter="tip.textContent='Terrasse'">
                 <rect class="pz-fill" x="143" y="158" width="357" height="162"/>
@@ -176,9 +182,9 @@
                       fill="rgba(50,80,100,0.9)">Piscine</text>
               </g>
 
-              <!-- CUISINE -->
+              <!-- CUISINE (steps around Bureau L-upper at x=73→143, y=133→158) -->
               <g class="pzone kitchen" onclick="pick('kitchen', this)" onmouseenter="tip.textContent='Cuisine'">
-                <polygon class="pz-fill" points="73,0 217,0 217,158 73,158" style="stroke:none"/>
+                <polygon class="pz-fill" points="73,0 217,0 217,158 143,158 143,133 73,133" style="stroke:none"/>
                 <text class="pz-text" x="145.5" y="85" text-anchor="middle">Cuisine</text>
               </g>
 
@@ -189,15 +195,13 @@
               </g>
 
               <!-- WORKSPACE -->
-              <g class="pzone workspace" onclick="pick('workspace', this)" onmouseenter="tip.textContent='Workspace'">
+              <g class="pzone workspace" onclick="pick('workspace', this)" onmouseenter="tip.textContent='Bureau'">
                 <polygon class="pz-fill" points="43,133 143,133 143,220 0,220 0,158 43,158" style="stroke:none"/>
-                <text class="pz-text" x="93" y="190" text-anchor="middle" style="font-size:11px;">Workspace</text>
+                <text class="pz-text" x="93" y="190" text-anchor="middle">Bureau</text>
               </g>
 
-              <!-- OUTLINE OVERLAY: Cuisine+Living+Workspace perimeter + dashed separators -->
+              <!-- DASHED SEPARATORS (on top, indicate open-plan) -->
               <g pointer-events="none" fill="none">
-                <path d="M 73 0 L 500 0 L 500 158 L 143 158 L 143 220 L 0 220 L 0 93 M 0 158 L 43 158 L 43 133 L 73 133 L 73 0"
-                      stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
                 <line x1="217" y1="0" x2="217" y2="158"
                       stroke="rgba(61,57,52,0.55)" stroke-width="1" stroke-dasharray="4 3"/>
                 <line x1="73" y1="133" x2="143" y2="133"
@@ -285,12 +289,12 @@
 
               <g class="pzone bath2" onclick="pick('bath2', this)" onmouseenter="tip.textContent='Salle de bain 2'">
                 <rect class="pz-fill" x="166" y="0" width="141" height="83.7"/>
-                <text class="pz-text" x="236.5" y="40" text-anchor="middle" style="font-size:11px;">Salle de bain 2</text>
+                <text class="pz-text" x="236.5" y="40" text-anchor="middle">Salle de bain 2</text>
               </g>
 
               <g class="pzone bath1" onclick="pick('bath1', this)" onmouseenter="tip.textContent='Salle de bain 1'">
                 <rect class="pz-fill" x="193.6" y="83.7" width="146.3" height="74.9"/>
-                <text class="pz-text" x="266.7" y="125" text-anchor="middle" style="font-size:11px;">Salle de bain 1</text>
+                <text class="pz-text" x="266.7" y="125" text-anchor="middle">Salle de bain 1</text>
               </g>
 
             </svg>
@@ -323,7 +327,7 @@
             <div class="room-image">
               <div class="room-scene">
                 <div class="scene-card" style="display:flex;align-items:center;justify-content:center;">
-                  <span style="font-family:'the-seasons',Georgia,serif;font-size:1.1rem;color:#5E5952;letter-spacing:0.08em;">Workspace</span>
+                  <span style="font-family:'the-seasons',Georgia,serif;font-size:1.1rem;color:#5E5952;letter-spacing:0.08em;">Bureau</span>
                 </div>
               </div>
             </div>
