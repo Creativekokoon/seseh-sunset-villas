@@ -43,9 +43,9 @@
     "description": "Sélection de tables et cafés à proximité immédiate.",
     "distance": "5 à 10 min",
     "destinations": [
-      { "name": "Café local", "description": "Brunch & specialty coffee", "icon": "coffee", "link": "https://maps.app.goo.gl/zdm6B8f7QaMoGBNG7?g_st=ic" },
-      { "name": "French Bakery", "description": "Pâtisserie française authentique", "icon": "bakery", "link": "https://maps.app.goo.gl/p4o3BPoYq9yx4uXUA?g_st=ic" },
-      { "name": "Restaurant signature", "description": "Cuisine indo-fusion", "icon": "restaurant", "link": "https://maps.app.goo.gl/y1a2qVJf6kHxxxHw5?g_st=ic" }
+      { "name": "Café local", "venue": "", "description": "Brunch & specialty coffee", "icon": "coffee", "link": "https://maps.app.goo.gl/zdm6B8f7QaMoGBNG7?g_st=ic" },
+      { "name": "French Bakery", "venue": "", "description": "Pâtisserie française authentique", "icon": "bakery", "link": "https://maps.app.goo.gl/p4o3BPoYq9yx4uXUA?g_st=ic" },
+      { "name": "Restaurant signature", "venue": "", "description": "Cuisine indo-fusion", "icon": "restaurant", "link": "https://maps.app.goo.gl/y1a2qVJf6kHxxxHw5?g_st=ic" }
     ]
   },
   {
@@ -58,12 +58,12 @@
     "description": "Tout pour une vie active et équilibrée à deux pas.",
     "distance": "5 à 10 min",
     "destinations": [
-      { "name": "Yoga", "description": "Studio yoga & méditation", "icon": "yoga", "link": "https://maps.app.goo.gl/xbSFaHtbgizYWREx7?g_st=ic" },
-      { "name": "Padel", "description": "Courts de padel", "icon": "padel", "link": "https://maps.app.goo.gl/XNZ846TNipTY795u6?g_st=ic" },
-      { "name": "Pilates", "description": "Reformer & mat pilates", "icon": "pilates", "link": "https://maps.app.goo.gl/ustiddnJ7Rzf3LVA7?g_st=ic" },
-      { "name": "Gym", "description": "Salle de sport complète", "icon": "gym", "link": "https://maps.app.goo.gl/a1CVsjmHCfzZvLh5A?g_st=ic" },
-      { "name": "Spa", "description": "Massages & soins traditionnels", "icon": "spa", "link": "https://maps.app.goo.gl/LYp1UN5FeXc2HgsU9?g_st=ic" },
-      { "name": "Hôtel 5★ Anantara Dragon Seseh", "description": "Hôtel de luxe (en construction)", "icon": "hotel", "link": "https://www.anantara.com/en/dragon-seseh-bali" }
+      { "name": "Yoga", "venue": "", "description": "Studio yoga & méditation", "icon": "yoga", "link": "https://maps.app.goo.gl/xbSFaHtbgizYWREx7?g_st=ic" },
+      { "name": "Padel", "venue": "", "description": "Courts de padel", "icon": "padel", "link": "https://maps.app.goo.gl/XNZ846TNipTY795u6?g_st=ic" },
+      { "name": "Pilates", "venue": "", "description": "Reformer & mat pilates", "icon": "pilates", "link": "https://maps.app.goo.gl/ustiddnJ7Rzf3LVA7?g_st=ic" },
+      { "name": "Gym", "venue": "", "description": "Salle de sport complète", "icon": "gym", "link": "https://maps.app.goo.gl/a1CVsjmHCfzZvLh5A?g_st=ic" },
+      { "name": "Spa", "venue": "", "description": "Massages & soins traditionnels", "icon": "spa", "link": "https://maps.app.goo.gl/LYp1UN5FeXc2HgsU9?g_st=ic" },
+      { "name": "Hôtel 5★", "venue": "Anantara Dragon Seseh", "description": "Hôtel de luxe (en construction)", "icon": "hotel", "link": "https://www.anantara.com/en/dragon-seseh-bali" }
     ]
   },
   {
