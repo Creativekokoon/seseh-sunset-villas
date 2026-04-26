@@ -389,77 +389,6 @@
     }
     .img-overlay-close:hover{color:#fff}
 
-    /* ── DESTINATION OVERLAY (modale fiche lieu) ── */
-    .dest-overlay{
-      position:fixed;inset:0;z-index:900;
-      background:rgba(8,6,4,0.92);
-      display:flex;align-items:center;justify-content:center;
-      padding:48px 24px;
-      opacity:0;pointer-events:none;
-      transition:opacity 0.32s ease;
-    }
-    .dest-overlay.visible{opacity:1;pointer-events:auto}
-    .dest-overlay-inner{
-      position:relative;
-      max-width:520px;width:100%;
-      background:rgba(15,15,15,0.98);
-      border:1px solid rgba(201,168,106,0.35);
-      padding:44px 40px 36px;
-    }
-    .dest-overlay-tag{
-      font-family:var(--sans);
-      font-size:0.6rem;font-weight:500;
-      letter-spacing:0.22em;text-transform:uppercase;
-      color:var(--gold);
-      margin-bottom:10px;
-    }
-    .dest-overlay-title{
-      font-family:var(--serif);
-      font-size:1.6rem;font-weight:500;
-      letter-spacing:0.04em;
-      color:rgba(255,252,248,0.96);
-      line-height:1.2;
-      margin-bottom:14px;
-    }
-    .dest-overlay-desc{
-      font-family:var(--sans);
-      font-size:0.85rem;line-height:1.6;
-      color:rgba(255,252,248,0.7);
-      margin-bottom:28px;
-    }
-    .dest-overlay-link{
-      display:inline-flex;align-items:center;gap:6px;
-      font-family:var(--sans);
-      font-size:0.66rem;font-weight:500;
-      letter-spacing:0.2em;text-transform:uppercase;
-      color:var(--gold);
-      text-decoration:none;
-      padding:12px 22px;
-      border:1px solid rgba(201,168,106,0.6);
-      transition:background 0.22s,color 0.22s,border-color 0.22s;
-    }
-    .dest-overlay-link:hover{
-      background:rgba(201,168,106,0.15);
-      border-color:var(--gold);
-      color:#fff;
-    }
-    .dest-overlay-close{
-      position:absolute;top:-44px;right:0;
-      background:none;border:none;
-      font-family:var(--sans);
-      font-size:0.6rem;font-weight:500;
-      letter-spacing:0.2em;text-transform:uppercase;
-      color:rgba(255,252,248,0.6);
-      cursor:pointer;padding:8px;
-      transition:color 0.2s;
-    }
-    .dest-overlay-close:hover{color:#fff}
-    @media (max-width:767px){
-      .dest-overlay{padding:32px 16px}
-      .dest-overlay-inner{padding:32px 24px 28px}
-      .dest-overlay-title{font-size:1.4rem}
-      .dest-overlay-close{top:-36px;font-size:0.55rem}
-    }
 
     /* ── RESPONSIVE ── */
     /* iPad portrait */
@@ -610,16 +539,6 @@
     </div>
   </div>
 
-  <!-- Destination overlay (fiche lieu) -->
-  <div class="dest-overlay" id="destOverlay" role="dialog" aria-modal="true" aria-label="Détails du lieu">
-    <div class="dest-overlay-inner">
-      <button class="dest-overlay-close" id="destOverlayClose" type="button">✕ Fermer</button>
-      <div class="dest-overlay-tag" id="destOverlayTag"></div>
-      <div class="dest-overlay-title" id="destOverlayTitle"></div>
-      <div class="dest-overlay-desc" id="destOverlayDesc"></div>
-      <a class="dest-overlay-link" id="destOverlayLink" target="_blank" rel="noopener">Voir sur Google Maps →</a>
-    </div>
-  </div>
 
 <script>
 (function(){
