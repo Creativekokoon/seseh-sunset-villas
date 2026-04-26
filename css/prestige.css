@@ -17,8 +17,7 @@ html,body {
 
 /* ── PAGE INTRO ── */
 .page-intro {
-  position:fixed;top:0;left:0;
-  width:100vw;
+  position:fixed;top:0;left:0;right:0;
   height:100vh;height:100lvh;
   z-index:200;background:#E8E4DC;
   animation:fadeOut 0.32s 0.05s ease forwards;pointer-events:none;

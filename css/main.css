@@ -15,8 +15,7 @@ html, body {
 
 /* ── PAGE INTRO ── */
 .page-intro {
-  position:fixed;top:0;left:0;
-  width:100vw;
+  position:fixed;top:0;left:0;right:0;
   height:100vh;height:100lvh;
   z-index:850;
   background:#242220;
