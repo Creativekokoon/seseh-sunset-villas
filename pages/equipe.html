@@ -166,6 +166,12 @@
       transform:scale(1.2);
       transform-origin:center 30%;
     }
+    /* Logo ILA (3e pilier) — réduit avec contain pour ne pas le recadrer */
+    .pillar:nth-child(3) .pillar-image img{
+      object-fit:contain;
+      padding:28px;
+      background:transparent;
+    }
     .pillar-image-fallback{
       font-family:var(--serif);
       font-size:2.4rem;font-weight:500;
@@ -482,7 +488,7 @@
         <div class="pillar-inner">
           <div class="pillar-front">
             <div class="pillar-image">
-              <img src="../assets/images/team/vienna-lux.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'VLC'}))">
+              <img src="../assets/images/team/vienna-lux-logo.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'VLC'}))">
             </div>
             <div class="pillar-front-body">
               <div class="pillar-front-role">Maître d'œuvre</div>
@@ -497,6 +503,7 @@
             <div class="pillar-back-title">Vienna Lux Corporation</div>
             <div class="pillar-back-person">Architecture &amp; Ingénierie</div>
             <p class="pillar-back-desc">Maître d'œuvre du projet, Vienna Lux Corporation prend en charge l'ensemble des travaux : conception architecturale, ingénierie et exécution sur site.</p>
+            <a class="pillar-back-link" href="https://www.viennaluxcooperation.com/" target="_blank" rel="noopener">viennaluxcooperation.com →</a>
           </div>
         </div>
       </article>
@@ -506,7 +513,7 @@
         <div class="pillar-inner">
           <div class="pillar-front">
             <div class="pillar-image">
-              <img src="../assets/images/team/ila.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'ILA'}))">
+              <img src="../assets/images/team/ILA_Logo.webp" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'ILA'}))">
             </div>
             <div class="pillar-front-body">
               <div class="pillar-front-role">Cadre Juridique</div>
@@ -521,6 +528,7 @@
             <div class="pillar-back-title">ILA</div>
             <div class="pillar-back-person">Sécurité juridique &amp; fiscale</div>
             <p class="pillar-back-desc">ILA assure le cadre juridique, fiscal et notarial du projet : sécurisation des actes, accompagnement des acquéreurs et conformité réglementaire en Indonésie comme en France.</p>
+            <a class="pillar-back-link" href="https://ilaglobalconsulting.com/fr/legal-advisory/" target="_blank" rel="noopener">ilaglobalconsulting.com →</a>
           </div>
         </div>
       </article>
