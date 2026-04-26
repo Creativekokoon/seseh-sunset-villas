@@ -389,21 +389,53 @@
 
       .pillars-grid{
         grid-template-columns:1fr;
-        gap:22px;
+        gap:14px;
         margin-bottom:36px;
-        max-width:320px;
+        max-width:420px;
         margin-left:auto;
         margin-right:auto;
       }
-      .pillar{height:320px}
-      .pillar-image{height:220px}
-      .pillar-front-body{padding:14px 18px 16px;gap:3px;justify-content:flex-start}
-      .pillar-front-title{font-size:1.25rem}
-      .pillar-front-person{font-size:0.8rem}
-      .pillar-number{font-size:0.85rem;top:14px;left:18px;padding:3px 8px}
-      .pillar-back{padding:28px 22px 22px}
-      .pillar-back-title{font-size:1.3rem}
-      .pillar-back-desc{font-size:0.84rem}
+      /* Horizontal layout: image left, details right */
+      .pillar{height:160px}
+      .pillar-front,
+      .pillar-back{flex-direction:row}
+      .pillar-image{
+        width:160px;height:100%;
+        flex-shrink:0;
+      }
+      .pillar:nth-child(3) .pillar-image img{padding:18px}
+      .pillar-front-body{
+        flex:1;
+        padding:14px 16px 14px;
+        gap:2px;
+        justify-content:center;
+      }
+      .pillar-front-role{font-size:0.5rem;letter-spacing:0.18em;margin-bottom:1px}
+      .pillar-front-title{font-size:1rem;line-height:1.15}
+      .pillar-front-person{font-size:0.7rem;margin-top:2px}
+      .pillar-number{
+        font-size:0.7rem;
+        top:8px;left:8px;
+        padding:2px 6px;
+      }
+      .pillar-flip-hint{
+        bottom:8px;right:10px;
+        width:24px;height:24px;
+        font-size:0.9rem;
+      }
+      /* Back face — also horizontal: small accent strip left, details right */
+      .pillar-back{padding:14px 16px 14px 16px}
+      .pillar-back-role{font-size:0.5rem;letter-spacing:0.18em;margin-bottom:4px}
+      .pillar-back-title{font-size:1rem;line-height:1.15}
+      .pillar-back-person{font-size:0.7rem;margin-top:1px;margin-bottom:6px}
+      .pillar-back-desc{font-size:0.7rem;line-height:1.45}
+      .pillar-back-link{font-size:0.5rem;margin-top:6px;padding:3px 0}
+      .pillar-back-close{
+        top:8px;right:8px;
+        width:22px;height:22px;
+        font-size:0.7rem;
+      }
+
       .prereserver-btn{padding:12px 36px;font-size:0.66rem}
     }
 
