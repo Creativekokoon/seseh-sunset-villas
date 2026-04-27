@@ -165,7 +165,10 @@
       transform:scale(1.2);
       transform-origin:center 30%;
     }
-    /* Logo ILA (3e pilier) — réduit avec contain pour ne pas le recadrer */
+    /* Logo ILA (3e pilier) — fond charcoal pour faire ressortir le logo */
+    .pillar:nth-child(3) .pillar-image{
+      background:#242220;
+    }
     .pillar:nth-child(3) .pillar-image img{
       object-fit:contain;
       padding:28px;
@@ -395,17 +398,16 @@
         margin-left:auto;
         margin-right:auto;
       }
-      /* Horizontal layout: image left, details right */
-      .pillar{height:160px}
-      .pillar-front,
-      .pillar-back{flex-direction:row}
+      /* Front face: horizontal layout (image left, details right) */
+      .pillar{height:170px}
+      .pillar-front{flex-direction:row}
       .pillar-image{
         width:160px;height:100%;
         flex-shrink:0;
       }
       .pillar:nth-child(3) .pillar-image img{padding:18px}
       .pillar-front-body{
-        flex:1;
+        flex:1;min-width:0;
         padding:14px 16px 14px;
         gap:2px;
         justify-content:center;
@@ -423,12 +425,16 @@
         width:24px;height:24px;
         font-size:0.9rem;
       }
-      /* Back face — also horizontal: small accent strip left, details right */
-      .pillar-back{padding:14px 16px 14px 16px}
+      /* Back face: vertical stacked layout (full-card dark panel) */
+      .pillar-back{
+        flex-direction:column;
+        padding:18px 18px 16px;
+        overflow-y:auto;
+      }
       .pillar-back-role{font-size:0.5rem;letter-spacing:0.18em;margin-bottom:4px}
       .pillar-back-title{font-size:1rem;line-height:1.15}
-      .pillar-back-person{font-size:0.7rem;margin-top:1px;margin-bottom:6px}
-      .pillar-back-desc{font-size:0.7rem;line-height:1.45}
+      .pillar-back-person{font-size:0.66rem;margin-top:1px;margin-bottom:8px}
+      .pillar-back-desc{font-size:0.7rem;line-height:1.4}
       .pillar-back-link{font-size:0.5rem;margin-top:6px;padding:3px 0}
       .pillar-back-close{
         top:8px;right:8px;

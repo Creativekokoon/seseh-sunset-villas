@@ -151,8 +151,8 @@ html,body {
 .pzone.balcony .pz-fill { fill:rgba(236,233,229,0.74); }
 
 .pzone { cursor:pointer; }
-.pzone:hover .pz-fill { fill:rgba(225,217,201,0.88);stroke:var(--gold) !important;stroke-width:2.5 !important; }
-.pzone.selected .pz-fill { fill:rgba(223,214,197,0.95);stroke:var(--gold) !important;stroke-width:3 !important; }
+.pzone:hover .pz-fill { fill:rgba(225,217,201,0.88);stroke:var(--gold) !important;stroke-width:2 !important; }
+.pzone.selected .pz-fill { fill:rgba(223,214,197,0.95);stroke:var(--gold) !important;stroke-width:2.3 !important; }
 .pz-text {
   font-family:'the-seasons',Georgia,serif;font-size:11px;font-weight:500;
   letter-spacing:0.04em;fill:rgba(52,48,44,0.9);pointer-events:none;
