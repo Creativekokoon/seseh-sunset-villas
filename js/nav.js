@@ -163,6 +163,50 @@
     .nav-drawer-arrow { opacity:0.25;font-weight:400;transition:opacity 0.22s,transform 0.22s; }
     .nav-drawer-link:hover .nav-drawer-arrow { opacity:0.75;transform:translateX(4px); }
 
+    .nav-drawer-chat {
+      display:flex;align-items:center;gap:12px;
+      margin:-12px 0 14px;
+      padding:16px 18px;
+      background:#242220;
+      border:1px solid rgba(201,168,106,0.4);
+      border-radius:2px;
+      text-decoration:none;
+      color:rgba(249,245,239,0.95);
+      transition:background 0.25s, border-color 0.25s, transform 0.25s;
+      box-shadow:0 6px 18px rgba(36,32,28,0.18);
+    }
+    .nav-drawer-chat:hover {
+      background:#2e2a26;
+      border-color:#c8a86a;
+      transform:translateY(-1px);
+    }
+    .nav-drawer-chat-icon {
+      flex-shrink:0;
+      width:34px;height:34px;border-radius:50%;
+      background:rgba(201,168,106,0.18);
+      border:1px solid rgba(201,168,106,0.55);
+      color:#c8a86a;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .nav-drawer-chat-icon svg { width:18px;height:18px;display:block; }
+    .nav-drawer-chat-label { flex:1;display:flex;flex-direction:column;gap:2px;min-width:0; }
+    .nav-drawer-chat-eyebrow {
+      font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+      font-size:0.7rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;
+      color:#c8a86a;
+    }
+    .nav-drawer-chat-title {
+      font-family:'the-seasons',Georgia,serif;
+      font-size:1.15rem;font-weight:500;letter-spacing:0.04em;
+      color:rgba(249,245,239,0.98);
+      line-height:1.18;
+    }
+    .nav-drawer-chat-arrow {
+      flex-shrink:0;color:#c8a86a;font-size:1rem;line-height:1;
+      transition:transform 0.25s;
+    }
+    .nav-drawer-chat:hover .nav-drawer-chat-arrow { transform:translateX(3px); }
+
     .nav-drawer-footer {
       padding-top:20px;font-family:'Inter','Helvetica Neue',Arial,sans-serif;
       font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
@@ -235,6 +279,18 @@
           Pré-réserver <span class="nav-drawer-arrow">→</span>
         </a>
       </nav>
+      <a class="nav-drawer-chat" href="https://wa.me/message/U6SAMFGVWDQDO1" target="_blank" rel="noopener">
+        <span class="nav-drawer-chat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+        </span>
+        <span class="nav-drawer-chat-label">
+          <span class="nav-drawer-chat-eyebrow">Une question ?</span>
+          <span class="nav-drawer-chat-title">Discuter avec Gabriel</span>
+        </span>
+        <span class="nav-drawer-chat-arrow">→</span>
+      </a>
       <div class="nav-drawer-footer">© 2026 Sora Immobilier | <a href="https://sora-immobilier.com/" target="_blank">sora-immobilier.com</a></div>
     </aside>
 
