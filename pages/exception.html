@@ -13,6 +13,18 @@
     .plan-coming { flex:1; display:flex; align-items:center; justify-content:center; font-family:'Inter','Helvetica Neue',Arial,sans-serif; font-size:0.55rem; letter-spacing:0.22em; text-transform:uppercase; color:rgba(83,78,72,0.38); }
     .features-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 24px; padding:0 16px; }
     .feature-item { font-family:'Inter','Helvetica Neue',Arial,sans-serif; font-size:0.62rem; letter-spacing:0.12em; color:rgba(57,52,47,0.72); padding:6px 0; border-bottom:1px solid rgba(62,58,54,0.08); }
+    /* Match plan size with Élégance / Prestige / Signature across breakpoints */
+    .plan-svg { max-width: 720px; }
+    @media (min-width:1024px) and (min-height:900px) {
+      .plan-svg { max-width: 760px; }
+    }
+    /* iPad Pro 13" portrait + landscape — constrain to header width */
+    @media (min-width:1024px) and (max-width:1400px) and (min-height:1100px),
+           (min-width:1024px) and (max-width:1400px) and (hover:none) {
+      .plan-svg { max-width: 520px; }
+    }
+    /* Match interactive labels with the Escalier label (14px) */
+    #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
   </style>
 </head>
 <body>
@@ -73,172 +85,253 @@
 
           <div class="plan-svg-wrap">
 
-            <!-- RDC: wide layout — parking left, indoor centre, deck+pool+garden right -->
-            <svg id="f0" class="plan-svg" viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1" y="1" width="558" height="298" fill="none" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+            <!-- RDC -->
+            <svg id="f0" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 331">
 
-              <!-- Parking — far left column -->
-              <rect x="1" y="1" width="100" height="170" fill="rgba(200,196,190,0.4)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <text x="50" y="82" text-anchor="middle" class="pz-text" style="font-size:11px">Parking</text>
-
-              <!-- Jardin — below parking -->
-              <g class="pzone" onclick="pick('garden',this)">
-                <rect class="pz-fill" x="1" y="171" width="100" height="128"/>
-                <line x1="1" y1="186" x2="101" y2="186" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <line x1="1" y1="201" x2="101" y2="201" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <line x1="1" y1="216" x2="101" y2="216" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <line x1="1" y1="231" x2="101" y2="231" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <line x1="1" y1="246" x2="101" y2="246" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <line x1="1" y1="261" x2="101" y2="261" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <line x1="1" y1="276" x2="101" y2="276" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <text x="50" y="238" text-anchor="middle" class="pz-text" style="font-size:11px">Jardin</text>
-              </g>
-              <line x1="1" y1="171" x2="101" y2="171" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <line x1="101" y1="1" x2="101" y2="299" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-
-              <!-- Indoor zone: x=101..370 -->
-              <!-- Kitchen+Storage top-left indoor -->
-              <g class="pzone" onclick="pick('kitchen',this)">
-                <rect class="pz-fill" x="101" y="1" width="160" height="130"/>
-                <text x="181" y="62" text-anchor="middle" class="pz-text">Cuisine</text>
-                <text x="181" y="80" text-anchor="middle" class="pz-text pz-m2">& Rangement</text>
+              <g id="f0-shell" pointer-events="none">
+                <rect x="0" y="0" width="500" height="331" fill="rgba(225,222,215,0.5)"/>
               </g>
 
-              <!-- Living top-right indoor (open to kitchen via dashed) -->
-              <line x1="261" y1="10" x2="261" y2="120" stroke="rgba(61,57,52,0.85)" stroke-width="1" stroke-dasharray="7 4"/>
-              <g class="pzone selected" onclick="pick('living',this)">
-                <rect class="pz-fill" x="261" y="1" width="109" height="130"/>
-                <text x="315" y="62" text-anchor="middle" class="pz-text">Living</text>
+              <!-- PISCINE -->
+              <g pointer-events="none">
+                <rect x="18" y="153" width="77" height="135"
+                      fill="rgba(178,210,225,0.55)" stroke="none"/>
+                <text x="56.5" y="225" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="13"
+                      letter-spacing="0.04em" fill="rgba(50,80,100,0.9)">Piscine</text>
               </g>
 
-              <!-- Dining Room bottom indoor -->
-              <g class="pzone" onclick="pick('dining',this)">
-                <rect class="pz-fill" x="101" y="131" width="200" height="110"/>
-                <text x="201" y="188" text-anchor="middle" class="pz-text">Salle à Manger</text>
+              <!-- TERRASSE cliquable -->
+              <g class="pzone terrace" onclick="pick('terrace', this)" onmouseenter="tip.textContent='Terrasse'">
+                <rect class="pz-fill" x="0" y="0" width="171" height="289" style="stroke:none"/>
+                <rect class="pz-fill" x="171" y="0" width="329" height="29" style="stroke:none"/>
+                <rect class="pz-fill" x="0" y="289" width="393" height="42" style="stroke:none"/>
+                <text class="pz-text" x="86" y="125" text-anchor="middle">Terrasse</text>
               </g>
 
-              <!-- Escalier bottom-right indoor -->
-              <rect x="301" y="131" width="69" height="110" fill="rgba(200,196,190,0.4)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <text x="335" y="186" text-anchor="middle" class="pz-text" style="font-size:10px">Escalier</text>
+              <!-- Garden label décoratif -->
+              <text x="200" y="316" text-anchor="middle"
+                    font-family="'the-seasons', Georgia, serif" font-size="13"
+                    letter-spacing="0.04em" font-style="italic"
+                    fill="rgba(110,135,100,0.65)" pointer-events="none">Garden</text>
 
-              <!-- Indoor bottom strip (terrace access) -->
-              <rect x="101" y="241" width="269" height="58" fill="rgba(244,240,233,0.58)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <line x1="101" y1="254" x2="370" y2="254" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
-              <line x1="101" y1="267" x2="370" y2="267" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
-              <line x1="101" y1="280" x2="370" y2="280" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
-              <line x1="101" y1="293" x2="370" y2="293" stroke="rgba(61,57,52,0.18)" stroke-width="0.7"/>
-              <text x="235" y="273" text-anchor="middle" class="pz-text" style="font-size:11px">Terrasse</text>
-
-              <!-- Indoor dividers -->
-              <line x1="101" y1="131" x2="370" y2="131" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <line x1="261" y1="131" x2="261" y2="241" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <line x1="101" y1="241" x2="370" y2="241" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <line x1="301" y1="131" x2="301" y2="241" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <line x1="370" y1="1" x2="370" y2="299" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-
-              <!-- Right outdoor: deck top, pool, garden bottom -->
-              <!-- Deck/Terrace strip top -->
-              <rect x="370" y="1" width="60" height="299" fill="rgba(180,160,130,0.22)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <line x1="370" y1="16" x2="430" y2="16" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-              <line x1="370" y1="31" x2="430" y2="31" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-              <line x1="370" y1="46" x2="430" y2="46" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-              <line x1="370" y1="61" x2="430" y2="61" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-              <line x1="370" y1="76" x2="430" y2="76" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-              <text x="400" y="150" text-anchor="middle" class="pz-text" style="font-size:10px;writing-mode:vertical-rl;transform-origin:center">Deck</text>
-              <line x1="430" y1="1" x2="430" y2="299" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-
-              <!-- Pool -->
-              <g class="pzone" onclick="pick('pool',this)">
-                <rect class="pz-fill" x="430" y="1" width="129" height="200"/>
-                <rect x="440" y="12" width="109" height="178" rx="3" fill="rgba(160,210,230,0.45)" stroke="rgba(100,160,180,0.7)" stroke-width="1.2"/>
-                <path d="M448 60 Q458 55 468 60 Q478 65 488 60 Q498 55 508 60 Q518 65 528 60 Q538 55 545 60" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1"/>
-                <path d="M448 76 Q458 71 468 76 Q478 81 488 76 Q498 71 508 76 Q518 81 528 76 Q538 71 545 76" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
-                <path d="M448 92 Q458 87 468 92 Q478 97 488 92 Q498 87 508 92 Q518 97 528 92 Q538 87 545 92" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1"/>
-                <text x="494" y="140" text-anchor="middle" class="pz-text">Piscine</text>
+              <!-- MAISON background -->
+              <g pointer-events="none">
+                <rect x="171" y="29" width="329" height="138" fill="rgba(245,242,234,0.95)"/>
+                <rect x="171" y="167" width="222" height="122" fill="rgba(245,242,234,0.95)"/>
               </g>
 
-              <!-- Garden right bottom -->
-              <g class="pzone" onclick="pick('garden',this)">
-                <rect class="pz-fill" x="430" y="201" width="129" height="98"/>
-                <line x1="430" y1="216" x2="559" y2="216" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <line x1="430" y1="231" x2="559" y2="231" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <line x1="430" y1="246" x2="559" y2="246" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <line x1="430" y1="261" x2="559" y2="261" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <line x1="430" y1="276" x2="559" y2="276" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-                <text x="494" y="252" text-anchor="middle" class="pz-text" style="font-size:11px">Jardin</text>
+              <!-- GARAGE grisé hachuré -->
+              <g pointer-events="none">
+                <rect x="393" y="167" width="107" height="164"
+                      fill="rgba(225,222,215,0.65)" stroke="none"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
+                  <line x1="393" y1="167" x2="500" y2="331"/>
+                  <line x1="500" y1="167" x2="393" y2="331"/>
+                </g>
+                <text x="446" y="252" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="13"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(94,89,82,0.55)">Garage</text>
               </g>
-              <line x1="430" y1="201" x2="559" y2="201" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
 
+              <!-- Toilettes + Escalier + Storage -->
+              <g pointer-events="none">
+                <rect x="171" y="29" width="98" height="39"
+                      fill="rgba(225,222,215,0.5)" stroke="none"/>
+                <text x="220" y="54" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="10"
+                      letter-spacing="0.04em" fill="rgba(52,48,44,0.85)">Toilettes</text>
+
+                <rect x="269" y="29" width="87" height="39"
+                      fill="rgba(225,222,215,0.5)" stroke="none"/>
+                <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
+                  <line x1="280" y1="29" x2="280" y2="68"/>
+                  <line x1="291" y1="29" x2="291" y2="68"/>
+                  <line x1="302" y1="29" x2="302" y2="68"/>
+                  <line x1="313" y1="29" x2="313" y2="68"/>
+                  <line x1="324" y1="29" x2="324" y2="68"/>
+                  <line x1="335" y1="29" x2="335" y2="68"/>
+                  <line x1="346" y1="29" x2="346" y2="68"/>
+                </g>
+                <text x="312" y="54" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="11"
+                      letter-spacing="0.04em" fill="rgba(52,48,44,0.85)">Escalier</text>
+
+                <rect x="315" y="253" width="78" height="36"
+                      fill="rgba(225,222,215,0.5)" stroke="none"/>
+                <text x="354" y="277" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="10"
+                      letter-spacing="0.04em" fill="rgba(52,48,44,0.85)">Storage</text>
+              </g>
+
+              <!-- ZONES CLIQUABLES -->
+              <g class="pzone kitchen" onclick="pick('kitchen', this)" onmouseenter="tip.textContent='Cuisine'">
+                <rect class="pz-fill" x="356" y="29" width="144" height="138" style="stroke:none"/>
+                <text class="pz-text" x="428" y="100" text-anchor="middle">Cuisine</text>
+              </g>
+
+              <g class="pzone dining" onclick="pick('dining', this)" onmouseenter="tip.textContent='Dining'">
+                <rect class="pz-fill" x="171" y="68" width="185" height="99" style="stroke:none"/>
+                <text class="pz-text" x="263" y="120" text-anchor="middle">Dining</text>
+              </g>
+
+              <g class="pzone living" onclick="pick('living', this)" onmouseenter="tip.textContent='Living Room'">
+                <rect class="pz-fill" x="171" y="167" width="144" height="122" style="stroke:none"/>
+                <text class="pz-text" x="243" y="225" text-anchor="middle" style="font-size:13px">Living Room</text>
+              </g>
+
+              <g class="pzone office" onclick="pick('office', this)" onmouseenter="tip.textContent='Bureau'">
+                <rect class="pz-fill" x="315" y="167" width="78" height="86" style="stroke:none"/>
+                <text class="pz-text" x="354" y="213" text-anchor="middle" style="font-size:12px">Bureau</text>
+              </g>
+
+              <!-- WALLS -->
+              <g pointer-events="none" fill="none"
+                 stroke="rgba(61,57,52,0.95)" stroke-width="1" stroke-linecap="square">
+                <path d="M 171 29 L 500 29 L 500 167 L 393 167 L 393 289 L 171 289 Z"/>
+                <path d="M 393 167 L 500 167 L 500 331 L 393 331 Z"/>
+                <path d="M 269 29 L 269 68"/>
+                <path d="M 171 68 L 356 68"/>
+                <path d="M 356 29 L 356 167"/>
+                <path d="M 315 167 L 315 289"/>
+                <path d="M 315 253 L 393 253"/>
+              </g>
             </svg>
 
-            <!-- ÉTAGE: exact from sketch — Ch1+Ch2 top, SDB1+SDB2 centre, Ch3 bottom-left, escalier bottom-centre, deck+pool right -->
-            <svg id="f1" class="plan-svg" viewBox="0 0 560 300" xmlns="http://www.w3.org/2000/svg" style="display:none">
-              <rect x="1" y="1" width="558" height="298" fill="none" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+            <!-- Étage -->
+            <svg id="f1" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 331" style="display:none">
 
-              <!-- Far left grey void (above parking) -->
-              <rect x="1" y="1" width="100" height="298" fill="rgba(200,196,190,0.4)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <text x="50" y="148" text-anchor="middle" class="pz-text" style="font-size:10px">Vide</text>
-              <line x1="101" y1="1" x2="101" y2="299" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-
-              <!-- ── TOP ROW: Chambre 1 + Chambre 2 side by side  y=1..130 ── -->
-              <g class="pzone bedroom1" onclick="pick('bedroom1',this)">
-                <rect class="pz-fill" x="101" y="1" width="134" height="129"/>
-                <text x="168" y="62" text-anchor="middle" class="pz-text">Chambre 1</text>
-              </g>
-              <g class="pzone bedroom2" onclick="pick('bedroom2',this)">
-                <rect class="pz-fill" x="235" y="1" width="135" height="129"/>
-                <text x="302" y="62" text-anchor="middle" class="pz-text">Chambre 2</text>
+              <g id="f1-shell" pointer-events="none">
+                <rect x="0" y="0" width="500" height="331" fill="rgba(225,222,215,0.5)"/>
               </g>
 
-              <!-- Top row divider -->
-              <line x1="235" y1="1" x2="235" y2="130" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <line x1="101" y1="130" x2="370" y2="130" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-
-              <!-- ── MIDDLE ROW: SDB 1 + SDB 2 side by side y=130..210 ── -->
-              <g class="pzone bath1" onclick="pick('bath1',this)">
-                <rect class="pz-fill" x="101" y="130" width="134" height="80"/>
-                <text x="168" y="173" text-anchor="middle" class="pz-text">SDB 1</text>
+              <!-- TERRASSE grisée (vue depuis l'étage) -->
+              <g pointer-events="none">
+                <rect x="0" y="0" width="171" height="290" fill="rgba(225,222,215,0.5)"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
+                  <line x1="0" y1="0" x2="171" y2="290"/>
+                  <line x1="171" y1="0" x2="0" y2="290"/>
+                </g>
+                <rect x="171" y="0" width="329" height="29" fill="rgba(225,222,215,0.5)"/>
+                <rect x="0" y="290" width="387" height="41" fill="rgba(225,222,215,0.5)"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
+                  <line x1="0" y1="290" x2="387" y2="331"/>
+                  <line x1="387" y1="290" x2="0" y2="331"/>
+                </g>
+                <text x="86" y="140" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="14"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(94,89,82,0.55)">Terrasse</text>
+                <text x="86" y="156" text-anchor="middle"
+                      font-family="Inter, sans-serif" font-size="8"
+                      letter-spacing="0.06em" fill="rgba(94,89,82,0.45)">accès rez-de-chaussée</text>
+                <text x="200" y="316" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="13"
+                      letter-spacing="0.04em" font-style="italic"
+                      fill="rgba(110,135,100,0.55)">Garden</text>
               </g>
-              <g class="pzone bath2" onclick="pick('bath2',this)">
-                <rect class="pz-fill" x="235" y="130" width="135" height="80"/>
-                <text x="302" y="173" text-anchor="middle" class="pz-text">SDB 2</text>
+
+              <!-- TOIT GARAGE grisé hachuré (au-dessus du garage du RDC) -->
+              <g pointer-events="none">
+                <rect x="420" y="210" width="80" height="118" fill="rgba(225,222,215,0.5)"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
+                  <line x1="420" y1="210" x2="500" y2="328"/>
+                  <line x1="500" y1="210" x2="420" y2="328"/>
+                </g>
+                <rect x="387" y="307" width="33" height="21" fill="rgba(225,222,215,0.5)"/>
               </g>
 
-              <line x1="235" y1="130" x2="235" y2="210" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <line x1="101" y1="210" x2="370" y2="210" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-
-              <!-- ── BOTTOM ROW: Chambre 3 left + Escalier right  y=210..299 ── -->
-              <g class="pzone bedroom3" onclick="pick('bedroom3',this)">
-                <rect class="pz-fill" x="101" y="210" width="134" height="88"/>
-                <text x="168" y="257" text-anchor="middle" class="pz-text">Chambre 3</text>
+              <!-- BALCON GAUCHE (devant Chambre 3) -->
+              <g pointer-events="none">
+                <rect x="130" y="168" width="41" height="122"
+                      fill="rgba(225,222,215,0.7)" stroke="none"/>
+                <text x="150.5" y="232" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="10"
+                      letter-spacing="0.04em" fill="rgba(94,89,82,0.7)">Balcon</text>
               </g>
 
-              <!-- Escalier bottom-centre -->
-              <rect x="235" y="210" width="135" height="88" fill="rgba(200,196,190,0.4)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <text x="302" y="257" text-anchor="middle" class="pz-text" style="font-size:10px">Escalier</text>
+              <!-- BALCON DROIT (devant Chambre 2) -->
+              <g pointer-events="none">
+                <rect x="387" y="210" width="33" height="97"
+                      fill="rgba(225,222,215,0.7)" stroke="none"/>
+                <text x="403.5" y="263" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="9"
+                      letter-spacing="0.04em" fill="rgba(94,89,82,0.7)">Balcon</text>
+              </g>
 
-              <!-- Right indoor column: Chambre 3 extension / open  y=1..299 x=370..430 -->
-              <line x1="370" y1="1" x2="370" y2="299" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <!-- Terrasse deck strip -->
-              <rect x="370" y="1" width="60" height="298" fill="rgba(180,160,130,0.22)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <line x1="370" y1="16" x2="430" y2="16" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-              <line x1="370" y1="31" x2="430" y2="31" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-              <line x1="370" y1="46" x2="430" y2="46" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-              <line x1="370" y1="61" x2="430" y2="61" stroke="rgba(61,57,52,0.15)" stroke-width="0.7"/>
-              <line x1="430" y1="1" x2="430" y2="299" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+              <!-- ESCALIER + landing -->
+              <g pointer-events="none">
+                <rect x="171" y="29" width="214" height="92"
+                      fill="rgba(245,242,234,0.95)" stroke="none"/>
+                <rect x="210" y="29" width="146" height="39"
+                      fill="rgba(225,222,215,0.5)" stroke="none"/>
+                <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
+                  <line x1="226" y1="29" x2="226" y2="68"/>
+                  <line x1="242" y1="29" x2="242" y2="68"/>
+                  <line x1="258" y1="29" x2="258" y2="68"/>
+                  <line x1="274" y1="29" x2="274" y2="68"/>
+                  <line x1="290" y1="29" x2="290" y2="68"/>
+                  <line x1="306" y1="29" x2="306" y2="68"/>
+                  <line x1="322" y1="29" x2="322" y2="68"/>
+                  <line x1="338" y1="29" x2="338" y2="68"/>
+                </g>
+                <text x="283" y="54" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="12"
+                      letter-spacing="0.04em" fill="rgba(52,48,44,0.85)">Escalier</text>
+              </g>
 
-              <!-- Pool visible from étage -->
-              <rect x="430" y="1" width="69" height="200" fill="rgba(160,210,230,0.3)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <rect x="437" y="10" width="55" height="178" rx="3" fill="rgba(160,210,230,0.4)" stroke="rgba(100,160,180,0.6)" stroke-width="1"/>
-              <line x1="430" y1="200" x2="499" y2="200" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <rect x="430" y="200" width="69" height="98" fill="rgba(200,216,190,0.3)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
-              <!-- Pool label -->
-              <text x="465" y="100" text-anchor="middle" class="pz-text" style="font-size:10px">Piscine</text>
-              <text x="465" y="250" text-anchor="middle" class="pz-text" style="font-size:10px">Jardin</text>
+              <!-- ZONES CLIQUABLES -->
+              <g class="pzone bath1" onclick="pick('bath1', this)" onmouseenter="tip.textContent='Salle de bain 1'">
+                <rect class="pz-fill" x="385" y="29" width="115" height="60" style="stroke:none"/>
+                <text class="pz-text" x="442" y="55" text-anchor="middle" style="font-size:11px">Salle de</text>
+                <text class="pz-text" x="442" y="70" text-anchor="middle" style="font-size:11px">bain 1</text>
+              </g>
 
-              <!-- Far right filler -->
-              <rect x="499" y="1" width="60" height="298" fill="rgba(244,240,233,0.3)" stroke="rgba(61,57,52,0.9)" stroke-width="1"/>
+              <g class="pzone bedroom1" onclick="pick('bedroom1', this)" onmouseenter="tip.textContent='Chambre 1'">
+                <rect class="pz-fill" x="385" y="89" width="115" height="121" style="stroke:none"/>
+                <text class="pz-text" x="442" y="155" text-anchor="middle">Chambre 1</text>
+              </g>
 
+              <g class="pzone bedroom3" onclick="pick('bedroom3', this)" onmouseenter="tip.textContent='Chambre 3'">
+                <polygon class="pz-fill" points="171,121 227,121 227,199 278,199 278,290 171,290" style="stroke:none"/>
+                <text class="pz-text" x="225" y="250" text-anchor="middle">Chambre 3</text>
+              </g>
+
+              <g class="pzone bedroom2" onclick="pick('bedroom2', this)" onmouseenter="tip.textContent='Chambre 2'">
+                <polygon class="pz-fill" points="328,121 387,121 387,290 278,290 278,199 328,199" style="stroke:none"/>
+                <text class="pz-text" x="333" y="250" text-anchor="middle">Chambre 2</text>
+              </g>
+
+              <g class="pzone bath3" onclick="pick('bath3', this)" onmouseenter="tip.textContent='Salle de bain 3'">
+                <rect class="pz-fill" x="227" y="121" width="51" height="78" style="stroke:none"/>
+                <text class="pz-text" x="252" y="155" text-anchor="middle" style="font-size:10px">SDB 3</text>
+              </g>
+
+              <g class="pzone bath2" onclick="pick('bath2', this)" onmouseenter="tip.textContent='Salle de bain 2'">
+                <rect class="pz-fill" x="278" y="121" width="50" height="78" style="stroke:none"/>
+                <text class="pz-text" x="303" y="155" text-anchor="middle" style="font-size:10px">SDB 2</text>
+              </g>
+
+              <!-- WALLS -->
+              <g pointer-events="none" fill="none"
+                 stroke="rgba(61,57,52,0.95)" stroke-width="1" stroke-linecap="square">
+                <path d="M 171 29 L 500 29 L 500 210 L 387 210 L 387 290 L 171 290 Z"/>
+                <path d="M 387 210 L 500 210 L 500 328 L 387 328 L 387 307"/>
+                <path d="M 420 210 L 420 328"/>
+                <path d="M 130 168 L 171 168 L 171 290 L 130 290 Z"/>
+                <path d="M 387 290 L 387 307"/>
+                <path d="M 420 307 L 387 307"/>
+                <path d="M 210 29 L 210 68 L 356 68 L 356 29"/>
+                <path d="M 385 89 L 500 89"/>
+                <path d="M 171 121 L 385 121"/>
+                <path d="M 387 121 L 387 210"/>
+                <path d="M 227 121 L 227 199"/>
+                <path d="M 278 121 L 278 199"/>
+                <path d="M 328 121 L 328 199"/>
+                <path d="M 227 199 L 328 199"/>
+                <path d="M 278 199 L 278 290"/>
+              </g>
             </svg>
 
           </div>
@@ -247,34 +340,7 @@
 
       <div class="info-side">
         <div class="room-image empty" id="roomImg">
-          <div class="room-visual" id="visual-main">
-            <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <defs>
-                  <linearGradient id="ex1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ddd5c8"/><stop offset="100%" stop-color="#bdb5a8"/></linearGradient>
-                  <linearGradient id="exPool" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ccd4d6"/><stop offset="100%" stop-color="#a8b4b8"/></linearGradient>
-                </defs>
-                <rect width="800" height="600" fill="url(#ex1)"/>
-                <polygon points="90,160 710,130 660,460 145,490" fill="url(#exPool)"/>
-                <polygon points="90,160 710,130 680,165 120,192" fill="#ddd4c4"/>
-                <rect y="480" width="800" height="120" fill="#b0a89c"/>
-                <rect x="520" y="80" width="160" height="40" fill="#c4b8ac" opacity="0.9"/>
-                <rect x="60" y="490" width="120" height="80" fill="#a89e94"/>
-              </svg>
-            </div></div>
-          
-          <div class="room-visual" id="visual-living">
-            <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <defs><linearGradient id="ex_liv" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ddd5c8"/><stop offset="100%" stop-color="#bdb5a8"/></linearGradient></defs>
-                <rect width="800" height="600" fill="url(#ex_liv)"/>
-                <rect y="370" width="800" height="230" fill="#b0a89e"/>
-                <rect x="140" y="230" width="460" height="160" fill="#ede5da"/>
-                <rect x="170" y="188" width="400" height="58" fill="#c4b8ac"/>
-                <rect x="640" y="130" width="90" height="200" fill="#9c9288"/>
-              </svg>
-            </div></div>
-          </div>
+
           <div class="room-visual" id="visual-kitchen">
             <div class="scene-card"><div class="room-scene">
               <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
@@ -282,9 +348,12 @@
                 <rect y="360" width="800" height="240" fill="#b8aea4"/>
                 <rect x="50" y="200" width="700" height="80" fill="#e8e0d4"/>
                 <rect x="50" y="200" width="700" height="20" fill="#cec4b8"/>
+                <rect x="300" y="230" width="80" height="50" rx="2" fill="#c4bab0"/>
+                <rect x="450" y="220" width="120" height="60" fill="#b8b0a8"/>
               </svg>
             </div></div>
           </div>
+
           <div class="room-visual" id="visual-dining">
             <div class="scene-card"><div class="room-scene">
               <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
@@ -295,28 +364,47 @@
               </svg>
             </div></div>
           </div>
-          <div class="room-visual" id="visual-pool">
+
+          <div class="room-visual" id="visual-living">
             <div class="scene-card"><div class="room-scene">
               <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <defs><linearGradient id="ex_pool" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ccd4d6"/><stop offset="100%" stop-color="#a8b4b8"/></linearGradient></defs>
-                <rect width="800" height="600" fill="#d8d0c4"/>
-                <rect x="80" y="150" width="640" height="300" rx="4" fill="url(#ex_pool)"/>
-                <path d="M90 230 Q130 220 170 230 Q210 240 250 230 Q290 220 330 230 Q370 240 410 230 Q450 220 490 230 Q530 240 570 230 Q610 220 650 230 Q690 240 710 230" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
-                <rect y="460" width="800" height="140" fill="#b8aea4"/>
+                <defs><linearGradient id="ex1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#dfd8cc"/><stop offset="100%" stop-color="#bfb8ac"/></linearGradient></defs>
+                <rect width="800" height="600" fill="url(#ex1)"/>
+                <rect y="370" width="800" height="230" fill="#b0a89e"/>
+                <rect x="140" y="230" width="460" height="160" fill="#ede5da"/>
+                <rect x="170" y="188" width="400" height="58" fill="#c4b8ac"/>
+                <rect x="200" y="256" width="160" height="56" fill="#f4ede4"/>
+                <rect x="380" y="256" width="160" height="56" fill="#ece4da"/>
+                <rect x="640" y="130" width="90" height="200" fill="#9c9288"/>
               </svg>
             </div></div>
           </div>
-          <div class="room-visual" id="visual-garden">
+
+          <div class="room-visual" id="visual-office">
             <div class="scene-card"><div class="room-scene">
               <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <defs><linearGradient id="ex_g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8ede4"/><stop offset="100%" stop-color="#c8d4c0"/></linearGradient></defs>
-                <rect width="800" height="600" fill="url(#ex_g)"/>
-                <rect y="380" width="800" height="220" fill="#b8c4a8"/>
-                <ellipse cx="200" cy="320" rx="80" ry="120" fill="#98a888"/>
-                <ellipse cx="600" cy="300" rx="100" ry="140" fill="#8a9878"/>
+                <rect width="800" height="600" fill="#d6cec0"/>
+                <rect y="380" width="800" height="220" fill="#a89e90"/>
+                <rect x="200" y="250" width="400" height="130" fill="#c4b8a8"/>
+                <rect x="220" y="200" width="360" height="60" fill="#dfd5c5"/>
+                <rect x="500" y="180" width="180" height="200" fill="#9e948a"/>
               </svg>
             </div></div>
           </div>
+
+          <div class="room-visual" id="visual-terrace">
+            <div class="scene-card"><div class="room-scene">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="ex_ter" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8e1d2"/><stop offset="100%" stop-color="#bdb2a4"/></linearGradient></defs>
+                <rect width="800" height="600" fill="url(#ex_ter)"/>
+                <rect y="380" width="800" height="220" fill="#a89e90"/>
+                <ellipse cx="500" cy="340" rx="220" ry="60" fill="rgba(178,210,225,0.6)" stroke="rgba(95,135,160,0.7)" stroke-width="2"/>
+                <rect x="120" y="200" width="200" height="120" fill="#f0ebe4" opacity="0.85"/>
+                <rect x="640" y="160" width="100" height="200" fill="#9c9288" opacity="0.7"/>
+              </svg>
+            </div></div>
+          </div>
+
           <div class="room-visual" id="visual-bedroom1">
             <div class="scene-card"><div class="room-scene">
               <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
@@ -329,6 +417,7 @@
               </svg>
             </div></div>
           </div>
+
           <div class="room-visual" id="visual-bedroom2">
             <div class="scene-card"><div class="room-scene">
               <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
@@ -336,23 +425,25 @@
                 <rect y="350" width="800" height="250" fill="#b0a598"/>
                 <rect x="160" y="245" width="475" height="158" fill="#ece3d7"/>
                 <rect x="195" y="205" width="405" height="62" fill="#c0b4a7"/>
-                <rect x="220" y="272" width="165" height="55" fill="#f5efe8"/>
-                <rect x="415" y="272" width="165" height="55" fill="#ebe3d8"/>
+                <rect x="220" y="272" width="168" height="55" fill="#f5efe8"/>
+                <rect x="415" y="272" width="168" height="55" fill="#ebe3d8"/>
               </svg>
             </div></div>
           </div>
+
           <div class="room-visual" id="visual-bedroom3">
             <div class="scene-card"><div class="room-scene">
               <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#d2c8bc"/>
-                <rect y="345" width="800" height="255" fill="#aea499"/>
-                <rect x="200" y="235" width="400" height="155" fill="#e8e0d4"/>
-                <rect x="225" y="198" width="350" height="60" fill="#beb2a6"/>
-                <rect x="250" y="260" width="130" height="50" fill="#f4ede4"/>
-                <rect x="420" y="260" width="130" height="50" fill="#eee6dc"/>
+                <rect width="800" height="600" fill="#d6cdc1"/>
+                <rect y="358" width="800" height="242" fill="#aea49a"/>
+                <rect x="170" y="248" width="460" height="158" fill="#ebe3d8"/>
+                <rect x="200" y="208" width="400" height="62" fill="#beb3a6"/>
+                <rect x="225" y="272" width="160" height="55" fill="#f3ede4"/>
+                <rect x="415" y="272" width="160" height="55" fill="#ede5db"/>
               </svg>
             </div></div>
           </div>
+
           <div class="room-visual" id="visual-bath1">
             <div class="scene-card"><div class="room-scene">
               <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
@@ -365,6 +456,7 @@
               </svg>
             </div></div>
           </div>
+
           <div class="room-visual" id="visual-bath2">
             <div class="scene-card"><div class="room-scene">
               <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
@@ -376,6 +468,20 @@
               </svg>
             </div></div>
           </div>
+
+          <div class="room-visual" id="visual-bath3">
+            <div class="scene-card"><div class="room-scene">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#d6cec4"/>
+                <rect y="334" width="800" height="266" fill="#b3a99e"/>
+                <rect x="150" y="172" width="500" height="250" fill="#f0ebe4"/>
+                <rect x="525" y="140" width="100" height="180" fill="#a59c90"/>
+                <rect x="175" y="135" width="200" height="30" fill="#c8bdb2"/>
+                <circle cx="250" cy="310" r="18" fill="#d8cec2"/>
+              </svg>
+            </div></div>
+          </div>
+
         </div>
       </div>
 
@@ -396,12 +502,30 @@
     });
     const roomImg = document.getElementById('roomImg');
     const visuals = document.querySelectorAll('.room-visual');
+
+    // Map plan zones to visual IDs
+    const visualMap = {
+      // RDC
+      kitchen: 'visual-kitchen',
+      dining:  'visual-dining',
+      living:  'visual-living',
+      office:  'visual-office',
+      terrace: 'visual-terrace',
+      // Étage
+      bedroom1: 'visual-bedroom1',
+      bedroom2: 'visual-bedroom2',
+      bedroom3: 'visual-bedroom3',
+      bath1:    'visual-bath1',
+      bath2:    'visual-bath2',
+      bath3:    'visual-bath3',
+    };
+
     function hideAllVisuals() { visuals.forEach(v => v.classList.remove('visible')); }
     function clearSelections() { document.querySelectorAll('.pzone').forEach(z => z.classList.remove('selected')); }
     function pick(id, zone) {
       clearSelections(); zone.classList.add('selected');
       hideAllVisuals();
-      const v = document.getElementById('visual-' + id);
+      const v = document.getElementById(visualMap[id] || ('visual-' + id));
       if (v) { roomImg.classList.remove('empty'); v.classList.add('visible'); }
     }
     function setFloor(idx, btn) {
