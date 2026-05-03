@@ -188,10 +188,16 @@
                 <text class="pz-text" x="145.5" y="85" text-anchor="middle">Cuisine</text>
               </g>
 
-              <!-- LIVING (Living + Dining merged) -->
+              <!-- DINING (entre Cuisine et Living) -->
+              <g class="pzone dining" onclick="pick('dining', this)" onmouseenter="tip.textContent='Dining'">
+                <polygon class="pz-fill" points="217,0 358.5,0 358.5,158 217,158" style="stroke:none"/>
+                <text class="pz-text" x="287.75" y="85" text-anchor="middle">Dining</text>
+              </g>
+
+              <!-- LIVING -->
               <g class="pzone living" onclick="pick('living', this)" onmouseenter="tip.textContent='Living'">
-                <polygon class="pz-fill" points="217,0 500,0 500,158 217,158" style="stroke:none"/>
-                <text class="pz-text" x="358.5" y="85" text-anchor="middle">Living</text>
+                <polygon class="pz-fill" points="358.5,0 500,0 500,158 358.5,158" style="stroke:none"/>
+                <text class="pz-text" x="429.25" y="85" text-anchor="middle">Living</text>
               </g>
 
               <!-- WORKSPACE -->
@@ -203,6 +209,8 @@
               <!-- DASHED SEPARATORS (on top, indicate open-plan) -->
               <g pointer-events="none" fill="none">
                 <line x1="217" y1="0" x2="217" y2="158"
+                      stroke="rgba(61,57,52,0.55)" stroke-width="1" stroke-dasharray="4 3"/>
+                <line x1="358.5" y1="0" x2="358.5" y2="158"
                       stroke="rgba(61,57,52,0.55)" stroke-width="1" stroke-dasharray="4 3"/>
                 <line x1="73" y1="133" x2="143" y2="133"
                       stroke="rgba(61,57,52,0.55)" stroke-width="1" stroke-dasharray="4 3"/>
@@ -309,18 +317,20 @@
 
           <div class="room-visual" id="visual-living">
             <div class="scene-card"><div class="room-scene">
-              <img src="../assets/images/interiors/threebedroom/3bed-kitchen.png" alt="Cuisine">
+              <img src="../assets/images/interiors/two%20bedroom/prestige-living.jpg" alt="Living">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-kitchen">
-            <div class="room-image">
-              <div class="room-scene">
-                <div class="scene-card" style="display:flex;align-items:center;justify-content:center;">
-                  <span style="font-family:'the-seasons',Georgia,serif;font-size:1.1rem;color:#5E5952;letter-spacing:0.08em;">Cuisine</span>
-                </div>
-              </div>
-            </div>
+            <div class="scene-card"><div class="room-scene">
+              <img src="../assets/images/interiors/two%20bedroom/prestige-kitchen.jpg" alt="Cuisine">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-dining">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../assets/images/interiors/two%20bedroom/prestige-dining.jpg" alt="Dining">
+            </div></div>
           </div>
 
           <div class="room-visual" id="visual-workspace">
@@ -366,13 +376,13 @@
 
           <div class="room-visual" id="visual-bedroom1">
             <div class="scene-card"><div class="room-scene">
-              <img src="../assets/images/interiors/threebedroom/3bed-room.png" alt="Chambre">
+              <img src="../assets/images/interiors/two%20bedroom/prestige-bedroom.jpg" alt="Chambre">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-bedroom2">
             <div class="scene-card"><div class="room-scene">
-              <img src="../assets/images/interiors/threebedroom/3bed-room.png" alt="Chambre">
+              <img src="../assets/images/interiors/two%20bedroom/prestige-bedroom2.jpg" alt="Chambre">
             </div></div>
           </div>
 

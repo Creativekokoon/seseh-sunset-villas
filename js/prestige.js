@@ -17,6 +17,7 @@ const visuals = document.querySelectorAll('.room-visual');
 const visualMap = {
   // Ground floor
   kitchen:   'visual-kitchen',
+  dining:    'visual-dining',
   living:    'visual-living',
   workspace: 'visual-workspace',
   terrace:   'visual-terrace',
