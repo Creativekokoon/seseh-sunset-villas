@@ -275,7 +275,7 @@
         <a class="nav-drawer-link" href="${depth}pages/equipe.html">
           Nos Équipes <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="#">
+        <a class="nav-drawer-link" href="https://bit.ly/sora-immobilier" target="_blank" rel="noopener">
           Pré-réserver <span class="nav-drawer-arrow">→</span>
         </a>
       </nav>
