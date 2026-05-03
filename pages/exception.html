@@ -92,28 +92,51 @@
                 <rect x="0" y="0" width="500" height="331" fill="rgba(225,222,215,0.5)"/>
               </g>
 
-              <!-- PISCINE -->
+              <!-- TERRASSE deck lines (horizontales décoratives) -->
+              <g pointer-events="none" fill="none" stroke="rgba(61,57,52,0.25)" stroke-width="0.5">
+                <!-- Bande haute (au-dessus de la maison y<29) -->
+                <line x1="0" y1="10" x2="500" y2="10"/>
+                <line x1="0" y1="20" x2="500" y2="20"/>
+                <!-- Bande gauche (à gauche de la maison x<171), au-dessus de la piscine -->
+                <line x1="0" y1="50" x2="171" y2="50"/>
+                <line x1="0" y1="80" x2="171" y2="80"/>
+                <line x1="0" y1="110" x2="171" y2="110"/>
+                <line x1="0" y1="140" x2="171" y2="140"/>
+                <!-- Bande gauche, à droite de la piscine (entre piscine et maison) -->
+                <line x1="95" y1="170" x2="171" y2="170"/>
+                <line x1="95" y1="200" x2="171" y2="200"/>
+                <line x1="95" y1="230" x2="171" y2="230"/>
+                <line x1="95" y1="260" x2="171" y2="260"/>
+              </g>
+
+              <!-- PISCINE (bleu avec vagues) -->
               <g pointer-events="none">
                 <rect x="18" y="153" width="77" height="135"
-                      fill="rgba(178,210,225,0.55)" stroke="none"/>
-                <text x="56.5" y="225" text-anchor="middle"
+                      fill="rgba(178,210,225,0.65)" stroke="rgba(95,135,160,0.85)" stroke-width="1"/>
+                <path d="M 25 185 Q 32 182 39 185 Q 46 188 53 185 Q 60 182 67 185 Q 74 188 81 185 Q 87 182 91 185"
+                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                <path d="M 25 200 Q 32 197 39 200 Q 46 203 53 200 Q 60 197 67 200 Q 74 203 81 200 Q 87 197 91 200"
+                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                <text x="56.5" y="240" text-anchor="middle"
                       font-family="'the-seasons', Georgia, serif" font-size="13"
-                      letter-spacing="0.04em" fill="rgba(50,80,100,0.9)">Piscine</text>
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(35,60,85,0.95)">Piscine</text>
+              </g>
+
+              <!-- GARDEN cliquable (bande basse, sous la maison) -->
+              <g class="pzone garden" onclick="pick('garden', this)" onmouseenter="tip.textContent='Garden'">
+                <rect class="pz-fill" x="0" y="289" width="393" height="42"
+                      style="stroke:none; fill:rgba(170,190,160,0.22)"/>
+                <text class="pz-text" x="200" y="316" text-anchor="middle"
+                      font-style="italic" fill="rgba(80,110,75,0.85)">Garden</text>
               </g>
 
               <!-- TERRASSE cliquable -->
               <g class="pzone terrace" onclick="pick('terrace', this)" onmouseenter="tip.textContent='Terrasse'">
                 <rect class="pz-fill" x="0" y="0" width="171" height="289" style="stroke:none"/>
                 <rect class="pz-fill" x="171" y="0" width="329" height="29" style="stroke:none"/>
-                <rect class="pz-fill" x="0" y="289" width="393" height="42" style="stroke:none"/>
                 <text class="pz-text" x="86" y="125" text-anchor="middle">Terrasse</text>
               </g>
-
-              <!-- Garden label décoratif -->
-              <text x="200" y="316" text-anchor="middle"
-                    font-family="'the-seasons', Georgia, serif" font-size="13"
-                    letter-spacing="0.04em" font-style="italic"
-                    fill="rgba(110,135,100,0.65)" pointer-events="none">Garden</text>
 
               <!-- MAISON background -->
               <g pointer-events="none">
@@ -193,9 +216,17 @@
                 <path d="M 393 167 L 500 167 L 500 331 L 393 331 Z"/>
                 <path d="M 269 29 L 269 68"/>
                 <path d="M 171 68 L 356 68"/>
-                <path d="M 356 29 L 356 167"/>
+                <path d="M 356 29 L 356 68"/>
                 <path d="M 315 167 L 315 289"/>
                 <path d="M 315 253 L 393 253"/>
+                <path d="M 315 167 L 393 167"/>
+              </g>
+
+              <!-- DASHED SEPARATORS (open-plan : Cuisine | Dining et Dining | Living Room) -->
+              <g pointer-events="none" fill="none"
+                 stroke="rgba(61,57,52,0.55)" stroke-width="0.7" stroke-dasharray="4 3">
+                <line x1="356" y1="68" x2="356" y2="167"/>
+                <line x1="171" y1="167" x2="315" y2="167"/>
               </g>
             </svg>
 
@@ -240,6 +271,10 @@
                   <line x1="500" y1="210" x2="420" y2="328"/>
                 </g>
                 <rect x="387" y="307" width="33" height="21" fill="rgba(225,222,215,0.5)"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
+                  <line x1="387" y1="307" x2="420" y2="328"/>
+                  <line x1="420" y1="307" x2="387" y2="328"/>
+                </g>
               </g>
 
               <!-- BALCON GAUCHE (devant Chambre 3) -->
@@ -323,6 +358,7 @@
                 <path d="M 387 290 L 387 307"/>
                 <path d="M 420 307 L 387 307"/>
                 <path d="M 210 29 L 210 68 L 356 68 L 356 29"/>
+                <path d="M 385 29 L 385 121"/>
                 <path d="M 385 89 L 500 89"/>
                 <path d="M 171 121 L 385 121"/>
                 <path d="M 387 121 L 387 210"/>
@@ -343,40 +379,19 @@
 
           <div class="room-visual" id="visual-kitchen">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#ddd6cc"/>
-                <rect y="360" width="800" height="240" fill="#b8aea4"/>
-                <rect x="50" y="200" width="700" height="80" fill="#e8e0d4"/>
-                <rect x="50" y="200" width="700" height="20" fill="#cec4b8"/>
-                <rect x="300" y="230" width="80" height="50" rx="2" fill="#c4bab0"/>
-                <rect x="450" y="220" width="120" height="60" fill="#b8b0a8"/>
-              </svg>
+              <img src="../assets/images/interiors/threebedroom/exception-kitchen.png" alt="Cuisine">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-dining">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#d8d0c4"/>
-                <rect y="370" width="800" height="230" fill="#b0a89e"/>
-                <rect x="250" y="220" width="300" height="160" rx="2" fill="#c8beb4"/>
-                <ellipse cx="400" cy="300" rx="80" ry="50" fill="#d8cec4"/>
-              </svg>
+              <img src="../assets/images/interiors/threebedroom/exception-dining.png" alt="Dining">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-living">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <defs><linearGradient id="ex1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#dfd8cc"/><stop offset="100%" stop-color="#bfb8ac"/></linearGradient></defs>
-                <rect width="800" height="600" fill="url(#ex1)"/>
-                <rect y="370" width="800" height="230" fill="#b0a89e"/>
-                <rect x="140" y="230" width="460" height="160" fill="#ede5da"/>
-                <rect x="170" y="188" width="400" height="58" fill="#c4b8ac"/>
-                <rect x="200" y="256" width="160" height="56" fill="#f4ede4"/>
-                <rect x="380" y="256" width="160" height="56" fill="#ece4da"/>
-                <rect x="640" y="130" width="90" height="200" fill="#9c9288"/>
-              </svg>
+              <img src="../assets/images/interiors/threebedroom/exception-living.png" alt="Living Room">
             </div></div>
           </div>
 
@@ -394,40 +409,25 @@
 
           <div class="room-visual" id="visual-terrace">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <defs><linearGradient id="ex_ter" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8e1d2"/><stop offset="100%" stop-color="#bdb2a4"/></linearGradient></defs>
-                <rect width="800" height="600" fill="url(#ex_ter)"/>
-                <rect y="380" width="800" height="220" fill="#a89e90"/>
-                <ellipse cx="500" cy="340" rx="220" ry="60" fill="rgba(178,210,225,0.6)" stroke="rgba(95,135,160,0.7)" stroke-width="2"/>
-                <rect x="120" y="200" width="200" height="120" fill="#f0ebe4" opacity="0.85"/>
-                <rect x="640" y="160" width="100" height="200" fill="#9c9288" opacity="0.7"/>
-              </svg>
+              <img src="../assets/images/interiors/threebedroom/exception-terrasse.png" alt="Terrasse">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-garden">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../assets/images/interiors/threebedroom/exception-terrasse.png" alt="Garden">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-bedroom1">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#d8cfc3"/>
-                <rect y="355" width="800" height="245" fill="#b3a89c"/>
-                <rect x="180" y="240" width="440" height="160" fill="#eee7dc"/>
-                <rect x="205" y="200" width="390" height="65" fill="#c1b6a9"/>
-                <rect x="230" y="265" width="150" height="55" fill="#f6f1ea"/>
-                <rect x="420" y="265" width="150" height="55" fill="#f0e9df"/>
-              </svg>
+              <img src="../assets/images/interiors/threebedroom/exception-bedroom1.png" alt="Chambre 1">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-bedroom2">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#d4cabc"/>
-                <rect y="350" width="800" height="250" fill="#b0a598"/>
-                <rect x="160" y="245" width="475" height="158" fill="#ece3d7"/>
-                <rect x="195" y="205" width="405" height="62" fill="#c0b4a7"/>
-                <rect x="220" y="272" width="168" height="55" fill="#f5efe8"/>
-                <rect x="415" y="272" width="168" height="55" fill="#ebe3d8"/>
-              </svg>
+              <img src="../assets/images/interiors/threebedroom/exception-bedroom2.png" alt="Chambre 2">
             </div></div>
           </div>
 
@@ -446,26 +446,13 @@
 
           <div class="room-visual" id="visual-bath1">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#dbd4ca"/>
-                <rect y="335" width="800" height="265" fill="#b8aea2"/>
-                <rect x="120" y="190" width="560" height="240" fill="#f5f0e9"/>
-                <rect x="170" y="140" width="180" height="35" fill="#cac0b4"/>
-                <rect x="470" y="135" width="115" height="140" fill="#a89f93"/>
-                <circle cx="250" cy="310" r="18" fill="#d8cec2"/>
-              </svg>
+              <img src="../assets/images/interiors/threebedroom/exception-bathroom1.png" alt="Salle de bain 1">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-bath2">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#d8d1c7"/>
-                <rect y="332" width="800" height="268" fill="#b5ab9f"/>
-                <rect x="160" y="170" width="480" height="255" fill="#f3eee8"/>
-                <rect x="535" y="140" width="90" height="180" fill="#a39a8e"/>
-                <rect x="180" y="135" width="200" height="30" fill="#cbc0b5"/>
-              </svg>
+              <img src="../assets/images/interiors/threebedroom/exception-bathroom2.png" alt="Salle de bain 2">
             </div></div>
           </div>
 
@@ -511,6 +498,7 @@
       living:  'visual-living',
       office:  'visual-office',
       terrace: 'visual-terrace',
+      garden:  'visual-garden',
       // Étage
       bedroom1: 'visual-bedroom1',
       bedroom2: 'visual-bedroom2',

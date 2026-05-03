@@ -7,7 +7,7 @@
     "lineHeight": 75,
     "category": "villa",
     "isMainLocation": true,
-    "image": "../assets/images/seseh/poi/seseh-sunset-villas.jpg",
+    "image": "../assets/images/seseh/seseh-aerial-1200.webp",
     "description": "Votre future demeure — villas de luxe au cœur de Bali.",
     "distance": "Vous êtes ici"
   },
@@ -29,7 +29,7 @@
     "position": { "top": "47.5%", "left": "73.5%" },
     "lineHeight": 110,
     "category": "beach",
-    "image": "../assets/images/seseh/poi/seseh-beach.jpg",
+    "image": "../assets/images/seseh/poi/bali-seseh-beach.png",
     "description": "Plage de sable noir paisible, connue pour son atmosphère sereine et ses couchers de soleil exceptionnels.",
     "distance": "5 min"
   },
@@ -43,7 +43,7 @@
     "description": "Sélection de tables et cafés à proximité immédiate.",
     "distance": "5 à 10 min",
     "destinations": [
-      { "name": "Café local", "venue": "", "description": "Brunch & specialty coffee", "icon": "coffee", "image": "../assets/images/seseh/destinations/cafe.jpg" },
+      { "name": "Café local", "venue": "Clove Café", "description": "Brunch & specialty coffee", "icon": "coffee", "image": "../assets/images/seseh/poi/clove-cafe.png" },
       { "name": "French Bakery", "venue": "", "description": "Pâtisserie française authentique", "icon": "bakery", "image": "../assets/images/seseh/destinations/bakery.jpg" },
       { "name": "Restaurant signature", "venue": "", "description": "Cuisine indo-fusion", "icon": "restaurant", "image": "../assets/images/seseh/destinations/resto.jpg" }
     ]
@@ -84,7 +84,7 @@
     "position": { "top": "30.71%", "left": "43.66%" },
     "lineHeight": 70,
     "category": "transport",
-    "image": "../assets/images/seseh/poi/airport.jpg",
+    "image": "../assets/images/seseh/poi/Ngurah-Rai-airport.avif",
     "description": "L'aéroport international principal de Bali, votre porte d'entrée vers le paradis.",
     "distance": "45 min"
   }
