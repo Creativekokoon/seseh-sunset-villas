@@ -143,12 +143,7 @@ html,body {
   stroke:rgba(61,57,52,0.95);stroke-width:1;
   transition:fill 0.15s,stroke 0.15s,stroke-width 0.15s;
 }
-.pzone.pool .pz-fill,
-.pzone.terrace .pz-fill,
-.pzone.bedroom2 .pz-fill,
-.pzone.bath1 .pz-fill,
-.pzone.bath2 .pz-fill,
-.pzone.balcony .pz-fill { fill:rgba(236,233,229,0.74); }
+/* All clickable zones share the same default .pz-fill background */
 
 .pzone { cursor:pointer; }
 .pzone:hover .pz-fill { fill:rgba(225,217,201,0.88);stroke:var(--gold) !important;stroke-width:2 !important; }
