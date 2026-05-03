@@ -25,6 +25,9 @@
     }
     /* Match interactive labels with the Escalier label (14px) */
     #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
+    /* Exception only — slimmer gold stroke on hover/selected */
+    #f0 .pzone:hover .pz-fill, #f1 .pzone:hover .pz-fill { stroke-width: 1.4 !important; }
+    #f0 .pzone.selected .pz-fill, #f1 .pzone.selected .pz-fill { stroke-width: 1.6 !important; }
   </style>
 </head>
 <body>
