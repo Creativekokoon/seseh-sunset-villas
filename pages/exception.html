@@ -109,33 +109,37 @@
                 <line x1="95" y1="260" x2="171" y2="260"/>
               </g>
 
-              <!-- PISCINE (bleu avec vagues) -->
+              <!-- PISCINE (bleu saturé avec vagues, même style que les autres villas) -->
               <g pointer-events="none">
                 <rect x="18" y="153" width="77" height="135"
-                      fill="rgba(178,210,225,0.65)" stroke="rgba(95,135,160,0.85)" stroke-width="1"/>
+                      fill="rgba(160,205,225,0.85)" stroke="rgba(75,120,150,0.95)" stroke-width="1"/>
                 <path d="M 25 185 Q 32 182 39 185 Q 46 188 53 185 Q 60 182 67 185 Q 74 188 81 185 Q 87 182 91 185"
-                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                      fill="none" stroke="rgba(75,120,150,0.85)" stroke-width="1"/>
                 <path d="M 25 200 Q 32 197 39 200 Q 46 203 53 200 Q 60 197 67 200 Q 74 203 81 200 Q 87 197 91 200"
-                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                      fill="none" stroke="rgba(75,120,150,0.85)" stroke-width="1"/>
                 <text x="56.5" y="240" text-anchor="middle"
                       font-family="'the-seasons', Georgia, serif" font-size="13"
-                      font-weight="500" letter-spacing="0.04em"
-                      fill="rgba(35,60,85,0.95)">Piscine</text>
+                      font-weight="600" letter-spacing="0.04em"
+                      fill="rgba(30,55,85,1)">Piscine</text>
               </g>
 
-              <!-- GARDEN cliquable (bande basse, sous la maison) -->
+              <!-- GARDEN : grande zone autour de la propriété (gauche + haut + bas) -->
               <g class="pzone garden" onclick="pick('garden', this)" onmouseenter="tip.textContent='Garden'">
+                <rect class="pz-fill" x="0" y="0" width="171" height="289"
+                      style="stroke:none; fill:rgba(170,190,160,0.22)"/>
+                <rect class="pz-fill" x="171" y="0" width="329" height="29"
+                      style="stroke:none; fill:rgba(170,190,160,0.22)"/>
                 <rect class="pz-fill" x="0" y="289" width="393" height="42"
                       style="stroke:none; fill:rgba(170,190,160,0.22)"/>
                 <text class="pz-text" x="200" y="316" text-anchor="middle"
                       font-style="italic" fill="rgba(80,110,75,0.85)">Garden</text>
               </g>
 
-              <!-- TERRASSE cliquable -->
+              <!-- TERRASSE : zone intérieure plus petite, autour de la piscine -->
               <g class="pzone terrace" onclick="pick('terrace', this)" onmouseenter="tip.textContent='Terrasse'">
-                <rect class="pz-fill" x="0" y="0" width="171" height="289" style="stroke:none"/>
-                <rect class="pz-fill" x="171" y="0" width="329" height="29" style="stroke:none"/>
-                <text class="pz-text" x="86" y="125" text-anchor="middle">Terrasse</text>
+                <rect class="pz-fill" x="18" y="29" width="153" height="124"
+                      style="stroke:none; fill:rgba(225,222,215,0.55)"/>
+                <text class="pz-text" x="86" y="95" text-anchor="middle">Terrasse</text>
               </g>
 
               <!-- MAISON background -->
@@ -352,11 +356,9 @@
               <g pointer-events="none" fill="none"
                  stroke="rgba(61,57,52,0.95)" stroke-width="1" stroke-linecap="square">
                 <path d="M 171 29 L 500 29 L 500 210 L 387 210 L 387 290 L 171 290 Z"/>
-                <path d="M 387 210 L 500 210 L 500 328 L 387 328 L 387 307"/>
+                <path d="M 387 210 L 500 210 L 500 328 L 387 328 L 387 307 L 420 307"/>
                 <path d="M 420 210 L 420 328"/>
                 <path d="M 130 168 L 171 168 L 171 290 L 130 290 Z"/>
-                <path d="M 387 290 L 387 307"/>
-                <path d="M 420 307 L 387 307"/>
                 <path d="M 210 29 L 210 68 L 356 68 L 356 29"/>
                 <path d="M 385 29 L 385 121"/>
                 <path d="M 385 89 L 500 89"/>
