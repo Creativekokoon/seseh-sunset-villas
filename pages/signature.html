@@ -171,19 +171,27 @@
               </g>
 
               <g class="pzone kitchen" onclick="pick('kitchen', this)" onmouseenter="tip.textContent='Cuisine'">
-                <polygon class="pz-fill" points="0,54 175,54 175,210 0,210" style="stroke:none"/>
-                <text class="pz-text" x="87" y="135" text-anchor="middle">Cuisine</text>
+                <polygon class="pz-fill" points="0,54 140,54 140,210 0,210" style="stroke:none"/>
+                <text class="pz-text" x="70" y="135" text-anchor="middle">Cuisine</text>
               </g>
 
-              <g class="pzone living" onclick="pick('living', this)" onmouseenter="tip.textContent='Dining / Living'">
-                <polygon class="pz-fill" points="279,0 500,0 500,210 175,210 175,54 279,54 279,0" style="stroke:none"/>
-                <text class="pz-text" x="337" y="120" text-anchor="middle">Dining /</text>
-                <text class="pz-text" x="337" y="138" text-anchor="middle">Living Room</text>
+              <g class="pzone dining" onclick="pick('dining', this)" onmouseenter="tip.textContent='Dining'">
+                <polygon class="pz-fill" points="140,54 279,54 279,210 140,210" style="stroke:none"/>
+                <text class="pz-text" x="209.5" y="135" text-anchor="middle">Dining</text>
               </g>
 
-              <line x1="175" y1="54" x2="175" y2="210"
-                    stroke="rgba(61,57,52,0.55)" stroke-width="1.5" stroke-dasharray="4 3"
-                    pointer-events="none"/>
+              <g class="pzone living" onclick="pick('living', this)" onmouseenter="tip.textContent='Living Room'">
+                <polygon class="pz-fill" points="279,0 500,0 500,210 279,210" style="stroke:none"/>
+                <text class="pz-text" x="389.5" y="120" text-anchor="middle">Living</text>
+                <text class="pz-text" x="389.5" y="138" text-anchor="middle">Room</text>
+              </g>
+
+              <!-- Dashed separators (open-plan) -->
+              <g pointer-events="none" fill="none"
+                 stroke="rgba(61,57,52,0.55)" stroke-width="1.5" stroke-dasharray="4 3">
+                <line x1="140" y1="54" x2="140" y2="210"/>
+                <line x1="279" y1="54" x2="279" y2="210"/>
+              </g>
 
             </svg>
 
@@ -310,39 +318,19 @@
 
           <div class="room-visual" id="visual-living">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <defs><linearGradient id="sg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#dfd8cc"/><stop offset="100%" stop-color="#bfb8ac"/></linearGradient></defs>
-                <rect width="800" height="600" fill="url(#sg1)"/>
-                <rect y="370" width="800" height="230" fill="#b0a89e"/>
-                <rect x="140" y="230" width="460" height="160" fill="#ede5da"/>
-                <rect x="170" y="188" width="400" height="58" fill="#c4b8ac"/>
-                <rect x="200" y="256" width="160" height="56" fill="#f4ede4"/>
-                <rect x="380" y="256" width="160" height="56" fill="#ece4da"/>
-                <rect x="640" y="130" width="90" height="200" fill="#9c9288"/>
-              </svg>
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-living.png" alt="Living Room">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-kitchen">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#ddd6cc"/>
-                <rect y="360" width="800" height="240" fill="#b8aea4"/>
-                <rect x="50" y="200" width="700" height="80" fill="#e8e0d4"/>
-                <rect x="50" y="200" width="700" height="20" fill="#cec4b8"/>
-                <rect x="300" y="230" width="80" height="50" rx="2" fill="#c4bab0"/>
-              </svg>
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-dining-kitchen.png" alt="Cuisine">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-dining">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#d8d0c4"/>
-                <rect y="370" width="800" height="230" fill="#b0a89e"/>
-                <rect x="250" y="220" width="300" height="160" rx="2" fill="#c8beb4"/>
-                <ellipse cx="400" cy="300" rx="80" ry="50" fill="#d8cec4"/>
-              </svg>
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-dining.png" alt="Dining">
             </div></div>
           </div>
 
@@ -385,52 +373,25 @@
 
           <div class="room-visual" id="visual-bedroom1">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#d8cfc3"/>
-                <rect y="355" width="800" height="245" fill="#b3a89c"/>
-                <rect x="180" y="240" width="440" height="160" fill="#eee7dc"/>
-                <rect x="205" y="200" width="390" height="65" fill="#c1b6a9"/>
-                <rect x="230" y="265" width="150" height="55" fill="#f6f1ea"/>
-                <rect x="420" y="265" width="150" height="55" fill="#f0e9df"/>
-              </svg>
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-bedroom1.png" alt="Chambre 1">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-bedroom2">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#d4cabc"/>
-                <rect y="350" width="800" height="250" fill="#b0a598"/>
-                <rect x="160" y="245" width="475" height="158" fill="#ece3d7"/>
-                <rect x="195" y="205" width="405" height="62" fill="#c0b4a7"/>
-                <rect x="220" y="272" width="168" height="55" fill="#f5efe8"/>
-                <rect x="415" y="272" width="168" height="55" fill="#ebe3d8"/>
-              </svg>
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-bedroom2.png" alt="Chambre 2">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-bath1">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#dbd4ca"/>
-                <rect y="335" width="800" height="265" fill="#b8aea2"/>
-                <rect x="120" y="190" width="560" height="240" fill="#f5f0e9"/>
-                <rect x="170" y="140" width="180" height="35" fill="#cac0b4"/>
-                <rect x="470" y="135" width="115" height="140" fill="#a89f93"/>
-                <circle cx="250" cy="310" r="18" fill="#d8cec2"/>
-              </svg>
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-bathroom.png" alt="Salle de bain 1">
             </div></div>
           </div>
 
           <div class="room-visual" id="visual-bath2">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <rect width="800" height="600" fill="#d8d1c7"/>
-                <rect y="332" width="800" height="268" fill="#b5ab9f"/>
-                <rect x="160" y="170" width="480" height="255" fill="#f3eee8"/>
-                <rect x="535" y="140" width="90" height="180" fill="#a39a8e"/>
-                <rect x="180" y="135" width="200" height="30" fill="#cbc0b5"/>
-              </svg>
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-bathroom.png" alt="Salle de bain 2">
             </div></div>
           </div>
 
@@ -448,17 +409,7 @@
 
           <div class="room-visual" id="visual-office">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <defs><linearGradient id="sg_bal" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f4efe8"/><stop offset="100%" stop-color="#cec3b6"/></linearGradient></defs>
-                <rect width="800" height="600" fill="#d2c8bc"/>
-                <rect width="800" height="300" fill="url(#sg_bal)"/>
-                <rect y="300" width="800" height="300" fill="#b2a89c"/>
-                <rect x="95" y="295" width="610" height="20" fill="#ddd2c5"/>
-                <rect x="115" y="315" width="12" height="145" fill="#beb2a6"/>
-                <rect x="245" y="315" width="12" height="145" fill="#beb2a6"/>
-                <rect x="375" y="315" width="12" height="145" fill="#beb2a6"/>
-                <rect x="505" y="315" width="12" height="145" fill="#beb2a6"/>
-              </svg>
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-bureau.png" alt="Bureau">
             </div></div>
           </div>
 
