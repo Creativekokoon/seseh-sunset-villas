@@ -128,7 +128,7 @@
               <!-- PISCINE (style identique à Signature : fill 0.55 + stroke autour, vagues 0.8, texte 0.9) -->
               <g pointer-events="none">
                 <rect x="18" y="153" width="77" height="135"
-                      fill="rgba(178,210,225,0.55)" stroke="rgba(95,135,160,0.85)" stroke-width="1"/>
+                      fill="rgba(178,210,225,0.55)" stroke="rgba(95,135,160,0.7)" stroke-width="0.6"/>
                 <path d="M 25 185 Q 32 182 39 185 Q 46 188 53 185 Q 60 182 67 185 Q 74 188 81 185 Q 87 182 91 185"
                       fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
                 <path d="M 25 200 Q 32 197 39 200 Q 46 203 53 200 Q 60 197 67 200 Q 74 203 81 200 Q 87 197 91 200"
@@ -192,6 +192,8 @@
               <!-- WALLS (rendus AVANT les pzones pour que le hover-gold soit visible par-dessus) -->
               <g pointer-events="none" fill="none"
                  stroke="rgba(61,57,52,0.95)" stroke-width="1" stroke-linecap="square">
+                <!-- Périmètre extérieur global -->
+                <path d="M 0 0 L 500 0 L 500 331 L 0 331 Z"/>
                 <path d="M 171 29 L 500 29 L 500 167 L 393 167 L 393 289 L 171 289 Z"/>
                 <path d="M 393 167 L 500 167 L 500 331 L 393 331 Z"/>
                 <path d="M 269 29 L 269 68"/>
@@ -292,6 +294,12 @@
                       letter-spacing="0.04em" fill="rgba(94,89,82,0.7)">Balcon</text>
               </g>
 
+              <!-- MAISON background (cream uniforme sous toutes les chambres + SDB, comme f0) -->
+              <g pointer-events="none">
+                <rect x="171" y="29" width="329" height="181" fill="rgba(245,242,234,0.95)"/>
+                <rect x="171" y="210" width="216" height="80" fill="rgba(245,242,234,0.95)"/>
+              </g>
+
               <!-- ESCALIER + landing -->
               <g pointer-events="none">
                 <rect x="171" y="29" width="214" height="92"
@@ -317,6 +325,8 @@
               <!-- WALLS (rendus AVANT les pzones pour que le hover-gold soit visible par-dessus) -->
               <g pointer-events="none" fill="none"
                  stroke="rgba(61,57,52,0.95)" stroke-width="1" stroke-linecap="square">
+                <!-- Périmètre extérieur global -->
+                <path d="M 0 0 L 500 0 L 500 331 L 0 331 Z"/>
                 <path d="M 171 29 L 500 29 L 500 210 L 387 210 L 387 290 L 171 290 Z"/>
                 <path d="M 387 210 L 500 210 L 500 328 L 387 328 L 387 290 L 420 290"/>
                 <path d="M 420 210 L 420 328"/>
