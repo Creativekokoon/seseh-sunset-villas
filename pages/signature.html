@@ -23,10 +23,15 @@
            (min-width:1024px) and (max-width:1400px) and (hover:none) {
       .plan-svg { max-width: 520px; }
     }
-    /* Labels légèrement plus grands pour compenser le viewBox plus haut (500x381)
-       qui force le SVG à rétrécir via max-height — sans cette compensation,
-       les labels rendraient ~17% plus petits que sur Élégance/Prestige/Exception */
+    /* Labels légèrement plus grands sur desktop pour compenser le viewBox plus haut
+       (500x381) qui force le SVG à rétrécir via max-height */
     #f0 .pz-text, #f1 .pz-text { font-size: 16px; }
+    /* Sur tablette le SVG n'est pas contraint par la hauteur, donc on revient à 14px
+       pour matcher visuellement Élégance / Prestige / Exception */
+    @media (max-width:1023px) and (min-width:768px),
+           (min-width:1024px) and (max-width:1400px) and (hover:none) {
+      #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
+    }
   </style>
 </head>
 <body>
