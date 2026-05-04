@@ -371,6 +371,16 @@ html,body {
   .dark-block { margin-top:40px; }
 }
 
+/* iPad 11" (portrait 834×1194 + landscape 1194×834, PWA full-screen)
+   — réduit l'écart stats↔plan et remonte le bouton Pré-réserver */
+@media (min-width:780px) and (max-width:880px) and (min-height:1150px),
+       (min-width:1150px) and (max-width:1250px) and (min-height:780px) and (max-height:900px) {
+  .stats { padding:4px 0 8px; }
+  .dark-block { margin-top:8px; min-height:380px; }
+  .plan-side { padding:14px 18px 10px; }
+  .prereserver-wrap { padding:4px 20px 10px; }
+}
+
 /* Large desktop — cap max width, allow taller plan */
 @media (min-width:1920px) {
   .dark-block { max-width:1440px;max-height:700px; }

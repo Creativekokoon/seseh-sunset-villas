@@ -478,6 +478,42 @@
       .pillar-back-desc{font-size:0.84rem;line-height:1.6}
     }
 
+    /* iPad 11" portrait (~834×1194, PWA full-screen) — cards plus compactes, prereserver remonté */
+    @media (min-width:780px) and (max-width:880px) and (min-height:1150px){
+      .team-title{padding:36px 0 10px}
+      .team-intro{margin-bottom:32px}
+      .pillars-grid{
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+        max-width:680px;
+        margin-bottom:24px;
+      }
+      .pillar{height:280px}
+      .pillar-image{height:180px}
+      .pillar-front-body{padding:12px 16px 14px;gap:2px}
+      .pillar-front-title{font-size:1.15rem}
+      .pillar-back{padding:24px 20px 18px}
+      .pillar-back-title{font-size:1.2rem}
+      .pillar-back-desc{font-size:0.78rem;line-height:1.5}
+      .prereserver-wrap{padding:8px 20px 16px}
+    }
+
+    /* iPad 11" landscape (~1194×834, PWA full-screen) — cards 4 cols compactes */
+    @media (min-width:1150px) and (max-width:1250px) and (min-height:780px) and (max-height:900px){
+      .page{max-width:1140px;padding:0 24px 16px}
+      .team-title{padding:32px 0 8px}
+      .team-intro{font-size:0.92rem;margin-bottom:32px;max-width:620px}
+      .pillars-grid{gap:16px;margin-bottom:24px}
+      .pillar{height:340px}
+      .pillar-image{height:200px}
+      .pillar-front-body{padding:14px 16px 16px;gap:3px}
+      .pillar-front-title{font-size:1.15rem}
+      .pillar-back{padding:24px 20px 20px}
+      .pillar-back-title{font-size:1.2rem}
+      .pillar-back-desc{font-size:0.78rem;line-height:1.5}
+      .prereserver-wrap{padding:8px 20px 14px}
+    }
+
     /* Large desktop */
     @media (min-width:1920px){
       .team-title{font-size:3.4rem;padding:56px 0 14px}
