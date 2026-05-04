@@ -13,18 +13,20 @@
     .plan-coming { flex:1; display:flex; align-items:center; justify-content:center; font-family:'Inter','Helvetica Neue',Arial,sans-serif; font-size:0.55rem; letter-spacing:0.22em; text-transform:uppercase; color:rgba(83,78,72,0.38); }
     .features-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 24px; padding:0 16px; }
     .feature-item { font-family:'Inter','Helvetica Neue',Arial,sans-serif; font-size:0.62rem; letter-spacing:0.12em; color:rgba(57,52,47,0.72); padding:6px 0; border-bottom:1px solid rgba(62,58,54,0.08); }
-    /* Match plan size with Élégance / Prestige across breakpoints */
-    .plan-svg { max-width: 720px; }
+    /* Match plan size with Élégance / Prestige across breakpoints
+       (max-widths réduits car le viewBox de Signature est plus haut — 500x381 —
+       donc à largeur égale, le plan paraissait plus haut que les autres villas) */
+    .plan-svg { max-width: 610px; }
     @media (min-width:1024px) and (min-height:900px) {
-      .plan-svg { max-width: 760px; }
+      .plan-svg { max-width: 645px; }
     }
     /* iPad Pro 13" portrait + landscape — constrain to header width */
     @media (min-width:1024px) and (max-width:1400px) and (min-height:1100px),
            (min-width:1024px) and (max-width:1400px) and (hover:none) {
-      .plan-svg { max-width: 520px; }
+      .plan-svg { max-width: 440px; }
     }
-    /* Larger interactive labels */
-    #f0 .pz-text, #f1 .pz-text { font-size: 16px; }
+    /* Match interactive labels avec Élégance / Prestige */
+    #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
   </style>
 </head>
 <body>
