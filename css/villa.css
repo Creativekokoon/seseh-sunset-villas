@@ -172,8 +172,10 @@ html,body {
   opacity:1;
 }
 .room-image {
-  flex:1;position:relative;overflow:hidden;
-  min-height:0;background:transparent;border:none;
+  flex:0 1 auto;position:relative;overflow:hidden;
+  width:100%;aspect-ratio:4 / 3;max-height:100%;
+  align-self:center;
+  background:transparent;border:none;
 }
 .room-visual {
   position:absolute;inset:0;
