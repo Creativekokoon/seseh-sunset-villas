@@ -162,14 +162,14 @@
                       fill="rgba(94,89,82,0.55)">Garage</text>
               </g>
 
-              <!-- Toilettes + Escalier + Storage -->
-              <g pointer-events="none">
-                <rect x="171" y="29" width="98" height="39"
-                      fill="rgba(225,222,215,0.5)" stroke="none"/>
-                <text x="220" y="54" text-anchor="middle"
-                      font-family="'the-seasons', Georgia, serif" font-size="10"
-                      letter-spacing="0.04em" fill="rgba(52,48,44,0.85)">Toilettes</text>
+              <!-- TOILETTES (cliquable) -->
+              <g class="pzone toilet" onclick="pick('toilet', this)" onmouseenter="tip.textContent='Toilettes'">
+                <rect class="pz-fill" x="171" y="29" width="98" height="39" style="stroke:none"/>
+                <text class="pz-text" x="220" y="54" text-anchor="middle" style="font-size:11px">Toilettes</text>
+              </g>
 
+              <!-- Escalier + Storage -->
+              <g pointer-events="none">
                 <rect x="269" y="29" width="87" height="39"
                       fill="rgba(225,222,215,0.5)" stroke="none"/>
                 <g transform="translate(306, 42)">
@@ -398,6 +398,12 @@
             </div></div>
           </div>
 
+          <div class="room-visual" id="visual-toilet">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-toilet.jpg" alt="Toilettes">
+            </div></div>
+          </div>
+
           <div class="room-visual" id="visual-bedroom1">
             <div class="scene-card"><div class="room-scene">
               <img src="../assets/images/interiors/threebedroom/exception-bedroom1.jpg" alt="Chambre 1">
@@ -477,6 +483,7 @@
       living:  'visual-living',
       office:  'visual-office',
       terrace: 'visual-terrace',
+      toilet:  'visual-toilet',
       // Étage
       bedroom1: 'visual-bedroom1',
       bedroom2: 'visual-bedroom2',

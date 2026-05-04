@@ -21,6 +21,7 @@ const visualMap = {
   living:    'visual-living',
   workspace: 'visual-workspace',
   terrace:   'visual-terrace',
+  toilet:    'visual-toilet',
   // First floor
   bedroom1:  'visual-bedroom1',
   bedroom2:  'visual-bedroom2',

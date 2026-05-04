@@ -97,16 +97,13 @@
             <svg id="f0" class="plan-svg" viewBox="-1 -1 502 322" xmlns="http://www.w3.org/2000/svg">
 
               <!-- BACKGROUND : non-interactive zones (Toilets + Escalier + Parking) -->
+              <!-- TOILETS (cliquable, top-left) -->
+              <g class="pzone toilet" onclick="pick('toilet', this)" onmouseenter="tip.textContent='Toilettes'">
+                <rect class="pz-fill" x="0" y="0" width="73" height="93"/>
+                <text class="pz-text" x="37" y="49" text-anchor="middle" style="font-size:11px">Toilettes</text>
+              </g>
+
               <g id="f0-shell" pointer-events="none">
-
-                <!-- TOILETS (top-left) -->
-                <rect x="0" y="0" width="73" height="93"
-                      fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
-                <text x="37" y="49" text-anchor="middle"
-                      font-family="'the-seasons', Georgia, serif" font-size="11"
-                      letter-spacing="0.04em"
-                      fill="rgba(52,48,44,0.85)">Toilettes</text>
-
                 <!-- ESCALIER (under toilets) -->
                 <polygon points="0,93 73,93 73,133 43,133 43,158 0,158"
                          fill="rgba(225,222,215,0.5)" stroke="none"/>
@@ -308,6 +305,12 @@
           <div class="room-visual" id="visual-living">
             <div class="scene-card"><div class="room-scene">
               <img src="../assets/images/interiors/two%20bedroom/prestige-living.jpg" alt="Living">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-toilet">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-toilet.jpg" alt="Toilettes">
             </div></div>
           </div>
 

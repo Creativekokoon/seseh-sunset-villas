@@ -88,14 +88,13 @@
             <!-- RDC -->
             <svg id="f0" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 502 383">
 
-              <g id="f0-shell" pointer-events="none">
-                <rect x="0" y="0" width="77" height="54"
-                      fill="rgba(225,222,215,0.5)" stroke="none"/>
-                <text x="38.5" y="32" text-anchor="middle"
-                      font-family="'the-seasons', Georgia, serif" font-size="10"
-                      letter-spacing="0.04em"
-                      fill="rgba(52,48,44,0.85)">Toilettes</text>
+              <!-- TOILETTES (cliquable) -->
+              <g class="pzone toilet" onclick="pick('toilet', this)" onmouseenter="tip.textContent='Toilettes'">
+                <rect class="pz-fill" x="0" y="0" width="77" height="54" style="stroke:none"/>
+                <text class="pz-text" x="38.5" y="32" text-anchor="middle" style="font-size:11px">Toilettes</text>
+              </g>
 
+              <g id="f0-shell" pointer-events="none">
                 <rect x="77" y="0" width="202" height="54"
                       fill="rgba(225,222,215,0.5)" stroke="none"/>
                 <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
@@ -336,14 +335,13 @@
 
           <div class="room-visual" id="visual-terrace">
             <div class="scene-card"><div class="room-scene">
-              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
-                <defs><linearGradient id="sg_ter" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8e1d2"/><stop offset="100%" stop-color="#bdb2a4"/></linearGradient></defs>
-                <rect width="800" height="600" fill="url(#sg_ter)"/>
-                <rect y="380" width="800" height="220" fill="#a89e90"/>
-                <ellipse cx="500" cy="340" rx="220" ry="60" fill="rgba(178,210,225,0.6)" stroke="rgba(95,135,160,0.7)" stroke-width="2"/>
-                <rect x="120" y="200" width="200" height="120" fill="#f0ebe4" opacity="0.85"/>
-                <rect x="640" y="160" width="100" height="200" fill="#9c9288" opacity="0.7"/>
-              </svg>
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-outdoor.jpg" alt="Terrasse">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-toilet">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../assets/images/interiors/two%20bedroom%2B/signature-toilet.jpg" alt="Toilettes">
             </div></div>
           </div>
 
