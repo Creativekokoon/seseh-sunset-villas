@@ -87,7 +87,7 @@ html,body {
   height:420px;
   min-height:0;
   background:transparent;
-  transition:grid-template-columns 0.55s cubic-bezier(0.4,0,0.2,1);
+  transition:grid-template-columns 0.85s cubic-bezier(0.4,0,0.2,1);
 }
 .dark-block:has(.room-visual.visible) {
   grid-template-columns:1.08fr 1.22fr;
@@ -166,7 +166,7 @@ html,body {
   padding:12px;min-width:0;min-height:0;
   overflow:hidden;
   opacity:0;
-  transition:opacity 0.4s ease 0.15s;
+  transition:opacity 0.7s ease 0.25s;
 }
 .dark-block:has(.room-visual.visible) .info-side {
   opacity:1;
