@@ -67,3 +67,23 @@ window.addEventListener('load', () => {
     if (visual) { roomImg.classList.remove('empty'); visual.classList.add('visible'); }
   }
 });
+
+// ── VISITE VIRTUELLE ──
+const VR_URL = 'https://showreel.d5render.com/personal-krpano?directory=https://usa.asset.d5cdn.com/tourProject/pano_roam_1777631813915_3226505/&tourId=2050163455791652866';
+function openVR() {
+  const modal = document.getElementById('vrModal');
+  const frame = document.getElementById('vrFrame');
+  frame.src = VR_URL;
+  modal.classList.add('visible');
+  document.body.style.overflow = 'hidden';
+}
+function closeVR() {
+  const modal = document.getElementById('vrModal');
+  const frame = document.getElementById('vrFrame');
+  modal.classList.remove('visible');
+  frame.src = '';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && document.getElementById('vrModal').classList.contains('visible')) closeVR();
+});

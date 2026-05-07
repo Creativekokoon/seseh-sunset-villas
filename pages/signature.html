@@ -32,6 +32,118 @@
            (min-width:1024px) and (max-width:1400px) and (hover:none) {
       #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
     }
+    /* ── BOUTON VISITE VIRTUELLE ── */
+    .villa-title { position: relative; }
+    .vr-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-30%);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 30px 16px 18px;
+      background: #fff;
+      border: 1px solid rgba(61,57,52,0.2);
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      color: #3d3934;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      text-decoration: none;
+    }
+    .vr-btn:hover {
+      background: #3d3934;
+      color: #fff;
+      border-color: #3d3934;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transform: translateY(calc(-30% - 1px));
+    }
+    .vr-btn-icon {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.4s ease;
+    }
+    .vr-btn-icon img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      filter: brightness(0);
+    }
+    .vr-btn:hover .vr-btn-icon { transform: rotate(15deg); }
+    .vr-btn:hover .vr-btn-icon img { filter: brightness(0) invert(1); }
+    .vr-btn-text { display: flex; flex-direction: column; text-align: left; line-height: 1.2; }
+    .vr-btn-label { font-size: 16px; letter-spacing: 0.04em; font-weight: 400; }
+    .vr-btn-sub {
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #8a847a; margin-top: 4px;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    }
+    .vr-btn:hover .vr-btn-sub { color: rgba(255,255,255,0.7); }
+    /* ── MODAL VISITE VIRTUELLE ── */
+    .vr-modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(14, 11, 8, 0.92);
+      z-index: 9000;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px;
+    }
+    .vr-modal-backdrop.visible { opacity: 1; pointer-events: all; }
+    .vr-modal-content {
+      position: relative;
+      width: 100%; max-width: 1400px;
+      height: 100%; max-height: 850px;
+      background: #1a1815;
+      border-radius: 4px; overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.4s ease;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .vr-modal-backdrop.visible .vr-modal-content { transform: scale(1); }
+    .vr-modal-header {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 20px 28px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+      z-index: 2;
+      display: flex; justify-content: space-between; align-items: center;
+      pointer-events: none;
+    }
+    .vr-modal-header > * { pointer-events: auto; }
+    .vr-modal-title {
+      color: rgba(255,255,255,0.95);
+      font-family: 'the-seasons', Georgia, serif;
+      font-size: 18px; letter-spacing: 0.04em; margin: 0;
+    }
+    .vr-modal-close {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .vr-modal-close:hover {
+      background: rgba(255,255,255,0.22);
+      transform: rotate(90deg);
+    }
+    .vr-modal-iframe {
+      width: 100%; height: 100%;
+      border: 0;
+      background: #1a1815;
+    }
+    @media (max-width: 900px) {
+      .villa-title { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+      .vr-btn {
+        position: static;
+        transform: none;
+      }
+      .vr-btn:hover { transform: translateY(-1px); }
+    }
   </style>
 </head>
 <body>
@@ -45,7 +157,17 @@
 
   <div class="page">
 
-    <div class="villa-title">Signature</div>
+    <div class="villa-title">Signature
+      <button class="vr-btn" onclick="openVR()">
+        <span class="vr-btn-icon">
+          <img src="../assets/icons/icon-360.svg" alt="">
+        </span>
+        <span class="vr-btn-text">
+          <span class="vr-btn-label">Visite Virtuelle</span>
+          <span class="vr-btn-sub">Explorer la villa</span>
+        </span>
+      </button>
+    </div>
 
     <div class="stats">
       <div class="stats-inner">
@@ -429,6 +551,17 @@
 
   </div>
 
+  <!-- MODAL VISITE VIRTUELLE -->
+  <div class="vr-modal-backdrop" id="vrModal" onclick="if(event.target===this)closeVR()">
+    <div class="vr-modal-content">
+      <div class="vr-modal-header">
+        <div class="vr-modal-title">Villa Signature · Visite Virtuelle</div>
+        <button class="vr-modal-close" onclick="closeVR()" aria-label="Fermer">×</button>
+      </div>
+      <iframe class="vr-modal-iframe" id="vrFrame" src="" allow="xr-spatial-tracking; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+
   <script>
     const tip = document.getElementById('tip');
     document.addEventListener('mousemove', e => { tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; });
@@ -453,6 +586,26 @@
       document.getElementById('f1').style.display = idx===1?'block':'none';
       clearSelections(); hideAllVisuals(); roomImg.classList.add('empty');
     }
+
+    // ── VISITE VIRTUELLE ──
+    const VR_URL = 'https://showreel.d5render.com/personal-krpano?directory=https://usa.asset.d5cdn.com/tourProject/pano_roam_1777574131850_3226536/&tourId=2049931858475671553';
+    function openVR() {
+      const modal = document.getElementById('vrModal');
+      const frame = document.getElementById('vrFrame');
+      frame.src = VR_URL;
+      modal.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeVR() {
+      const modal = document.getElementById('vrModal');
+      const frame = document.getElementById('vrFrame');
+      modal.classList.remove('visible');
+      frame.src = '';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && document.getElementById('vrModal').classList.contains('visible')) closeVR();
+    });
   </script>
 </body>
 </html>
