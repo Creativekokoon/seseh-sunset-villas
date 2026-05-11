@@ -65,6 +65,48 @@
       display:flex;align-items:center;justify-content:center;
     }
 
+    /* ── Right cluster (lang switch + menu button) ── */
+    .nav-right { display:flex;align-items:center;gap:14px; }
+
+    /* ── Switch de langue (style texte minimal) ── */
+    .lang-switch {
+      display:inline-flex;align-items:center;gap:10px;
+      font-size:11px;letter-spacing:0.2em;
+      font-family:'Inter','Helvetica Neue',sans-serif;
+      font-weight:500;
+    }
+    .lang-btn {
+      background:transparent;border:none;
+      color:rgba(255,255,255,0.4);
+      cursor:pointer;padding:6px 4px;
+      transition:color 0.25s ease;
+      font-family:inherit;font-size:inherit;
+      letter-spacing:inherit;font-weight:inherit;
+    }
+    .lang-btn.active {
+      color:rgba(255,255,255,0.95);
+      text-decoration:underline;
+      text-underline-offset:4px;
+      text-decoration-color:#b8a886;
+      text-decoration-thickness:1px;
+    }
+    .lang-btn:not(.active):hover { color:rgba(255,255,255,0.7); }
+    .lang-sep {
+      color:rgba(255,255,255,0.25);
+      font-size:11px;user-select:none;
+    }
+    /* Variante header clair (nav-light ou .header-light ancêtre) */
+    #site-topbar.nav-light .lang-btn,
+    .header-light .lang-btn { color:rgba(61,57,52,0.4); }
+    #site-topbar.nav-light .lang-btn.active,
+    .header-light .lang-btn.active {
+      color:#3d3934;text-decoration-color:#b8a886;
+    }
+    #site-topbar.nav-light .lang-btn:not(.active):hover,
+    .header-light .lang-btn:not(.active):hover { color:rgba(61,57,52,0.75); }
+    #site-topbar.nav-light .lang-sep,
+    .header-light .lang-sep { color:rgba(61,57,52,0.25); }
+
     /* Logo image — hidden on desktop, shown on mobile */
     .nav-brand-logo { display:none;height:52px;width:auto; }
     .nav-brand-text { }
@@ -101,6 +143,12 @@
       #site-topbar .nav-brand { position:absolute;left:50%;top:50%;transform:translate(-50%,-50%); }
       .nav-brand-text { display:none; }
       .nav-brand-logo { display:block; }
+      /* Keep lang switch on the right next to the hamburger */
+      .nav-right { margin-left:auto; gap:0; }
+    }
+    @media (max-width:600px) {
+      .lang-switch { font-size:10px;letter-spacing:0.18em;gap:8px; }
+    }
 
       #nav-drawer {
         width:100% !important;
@@ -252,7 +300,14 @@
         <span class="nav-brand-text">Seseh Sunset Villas</span>
         <img class="nav-brand-logo" src="${depth}assets/logos/SS%20logo.png" alt="Seseh Sunset Villas">
       </a>
-      <button class="nav-menu-btn" id="nav-menu-btn">Menu</button>
+      <div class="nav-right">
+        <div class="lang-switch" role="group" aria-label="Sélecteur de langue">
+          <button class="lang-btn active" data-lang="fr" aria-current="true">FR</button>
+          <span class="lang-sep">/</span>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="nav-menu-btn" id="nav-menu-btn">Menu</button>
+      </div>
     </header>
 
     <div id="nav-overlay"></div>
@@ -331,6 +386,34 @@
   closeBtn.addEventListener('click', closeNav);
   overlay.addEventListener('click', closeNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
+
+  // ── Switch FR / EN ──
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      document.querySelectorAll('.lang-btn').forEach(b => {
+        b.classList.remove('active');
+        b.removeAttribute('aria-current');
+      });
+      btn.classList.add('active');
+      btn.setAttribute('aria-current', 'true');
+
+      if (lang === 'en') {
+        // TODO: quand la page anglaise sera prête, rediriger ici
+        // const path = window.location.pathname;
+        // window.location.href = path.replace('/pages/', '/en/pages/');
+        setTimeout(() => {
+          document.querySelectorAll('.lang-btn').forEach(b => {
+            b.classList.remove('active');
+            b.removeAttribute('aria-current');
+          });
+          const frBtn = document.querySelector('.lang-btn[data-lang="fr"]');
+          frBtn.classList.add('active');
+          frBtn.setAttribute('aria-current', 'true');
+        }, 200);
+      }
+    });
+  });
 
   // ── Villa-to-villa prev/next arrows ──
   const villaOrder = ['elegance', 'prestige', 'signature', 'exception'];
