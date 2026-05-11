@@ -185,7 +185,27 @@
       flex-shrink:0;
       padding:16px 28px 22px;
       background:var(--cream);
-      display:flex;justify-content:center;
+      display:flex;flex-direction:column;gap:12px;
+    }
+    .panel-cta-btn-outline{
+      font-family:var(--sans);font-size:0.72rem;
+      letter-spacing:0.24em;text-transform:uppercase;
+      color:#3d3934;
+      background:transparent;
+      border:1px solid rgba(61,57,52,0.4);
+      padding:14px 24px;border-radius:0;text-decoration:none;
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease;
+    }
+    .panel-cta-btn-outline .cta-arrow{
+      font-size:11px;line-height:1;
+      transition:transform 0.25s ease;
+    }
+    .panel-cta-btn-outline:hover{
+      background:#3d3934;color:#fff;border-color:#3d3934;
+    }
+    .panel-cta-btn-outline:hover .cta-arrow{
+      transform:translate(2px,-2px);
     }
     .panel-cta-btn{
       font-family:var(--sans);font-size:0.72rem;
@@ -194,7 +214,7 @@
       border:none;
       padding:14px 52px;border-radius:0;text-decoration:none;
       position:relative;
-      display:inline-block;
+      display:block;text-align:center;
       overflow:hidden;
       background:linear-gradient(
         90deg,
@@ -569,6 +589,7 @@
         <!-- Items injected by JS -->
       </div>
       <div class="panel-cta-wrap">
+        <a class="panel-cta-btn-outline" href="https://canva.link/pktkwf7mjekfmge" target="_blank" rel="noopener noreferrer">Voir les villas disponibles<span class="cta-arrow" aria-hidden="true">↗</span></a>
         <a class="panel-cta-btn" href="https://bit.ly/sora-immobilier" target="_blank" rel="noopener">Pré-réserver</a>
       </div>
     </aside>
