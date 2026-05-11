@@ -93,9 +93,11 @@
       text-decoration:none;transition:color 0.2s;min-width:120px;
     }
     #site-topbar .nav-brand {
+      position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
       font-family:'the-seasons',Georgia,serif;font-size:1.08rem;
       font-weight:500;letter-spacing:0.12em;
       text-decoration:none;transition:color 0.2s;
+      white-space:nowrap;
     }
     #site-topbar .nav-menu-btn {
       font-family:'Inter','Helvetica Neue',Arial,sans-serif;font-size:0.75rem;font-weight:400;

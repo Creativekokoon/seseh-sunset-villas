@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Élégance — Seseh Sunset Villas</title>
+  <link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../../css/villa.css">
+  <style>
+    /* Loft only — grow the map slightly */
+    .plan-svg { max-width: 720px; }
+    @media (min-width:1024px) and (min-height:900px) {
+      .plan-svg { max-width: 760px; }
+    }
+    /* iPad Pro 13" (portrait + landscape) — constrain SVG to header width */
+    @media (min-width:1024px) and (max-width:1400px) and (min-height:1100px),
+           (min-width:1024px) and (max-width:1400px) and (hover:none) {
+      .plan-svg { max-width: 520px; }
+    }
+    /* Match interactive labels with the Escalier label (14px) */
+    #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
+    .dark-block.no-plan {
+      grid-template-columns: 1fr 1fr;
+    }
+    .villa-description {
+      display:flex;flex-direction:column;gap:18px;
+      padding:24px 28px;
+      justify-content:center;
+    }
+    .villa-desc-text {
+      font-family:'the-seasons',Georgia,serif;
+      font-size:0.95rem;font-weight:300;line-height:1.7;
+      color:rgba(52,48,44,0.78);letter-spacing:0.02em;
+    }
+    .villa-type-label {
+      font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+      font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+      color:rgba(82,77,71,0.55);
+    }
+    .features-grid {
+      display:grid;grid-template-columns:1fr 1fr;gap:4px 20px;
+    }
+    .feat-item {
+      font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+      font-size:0.65rem;letter-spacing:0.12em;
+      color:rgba(57,52,47,0.72);
+      padding:6px 0;border-bottom:1px solid rgba(62,58,54,0.08);
+    }
+    .plan-placeholder {
+      display:flex;align-items:center;justify-content:center;
+      border-left:1px solid rgba(62,58,54,0.1);
+    }
+    .plan-placeholder-inner {
+      display:flex;flex-direction:column;align-items:center;gap:10px;
+    }
+    .plan-placeholder-icon {
+      width:52px;height:52px;color:rgba(82,77,71,0.3);
+    }
+    .plan-placeholder-icon svg { width:100%;height:100%; }
+    .plan-placeholder-text {
+      font-family:'the-seasons',Georgia,serif;
+      font-size:0.8rem;letter-spacing:0.12em;
+      color:rgba(52,48,44,0.45);
+    }
+    .plan-placeholder-sub {
+      font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+      font-size:0.52rem;letter-spacing:0.2em;text-transform:uppercase;
+      color:rgba(82,77,71,0.35);
+    }
+    /* ── VIRTUAL TOUR BUTTON ── */
+    .villa-title { position: relative; }
+    .vr-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-30%);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 30px 16px 18px;
+      background: #fff;
+      border: 1px solid rgba(61,57,52,0.2);
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      color: #3d3934;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      text-decoration: none;
+    }
+    .vr-btn:hover {
+      background: #3d3934;
+      color: #fff;
+      border-color: #3d3934;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transform: translateY(calc(-30% - 1px));
+    }
+    .vr-btn-icon {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.4s ease;
+    }
+    .vr-btn-icon img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      filter: brightness(0);
+    }
+    .vr-btn:hover .vr-btn-icon { transform: rotate(15deg); }
+    .vr-btn:hover .vr-btn-icon img { filter: brightness(0) invert(1); }
+    .vr-btn-text { display: flex; flex-direction: column; text-align: left; line-height: 1.2; }
+    .vr-btn-label { font-size: 16px; letter-spacing: 0.04em; font-weight: 400; }
+    .vr-btn-sub {
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #8a847a; margin-top: 4px;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    }
+    .vr-btn:hover .vr-btn-sub { color: rgba(255,255,255,0.7); }
+    /* ── VIRTUAL TOUR MODAL ── */
+    .vr-modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(14, 11, 8, 0.92);
+      z-index: 9000;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px;
+    }
+    .vr-modal-backdrop.visible { opacity: 1; pointer-events: all; }
+    .vr-modal-content {
+      position: relative;
+      width: 100%; max-width: 1400px;
+      height: 100%; max-height: 850px;
+      background: #1a1815;
+      border-radius: 4px; overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.4s ease;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .vr-modal-backdrop.visible .vr-modal-content { transform: scale(1); }
+    .vr-modal-header {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 20px 28px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+      z-index: 2;
+      display: flex; justify-content: space-between; align-items: center;
+      pointer-events: none;
+    }
+    .vr-modal-header > * { pointer-events: auto; }
+    .vr-modal-title {
+      color: rgba(255,255,255,0.95);
+      font-family: 'the-seasons', Georgia, serif;
+      font-size: 18px; letter-spacing: 0.04em; margin: 0;
+    }
+    .vr-modal-subtitle {
+      color: rgba(255,255,255,0.6);
+      font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      margin: 4px 0 0 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .vr-modal-close {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .vr-modal-close:hover {
+      background: rgba(255,255,255,0.22);
+      transform: rotate(90deg);
+    }
+    .vr-modal-iframe {
+      width: 100%; height: 100%;
+      border: 0;
+      background: #1a1815;
+    }
+    @media (max-width: 900px) {
+      .vr-btn { padding: 10px; gap: 0; }
+      .vr-btn-icon { width: 32px; height: 32px; }
+      .vr-btn-text { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-root"></div>
+  <script src="../../js/nav.js"></script>
+
+  <div class="page-intro"></div>
+  <div class="cursor-tip" id="tip">Explore</div>
+  <div class="bg"></div>
+
+  <div class="page">
+
+    <div class="villa-title">Élégance
+      <button class="vr-btn" onclick="openVR()">
+        <span class="vr-btn-icon">
+          <img src="../../assets/icons/icon-360.svg" alt="">
+        </span>
+        <span class="vr-btn-text">
+          <span class="vr-btn-label">Virtual Tour</span>
+          <span class="vr-btn-sub">Explore the villa</span>
+        </span>
+      </button>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stats-inner">
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="3" width="14" height="14" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <div class="stat-val">51 <span class="stat-sm">sqm</span></div>
+          <div class="stat-lbl">Area</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 22 16" fill="none">
+            <rect x="1" y="5" width="20" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/>
+            <rect x="1" y="8" width="6" height="7" rx="0.5" stroke="currentColor" stroke-width="1"/>
+          </svg>
+          <div class="stat-val">1</div>
+          <div class="stat-lbl">Bedroom</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 22 18" fill="none">
+            <path d="M3 9H19Q21 9 21 11V14Q21 16 19 16H3Q1 16 1 14V11Q1 9 3 9Z" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M4 9V5Q4 3 6 3H7Q8 3 8 4V5" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <div class="stat-val">1</div>
+          <div class="stat-lbl">Bathrooms</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.2"/>
+            <text x="10" y="14" text-anchor="middle" font-family="Inter,Helvetica Neue,sans-serif" font-size="8" fill="currentColor">€</text>
+          </svg>
+          <div class="stat-val">€149,000</div>
+          <div class="stat-lbl">Starting from</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN BLOCK: plan left | image right -->
+    <div class="dark-block">
+
+      <!-- LEFT: plan -->
+      <div class="plan-side">
+        <div class="plan-inner">
+          <div class="plan-top">
+            <div class="plan-title-wrap">
+              <div class="plan-title">Interactive Plan</div>
+              <div class="plan-subtitle">Select a room to explore</div>
+            </div>
+            <div class="floor-tabs">
+              <button type="button" class="floor-tab active" data-floor="f0" onclick="setFloor('f0', this)">Ground</button>
+              <button type="button" class="floor-tab" data-floor="f1" onclick="setFloor('f1', this)">Upper</button>
+            </div>
+          </div>
+
+          <div class="plan-svg-wrap">
+
+            <svg id="f0" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 502 322">
+
+              <!-- BACKGROUND : non-interactive zones (Stairs + Shower + Jacuzzi) -->
+              <g id="f0-shell" pointer-events="none">
+                <polygon points="141.8,0 0,0 0,157.8 55.8,157.8 55.8,54.6 141.8,54.6"
+                         fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
+                  <line x1="0" y1="75.2" x2="55.8" y2="75.2"/>
+                  <line x1="0" y1="95.9" x2="55.8" y2="95.9"/>
+                  <line x1="0" y1="116.5" x2="55.8" y2="116.5"/>
+                  <line x1="0" y1="137.2" x2="55.8" y2="137.2"/>
+                  <line x1="77.3" y1="0" x2="77.3" y2="54.6"/>
+                  <line x1="98.8" y1="0" x2="98.8" y2="54.6"/>
+                  <line x1="120.3" y1="0" x2="120.3" y2="54.6"/>
+                </g>
+                <g transform="translate(15, 17)" pointer-events="none">
+                  <path d="M 0 18 L 0 12 L 6 12 L 6 6 L 12 6 L 12 0 L 18 0"
+                        stroke="rgba(120,115,108,0.65)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </g>
+
+              <!-- TERRACE (clickable) -->
+              <g class="pzone terrace" onclick="pick('terrace', this)" onmouseenter="tip.textContent='Terrace'">
+                <rect class="pz-fill" x="348.5" y="0" width="151.5" height="320"/>
+              </g>
+
+              <!-- TERRACE DECORATIONS -->
+              <g pointer-events="none">
+                <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
+                  <line x1="348.5" y1="20" x2="500" y2="20"/>
+                  <line x1="348.5" y1="40" x2="500" y2="40"/>
+                  <line x1="348.5" y1="60" x2="500" y2="60"/>
+                  <line x1="348.5" y1="80" x2="500" y2="80"/>
+                  <line x1="348.5" y1="100" x2="500" y2="100"/>
+                  <line x1="348.5" y1="220" x2="500" y2="220"/>
+                  <line x1="348.5" y1="240" x2="500" y2="240"/>
+                  <line x1="348.5" y1="260" x2="500" y2="260"/>
+                  <line x1="348.5" y1="280" x2="500" y2="280"/>
+                  <line x1="348.5" y1="300" x2="500" y2="300"/>
+                </g>
+                <text x="424" y="270" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="14"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.85)">Terrace</text>
+                <rect x="396.7" y="30.4" width="93.9" height="65.5"
+                      fill="rgba(244,240,233,0.55)" stroke="rgba(61,57,52,0.85)" stroke-width="0.8"/>
+                <text x="443.7" y="60" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="9"
+                      letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.8)">Outdoor</text>
+                <text x="443.7" y="74" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="9"
+                      letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.8)">shower</text>
+                <circle cx="450.2" cy="146" r="40.3"
+                        fill="rgba(178,210,225,0.65)" stroke="rgba(95,135,160,0.85)" stroke-width="1"/>
+                <path d="M 425 132 Q 430 129 435 132 Q 440 135 445 132 Q 450 129 455 132 Q 460 135 465 132 Q 470 129 475 132"
+                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                <path d="M 425 142 Q 430 139 435 142 Q 440 145 445 142 Q 450 139 455 142 Q 460 145 465 142 Q 470 139 475 142"
+                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                <text x="450.2" y="168" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="11"
+                      letter-spacing="0.04em"
+                      fill="rgba(50,80,100,0.9)">Jacuzzi</text>
+              </g>
+
+              <!-- LIVING -->
+              <g class="pzone living" onclick="pick('living', this)" onmouseenter="tip.textContent='Living'">
+                <polygon class="pz-fill" points="141.8,0 348.5,0 348.5,320 183,320 183,157.8 55.8,157.8 55.8,54.6 141.8,54.6"/>
+                <text class="pz-text" x="245" y="105" text-anchor="middle">Living</text>
+              </g>
+
+              <!-- KITCHEN -->
+              <g class="pzone kitchen" onclick="pick('kitchen', this)" onmouseenter="tip.textContent='Kitchen'">
+                <polygon class="pz-fill" points="0,157.8 183,157.8 183,320 0,320"/>
+                <text class="pz-text" x="91" y="245" text-anchor="middle">Kitchen</text>
+              </g>
+
+            </svg>
+
+            <svg id="f1" class="plan-svg" xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 502 322" style="display:none">
+
+              <!-- BACKGROUND : non-interactive zones -->
+              <g id="f1-shell" pointer-events="none">
+
+                <!-- "Nothing here" zone (bottom-center, greyed) -->
+                <rect x="161.2" y="227" width="187.3" height="93"
+                      fill="rgba(220,217,210,0.45)" stroke="rgba(61,57,52,0.55)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
+                  <line x1="161.2" y1="227" x2="348.5" y2="320"/>
+                  <line x1="161.2" y1="320" x2="348.5" y2="227"/>
+                </g>
+
+                <!-- Terrace (right, greyed — accessible from ground floor only) -->
+                <rect x="348.5" y="0" width="151.5" height="320"
+                      fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.55)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="3 2" fill="none">
+                  <line x1="348.5" y1="0" x2="500" y2="320"/>
+                  <line x1="500" y1="0" x2="348.5" y2="320"/>
+                </g>
+                <text x="424" y="158" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="14"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(94,89,82,0.55)">Terrace</text>
+                <text x="424" y="174" text-anchor="middle"
+                      font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="8"
+                      letter-spacing="0.06em"
+                      fill="rgba(94,89,82,0.45)">ground floor access</text>
+
+                <!-- Stairs treads (decorative) -->
+                <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
+                  <line x1="0" y1="75.2" x2="55.8" y2="75.2"/>
+                  <line x1="0" y1="95.9" x2="55.8" y2="95.9"/>
+                  <line x1="0" y1="116.5" x2="55.8" y2="116.5"/>
+                  <line x1="0" y1="137.2" x2="55.8" y2="137.2"/>
+                  <line x1="77.3" y1="0" x2="77.3" y2="54.6"/>
+                  <line x1="98.8" y1="0" x2="98.8" y2="54.6"/>
+                  <line x1="120.3" y1="0" x2="120.3" y2="54.6"/>
+                </g>
+
+                <!-- Door opening: bedroom → bathroom -->
+                <line x1="107.5" y1="227" x2="147.9" y2="227"
+                      stroke="rgba(245,241,233,1)" stroke-width="2"/>
+
+              </g>
+
+              <!-- STAIRS (visible but non-clickable) -->
+              <g id="f1-stairs" pointer-events="none">
+                <polygon points="141.8,0 0,0 0,157.8 55.8,157.8 55.8,54.6 141.8,54.6"
+                         fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <g transform="translate(15, 17)">
+                  <path d="M 0 18 L 0 12 L 6 12 L 6 6 L 12 6 L 12 0 L 18 0"
+                        stroke="rgba(120,115,108,0.65)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </g>
+
+              <!-- INTERACTIVE ZONES -->
+
+              <g class="pzone bedroom1" onclick="pick('bedroom1', this)" onmouseenter="tip.textContent='Bedroom'">
+                <polygon class="pz-fill" points="141.8,0 141.8,54.6 55.8,54.6 55.8,157.8 0,157.8 0,227 348.5,227 348.5,0"/>
+                <text class="pz-text" x="201" y="118" text-anchor="middle">Bedroom</text>
+              </g>
+
+              <g class="pzone bath2" onclick="pick('bath2', this)" onmouseenter="tip.textContent='Bathroom'">
+                <polygon class="pz-fill" points="0,227 161.2,227 161.2,320 0,320"/>
+                <text class="pz-text" x="80" y="278" text-anchor="middle">Bathroom</text>
+              </g>
+
+            </svg>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: room visuals -->
+      <div class="info-side">
+        <div class="room-image empty" id="roomImg">
+
+          <div class="room-visual" id="visual-living">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/one%20bedroom/elegance-living-room.jpg" alt="Living Room">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-kitchen">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/one%20bedroom/elegance-kitchen.jpg" alt="Kitchen">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-jacuzzi">
+            <div class="scene-card"><div class="room-scene">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="jbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d8e8ec"/><stop offset="100%" stop-color="#a8c4cc"/></linearGradient></defs>
+                <rect width="800" height="600" fill="#d0c8bc"/>
+                <ellipse cx="400" cy="320" rx="200" ry="180" fill="url(#jbg)" stroke="#a8c0c8" stroke-width="3"/>
+                <ellipse cx="400" cy="320" rx="160" ry="140" fill="rgba(180,210,220,0.5)"/>
+                <rect y="450" width="800" height="150" fill="#b0a89e"/>
+              </svg>
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-garden">
+            <div class="scene-card"><div class="room-scene">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#e8ede4"/><stop offset="100%" stop-color="#c8d4c0"/></linearGradient></defs>
+                <rect width="800" height="600" fill="url(#sky)"/>
+                <rect y="380" width="800" height="220" fill="#b8c4a8"/>
+                <ellipse cx="200" cy="320" rx="80" ry="120" fill="#98a888"/>
+                <ellipse cx="600" cy="300" rx="100" ry="140" fill="#8a9878"/>
+              </svg>
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-shower">
+            <div class="scene-card"><div class="room-scene">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#dbd4ca"/>
+                <rect y="335" width="800" height="265" fill="#b8aea2"/>
+                <rect x="120" y="190" width="560" height="240" fill="#f5f0e9"/>
+                <rect x="170" y="140" width="180" height="35" fill="#cac0b4"/>
+                <circle cx="250" cy="310" r="18" fill="#d8cec2"/>
+              </svg>
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-bedroom1">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/one%20bedroom/elegance_bedroom.jpg" alt="Bedroom">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-bath1">
+            <div class="scene-card"><div class="room-scene">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#dbd4ca"/>
+                <rect y="335" width="800" height="265" fill="#b8aea2"/>
+                <rect x="120" y="190" width="560" height="240" fill="#f5f0e9"/>
+                <rect x="170" y="140" width="180" height="35" fill="#cac0b4"/>
+                <rect x="470" y="135" width="115" height="140" fill="#a89f93"/>
+                <circle cx="250" cy="310" r="18" fill="#d8cec2"/>
+              </svg>
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-terrace">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/one%20bedroom/elegance-terrasse.jpg" alt="Terrace">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-bath2">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/one%20bedroom/elegance-bathroom.jpg" alt="Bathroom">
+            </div></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /dark-block -->
+
+    <div class="prereserver-wrap">
+      <a class="prereserver-btn" href="https://bit.ly/sora-immobilier" target="_blank" rel="noopener">Pre-book</a>
+    </div>
+
+  </div><!-- /page -->
+
+  <!-- VIRTUAL TOUR MODAL -->
+  <div class="vr-modal-backdrop" id="vrModal" onclick="if(event.target===this)closeVR()">
+    <div class="vr-modal-content">
+      <div class="vr-modal-header">
+        <div class="vr-modal-title">Villa Élégance · Virtual Tour</div>
+        <button class="vr-modal-close" onclick="closeVR()" aria-label="Close">×</button>
+      </div>
+      <iframe class="vr-modal-iframe" id="vrFrame" src="" allow="xr-spatial-tracking; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+  const tip = document.getElementById('tip');
+  document.addEventListener('mousemove', e => { tip.style.left=e.clientX+'px'; tip.style.top=e.clientY+'px'; });
+  document.querySelectorAll('.pzone').forEach(z => {
+    z.addEventListener('mouseenter', () => tip.classList.add('visible'));
+    z.addEventListener('mouseleave', () => tip.classList.remove('visible'));
+  });
+
+  const roomImg = document.getElementById('roomImg');
+  const visuals = document.querySelectorAll('.room-visual');
+
+  const visualMap = {
+    living:  'visual-living',
+    kitchen: 'visual-kitchen',
+    terrace: 'visual-terrace',
+    bedroom1: 'visual-bedroom1',
+    bath2:    'visual-bath2',
+  };
+
+  function hideAllVisuals() { visuals.forEach(v => v.classList.remove('visible')); }
+  function clearSelections() { document.querySelectorAll('.pzone').forEach(z => z.classList.remove('selected')); }
+
+  function pick(id, zone) {
+    clearSelections();
+    zone.classList.add('selected');
+    hideAllVisuals();
+    const v = document.getElementById(visualMap[id] || ('visual-' + id));
+    if (v) { roomImg.classList.remove('empty'); v.classList.add('visible'); }
+  }
+
+  function setFloor(floorId, btn) {
+    document.getElementById('f0').style.display = (floorId === 'f0') ? '' : 'none';
+    document.getElementById('f1').style.display = (floorId === 'f1') ? '' : 'none';
+    document.querySelectorAll('.floor-tab').forEach(b => b.classList.remove('active'));
+    if (btn) btn.classList.add('active');
+    document.querySelectorAll('.pzone.selected').forEach(p => p.classList.remove('selected'));
+    hideAllVisuals();
+    roomImg.classList.add('empty');
+  }
+
+  // ── VIRTUAL TOUR ──
+  const VR_URL = 'https://showreel.d5render.com/personal-krpano?directory=https://usa.asset.d5cdn.com/tourProject/pano_roam_1777619069214_3226505/&tourId=2050110281898713090';
+  function openVR() {
+    const modal = document.getElementById('vrModal');
+    const frame = document.getElementById('vrFrame');
+    frame.src = VR_URL;
+    modal.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeVR() {
+    const modal = document.getElementById('vrModal');
+    const frame = document.getElementById('vrFrame');
+    modal.classList.remove('visible');
+    frame.src = '';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('vrModal').classList.contains('visible')) closeVR();
+  });
+
+</script>
+
+
+</body>
+</html>
