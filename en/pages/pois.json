@@ -1,0 +1,91 @@
+[
+  {
+    "id": "seseh-sunset-villas",
+    "number": 1,
+    "name": "Seseh Sunset Villas",
+    "position": { "top": "71.32%", "left": "49.48%" },
+    "lineHeight": 75,
+    "category": "villa",
+    "isMainLocation": true,
+    "image": "../../assets/images/seseh/poi/seseh-sunset-poi-image.jpg",
+    "description": "Your future home — luxury villas in the heart of Bali.",
+    "distance": "You are here"
+  },
+  {
+    "id": "river-rice-fields-view",
+    "number": 2,
+    "name": "River & Rice Fields",
+    "position": { "top": "86.79%", "left": "75.06%" },
+    "lineHeight": 70,
+    "category": "nature",
+    "image": "../../assets/images/seseh/riziere-seseh.jpg",
+    "description": "Iconic Balinese rice fields and river views at your doorstep.",
+    "distance": "Adjacent"
+  },
+  {
+    "id": "seseh-beach",
+    "number": 3,
+    "name": "Seseh Beach",
+    "position": { "top": "47.5%", "left": "73.5%" },
+    "lineHeight": 110,
+    "category": "beach",
+    "image": "../../assets/images/seseh/poi/bali-seseh-beach.jpg",
+    "description": "Peaceful black sand beach, known for its serene atmosphere and exceptional sunsets.",
+    "distance": "5 min"
+  },
+  {
+    "id": "restaurants-beach-clubs",
+    "number": 4,
+    "name": "Restaurants & Cafés",
+    "position": { "top": "48.3%", "left": "57.9%" },
+    "lineHeight": 75,
+    "category": "lifestyle",
+    "description": "A curated selection of dining venues and cafés nearby.",
+    "distance": "5 to 10 min",
+    "destinations": [
+      { "name": "Local café", "venue": "Clove Café", "description": "Brunch & specialty coffee", "icon": "coffee", "image": "../../assets/images/seseh/poi/clove-cafe.jpg" },
+      { "name": "French Bakery", "venue": "", "description": "Authentic French pastries", "icon": "bakery", "image": "../../assets/images/seseh/poi/french-bakery.webp" },
+      { "name": "Signature restaurant", "venue": "Open House Café", "description": "Indo-fusion cuisine", "icon": "restaurant", "image": "../../assets/images/seseh/poi/restaurant-signature-open-house-cafe.jpg" }
+    ]
+  },
+  {
+    "id": "bien-etre-sport",
+    "number": 5,
+    "name": "Wellness & Sport",
+    "position": { "top": "51.95%", "left": "42.91%" },
+    "lineHeight": 60,
+    "category": "wellness",
+    "description": "Everything for an active, balanced lifestyle just nearby.",
+    "distance": "5 to 10 min",
+    "destinations": [
+      { "name": "Yoga", "venue": "Udara Bali", "description": "Yoga & meditation studio", "icon": "yoga", "image": "../../assets/images/seseh/poi/udara-bali-yoga.jpg" },
+      { "name": "Padel", "venue": "Jungle Padel", "description": "Padel courts", "icon": "padel", "image": "../../assets/images/seseh/poi/jungle-padel.jpg" },
+      { "name": "Pilates", "venue": "Shape House", "description": "Reformer & mat pilates", "icon": "pilates", "image": "../../assets/images/seseh/poi/shape-house-pilates2.jpg" },
+      { "name": "Gym", "venue": "Omni Gym", "description": "Full-service gym", "icon": "gym", "image": "../../assets/images/seseh/poi/omni-gym.jpg" },
+      { "name": "Spa", "venue": "Cloud Spa", "description": "Massages & traditional treatments", "icon": "spa", "image": "../../assets/images/seseh/poi/cloud-spa.jpg" },
+      { "name": "5★ Hotel", "venue": "Anantara Dragon Seseh", "description": "Luxury hotel (under construction)", "icon": "hotel", "image": "../../assets/images/seseh/poi/hotel-dragon-seseh-bali.jpg" }
+    ]
+  },
+  {
+    "id": "canggu-beach",
+    "number": 6,
+    "name": "Canggu Beach",
+    "position": { "top": "34.74%", "left": "32.05%" },
+    "lineHeight": 40,
+    "category": "beach",
+    "image": "../../assets/images/seseh/poi/canggu-beach.avif",
+    "description": "The vibrant heart of Canggu — surf, beach clubs and a lively expat scene.",
+    "distance": "12 min"
+  },
+  {
+    "id": "airport",
+    "number": 7,
+    "name": "Ngurah Rai International Airport",
+    "position": { "top": "30.71%", "left": "43.66%" },
+    "lineHeight": 70,
+    "category": "transport",
+    "image": "../../assets/images/seseh/poi/Ngurah-Rai-airport.avif",
+    "description": "Bali's main international airport, your gateway to paradise.",
+    "distance": "45 min"
+  }
+]
