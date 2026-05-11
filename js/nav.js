@@ -145,10 +145,6 @@
       .nav-brand-logo { display:block; }
       /* Keep lang switch on the right next to the hamburger */
       .nav-right { margin-left:auto; gap:0; }
-    }
-    @media (max-width:600px) {
-      .lang-switch { font-size:10px;letter-spacing:0.18em;gap:8px; }
-    }
 
       #nav-drawer {
         width:100% !important;
@@ -165,6 +161,9 @@
         font-size:0.85rem !important;
         padding:22px 0 !important;
       }
+    }
+    @media (max-width:600px) {
+      .lang-switch { font-size:10px;letter-spacing:0.18em;gap:8px; }
     }
 
     #nav-overlay {
