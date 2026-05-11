@@ -7,7 +7,48 @@
 (function() {
 
   // ── Detect path depth to set correct relative links ──
-  const depth = window.location.pathname.includes('/pages/') ? '../' : '';
+  // depth     → racine de la langue courante (FR ou EN), pour les liens internes
+  // assetRoot → racine du projet (pour assets/, css/, js/ partagés)
+  const navPath = window.location.pathname;
+  const navIsEn = /\/en(\/|$)/.test(navPath);
+  const depth = navPath.includes('/pages/') ? '../' : '';
+  const assetRoot = depth + (navIsEn ? '../' : '');
+
+  // ── Translations ──
+  const t = ({
+    fr: {
+      backHome: '← Accueil',
+      backVillas: '← Les Villas',
+      drawerHome: 'Accueil',
+      drawerVillas: 'Explorer les villas',
+      drawerSeseh: 'Vivre à Seseh',
+      drawerTeam: 'Nos Équipes',
+      drawerAvailable: 'Villas disponibles',
+      drawerPrebook: 'Pré-réserver',
+      chatEyebrow: 'Une question ?',
+      chatTitle: 'Discuter avec Gabriel',
+      langSwitchLabel: 'Sélecteur de langue',
+      villaPrev: 'Villa précédente',
+      villaNext: 'Villa suivante',
+      menuLabel: 'Menu',
+    },
+    en: {
+      backHome: '← Home',
+      backVillas: '← The Villas',
+      drawerHome: 'Home',
+      drawerVillas: 'Explore the villas',
+      drawerSeseh: 'Living in Seseh',
+      drawerTeam: 'Our Team',
+      drawerAvailable: 'Available villas',
+      drawerPrebook: 'Pre-book',
+      chatEyebrow: 'Got a question?',
+      chatTitle: 'Chat with Gabriel',
+      langSwitchLabel: 'Language selector',
+      villaPrev: 'Previous villa',
+      villaNext: 'Next villa',
+      menuLabel: 'Menu',
+    },
+  })[navIsEn ? 'en' : 'fr'];
 
   // ── Inject CSS ──
   const style = document.createElement('style');
@@ -271,17 +312,17 @@
 
   if (path.includes('villas.html')) {
     backHref = depth + 'index.html';
-    backLabel = '← Accueil';
+    backLabel = t.backHome;
   } else if (path.includes('prestige.html') || path.includes('elegance.html') ||
              path.includes('signature.html') || path.includes('exception.html')) {
     backHref = depth + 'pages/villas.html';
-    backLabel = '← Les Villas';
+    backLabel = t.backVillas;
   } else if (path.includes('seseh.html') || path.includes('bali.html')) {
     backHref = depth + 'index.html';
-    backLabel = '← Accueil';
+    backLabel = t.backHome;
   } else if (path.includes('equipe.html')) {
     backHref = depth + 'index.html';
-    backLabel = '← Accueil';
+    backLabel = t.backHome;
   } else {
     backHref = '';
     backLabel = '';
@@ -297,15 +338,15 @@
       }
       <a class="nav-brand" href="${depth}index.html">
         <span class="nav-brand-text">Seseh Sunset Villas</span>
-        <img class="nav-brand-logo" src="${depth}assets/logos/SS%20logo.png" alt="Seseh Sunset Villas">
+        <img class="nav-brand-logo" src="${assetRoot}assets/logos/SS%20logo.png" alt="Seseh Sunset Villas">
       </a>
       <div class="nav-right">
-        <div class="lang-switch" role="group" aria-label="Sélecteur de langue">
-          <button class="lang-btn active" data-lang="fr" aria-current="true">FR</button>
+        <div class="lang-switch" role="group" aria-label="${t.langSwitchLabel}">
+          <button class="lang-btn${navIsEn ? '' : ' active'}" data-lang="fr"${navIsEn ? '' : ' aria-current="true"'}>FR</button>
           <span class="lang-sep">/</span>
-          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn${navIsEn ? ' active' : ''}" data-lang="en"${navIsEn ? ' aria-current="true"' : ''}>EN</button>
         </div>
-        <button class="nav-menu-btn" id="nav-menu-btn">Menu</button>
+        <button class="nav-menu-btn" id="nav-menu-btn">${t.menuLabel}</button>
       </div>
     </header>
 
@@ -318,22 +359,22 @@
       </div>
       <nav class="nav-drawer-links">
         <a class="nav-drawer-link" href="${depth}index.html">
-          Accueil <span class="nav-drawer-arrow">→</span>
+          ${t.drawerHome} <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="${depth}pages/villas.html">
-          Explorer les villas <span class="nav-drawer-arrow">→</span>
+          ${t.drawerVillas} <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="${depth}pages/seseh.html">
-          Vivre à Seseh <span class="nav-drawer-arrow">→</span>
+          ${t.drawerSeseh} <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="${depth}pages/equipe.html">
-          Nos Équipes <span class="nav-drawer-arrow">→</span>
+          ${t.drawerTeam} <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="https://canva.link/pktkwf7mjekfmge" target="_blank" rel="noopener noreferrer">
-          Villas disponibles <span class="nav-drawer-arrow">→</span>
+          ${t.drawerAvailable} <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="https://bit.ly/sora-immobilier" target="_blank" rel="noopener">
-          Pré-réserver <span class="nav-drawer-arrow">→</span>
+          ${t.drawerPrebook} <span class="nav-drawer-arrow">→</span>
         </a>
       </nav>
       <a class="nav-drawer-chat" href="https://wa.me/message/U6SAMFGVWDQDO1" target="_blank" rel="noopener">
@@ -343,15 +384,15 @@
           </svg>
         </span>
         <span class="nav-drawer-chat-label">
-          <span class="nav-drawer-chat-eyebrow">Une question ?</span>
-          <span class="nav-drawer-chat-title">Discuter avec Gabriel</span>
+          <span class="nav-drawer-chat-eyebrow">${t.chatEyebrow}</span>
+          <span class="nav-drawer-chat-title">${t.chatTitle}</span>
         </span>
         <span class="nav-drawer-chat-arrow">→</span>
       </a>
       <div class="nav-drawer-footer">© 2026 Sora Immobilier | <a href="https://sora-immobilier.com/" target="_blank">sora-immobilier.com</a></div>
     </aside>
 
-    <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="${t.menuLabel}">
       <span></span><span></span><span></span>
     </button>
   `;
@@ -386,31 +427,57 @@
   overlay.addEventListener('click', closeNav);
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
 
-  // ── Switch FR / EN ──
+  // ── Switch FR / EN — détection auto de la langue courante ──
+  (function() {
+    const isEn = /\/en(\/|$)/.test(window.location.pathname);
+    const activeLang = isEn ? 'en' : 'fr';
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+      btn.removeAttribute('aria-current');
+      if (btn.dataset.lang === activeLang) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-current', 'true');
+      }
+    });
+
+    document.documentElement.lang = activeLang;
+  })();
+
+  // ── Switch FR / EN — redirection ──
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      const lang = btn.dataset.lang;
-      document.querySelectorAll('.lang-btn').forEach(b => {
-        b.classList.remove('active');
-        b.removeAttribute('aria-current');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-current', 'true');
+      const targetLang = btn.dataset.lang;
+      const currentPath = window.location.pathname;
+      const isCurrentlyEn = /\/en(\/|$)/.test(currentPath);
 
-      if (lang === 'en') {
-        // TODO: quand la page anglaise sera prête, rediriger ici
-        // const path = window.location.pathname;
-        // window.location.href = path.replace('/pages/', '/en/pages/');
-        setTimeout(() => {
-          document.querySelectorAll('.lang-btn').forEach(b => {
-            b.classList.remove('active');
-            b.removeAttribute('aria-current');
-          });
-          const frBtn = document.querySelector('.lang-btn[data-lang="fr"]');
-          frBtn.classList.add('active');
-          frBtn.setAttribute('aria-current', 'true');
-        }, 200);
+      let targetPath;
+
+      if (targetLang === 'en' && !isCurrentlyEn) {
+        // FR → EN : insérer /en/ avant le segment de page (préfixe projet préservé)
+        if (currentPath.includes('/pages/')) {
+          targetPath = currentPath.replace('/pages/', '/en/pages/');
+        } else if (/\/index\.html$/.test(currentPath)) {
+          targetPath = currentPath.replace(/\/index\.html$/, '/en/index.html');
+        } else if (currentPath.endsWith('/')) {
+          targetPath = currentPath + 'en/index.html';
+        } else {
+          targetPath = currentPath + '/en/index.html';
+        }
+      } else if (targetLang === 'fr' && isCurrentlyEn) {
+        // EN → FR : retirer /en/ tout en gardant le préfixe projet
+        if (currentPath.includes('/en/pages/')) {
+          targetPath = currentPath.replace('/en/pages/', '/pages/');
+        } else if (/\/en\/index\.html$/.test(currentPath)) {
+          targetPath = currentPath.replace(/\/en\/index\.html$/, '/index.html');
+        } else {
+          targetPath = currentPath.replace(/\/en\/?$/, '/');
+        }
+      } else {
+        return;
       }
+
+      window.location.href = targetPath + window.location.search + window.location.hash;
     });
   });
 
@@ -471,7 +538,7 @@
     styleEl.textContent = arrowsCSS;
     document.head.appendChild(styleEl);
     const arrowsHTML = `
-      <a class="villa-nav-arrow villa-nav-prev" href="${depth}pages/${prev}.html" aria-label="Villa précédente: ${villaLabels[prev]}">
+      <a class="villa-nav-arrow villa-nav-prev" href="${depth}pages/${prev}.html" aria-label="${t.villaPrev}: ${villaLabels[prev]}">
         <span class="van-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="20" y1="12" x2="4" y2="12"/>
@@ -480,7 +547,7 @@
         </span>
         <span class="van-label">${villaLabels[prev]}</span>
       </a>
-      <a class="villa-nav-arrow villa-nav-next" href="${depth}pages/${next}.html" aria-label="Villa suivante: ${villaLabels[next]}">
+      <a class="villa-nav-arrow villa-nav-next" href="${depth}pages/${next}.html" aria-label="${t.villaNext}: ${villaLabels[next]}">
         <span class="van-label">${villaLabels[next]}</span>
         <span class="van-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
