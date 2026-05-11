@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Prestige — Seseh Sunset Villas</title>
+  <link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../../css/prestige.css">
+  <style>
+    .plan-svg { max-width: 720px; }
+    @media (min-width:1024px) and (min-height:900px) {
+      .plan-svg { max-width: 760px; }
+    }
+    /* iPad Pro 13" (portrait + landscape) — constrain SVG to header width */
+    @media (min-width:1024px) and (max-width:1400px) and (min-height:1100px),
+           (min-width:1024px) and (max-width:1400px) and (hover:none) {
+      .plan-svg { max-width: 520px; }
+    }
+    /* Match interactive labels with the Escalier label (14px) — same as Élégance */
+    #f0 .pz-text, #f1 .pz-text { font-size: 14px; }
+    /* ── VIRTUAL TOUR BUTTON ── */
+    .villa-title { position: relative; }
+    .vr-btn {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-30%);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 30px 16px 18px;
+      background: #fff;
+      border: 1px solid rgba(61,57,52,0.2);
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      color: #3d3934;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      text-decoration: none;
+    }
+    .vr-btn:hover {
+      background: #3d3934;
+      color: #fff;
+      border-color: #3d3934;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      transform: translateY(calc(-30% - 1px));
+    }
+    .vr-btn-icon {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.4s ease;
+    }
+    .vr-btn-icon img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      filter: brightness(0);
+    }
+    .vr-btn:hover .vr-btn-icon { transform: rotate(15deg); }
+    .vr-btn:hover .vr-btn-icon img { filter: brightness(0) invert(1); }
+    .vr-btn-text { display: flex; flex-direction: column; text-align: left; line-height: 1.2; }
+    .vr-btn-label { font-size: 16px; letter-spacing: 0.04em; font-weight: 400; }
+    .vr-btn-sub {
+      font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #8a847a; margin-top: 4px;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    }
+    .vr-btn:hover .vr-btn-sub { color: rgba(255,255,255,0.7); }
+    /* ── VIRTUAL TOUR MODAL ── */
+    .vr-modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(14, 11, 8, 0.92);
+      z-index: 9000;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
+      display: flex; align-items: center; justify-content: center;
+      padding: 40px;
+    }
+    .vr-modal-backdrop.visible { opacity: 1; pointer-events: all; }
+    .vr-modal-content {
+      position: relative;
+      width: 100%; max-width: 1400px;
+      height: 100%; max-height: 850px;
+      background: #1a1815;
+      border-radius: 4px; overflow: hidden;
+      transform: scale(0.96);
+      transition: transform 0.4s ease;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .vr-modal-backdrop.visible .vr-modal-content { transform: scale(1); }
+    .vr-modal-header {
+      position: absolute; top: 0; left: 0; right: 0;
+      padding: 20px 28px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+      z-index: 2;
+      display: flex; justify-content: space-between; align-items: center;
+      pointer-events: none;
+    }
+    .vr-modal-header > * { pointer-events: auto; }
+    .vr-modal-title {
+      color: rgba(255,255,255,0.95);
+      font-family: 'the-seasons', Georgia, serif;
+      font-size: 18px; letter-spacing: 0.04em; margin: 0;
+    }
+    .vr-modal-close {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+    .vr-modal-close:hover {
+      background: rgba(255,255,255,0.22);
+      transform: rotate(90deg);
+    }
+    .vr-modal-iframe {
+      width: 100%; height: 100%;
+      border: 0;
+      background: #1a1815;
+    }
+    @media (max-width: 900px) {
+      .vr-btn { padding: 10px; gap: 0; }
+      .vr-btn-icon { width: 32px; height: 32px; }
+      .vr-btn-text { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-root"></div>
+  <script src="../../js/nav.js"></script>
+
+  <div class="page-intro"></div>
+  <div class="cursor-tip" id="tip">Explore</div>
+  <div class="bg"></div>
+
+  <div class="page">
+
+    <div class="villa-title">Prestige
+      <button class="vr-btn" onclick="openVR()">
+        <span class="vr-btn-icon">
+          <img src="../../assets/icons/icon-360.svg" alt="">
+        </span>
+        <span class="vr-btn-text">
+          <span class="vr-btn-label">Virtual Tour</span>
+          <span class="vr-btn-sub">Explore the villa</span>
+        </span>
+      </button>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stats-inner">
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 20 20" fill="none">
+            <rect x="3" y="3" width="14" height="14" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <div class="stat-val">80 <span class="stat-sm">sqm</span></div>
+          <div class="stat-lbl">Area</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 22 16" fill="none">
+            <rect x="1" y="5" width="20" height="10" rx="1" stroke="currentColor" stroke-width="1.2"/>
+            <rect x="1" y="8" width="6" height="7" rx="0.5" stroke="currentColor" stroke-width="1"/>
+          </svg>
+          <div class="stat-val">2</div>
+          <div class="stat-lbl">Bedrooms</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 22 18" fill="none">
+            <path d="M3 9H19Q21 9 21 11V14Q21 16 19 16H3Q1 16 1 14V11Q1 9 3 9Z" stroke="currentColor" stroke-width="1.2"/>
+            <path d="M4 9V5Q4 3 6 3H7Q8 3 8 4V5" stroke="currentColor" stroke-width="1.2"/>
+          </svg>
+          <div class="stat-val">2</div>
+          <div class="stat-lbl">Bathrooms</div>
+        </div>
+        <div class="stat-sep"></div>
+        <div class="stat">
+          <svg class="stat-icon" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.2"/>
+            <text x="10" y="14" text-anchor="middle" font-family="Inter,Helvetica Neue,sans-serif" font-size="8" fill="currentColor">€</text>
+          </svg>
+          <div class="stat-val">€239,000</div>
+          <div class="stat-lbl">Starting from</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN BLOCK: plan left | image right -->
+    <div class="dark-block">
+
+      <div class="plan-side">
+        <div class="plan-inner">
+          <div class="plan-top">
+            <div class="plan-title-wrap">
+              <div class="plan-title">Interactive Plan</div>
+              <div class="plan-subtitle">Select a room to explore</div>
+            </div>
+            <div class="floor-tabs">
+              <button class="floor-tab active" onclick="setFloor(0,this)">Ground</button>
+              <button class="floor-tab" onclick="setFloor(1,this)">Upper</button>
+            </div>
+          </div>
+
+          <div class="plan-svg-wrap">
+                                    <!-- Ground -->
+            <svg id="f0" class="plan-svg" viewBox="-1 -1 502 322" xmlns="http://www.w3.org/2000/svg">
+
+              <!-- BACKGROUND : non-interactive zones (Toilet + Stairs + Parking) -->
+              <!-- TOILET (clickable, top-left) -->
+              <g class="pzone toilet" onclick="pick('toilet', this)" onmouseenter="tip.textContent='Toilet'">
+                <rect class="pz-fill" x="0" y="0" width="73" height="93"/>
+                <text class="pz-text" x="37" y="49" text-anchor="middle" style="font-size:11px">Toilet</text>
+              </g>
+
+              <g id="f0-shell" pointer-events="none">
+                <!-- STAIRS (under toilet) -->
+                <polygon points="0,93 73,93 73,133 43,133 43,158 0,158"
+                         fill="rgba(225,222,215,0.5)" stroke="none"/>
+                <g transform="translate(27, 105)" pointer-events="none">
+                  <path d="M 0 18 L 0 12 L 6 12 L 6 6 L 12 6 L 12 0 L 18 0"
+                        stroke="rgba(120,115,108,0.65)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+                <!-- PARKING (bottom-left) -->
+                <rect x="0" y="220" width="143" height="100"
+                      fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <text x="71.5" y="275" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="13"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.85)">Parking</text>
+
+              </g>
+
+              <!-- WALLS (rendered BEFORE pzones so hover-gold polygon strokes render on top) -->
+              <g pointer-events="none" fill="none">
+                <path d="M 73 0 L 500 0 L 500 158 L 143 158 L 143 220 L 0 220 L 0 93 M 0 158 L 43 158 L 43 133 L 73 133 L 73 0"
+                      stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+              </g>
+
+              <!-- TERRACE (fully clickable) -->
+              <g class="pzone terrace" onclick="pick('terrace', this)" onmouseenter="tip.textContent='Terrace'">
+                <rect class="pz-fill" x="143" y="158" width="357" height="162" style="stroke:none"/>
+                <text class="pz-text" x="190" y="180" text-anchor="start">Terrace</text>
+              </g>
+
+              <!-- Terrace decorative deck lines (interrupted by pool x=222→419, y=201→320) -->
+              <g pointer-events="none" fill="none" stroke="rgba(61,57,52,0.25)" stroke-width="0.5">
+                <line x1="143" y1="178" x2="500" y2="178"/>
+                <line x1="143" y1="192" x2="500" y2="192"/>
+                <line x1="143" y1="220" x2="222" y2="220"/>
+                <line x1="419" y1="220" x2="500" y2="220"/>
+                <line x1="143" y1="240" x2="222" y2="240"/>
+                <line x1="419" y1="240" x2="500" y2="240"/>
+                <line x1="143" y1="260" x2="222" y2="260"/>
+                <line x1="419" y1="260" x2="500" y2="260"/>
+                <line x1="143" y1="280" x2="222" y2="280"/>
+                <line x1="419" y1="280" x2="500" y2="280"/>
+                <line x1="143" y1="300" x2="222" y2="300"/>
+                <line x1="419" y1="300" x2="500" y2="300"/>
+              </g>
+
+              <!-- Terrace right + bottom borders -->
+              <g pointer-events="none" fill="none">
+                <path d="M 143 320 L 500 320 L 500 158" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+              </g>
+
+              <!-- POOL (decorative, non-clickable, inside terrace) -->
+              <g pointer-events="none">
+                <rect x="222" y="201" width="197" height="119"
+                      fill="rgba(178,210,225,0.55)" stroke="rgba(95,135,160,0.85)" stroke-width="1"/>
+                <path d="M 240 240 Q 250 236 260 240 Q 270 244 280 240 Q 290 236 300 240 Q 310 244 320 240 Q 330 236 340 240 Q 350 244 360 240 Q 370 236 380 240 Q 390 244 400 240"
+                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                <path d="M 240 254 Q 250 250 260 254 Q 270 258 280 254 Q 290 250 300 254 Q 310 258 320 254 Q 330 250 340 254 Q 350 258 360 254 Q 370 250 380 254 Q 390 258 400 254"
+                      fill="none" stroke="rgba(95,135,160,0.6)" stroke-width="0.8"/>
+                <text x="320.5" y="295" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="13"
+                      letter-spacing="0.04em"
+                      fill="rgba(50,80,100,0.9)">Pool</text>
+              </g>
+
+              <!-- KITCHEN (steps around Office L-upper at x=73→143, y=133→158) -->
+              <g class="pzone kitchen" onclick="pick('kitchen', this)" onmouseenter="tip.textContent='Kitchen'">
+                <polygon class="pz-fill" points="73,0 217,0 217,158 143,158 143,133 73,133" style="stroke:none"/>
+                <text class="pz-text" x="145.5" y="85" text-anchor="middle">Kitchen</text>
+              </g>
+
+              <!-- DINING (between Kitchen and Living) -->
+              <g class="pzone dining" onclick="pick('dining', this)" onmouseenter="tip.textContent='Dining'">
+                <polygon class="pz-fill" points="217,0 358.5,0 358.5,158 217,158" style="stroke:none"/>
+                <text class="pz-text" x="287.75" y="85" text-anchor="middle">Dining</text>
+              </g>
+
+              <!-- LIVING -->
+              <g class="pzone living" onclick="pick('living', this)" onmouseenter="tip.textContent='Living'">
+                <polygon class="pz-fill" points="358.5,0 500,0 500,158 358.5,158" style="stroke:none"/>
+                <text class="pz-text" x="429.25" y="85" text-anchor="middle">Living</text>
+              </g>
+
+              <!-- WORKSPACE -->
+              <g class="pzone workspace" onclick="pick('workspace', this)" onmouseenter="tip.textContent='Office'">
+                <polygon class="pz-fill" points="43,133 143,133 143,220 0,220 0,158 43,158" style="stroke:none"/>
+                <text class="pz-text" x="93" y="190" text-anchor="middle">Office</text>
+              </g>
+
+              <!-- DASHED SEPARATORS (on top, indicate open-plan) -->
+              <g pointer-events="none" fill="none">
+                <line x1="217" y1="0" x2="217" y2="158"
+                      stroke="rgba(61,57,52,0.55)" stroke-width="1" stroke-dasharray="4 3"/>
+                <line x1="358.5" y1="0" x2="358.5" y2="158"
+                      stroke="rgba(61,57,52,0.55)" stroke-width="1" stroke-dasharray="4 3"/>
+                <line x1="73" y1="133" x2="143" y2="133"
+                      stroke="rgba(61,57,52,0.55)" stroke-width="1" stroke-dasharray="4 3"/>
+                <line x1="143" y1="133" x2="143" y2="158"
+                      stroke="rgba(61,57,52,0.55)" stroke-width="1" stroke-dasharray="4 3"/>
+              </g>
+
+            </svg>
+
+
+                                                                        <!-- Upper -->
+            <svg id="f1" class="plan-svg" viewBox="-1 -1 502 322" xmlns="http://www.w3.org/2000/svg" style="display:none">
+
+              <!-- BACKGROUND : Stairs + Balcony + Parking + Terrace (ground floor access) -->
+              <g id="f1-shell" pointer-events="none">
+
+                <!-- TERRACE (right + top-right strip, greyed, ground floor access) -->
+                <polygon points="415.8,158.6 415.8,223.2 138.8,223.2 138.8,320 500,320 500,158.6"
+                         fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="4 3" fill="none">
+                  <line x1="138.8" y1="223.2" x2="500" y2="320"/>
+                  <line x1="500" y1="223.2" x2="138.8" y2="320"/>
+                </g>
+                <text x="319" y="265" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="12"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(94,89,82,0.65)">Terrace</text>
+                <text x="319" y="282" text-anchor="middle"
+                      font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="8"
+                      letter-spacing="0.06em"
+                      fill="rgba(94,89,82,0.55)">ground floor access</text>
+
+                <!-- PARKING (bottom-left, greyed, ground floor access) -->
+                <rect x="0.4" y="223.2" width="138.4" height="96.8"
+                      fill="rgba(225,222,215,0.5)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.18)" stroke-width="0.6" stroke-dasharray="4 3" fill="none">
+                  <line x1="0.4" y1="223.2" x2="138.8" y2="320"/>
+                  <line x1="138.8" y1="223.2" x2="0.4" y2="320"/>
+                </g>
+                <text x="69.6" y="270" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="12"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(94,89,82,0.65)">Parking</text>
+
+                <!-- BALCONY (decorative non-clickable) -->
+                <rect x="0.5" y="158.6" width="415.3" height="64.5"
+                      fill="rgba(244,240,233,0.55)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <text x="208" y="195" text-anchor="middle"
+                      font-family="'the-seasons', Georgia, serif" font-size="13"
+                      font-weight="500" letter-spacing="0.04em"
+                      fill="rgba(52,48,44,0.85)">Balcony</text>
+
+                <!-- STAIRS (decorative, non-clickable, with stair treads) -->
+                <polygon points="52.6,181.1 52.6,158.6 0,158.6 0,223.2 133,223.2 133,181.1"
+                         fill="rgba(225,222,215,0.7)" stroke="rgba(61,57,52,0.95)" stroke-width="1"/>
+                <g stroke="rgba(61,57,52,0.32)" stroke-width="0.5" fill="none">
+                  <line x1="20" y1="158.6" x2="20" y2="181.1"/>
+                  <line x1="40" y1="158.6" x2="40" y2="181.1"/>
+                  <line x1="20" y1="181.1" x2="20" y2="223.2"/>
+                  <line x1="40" y1="181.1" x2="40" y2="223.2"/>
+                  <line x1="60" y1="181.1" x2="60" y2="223.2"/>
+                  <line x1="80" y1="181.1" x2="80" y2="223.2"/>
+                  <line x1="100" y1="181.1" x2="100" y2="223.2"/>
+                  <line x1="120" y1="181.1" x2="120" y2="223.2"/>
+                </g>
+                <g transform="translate(57, 196)">
+                  <path d="M 0 18 L 0 12 L 6 12 L 6 6 L 12 6 L 12 0 L 18 0"
+                        stroke="rgba(120,115,108,0.65)" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </g>
+
+              <!-- INTERACTIVE ZONES (4 clickables) -->
+
+              <g class="pzone bedroom1" onclick="pick('bedroom1', this)" onmouseenter="tip.textContent='Bedroom 1'">
+                <polygon class="pz-fill" points="166,0 0,0 0,158.6 193.6,158.6 193.6,83.7 166,83.7"/>
+                <text class="pz-text" x="80" y="80" text-anchor="middle">Bedroom 1</text>
+              </g>
+
+              <g class="pzone bedroom2" onclick="pick('bedroom2', this)" onmouseenter="tip.textContent='Bedroom 2'">
+                <polygon class="pz-fill" points="307,0 307,83.3 339.9,83.3 339.9,158.6 500,158.6 500,0"/>
+                <text class="pz-text" x="420" y="80" text-anchor="middle">Bedroom 2</text>
+              </g>
+
+              <g class="pzone bath2" onclick="pick('bath2', this)" onmouseenter="tip.textContent='Bathroom 2'">
+                <rect class="pz-fill" x="166" y="0" width="141" height="83.7"/>
+                <text class="pz-text" x="236.5" y="40" text-anchor="middle">Bathroom 2</text>
+              </g>
+
+              <g class="pzone bath1" onclick="pick('bath1', this)" onmouseenter="tip.textContent='Bathroom 1'">
+                <rect class="pz-fill" x="193.6" y="83.7" width="146.3" height="74.9"/>
+                <text class="pz-text" x="266.7" y="125" text-anchor="middle">Bathroom 1</text>
+              </g>
+
+            </svg>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: SVG room illustrations -->
+      <div class="info-side">
+        <div class="room-image empty" id="roomImg">
+
+          <div class="room-visual" id="visual-living">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/two%20bedroom/prestige-living.jpg" alt="Living">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-toilet">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/two%20bedroom/prestige-toilet.jpg" alt="Toilet">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-kitchen">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/two%20bedroom/prestige-kitchen.jpg" alt="Kitchen">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-dining">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/two%20bedroom/prestige-dining.jpg" alt="Dining">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-workspace">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/two%20bedroom/prestige-office.jpg" alt="Office">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-pool">
+            <div class="scene-card"><div class="room-scene">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                  <linearGradient id="poolBg" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0%" stop-color="#ded7cb"/><stop offset="100%" stop-color="#b7aea2"/></linearGradient>
+                  <linearGradient id="waterGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#d2dbdc"/><stop offset="55%" stop-color="#b3c0c2"/><stop offset="100%" stop-color="#96a4a8"/></linearGradient>
+                </defs>
+                <rect width="800" height="600" fill="url(#poolBg)"/>
+                <polygon points="95,150 705,120 640,470 155,505" fill="url(#waterGrad)"/>
+                <polygon points="95,150 705,120 665,150 130,178" fill="#e3dacc"/>
+                <rect x="530" y="72" width="145" height="35" fill="#c2b8ab" opacity="0.9"/>
+              </svg>
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-terrace">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/two%20bedroom/prestige-terrasse.jpg" alt="Terrace">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-bedroom1">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/two%20bedroom/prestige-bedroom.jpg" alt="Bedroom">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-bedroom2">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/two%20bedroom/prestige-bedroom2.jpg" alt="Bedroom">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-bath1">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/two%20bedroom/prestige-bathroom.jpg" alt="Bathroom">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-bath2">
+            <div class="scene-card"><div class="room-scene">
+              <img src="../../assets/images/interiors/two%20bedroom/prestige-bathroom.jpg" alt="Bathroom">
+            </div></div>
+          </div>
+
+          <div class="room-visual" id="visual-balcony">
+            <div class="scene-card"><div class="room-scene">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <defs><linearGradient id="balSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f4efe8"/><stop offset="100%" stop-color="#cec3b6"/></linearGradient></defs>
+                <rect width="800" height="600" fill="#d2c8bc"/>
+                <rect width="800" height="300" fill="url(#balSky)"/>
+                <rect y="300" width="800" height="300" fill="#b2a89c"/>
+                <rect x="95" y="295" width="610" height="20" fill="#ddd2c5"/>
+                <rect x="115" y="315" width="12" height="145" fill="#beb2a6"/>
+                <rect x="245" y="315" width="12" height="145" fill="#beb2a6"/>
+                <rect x="375" y="315" width="12" height="145" fill="#beb2a6"/>
+                <rect x="505" y="315" width="12" height="145" fill="#beb2a6"/>
+                <rect x="635" y="315" width="12" height="145" fill="#beb2a6"/>
+              </svg>
+            </div></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /dark-block -->
+
+    <div class="prereserver-wrap">
+      <a class="prereserver-btn" href="https://bit.ly/sora-immobilier" target="_blank" rel="noopener">Pre-book</a>
+    </div>
+
+  </div><!-- /page -->
+
+  <!-- VIRTUAL TOUR MODAL -->
+  <div class="vr-modal-backdrop" id="vrModal" onclick="if(event.target===this)closeVR()">
+    <div class="vr-modal-content">
+      <div class="vr-modal-header">
+        <div class="vr-modal-title">Villa Prestige · Virtual Tour</div>
+        <button class="vr-modal-close" onclick="closeVR()" aria-label="Close">×</button>
+      </div>
+      <iframe class="vr-modal-iframe" id="vrFrame" src="" allow="xr-spatial-tracking; fullscreen" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script src="../../js/prestige.js"></script>
+
+
+</body>
+</html>
