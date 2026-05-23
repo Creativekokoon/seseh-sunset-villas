@@ -389,7 +389,7 @@
     </div>
 
     <!-- ANALYSE -->
-    <div class="doc-card" onclick="openPdf('Analyse de marché', 'Étude du secteur immobilier Seseh', 'SESEH SUNSET VILLAS - Analyse de marché Seseh_FR.pdf')">
+    <div class="doc-card" onclick="openPdf('Analyse de marché', 'Étude du secteur immobilier Seseh', 'SESEH SUNSET VILLAS - Analyse de marché Seseh_FR.pdf', 70)">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
         <img class="doc-preview-img" src="../assets/ressources/previews/analyse-cover.jpg" alt="Analyse de marché">
@@ -524,9 +524,10 @@
 </div>
 
 <script>
-  function openPdf(title, subtitle, file) {
+  function openPdf(title, subtitle, file, zoom) {
     const isUrl = /^https?:\/\//i.test(file);
     const url = isUrl ? file : '../assets/ressources/' + encodeURIComponent(file);
+    const zoomLevel = zoom || 90;
     // iOS Safari et autres mobiles ne savent pas scroller un PDF en iframe :
     // ouvrir nativement dans un nouvel onglet pour permettre le scroll/zoom.
     if (!isUrl && window.matchMedia('(max-width: 600px)').matches) {
@@ -546,8 +547,10 @@
     const iframeAttrs = isUrl
       ? ' allow="autoplay; clipboard-read; clipboard-write" allowfullscreen scrolling="no"'
       : '';
+    // Chromium : masquer la toolbar native du viewer PDF (#toolbar=0)
+    const iframeSrc = isUrl ? url : url + '#toolbar=0&navpanes=0&statusbar=0&zoom=' + zoomLevel;
     document.getElementById('pdfViewer').innerHTML =
-      '<iframe src="' + url + '" title="' + title.replace(/"/g, '&quot;') + '"' + iframeAttrs + '></iframe>';
+      '<iframe src="' + iframeSrc + '" title="' + title.replace(/"/g, '&quot;') + '"' + iframeAttrs + '></iframe>';
     document.getElementById('pdfModal').classList.add('visible');
     document.body.style.overflow = 'hidden';
   }

@@ -378,7 +378,7 @@
     </div>
 
     <!-- MARKET ANALYSIS -->
-    <div class="doc-card" onclick="openPdf('Market analysis', 'Real estate study of Seseh', 'SESEH SUNSET VILLAS - Seseh Market analysis.pdf')">
+    <div class="doc-card" onclick="openPdf('Market analysis', 'Real estate study of Seseh', 'SESEH SUNSET VILLAS - Seseh Market analysis.pdf', 70)">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
         <img class="doc-preview-img" src="../../assets/ressources/previews/analyse-cover.jpg" alt="Market analysis">
@@ -513,8 +513,9 @@
 </div>
 
 <script>
-  function openPdf(title, subtitle, file) {
+  function openPdf(title, subtitle, file, zoom) {
     const url = '../../assets/ressources/' + encodeURIComponent(file);
+    const zoomLevel = zoom || 90;
     // Mobile browsers (iOS Safari notably) can't scroll PDFs inside an iframe :
     // open natively in a new tab so scroll/zoom work.
     if (window.matchMedia('(max-width: 600px)').matches) {
@@ -525,7 +526,9 @@
     document.getElementById('pdfSubtitle').textContent = subtitle;
     document.getElementById('pdfDownload').href = url;
     document.getElementById('pdfDownload').setAttribute('download', file);
-    document.getElementById('pdfViewer').innerHTML = '<iframe src="' + url + '" title="' + title + '"></iframe>';
+    // Chromium: hide the native PDF viewer toolbar (#toolbar=0)
+    const iframeSrc = url + '#toolbar=0&navpanes=0&statusbar=0&zoom=' + zoomLevel;
+    document.getElementById('pdfViewer').innerHTML = '<iframe src="' + iframeSrc + '" title="' + title + '"></iframe>';
     document.getElementById('pdfModal').classList.add('visible');
     document.body.style.overflow = 'hidden';
   }
