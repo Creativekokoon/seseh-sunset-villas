@@ -220,7 +220,10 @@
   .doc-meta-right {
     display: inline-flex; align-items: center; gap: 6px;
     color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s ease;
   }
+  a.doc-meta-right:hover { color: var(--accent); }
 
   .pdf-modal {
     position: fixed; inset: 0;
@@ -357,12 +360,12 @@
         <div class="doc-title">Project brochure</div>
         <div class="doc-meta">
           <span>PDF · 4.2 MB</span>
-          <span class="doc-meta-right">
+          <a class="doc-meta-right" href="../../assets/documents/SESEH SUNSET VILLAS - Brochure EN.pdf" download onclick="event.stopPropagation()">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
             </svg>
             Download
-          </span>
+          </a>
         </div>
       </div>
     </div>
@@ -387,12 +390,12 @@
         <div class="doc-title">Seseh market analysis</div>
         <div class="doc-meta">
           <span>PDF · 2.8 MB</span>
-          <span class="doc-meta-right">
+          <a class="doc-meta-right" href="../../assets/documents/SESEH SUNSET VILLAS - Seseh Market analysis.pdf" download onclick="event.stopPropagation()">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
             </svg>
             Download
-          </span>
+          </a>
         </div>
       </div>
     </div>
@@ -417,12 +420,12 @@
         <div class="doc-title">Financial forecasts</div>
         <div class="doc-meta">
           <span>PDF · 1.6 MB</span>
-          <span class="doc-meta-right">
+          <a class="doc-meta-right" href="../../assets/documents/SESEH SUNSET VILLAS - Financial Projection.pdf" download onclick="event.stopPropagation()">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
             </svg>
             Download
-          </span>
+          </a>
         </div>
       </div>
     </div>
