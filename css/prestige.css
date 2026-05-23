@@ -177,6 +177,27 @@ html,body {
   align-self:center;
   background:transparent;border:none;
 }
+.room-image-gallery-link {
+  position:absolute;
+  bottom:14px;right:14px;
+  z-index:5;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:9px 16px;
+  background:rgba(36,34,32,0.85);
+  color:#fff;text-decoration:none;
+  font-family:var(--sans);
+  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
+  border-radius:999px;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.3s ease,background 0.25s ease;
+  backdrop-filter:blur(8px);
+}
+.room-image:not(.empty) .room-image-gallery-link {
+  opacity:1;pointer-events:auto;
+}
+.room-image-gallery-link:hover { background:rgba(36,34,32,1); }
+.room-image-gallery-link svg { transition:transform 0.25s ease; }
+.room-image-gallery-link:hover svg { transform:translateX(2px); }
 .room-visual {
   position:absolute;inset:0;
   opacity:0;transform:scale(1.02);
@@ -253,6 +274,43 @@ html,body {
   color:#fff;
   animation-play-state:paused;
   background-position:50% 0;
+}
+
+/* ── CTA ROW (Gallery link + Pré-réserver) ── */
+.cta-row {
+  flex-shrink:0;
+  max-width:1240px;
+  margin:0 auto;
+  padding:4px 20px 6px;
+  display:flex;align-items:center;justify-content:center;
+  gap:20px;flex-wrap:wrap;
+}
+.villa-gallery-link {
+  display:inline-flex;align-items:center;gap:12px;
+  padding:14px 32px;
+  background:transparent;
+  border:1px solid rgba(61,57,52,0.3);
+  color:#3d3934;text-decoration:none;
+  font-family:var(--sans);
+  font-size:0.72rem;letter-spacing:0.24em;text-transform:uppercase;
+  transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease;
+}
+.villa-gallery-link:hover {
+  background:#242220;color:#fff;border-color:#242220;
+}
+.villa-gallery-link svg { transition:transform 0.25s ease; }
+.villa-gallery-link:hover svg { transform:translateX(3px); }
+
+@media (max-width:720px) {
+  .cta-row {
+    flex-direction:column;gap:14px;padding:4px 20px 6px;
+  }
+  .villa-gallery-link, .cta-row .prereserver-btn {
+    width:100%;max-width:320px;
+    justify-content:center;text-align:center;
+    padding:13px 24px;font-size:0.66rem;letter-spacing:0.2em;
+  }
+  .cta-row .prereserver-btn { order:-1; }
 }
 
 /* ── CURSOR ── */
