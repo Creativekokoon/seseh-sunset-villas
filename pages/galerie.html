@@ -397,8 +397,28 @@
       grid-row: span 1;
     }
     .page-hero h1 { font-size: 36px; }
-    .filters-primary { gap: 16px; padding: 24px 20px 20px 20px; }
-    .filter-btn { font-size: 10px; letter-spacing: 0.18em; }
+    .filters-primary {
+      gap: 20px;
+      padding: 18px 20px 14px 20px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      justify-content: flex-start;
+      scroll-snap-type: x proximity;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 16px, #000 calc(100% - 16px), transparent 100%);
+    }
+    .filters-primary::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      flex-shrink: 0;
+      scroll-snap-align: center;
+      padding: 8px 2px;
+    }
     .gallery-grid { padding: 24px 16px 60px 16px; }
 
     /* Lightbox mobile : flèches sous l'image, image plus grande */

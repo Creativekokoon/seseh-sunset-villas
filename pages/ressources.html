@@ -525,10 +525,16 @@
 
 <script>
   function openPdf(title, subtitle, file) {
-    document.getElementById('pdfTitle').textContent = title;
-    document.getElementById('pdfSubtitle').textContent = subtitle;
     const isUrl = /^https?:\/\//i.test(file);
     const url = isUrl ? file : '../assets/ressources/' + encodeURIComponent(file);
+    // iOS Safari et autres mobiles ne savent pas scroller un PDF en iframe :
+    // ouvrir nativement dans un nouvel onglet pour permettre le scroll/zoom.
+    if (!isUrl && window.matchMedia('(max-width: 600px)').matches) {
+      window.open(url, '_blank', 'noopener');
+      return;
+    }
+    document.getElementById('pdfTitle').textContent = title;
+    document.getElementById('pdfSubtitle').textContent = subtitle;
     const dl = document.getElementById('pdfDownload');
     if (isUrl) {
       dl.style.display = 'none';
