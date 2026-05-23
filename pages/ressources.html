@@ -528,12 +528,13 @@
     const isUrl = /^https?:\/\//i.test(file);
     const url = isUrl ? file : '../assets/ressources/' + encodeURIComponent(file);
     const zoomLevel = zoom || 90;
-    // iOS Safari (iPhone + iPad) et autres tactiles ne savent pas scroller un PDF en iframe :
-    // ouvrir nativement dans un nouvel onglet pour permettre le scroll/zoom.
+    // iOS Safari (iPhone + iPad) et autres tactiles ne savent pas scroller un PDF en iframe.
+    // On navigue dans le même onglet pour que le bouton retour du navigateur reste visible
+    // (les nouveaux onglets peuvent être inaccessibles en PWA / vue standalone).
     const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
     const isTabletOrSmaller = window.matchMedia('(max-width: 1024px)').matches;
     if (!isUrl && (isTouch || isTabletOrSmaller)) {
-      window.open(url, '_blank', 'noopener');
+      window.location.href = url;
       return;
     }
     document.getElementById('pdfTitle').textContent = title;

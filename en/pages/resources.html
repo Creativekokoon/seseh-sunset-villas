@@ -516,12 +516,13 @@
   function openPdf(title, subtitle, file, zoom) {
     const url = '../../assets/ressources/' + encodeURIComponent(file);
     const zoomLevel = zoom || 90;
-    // Touch devices (iPad + iPhone Safari notably) can't scroll PDFs inside an iframe :
-    // open natively in a new tab so scroll/zoom work.
+    // Touch devices (iPad + iPhone Safari notably) can't scroll PDFs inside an iframe.
+    // Navigate in the same tab so the browser back button stays reachable
+    // (new tabs can be hidden in PWA / standalone view).
     const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
     const isTabletOrSmaller = window.matchMedia('(max-width: 1024px)').matches;
     if (isTouch || isTabletOrSmaller) {
-      window.open(url, '_blank', 'noopener');
+      window.location.href = url;
       return;
     }
     document.getElementById('pdfTitle').textContent = title;
