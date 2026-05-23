@@ -96,9 +96,8 @@
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 24px;
+    left: 0;
+    right: 0;
     height: 1px;
     background: var(--accent);
   }
@@ -149,6 +148,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     grid-auto-rows: 240px;
+    grid-auto-flow: dense;
   }
 
   .gallery-item {
@@ -202,7 +202,7 @@
     font-size: 9px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: #e8d6ad;
     font-family: 'Inter', sans-serif;
     margin-bottom: 4px;
   }
@@ -356,11 +356,11 @@
 
 <!-- PRIMARY FILTERS : villa -->
 <nav class="filters-primary">
-  <button class="filter-btn active" data-villa="all">All<span class="filter-count">24</span></button>
+  <button class="filter-btn active" data-villa="all">All<span class="filter-count">41</span></button>
   <button class="filter-btn" data-villa="complexe">Complex<span class="filter-count">4</span></button>
   <button class="filter-btn" data-villa="elegance">Élégance<span class="filter-count">5</span></button>
   <button class="filter-btn" data-villa="prestige">Prestige<span class="filter-count">5</span></button>
-  <button class="filter-btn" data-villa="signature">Signature<span class="filter-count">5</span></button>
+  <button class="filter-btn" data-villa="signature">Signature<span class="filter-count">22</span></button>
   <button class="filter-btn" data-villa="exception">Exception<span class="filter-count">5</span></button>
 </nav>
 
@@ -481,40 +481,159 @@
   </div>
 
   <!-- SIGNATURE - Interior -->
+  <div class="gallery-item tall" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/living-signature.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/living2-signature.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/kitchen-signature.jpg" alt="Kitchen">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Kitchen</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/kitchen2-signature.jpg" alt="Kitchen">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Kitchen</div>
+    </div>
+  </div>
   <div class="gallery-item wide" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#9e8e7a; --end:#5d4e3e;"></div>
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/dining-signature.jpg" alt="Dining">
     <div class="gallery-caption">
       <div class="caption-villa">Signature</div>
-      <div class="caption-title">Spacious living</div>
+      <div class="caption-title">Dining</div>
     </div>
   </div>
   <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#b8a896; --end:#7d6e5d;"></div>
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/dining2-signature.jpg" alt="Dining">
     <div class="gallery-caption">
       <div class="caption-villa">Signature</div>
-      <div class="caption-title">Open kitchen</div>
+      <div class="caption-title">Dining</div>
     </div>
   </div>
   <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#a89886; --end:#6e5d4e;"></div>
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/dining3-signature.jpg" alt="Dining">
     <div class="gallery-caption">
       <div class="caption-villa">Signature</div>
-      <div class="caption-title">Bedroom 1</div>
+      <div class="caption-title">Dining</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/master-bedroom-signature.jpg" alt="Master bedroom">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Master bedroom</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/master-bedroom2-signature.jpg" alt="Master bedroom">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Master bedroom</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/master-bathroom-signature.jpg" alt="Master bathroom">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Master bathroom</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/master-bathroom2-signature.jpg" alt="Master bathroom">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Master bathroom</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/guest-bedroom-signature.jpg" alt="Guest bedroom">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Guest bedroom</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/guest-bedroom2-signature.jpg" alt="Guest bedroom">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Guest bedroom</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/guest-bathroom-signature.jpg" alt="Guest bathroom">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Guest bathroom</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/guest-bathroom2-signature.jpg" alt="Guest bathroom">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Guest bathroom</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/working-space-signature.jpg" alt="Office">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Office</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/working-space2-signature.jpg" alt="Office">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Office</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/powder-room-signature.jpg" alt="Toilet">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Toilet</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/interieur/terrace-signature.jpg" alt="Covered terrace">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Covered terrace</div>
     </div>
   </div>
   <!-- Signature - Exterior -->
-  <div class="gallery-item" data-villa="signature" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#9eb0a6; --end:#5d6e64;"></div>
+  <div class="gallery-item wide" data-villa="signature" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/exterieur/exterior1-signature.jpg" alt="Exterior facade">
     <div class="gallery-caption">
       <div class="caption-villa">Signature</div>
-      <div class="caption-title">Private pool</div>
+      <div class="caption-title">Exterior facade</div>
     </div>
   </div>
   <div class="gallery-item" data-villa="signature" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#beb09a; --end:#7d6f5d;"></div>
+    <img class="gallery-img" src="../../assets/gallery/signature/exterieur/exterior2-signature.jpg" alt="Exterior facade">
     <div class="gallery-caption">
       <div class="caption-villa">Signature</div>
-      <div class="caption-title">Tropical garden</div>
+      <div class="caption-title">Exterior facade</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/signature/exterieur/exterior3-signature.jpg" alt="Exterior facade">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Exterior facade</div>
     </div>
   </div>
 
@@ -566,7 +685,8 @@
     </svg>
   </button>
   <div class="lightbox-content">
-    <div class="lightbox-mock" id="lightboxImg" style="--start:#6b7d6f; --end:#3d4e44;">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" style="display:none">
+    <div class="lightbox-mock" id="lightboxMock" style="--start:#6b7d6f; --end:#3d4e44; display:none">
       Full-size image
     </div>
     <div class="lightbox-info">
@@ -653,11 +773,22 @@
   function updateLightbox() {
     const item = visibleItems[currentIndex];
     if (!item) return;
+    const img = item.querySelector('.gallery-img');
     const mock = item.querySelector('.gallery-mock');
-    const lightboxImg = document.getElementById('lightboxImg');
-    lightboxImg.style.setProperty('--start', mock.style.getPropertyValue('--start'));
-    lightboxImg.style.setProperty('--end', mock.style.getPropertyValue('--end'));
-    lightboxImg.textContent = mock.textContent;
+    const lbImg = document.getElementById('lightboxImg');
+    const lbMock = document.getElementById('lightboxMock');
+
+    if (img) {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lbImg.style.display = '';
+      lbMock.style.display = 'none';
+    } else if (mock) {
+      lbMock.style.setProperty('--start', mock.style.getPropertyValue('--start'));
+      lbMock.style.setProperty('--end', mock.style.getPropertyValue('--end'));
+      lbImg.style.display = 'none';
+      lbMock.style.display = '';
+    }
 
     document.getElementById('lightboxVilla').textContent = item.querySelector('.caption-villa').textContent;
     document.getElementById('lightboxTitle').textContent = item.querySelector('.caption-title').textContent;
