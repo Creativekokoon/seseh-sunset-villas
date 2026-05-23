@@ -320,7 +320,7 @@
   <section class="docs-grid">
 
     <!-- BROCHURE -->
-    <div class="doc-card" onclick="openPdf('Brochure du projet', 'Présentation générale', 'brochure-fr.pdf')">
+    <div class="doc-card" onclick="openPdf('Brochure du projet', 'Présentation générale', 'SESEH SUNSET VILLAS - Brochure FR.pdf')">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
         <img class="doc-preview-img" src="../assets/documents/previews/brochure-cover.jpg" alt="Brochure du projet">
@@ -350,7 +350,7 @@
     </div>
 
     <!-- ANALYSE -->
-    <div class="doc-card" onclick="openPdf('Analyse de marché', 'Étude du secteur immobilier Seseh', 'analyse-marche.pdf')">
+    <div class="doc-card" onclick="openPdf('Analyse de marché', 'Étude du secteur immobilier Seseh', 'SESEH SUNSET VILLAS - Analyse de marché Seseh_FR.pdf')">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
         <img class="doc-preview-img" src="../assets/documents/previews/analyse-cover.jpg" alt="Analyse de marché">
@@ -380,7 +380,7 @@
     </div>
 
     <!-- PRÉVISIONS -->
-    <div class="doc-card" onclick="openPdf('Prévisions financières', 'Rendements et projections', 'previsions-financieres.pdf')">
+    <div class="doc-card" onclick="openPdf('Prévisions financières', 'Rendements et projections', 'SESEH SUNSET VILLAS - Prévisions Financières.pdf')">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
         <img class="doc-preview-img" src="../assets/documents/previews/previsions-cover.jpg" alt="Prévisions financières">
@@ -488,10 +488,21 @@
   function openPdf(title, subtitle, file) {
     document.getElementById('pdfTitle').textContent = title;
     document.getElementById('pdfSubtitle').textContent = subtitle;
-    // TODO : décommenter quand les PDFs seront disponibles dans ../assets/documents/
-    // const url = '../assets/documents/' + file;
-    // document.getElementById('pdfDownload').href = url;
-    // document.getElementById('pdfViewer').innerHTML = '<iframe src="' + url + '"></iframe>';
+    const isUrl = /^https?:\/\//i.test(file);
+    const url = isUrl ? file : '../assets/documents/' + encodeURIComponent(file);
+    const dl = document.getElementById('pdfDownload');
+    if (isUrl) {
+      dl.style.display = 'none';
+    } else {
+      dl.style.display = '';
+      dl.href = url;
+      dl.setAttribute('download', file);
+    }
+    const iframeAttrs = isUrl
+      ? ' allow="autoplay; clipboard-read; clipboard-write" allowfullscreen scrolling="no"'
+      : '';
+    document.getElementById('pdfViewer').innerHTML =
+      '<iframe src="' + url + '" title="' + title.replace(/"/g, '&quot;') + '"' + iframeAttrs + '></iframe>';
     document.getElementById('pdfModal').classList.add('visible');
     document.body.style.overflow = 'hidden';
   }
@@ -499,6 +510,12 @@
     document.getElementById('pdfModal').classList.remove('visible');
     document.body.style.overflow = '';
   }
+  // Reset viewer when modal closes (avoid bg PDF playing)
+  document.getElementById('pdfModal').addEventListener('transitionend', () => {
+    if (!document.getElementById('pdfModal').classList.contains('visible')) {
+      document.getElementById('pdfViewer').innerHTML = '';
+    }
+  });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closePdf();
   });

@@ -309,7 +309,7 @@
   <section class="docs-grid">
 
     <!-- BROCHURE -->
-    <div class="doc-card" onclick="openPdf('Project brochure', 'General presentation', 'brochure-en.pdf')">
+    <div class="doc-card" onclick="openPdf('Project brochure', 'General presentation', 'SESEH SUNSET VILLAS - Brochure EN.pdf')">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
         <img class="doc-preview-img" src="../../assets/documents/previews/brochure-cover.jpg" alt="Project brochure">
@@ -339,7 +339,7 @@
     </div>
 
     <!-- MARKET ANALYSIS -->
-    <div class="doc-card" onclick="openPdf('Market analysis', 'Real estate study of Seseh', 'analyse-marche.pdf')">
+    <div class="doc-card" onclick="openPdf('Market analysis', 'Real estate study of Seseh', 'SESEH SUNSET VILLAS - Seseh Market analysis.pdf')">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
         <img class="doc-preview-img" src="../../assets/documents/previews/analyse-cover.jpg" alt="Market analysis">
@@ -369,7 +369,7 @@
     </div>
 
     <!-- FORECASTS -->
-    <div class="doc-card" onclick="openPdf('Financial forecasts', 'Profitability and forecasts', 'previsions-financieres.pdf')">
+    <div class="doc-card" onclick="openPdf('Financial forecasts', 'Profitability and forecasts', 'SESEH SUNSET VILLAS - Financial Projection.pdf')">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
         <img class="doc-preview-img" src="../../assets/documents/previews/previsions-cover.jpg" alt="Financial forecasts">
@@ -477,10 +477,10 @@
   function openPdf(title, subtitle, file) {
     document.getElementById('pdfTitle').textContent = title;
     document.getElementById('pdfSubtitle').textContent = subtitle;
-    // TODO : uncomment when PDFs are available in ../../assets/documents/
-    // const url = '../../assets/documents/' + file;
-    // document.getElementById('pdfDownload').href = url;
-    // document.getElementById('pdfViewer').innerHTML = '<iframe src="' + url + '"></iframe>';
+    const url = '../../assets/documents/' + encodeURIComponent(file);
+    document.getElementById('pdfDownload').href = url;
+    document.getElementById('pdfDownload').setAttribute('download', file);
+    document.getElementById('pdfViewer').innerHTML = '<iframe src="' + url + '" title="' + title + '"></iframe>';
     document.getElementById('pdfModal').classList.add('visible');
     document.body.style.overflow = 'hidden';
   }
@@ -488,6 +488,12 @@
     document.getElementById('pdfModal').classList.remove('visible');
     document.body.style.overflow = '';
   }
+  // Reset viewer when modal closes
+  document.getElementById('pdfModal').addEventListener('transitionend', () => {
+    if (!document.getElementById('pdfModal').classList.contains('visible')) {
+      document.getElementById('pdfViewer').innerHTML = '';
+    }
+  });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closePdf();
   });
