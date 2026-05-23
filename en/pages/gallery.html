@@ -221,6 +221,9 @@
   .gallery-img.zoom-in { transform: scale(1.25); transform-origin: center center; }
   .gallery-item:hover .gallery-img { transform: scale(1.05); }
   .gallery-item:hover .gallery-img.zoom-in { transform: scale(1.32); }
+  @media (max-width: 600px) {
+    .gallery-img.focus-left-mobile { object-position: 25% center; }
+  }
 
   /* Sun / Sunset toggle */
   .time-toggle {
@@ -624,7 +627,7 @@
     </div>
   </div>
   <div class="gallery-item tall" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
-    <img class="gallery-img" src="../../assets/gallery/elegance/interieur/bedroom-elegance.jpg" alt="Bedroom">
+    <img class="gallery-img focus-left-mobile" src="../../assets/gallery/elegance/interieur/bedroom-elegance.jpg" alt="Bedroom">
     <div class="gallery-caption">
       <div class="caption-villa">Élégance</div>
       <div class="caption-title">Bedroom</div>
