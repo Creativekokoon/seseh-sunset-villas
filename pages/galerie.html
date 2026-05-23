@@ -184,6 +184,37 @@
   .gallery-item:hover .gallery-img { transform: scale(1.05); }
   .gallery-item:hover .gallery-img.zoom-in { transform: scale(1.32); }
 
+  /* Sun / Sunset toggle */
+  .time-toggle {
+    position: absolute;
+    top: 12px; right: 12px;
+    z-index: 4;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(36,34,32,0.55);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #fff;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(6px);
+  }
+  .time-toggle:hover { background: rgba(36,34,32,0.88); transform: scale(1.08); }
+  .time-toggle svg { display: block; width: 14px; height: 14px; }
+  .time-toggle .moon-icon { display: none; }
+  .gallery-item.is-sunset .time-toggle .sun-icon { display: none; }
+  .gallery-item.is-sunset .time-toggle .moon-icon { display: block; }
+  .caption-meta {
+    position: absolute;
+    bottom: 20px;
+    right: 18px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    font-family: 'Inter', sans-serif;
+  }
+
   /* Mockup temporaire (placeholder dégradé pur, sans texte) */
   .gallery-mock {
     width: 100%;
@@ -386,9 +417,9 @@
 
 <!-- FILTRES PRIMAIRES : villa -->
 <nav class="filters-primary">
-  <button class="filter-btn active" data-villa="all">Toutes<span class="filter-count">56</span></button>
+  <button class="filter-btn active" data-villa="all">Toutes<span class="filter-count">68</span></button>
   <button class="filter-btn" data-villa="complexe">Complexe<span class="filter-count">4</span></button>
-  <button class="filter-btn" data-villa="elegance">Élégance<span class="filter-count">5</span></button>
+  <button class="filter-btn" data-villa="elegance">Élégance<span class="filter-count">17</span></button>
   <button class="filter-btn" data-villa="prestige">Prestige<span class="filter-count">20</span></button>
   <button class="filter-btn" data-villa="signature">Signature<span class="filter-count">22</span></button>
   <button class="filter-btn" data-villa="exception">Exception<span class="filter-count">5</span></button>
@@ -435,40 +466,174 @@
   </div>
 
   <!-- ÉLÉGANCE - Intérieur -->
+  <div class="gallery-item large" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/living-elegance.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/living2-elegance.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/living3-elegance.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/dining-elegance.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/dining2-elegance.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
   <div class="gallery-item tall" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#c9b896; --end:#8a7860;"></div>
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/bedroom-elegance.jpg" alt="Chambre">
     <div class="gallery-caption">
       <div class="caption-villa">Élégance</div>
-      <div class="caption-title">Living room</div>
+      <div class="caption-title">Chambre</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur"
+       data-sun="../assets/gallery/elegance/interieur/bedroom-sun2-elegance.jpg"
+       data-sunset="../assets/gallery/elegance/interieur/bedroom-sunset2-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/bedroom-sun2-elegance.jpg" alt="Chambre">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Chambre</div>
     </div>
   </div>
   <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#d4c5a6; --end:#a08e6e;"></div>
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/bedroom3-elegance.jpg" alt="Chambre">
     <div class="gallery-caption">
       <div class="caption-villa">Élégance</div>
-      <div class="caption-title">Cuisine ouverte</div>
+      <div class="caption-title">Chambre</div>
     </div>
   </div>
   <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#beb09a; --end:#7d6f5d;"></div>
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/bathroom-elegance.jpg" alt="Salle de bain">
     <div class="gallery-caption">
       <div class="caption-villa">Élégance</div>
-      <div class="caption-title">Chambre principale</div>
+      <div class="caption-title">Salle de bain</div>
     </div>
   </div>
-  <!-- Élégance - Extérieur -->
-  <div class="gallery-item wide" data-villa="elegance" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#a8b5b8; --end:#6e7d80;"></div>
+  <div class="gallery-item wide" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/terrace-elegance.jpg" alt="Terrasse couverte">
     <div class="gallery-caption">
       <div class="caption-villa">Élégance</div>
-      <div class="caption-title">Piscine & terrasse</div>
+      <div class="caption-title">Terrasse couverte</div>
     </div>
   </div>
-  <div class="gallery-item" data-villa="elegance" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#b8c4a8; --end:#7e8a70;"></div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/terrace2-elegance.jpg" alt="Terrasse couverte">
     <div class="gallery-caption">
       <div class="caption-villa">Élégance</div>
-      <div class="caption-title">Jardin privatif</div>
+      <div class="caption-title">Terrasse couverte</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/interieur/terrace3-elegance.jpg" alt="Terrasse couverte">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Terrasse couverte</div>
+    </div>
+  </div>
+
+  <!-- Élégance - Extérieur (Type A : E1-E5, E9-E12) -->
+  <div class="gallery-item wide" data-villa="elegance" data-type="exterieur"
+       data-sun="../assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun1-elegance.jpg"
+       data-sunset="../assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sunset1-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun1-elegance.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type A · E1–E5, E9–E12</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="exterieur"
+       data-sun="../assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun2-elegance.jpg"
+       data-sunset="../assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sunset2-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun2-elegance.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type A · E1–E5, E9–E12</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="exterieur"
+       data-sun="../assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun3-elegance.jpg"
+       data-sunset="../assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sunset3-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun3-elegance.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type A · E1–E5, E9–E12</div>
+    </div>
+  </div>
+
+  <!-- Élégance - Extérieur (Type B : E6-E8) -->
+  <div class="gallery-item" data-villa="elegance" data-type="exterieur"
+       data-sun="../assets/gallery/elegance/exterieur/E6-E8/exterior-sun1-elegance.jpg"
+       data-sunset="../assets/gallery/elegance/exterieur/E6-E8/exterior-sunset1-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/exterieur/E6-E8/exterior-sun1-elegance.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type B · E6–E8</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="exterieur"
+       data-sun="../assets/gallery/elegance/exterieur/E6-E8/exterior-sun2-elegance.jpg"
+       data-sunset="../assets/gallery/elegance/exterieur/E6-E8/exterior-sunset2-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/elegance/exterieur/E6-E8/exterior-sun2-elegance.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type B · E6–E8</div>
     </div>
   </div>
 
@@ -530,7 +695,7 @@
     </div>
   </div>
   <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
-    <img class="gallery-img" src="../assets/gallery/prestige/interieur/dining4-prestige.jpg" alt="Salle à manger">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/dining-sun4-prestige.jpg" alt="Salle à manger">
     <div class="gallery-caption">
       <div class="caption-villa">Prestige</div>
       <div class="caption-title">Salle à manger</div>
@@ -593,22 +758,43 @@
     </div>
   </div>
   <!-- Prestige - Extérieur -->
-  <div class="gallery-item wide" data-villa="prestige" data-type="exterieur" onclick="openLightbox(this)">
-    <img class="gallery-img" src="../assets/gallery/prestige/exterieur/exterior1-prestige.jpg" alt="Façade extérieure">
+  <div class="gallery-item wide" data-villa="prestige" data-type="exterieur"
+       data-sun="../assets/gallery/prestige/exterieur/exterior-sun1-prestige.jpg"
+       data-sunset="../assets/gallery/prestige/exterieur/exterior-sunset1-prestige.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/exterieur/exterior-sun1-prestige.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <div class="gallery-caption">
       <div class="caption-villa">Prestige</div>
       <div class="caption-title">Façade extérieure</div>
     </div>
   </div>
-  <div class="gallery-item" data-villa="prestige" data-type="exterieur" onclick="openLightbox(this)">
-    <img class="gallery-img" src="../assets/gallery/prestige/exterieur/exterior2-prestige.jpg" alt="Façade extérieure">
+  <div class="gallery-item" data-villa="prestige" data-type="exterieur"
+       data-sun="../assets/gallery/prestige/exterieur/exterior-sun2-prestige.jpg"
+       data-sunset="../assets/gallery/prestige/exterieur/exterior-sunset2-prestige.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/exterieur/exterior-sun2-prestige.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <div class="gallery-caption">
       <div class="caption-villa">Prestige</div>
       <div class="caption-title">Façade extérieure</div>
     </div>
   </div>
-  <div class="gallery-item" data-villa="prestige" data-type="exterieur" onclick="openLightbox(this)">
-    <img class="gallery-img" src="../assets/gallery/prestige/exterieur/exterior3-prestige.jpg" alt="Façade extérieure">
+  <div class="gallery-item" data-villa="prestige" data-type="exterieur"
+       data-sun="../assets/gallery/prestige/exterieur/exterior-sun3-prestige.jpg"
+       data-sunset="../assets/gallery/prestige/exterieur/exterior-sunset3-prestige.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/exterieur/exterior-sun3-prestige.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <div class="gallery-caption">
       <div class="caption-villa">Prestige</div>
       <div class="caption-title">Façade extérieure</div>
@@ -750,22 +936,43 @@
     </div>
   </div>
   <!-- Signature - Extérieur -->
-  <div class="gallery-item wide" data-villa="signature" data-type="exterieur" onclick="openLightbox(this)">
-    <img class="gallery-img" src="../assets/gallery/signature/exterieur/exterior1-signature.jpg" alt="Façade extérieure">
+  <div class="gallery-item wide" data-villa="signature" data-type="exterieur"
+       data-sun="../assets/gallery/signature/exterieur/exterior-sun1-signature.jpg"
+       data-sunset="../assets/gallery/signature/exterieur/exterior-sunset1-signature.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/signature/exterieur/exterior-sun1-signature.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <div class="gallery-caption">
       <div class="caption-villa">Signature</div>
       <div class="caption-title">Façade extérieure</div>
     </div>
   </div>
-  <div class="gallery-item" data-villa="signature" data-type="exterieur" onclick="openLightbox(this)">
-    <img class="gallery-img" src="../assets/gallery/signature/exterieur/exterior2-signature.jpg" alt="Façade extérieure">
+  <div class="gallery-item" data-villa="signature" data-type="exterieur"
+       data-sun="../assets/gallery/signature/exterieur/exterior-sun2-signature.jpg"
+       data-sunset="../assets/gallery/signature/exterieur/exterior-sunset2-signature.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/signature/exterieur/exterior-sun2-signature.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <div class="gallery-caption">
       <div class="caption-villa">Signature</div>
       <div class="caption-title">Façade extérieure</div>
     </div>
   </div>
-  <div class="gallery-item" data-villa="signature" data-type="exterieur" onclick="openLightbox(this)">
-    <img class="gallery-img" src="../assets/gallery/signature/exterieur/exterior3-signature.jpg" alt="Façade extérieure">
+  <div class="gallery-item" data-villa="signature" data-type="exterieur"
+       data-sun="../assets/gallery/signature/exterieur/exterior-sun3-signature.jpg"
+       data-sunset="../assets/gallery/signature/exterieur/exterior-sunset3-signature.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/signature/exterieur/exterior-sun3-signature.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <div class="gallery-caption">
       <div class="caption-villa">Signature</div>
       <div class="caption-title">Façade extérieure</div>
@@ -887,6 +1094,21 @@
     } else {
       subFilters.style.opacity = '1';
       subFilters.style.pointerEvents = 'auto';
+    }
+  }
+
+  // ── SUN / SUNSET TOGGLE ──
+  function toggleTime(event, btn) {
+    event.stopPropagation();
+    const item = btn.closest('.gallery-item');
+    const img = item.querySelector('.gallery-img');
+    if (!item.dataset.sun || !item.dataset.sunset) return;
+    if (item.classList.contains('is-sunset')) {
+      img.src = item.dataset.sun;
+      item.classList.remove('is-sunset');
+    } else {
+      img.src = item.dataset.sunset;
+      item.classList.add('is-sunset');
     }
   }
 

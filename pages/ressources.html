@@ -355,7 +355,7 @@
     <div class="doc-card" onclick="openPdf('Brochure du projet', 'Présentation générale', 'SESEH SUNSET VILLAS - Brochure FR.pdf')">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
-        <img class="doc-preview-img" src="../assets/documents/previews/brochure-cover.jpg" alt="Brochure du projet">
+        <img class="doc-preview-img" src="../assets/ressources/previews/brochure-cover.jpg" alt="Brochure du projet">
         <div class="doc-overlay">
           <div class="doc-overlay-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -371,7 +371,7 @@
         <div class="doc-title">Brochure du projet</div>
         <div class="doc-meta">
           <span>PDF · 4.2 MB</span>
-          <a class="doc-meta-right" href="../assets/documents/SESEH SUNSET VILLAS - Brochure FR.pdf" download onclick="event.stopPropagation()">
+          <a class="doc-meta-right" href="../assets/ressources/SESEH SUNSET VILLAS - Brochure FR.pdf" download onclick="event.stopPropagation()">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
             </svg>
@@ -385,7 +385,7 @@
     <div class="doc-card" onclick="openPdf('Analyse de marché', 'Étude du secteur immobilier Seseh', 'SESEH SUNSET VILLAS - Analyse de marché Seseh_FR.pdf')">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
-        <img class="doc-preview-img" src="../assets/documents/previews/analyse-cover.jpg" alt="Analyse de marché">
+        <img class="doc-preview-img" src="../assets/ressources/previews/analyse-cover.jpg" alt="Analyse de marché">
         <div class="doc-overlay">
           <div class="doc-overlay-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -401,7 +401,7 @@
         <div class="doc-title">Analyse de marché Seseh</div>
         <div class="doc-meta">
           <span>PDF · 2.8 MB</span>
-          <a class="doc-meta-right" href="../assets/documents/SESEH SUNSET VILLAS - Analyse de marché Seseh_FR.pdf" download onclick="event.stopPropagation()">
+          <a class="doc-meta-right" href="../assets/ressources/SESEH SUNSET VILLAS - Analyse de marché Seseh_FR.pdf" download onclick="event.stopPropagation()">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
             </svg>
@@ -415,7 +415,7 @@
     <div class="doc-card" onclick="openPdf('Prévisions financières', 'Rendements et projections', 'SESEH SUNSET VILLAS - Prévisions Financières.pdf')">
       <div class="doc-preview">
         <span class="doc-badge">PDF</span>
-        <img class="doc-preview-img" src="../assets/documents/previews/previsions-cover.jpg" alt="Prévisions financières">
+        <img class="doc-preview-img" src="../assets/ressources/previews/previsions-cover.jpg" alt="Prévisions financières">
         <div class="doc-overlay">
           <div class="doc-overlay-icon">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -431,7 +431,7 @@
         <div class="doc-title">Prévisions financières</div>
         <div class="doc-meta">
           <span>PDF · 1.6 MB</span>
-          <a class="doc-meta-right" href="../assets/documents/SESEH SUNSET VILLAS - Prévisions Financières.pdf" download onclick="event.stopPropagation()">
+          <a class="doc-meta-right" href="../assets/ressources/SESEH SUNSET VILLAS - Prévisions Financières.pdf" download onclick="event.stopPropagation()">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
             </svg>
@@ -521,7 +521,7 @@
     document.getElementById('pdfTitle').textContent = title;
     document.getElementById('pdfSubtitle').textContent = subtitle;
     const isUrl = /^https?:\/\//i.test(file);
-    const url = isUrl ? file : '../assets/documents/' + encodeURIComponent(file);
+    const url = isUrl ? file : '../assets/ressources/' + encodeURIComponent(file);
     const dl = document.getElementById('pdfDownload');
     if (isUrl) {
       dl.style.display = 'none';

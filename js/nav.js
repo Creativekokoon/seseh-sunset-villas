@@ -329,11 +329,11 @@
   } else if (path.includes('equipe.html')) {
     backHref = depth + 'index.html';
     backLabel = t.backHome;
-  } else if (path.includes('documents.html')) {
+  } else if (path.includes('ressources.html')) {
     backHref = depth + 'index.html';
     backLabel = t.backHome;
   } else if (path.includes('galerie.html')) {
-    backHref = depth + 'pages/documents.html';
+    backHref = depth + 'pages/ressources.html';
     backLabel = t.backDocuments;
   } else {
     backHref = '';
@@ -382,7 +382,7 @@
         <a class="nav-drawer-link" href="https://canva.link/pktkwf7mjekfmge" target="_blank" rel="noopener noreferrer">
           ${t.drawerAvailable} <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="${depth}pages/documents.html">
+        <a class="nav-drawer-link" href="${depth}pages/ressources.html">
           ${t.drawerDocuments} <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="${depth}pages/equipe.html">
