@@ -312,9 +312,8 @@
     }
     .pdf-action-btn.close svg { width: 16px; height: 16px; }
     .pdf-viewer {
-      flex: 0 1 auto;
-      width: min(720px, 88%);
-      height: min(78vh, calc(720px * 1.414));
+      width: 100%;
+      max-width: 820px;
       margin: 0 auto;
     }
   }
@@ -554,11 +553,18 @@
     const isUrl = /^https?:\/\//i.test(file);
     const url = isUrl ? file : '../assets/ressources/' + encodeURIComponent(file);
     const zoomLevel = zoom || 90;
-    // Mobile uniquement : on navigue dans le même onglet vers le PDF natif
-    // (le modal en iframe ne scrolle pas sur les écrans étroits).
-    // Tablet et desktop : on garde le modal avec son bouton de fermeture.
-    if (!isUrl && window.matchMedia('(max-width: 600px)').matches) {
-      window.location.href = url;
+    // Tactile (iPad, iPhone, tablette Android) : on ouvre le PDF via un <a target="_blank">.
+    // En PWA / standalone iOS ça déclenche un Safari View Controller avec un bouton
+    // "Terminé" pour revenir, et le PDF est scrollable nativement.
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (!isUrl && isTouch) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
       return;
     }
     document.getElementById('pdfTitle').textContent = title;
@@ -574,8 +580,9 @@
     const iframeAttrs = isUrl
       ? ' allow="autoplay; clipboard-read; clipboard-write" allowfullscreen scrolling="no"'
       : '';
-    // Chromium : masquer la toolbar native du viewer PDF (#toolbar=0)
-    const iframeSrc = isUrl ? url : url + '#toolbar=0&navpanes=0&statusbar=0&zoom=' + zoomLevel;
+    // Chromium : masquer la toolbar et adapter à la largeur (FitH = pas de zoom fixe, le PDF
+    // suit le conteneur quel que soit la taille de la fenêtre)
+    const iframeSrc = isUrl ? url : url + '#toolbar=0&navpanes=0&statusbar=0&view=FitH';
     document.getElementById('pdfViewer').innerHTML =
       '<iframe src="' + iframeSrc + '" title="' + title.replace(/"/g, '&quot;') + '"' + iframeAttrs + '></iframe>';
     document.getElementById('pdfModal').classList.add('visible');

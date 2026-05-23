@@ -302,9 +302,8 @@
     }
     .pdf-action-btn.close svg { width: 16px; height: 16px; }
     .pdf-viewer {
-      flex: 0 1 auto;
-      width: min(720px, 88%);
-      height: min(78vh, calc(720px * 1.414));
+      width: 100%;
+      max-width: 820px;
       margin: 0 auto;
     }
   }
@@ -542,18 +541,27 @@
   function openPdf(title, subtitle, file, zoom) {
     const url = '../../assets/ressources/' + encodeURIComponent(file);
     const zoomLevel = zoom || 90;
-    // Mobile only: navigate in the same tab so the native PDF viewer kicks in
-    // (the iframe modal can't scroll on narrow screens). Tablet & desktop keep the modal.
-    if (window.matchMedia('(max-width: 600px)').matches) {
-      window.location.href = url;
+    // Touch devices (iPad, iPhone, Android tablet): open the PDF via an <a target="_blank">.
+    // In iOS PWA / standalone this triggers a Safari View Controller with a "Done"
+    // button to return, and the PDF scrolls natively.
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (isTouch) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
       return;
     }
     document.getElementById('pdfTitle').textContent = title;
     document.getElementById('pdfSubtitle').textContent = subtitle;
     document.getElementById('pdfDownload').href = url;
     document.getElementById('pdfDownload').setAttribute('download', file);
-    // Chromium: hide the native PDF viewer toolbar (#toolbar=0)
-    const iframeSrc = url + '#toolbar=0&navpanes=0&statusbar=0&zoom=' + zoomLevel;
+    // Chromium: hide the native toolbar and fit to container width (FitH = no fixed zoom,
+    // PDF adapts to the container regardless of window size)
+    const iframeSrc = url + '#toolbar=0&navpanes=0&statusbar=0&view=FitH';
     document.getElementById('pdfViewer').innerHTML = '<iframe src="' + iframeSrc + '" title="' + title + '"></iframe>';
     document.getElementById('pdfModal').classList.add('visible');
     document.body.style.overflow = 'hidden';
