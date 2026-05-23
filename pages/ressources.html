@@ -293,6 +293,32 @@
     color: rgba(255,255,255,0.2); margin-bottom: 20px;
   }
 
+  /* TABLET : modal recentré et iframe rétréci, bouton fermer bien visible */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .pdf-modal { padding: 20px 20px 24px 20px; }
+    .pdf-modal-header {
+      padding: 8px 8px 14px 8px;
+      gap: 10px;
+    }
+    .pdf-modal-title { min-width: 0; flex: 1; }
+    .pdf-modal-title small { font-size: 9px; }
+    .pdf-modal-title span { font-size: 16px; }
+    .pdf-modal-actions { gap: 10px; flex-shrink: 0; }
+    .pdf-action-btn { padding: 9px 14px; font-size: 9px; }
+    .pdf-action-btn.close {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.4);
+    }
+    .pdf-action-btn.close svg { width: 16px; height: 16px; }
+    .pdf-viewer {
+      flex: 0 1 auto;
+      width: min(720px, 88%);
+      height: min(78vh, calc(720px * 1.414));
+      margin: 0 auto;
+    }
+  }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     .docs-grid { grid-template-columns: repeat(2, 1fr); }
@@ -528,12 +554,10 @@
     const isUrl = /^https?:\/\//i.test(file);
     const url = isUrl ? file : '../assets/ressources/' + encodeURIComponent(file);
     const zoomLevel = zoom || 90;
-    // iOS Safari (iPhone + iPad) et autres tactiles ne savent pas scroller un PDF en iframe.
-    // On navigue dans le même onglet pour que le bouton retour du navigateur reste visible
-    // (les nouveaux onglets peuvent être inaccessibles en PWA / vue standalone).
-    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    const isTabletOrSmaller = window.matchMedia('(max-width: 1024px)').matches;
-    if (!isUrl && (isTouch || isTabletOrSmaller)) {
+    // Mobile uniquement : on navigue dans le même onglet vers le PDF natif
+    // (le modal en iframe ne scrolle pas sur les écrans étroits).
+    // Tablet et desktop : on garde le modal avec son bouton de fermeture.
+    if (!isUrl && window.matchMedia('(max-width: 600px)').matches) {
       window.location.href = url;
       return;
     }

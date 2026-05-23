@@ -283,6 +283,32 @@
     color: rgba(255,255,255,0.2); margin-bottom: 20px;
   }
 
+  /* Tablet: smaller centered modal, clearly visible close button */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .pdf-modal { padding: 20px 20px 24px 20px; }
+    .pdf-modal-header {
+      padding: 8px 8px 14px 8px;
+      gap: 10px;
+    }
+    .pdf-modal-title { min-width: 0; flex: 1; }
+    .pdf-modal-title small { font-size: 9px; }
+    .pdf-modal-title span { font-size: 16px; }
+    .pdf-modal-actions { gap: 10px; flex-shrink: 0; }
+    .pdf-action-btn { padding: 9px 14px; font-size: 9px; }
+    .pdf-action-btn.close {
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.4);
+    }
+    .pdf-action-btn.close svg { width: 16px; height: 16px; }
+    .pdf-viewer {
+      flex: 0 1 auto;
+      width: min(720px, 88%);
+      height: min(78vh, calc(720px * 1.414));
+      margin: 0 auto;
+    }
+  }
+
   @media (max-width: 900px) {
     .docs-grid { grid-template-columns: repeat(2, 1fr); }
     .doc-card.gallery-card { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; }
@@ -516,12 +542,9 @@
   function openPdf(title, subtitle, file, zoom) {
     const url = '../../assets/ressources/' + encodeURIComponent(file);
     const zoomLevel = zoom || 90;
-    // Touch devices (iPad + iPhone Safari notably) can't scroll PDFs inside an iframe.
-    // Navigate in the same tab so the browser back button stays reachable
-    // (new tabs can be hidden in PWA / standalone view).
-    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    const isTabletOrSmaller = window.matchMedia('(max-width: 1024px)').matches;
-    if (isTouch || isTabletOrSmaller) {
+    // Mobile only: navigate in the same tab so the native PDF viewer kicks in
+    // (the iframe modal can't scroll on narrow screens). Tablet & desktop keep the modal.
+    if (window.matchMedia('(max-width: 600px)').matches) {
       window.location.href = url;
       return;
     }
