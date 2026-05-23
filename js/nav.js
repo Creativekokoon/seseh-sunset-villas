@@ -326,14 +326,14 @@
   } else if (path.includes('seseh.html') || path.includes('bali.html')) {
     backHref = depth + 'index.html';
     backLabel = t.backHome;
-  } else if (path.includes('equipe.html')) {
+  } else if (path.includes('equipe.html') || path.includes('team.html')) {
     backHref = depth + 'index.html';
     backLabel = t.backHome;
-  } else if (path.includes('ressources.html')) {
+  } else if (path.includes('ressources.html') || path.includes('resources.html')) {
     backHref = depth + 'index.html';
     backLabel = t.backHome;
-  } else if (path.includes('galerie.html')) {
-    backHref = depth + 'pages/ressources.html';
+  } else if (path.includes('galerie.html') || path.includes('gallery.html')) {
+    backHref = depth + 'pages/' + (navIsEn ? 'resources.html' : 'ressources.html');
     backLabel = t.backDocuments;
   } else {
     backHref = '';
@@ -382,10 +382,10 @@
         <a class="nav-drawer-link" href="https://canva.link/pktkwf7mjekfmge" target="_blank" rel="noopener noreferrer">
           ${t.drawerAvailable} <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="${depth}pages/ressources.html">
+        <a class="nav-drawer-link" href="${depth}pages/${navIsEn ? 'resources.html' : 'ressources.html'}">
           ${t.drawerDocuments} <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="${depth}pages/equipe.html">
+        <a class="nav-drawer-link" href="${depth}pages/${navIsEn ? 'team.html' : 'equipe.html'}">
           ${t.drawerTeam} <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="https://bit.ly/sora-immobilier" target="_blank" rel="noopener">
@@ -468,10 +468,20 @@
 
       let targetPath;
 
+      // Map FR ↔ EN page filenames where they differ
+      const frToEn = { 'galerie.html': 'gallery.html', 'ressources.html': 'resources.html', 'equipe.html': 'team.html' };
+      const enToFr = { 'gallery.html': 'galerie.html', 'resources.html': 'ressources.html', 'team.html': 'equipe.html' };
+
       if (targetLang === 'en' && !isCurrentlyEn) {
         // FR → EN : insérer /en/ avant le segment de page (préfixe projet préservé)
         if (currentPath.includes('/pages/')) {
           targetPath = currentPath.replace('/pages/', '/en/pages/');
+          for (const [fr, en] of Object.entries(frToEn)) {
+            if (targetPath.endsWith('/' + fr)) {
+              targetPath = targetPath.slice(0, -fr.length) + en;
+              break;
+            }
+          }
         } else if (/\/index\.html$/.test(currentPath)) {
           targetPath = currentPath.replace(/\/index\.html$/, '/en/index.html');
         } else if (currentPath.endsWith('/')) {
@@ -483,6 +493,12 @@
         // EN → FR : retirer /en/ tout en gardant le préfixe projet
         if (currentPath.includes('/en/pages/')) {
           targetPath = currentPath.replace('/en/pages/', '/pages/');
+          for (const [en, fr] of Object.entries(enToFr)) {
+            if (targetPath.endsWith('/' + en)) {
+              targetPath = targetPath.slice(0, -en.length) + fr;
+              break;
+            }
+          }
         } else if (/\/en\/index\.html$/.test(currentPath)) {
           targetPath = currentPath.replace(/\/en\/index\.html$/, '/index.html');
         } else {

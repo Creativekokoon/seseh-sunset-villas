@@ -80,7 +80,7 @@
       color:rgba(94,89,82,0.85);
       text-align:center;
       max-width:620px;
-      margin:0 auto 56px;
+      margin:0 auto 42px;
     }
 
     /* ── PILLARS GRID ── */
@@ -95,7 +95,7 @@
     /* ── FLIP CARD ── */
     .pillar{
       position:relative;
-      height:360px;
+      height:380px;
       perspective:1400px;
       cursor:pointer;
       background:transparent;
@@ -147,7 +147,7 @@
 
     .pillar-image{
       width:100%;
-      height:230px;
+      height:250px;
       background:var(--gold);
       overflow:hidden;
       position:relative;
@@ -160,6 +160,10 @@
       width:100%;height:100%;
       object-fit:cover;
       display:block;
+    }
+    /* Top crop for Gabriel Lapierre (1st pillar) */
+    .pillar:nth-child(1) .pillar-image img{
+      object-position:center 20%;
     }
     /* Zoom-in on Julie Chatelain's photo (4th pillar) */
     .pillar:nth-child(4) .pillar-image img{
