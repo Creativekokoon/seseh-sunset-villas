@@ -1502,8 +1502,30 @@
     activeVilla = villaParam;
     const sel = document.getElementById('villaFilterMobile');
     if (sel) sel.value = villaParam;
+    // If we arrived via the + button on a villa page: point back-link at that villa
+    // (restored as soon as user changes filter)
+    const villaLabels = { elegance: 'Élégance', prestige: 'Prestige', signature: 'Signature', exception: 'Exception' };
+    if (villaLabels[villaParam]) {
+      const navBack = document.querySelector('.nav-back');
+      if (navBack) {
+        navBack.dataset.originalHref = navBack.getAttribute('href') || '';
+        navBack.dataset.originalText = navBack.textContent;
+        navBack.setAttribute('href', villaParam + '.html');
+        navBack.textContent = '← ' + villaLabels[villaParam];
+      }
+    }
     applyFilters();
   })();
+
+  function restoreNavBack() {
+    const navBack = document.querySelector('.nav-back');
+    if (navBack && navBack.dataset.originalHref !== undefined) {
+      navBack.setAttribute('href', navBack.dataset.originalHref);
+      navBack.textContent = navBack.dataset.originalText;
+      delete navBack.dataset.originalHref;
+      delete navBack.dataset.originalText;
+    }
+  }
 
   function applyFilters() {
     const items = document.querySelectorAll('.gallery-item');
@@ -1566,6 +1588,7 @@
       activeVilla = btn.dataset.villa;
       const sel = document.getElementById('villaFilterMobile');
       if (sel) sel.value = activeVilla;
+      restoreNavBack();
       applyFilters();
     });
   });
@@ -1578,6 +1601,7 @@
       document.querySelectorAll('.filter-btn').forEach(b => {
         b.classList.toggle('active', b.dataset.villa === activeVilla);
       });
+      restoreNavBack();
       applyFilters();
     });
   }

@@ -528,9 +528,11 @@
     const isUrl = /^https?:\/\//i.test(file);
     const url = isUrl ? file : '../assets/ressources/' + encodeURIComponent(file);
     const zoomLevel = zoom || 90;
-    // iOS Safari et autres mobiles ne savent pas scroller un PDF en iframe :
+    // iOS Safari (iPhone + iPad) et autres tactiles ne savent pas scroller un PDF en iframe :
     // ouvrir nativement dans un nouvel onglet pour permettre le scroll/zoom.
-    if (!isUrl && window.matchMedia('(max-width: 600px)').matches) {
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    const isTabletOrSmaller = window.matchMedia('(max-width: 1024px)').matches;
+    if (!isUrl && (isTouch || isTabletOrSmaller)) {
       window.open(url, '_blank', 'noopener');
       return;
     }
