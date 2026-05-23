@@ -181,23 +181,21 @@ html,body {
   position:absolute;
   bottom:14px;right:14px;
   z-index:5;
-  display:inline-flex;align-items:center;gap:8px;
-  padding:10px 18px;
-  background:rgba(36,34,32,0.85);
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;
+  background:rgba(36,34,32,0.6);
   color:#fff;text-decoration:none;
-  font-family:var(--sans);
-  font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;
-  border-radius:0;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,0.2);
   opacity:0;pointer-events:none;
-  transition:opacity 0.3s ease,background 0.25s ease;
+  transition:opacity 0.3s ease,background 0.25s ease,transform 0.25s ease;
   backdrop-filter:blur(8px);
 }
 .room-image:not(.empty) .room-image-gallery-link {
   opacity:1;pointer-events:auto;
 }
-.room-image-gallery-link:hover { background:rgba(36,34,32,1); }
-.room-image-gallery-link svg { transition:transform 0.25s ease; }
-.room-image-gallery-link:hover svg { transform:translateX(2px); }
+.room-image-gallery-link:hover { background:rgba(36,34,32,0.95); transform:scale(1.08); }
+.room-image-gallery-link svg { display:block;width:16px;height:16px; }
 .room-visual {
   position:absolute;inset:0;
   opacity:0;transform:scale(1.02);
