@@ -288,11 +288,18 @@
     .doc-card.gallery-card { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; }
   }
   @media (max-width: 600px) {
-    .docs-grid { grid-template-columns: 1fr; gap: 22px; }
+    .docs-grid { grid-template-columns: 1fr; gap: 18px; }
     .doc-card.gallery-card { grid-column: auto; max-width: none; margin: 0; }
-    .page-hero { padding: 30px 24px 24px 24px; }
-    .page-hero h1 { font-size: 34px; }
-    .docs-container { padding: 10px 20px 60px 20px; }
+    .page-hero { padding: 22px 18px 18px 18px; }
+    .page-hero h1 { font-size: 26px; letter-spacing: 0.08em; margin-bottom: 12px; }
+    .page-hero p { font-size: 11px; letter-spacing: 0.15em; }
+    .docs-container { padding: 8px 16px 50px 16px; }
+    .doc-info { padding: 14px 16px 16px 16px; }
+    .doc-title { font-size: 17px; }
+    .doc-type { font-size: 10px; letter-spacing: 0.22em; }
+    .doc-meta { font-size: 10px; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .doc-meta-right { letter-spacing: 0.06em; }
+    .doc-badge { font-size: 8px; padding: 3px 8px; top: 10px; left: 10px; }
 
     /* PDF modal mobile */
     .pdf-modal { padding: 10px; }
