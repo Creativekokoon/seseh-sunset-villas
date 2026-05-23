@@ -19,11 +19,11 @@
     fr: {
       backHome: '← Accueil',
       backVillas: '← Les Villas',
-      backDocuments: '← Documents',
+      backDocuments: '← Ressources',
       drawerHome: 'Accueil',
       drawerVillas: 'Explorer les villas',
       drawerSeseh: 'Vivre à Seseh',
-      drawerDocuments: 'Documents',
+      drawerDocuments: 'Ressources',
       drawerTeam: 'Nos Équipes',
       drawerAvailable: 'Villas disponibles',
       drawerPrebook: 'Pré-réserver',
@@ -37,11 +37,11 @@
     en: {
       backHome: '← Home',
       backVillas: '← The Villas',
-      backDocuments: '← Documents',
+      backDocuments: '← Resources',
       drawerHome: 'Home',
       drawerVillas: 'Explore the villas',
       drawerSeseh: 'Living in Seseh',
-      drawerDocuments: 'Documents',
+      drawerDocuments: 'Resources',
       drawerTeam: 'Our Team',
       drawerAvailable: 'Available villas',
       drawerPrebook: 'Pre-book',
@@ -205,8 +205,8 @@
       .nav-drawer-close { display:none !important; }
       .nav-drawer-top { margin-bottom:32px !important; }
       .nav-drawer-link {
-        font-size:0.85rem !important;
-        padding:22px 0 !important;
+        font-size:0.72rem !important;
+        padding:18px 0 !important;
       }
     }
     @media (max-width:600px) {
@@ -247,10 +247,10 @@
     .nav-drawer-links { display:flex;flex-direction:column;flex:1; }
     .nav-drawer-link {
       display:flex;align-items:center;justify-content:space-between;
-      padding:19px 0;border-bottom:1px solid rgba(80,60,40,0.10);
+      padding:16px 0;border-bottom:1px solid rgba(80,60,40,0.10);
       text-decoration:none;color:rgba(52,48,44,0.85);
       font-family:'Inter','Helvetica Neue',Arial,sans-serif;
-      font-size:0.92rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;
+      font-size:0.78rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;
       transition:color 0.22s,padding-left 0.22s;
     }
     .nav-drawer-link:hover { color:rgba(52,48,44,0.98);padding-left:6px; }

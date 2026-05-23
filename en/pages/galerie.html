@@ -143,7 +143,7 @@
   .gallery-grid {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 40px 40px 100px 40px;
+    padding: 40px 60px 100px 60px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 28px;
@@ -344,6 +344,19 @@
     .filters-primary { gap: 16px; padding: 24px 20px 20px 20px; }
     .filter-btn { font-size: 10px; letter-spacing: 0.18em; }
     .gallery-grid { padding: 24px 16px 60px 16px; }
+
+    /* Mobile lightbox: arrows below the image, bigger image */
+    .lightbox { padding: 40px 10px 100px 10px; }
+    .lightbox-img { max-height: 70vh; max-width: 100%; }
+    .lightbox-mock { width: 92vw; height: 60vh; max-width: none; }
+    .lightbox-nav {
+      top: auto; bottom: 30px;
+      transform: none;
+      width: 44px; height: 44px;
+    }
+    .lightbox-prev { left: 50%; margin-left: -56px; right: auto; }
+    .lightbox-next { left: 50%; margin-left: 12px; right: auto; }
+    .lightbox-close { top: 12px; right: 12px; }
   }
 </style>
 </head>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Documents — Seseh Sunset Villas</title>
+<title>Resources — Seseh Sunset Villas</title>
 <link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,26 +20,28 @@
     --border: rgba(61,57,52,0.12);
   }
   body {
-    background: var(--bg);
+    background: #242220;
     color: var(--text);
     font-family: 'the-seasons', Georgia, serif;
     min-height: 100vh;
     padding-top: 76px;
     -webkit-font-smoothing: antialiased;
+    animation: bodyBgFade 0.5s 1s ease forwards;
   }
+  @keyframes bodyBgFade { to { background: var(--bg) } }
 
   /* ── PAGE INTRO ── */
   .page-intro {
-    position: fixed; top: 0; left: 0; right: 0;
-    height: 100vh; height: 100lvh;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100vw;
     z-index: 850; background: #242220;
     animation: introFadeOut 0.4s 0.9s ease forwards;
     pointer-events: none;
   }
   .intro-logo {
     position: absolute;
-    top: 50%; top: 50svh;
-    left: 50%;
+    top: 50%; left: 50%;
     height: 96px; width: auto;
     opacity: 0;
     transform: translate(-50%,-50%) scale(0.88);
@@ -47,6 +49,25 @@
   }
   @keyframes introLogoIn { to { opacity: 1; transform: translate(-50%,-50%) scale(1) } }
   @keyframes introFadeOut { to { opacity: 0 } }
+
+  /* Content hidden until intro fades */
+  .page-hero {
+    opacity: 0;
+    animation: contentFadeIn 0.5s 1.05s ease forwards;
+  }
+  @keyframes contentFadeIn { to { opacity: 1 } }
+
+  /* Cards staggered reveal */
+  .doc-card {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: docCardFadeUp 0.6s ease-out forwards;
+  }
+  .doc-card:nth-child(1) { animation-delay: 1.4s; }
+  .doc-card:nth-child(2) { animation-delay: 1.65s; }
+  .doc-card:nth-child(3) { animation-delay: 1.9s; }
+  .doc-card:nth-child(4) { animation-delay: 2.2s; }
+  @keyframes docCardFadeUp { to { opacity: 1; transform: translateY(0); } }
 
   .page-hero {
     text-align: center;
@@ -65,14 +86,14 @@
   }
 
   .docs-container {
-    max-width: 980px;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 10px 40px 100px 40px;
   }
   .docs-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
   }
 
   .doc-card {
@@ -101,6 +122,19 @@
     aspect-ratio: 1.414;
     background: #2a2622;
   }
+  .doc-card.gallery-card { grid-column-start: 2; }
+  .gallery-mosaic {
+    position: absolute; inset: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2px;
+    padding: 2px;
+  }
+  .gallery-mosaic > div {
+    background-size: cover;
+    background-position: center;
+  }
 
   .doc-preview-img {
     position: absolute;
@@ -128,19 +162,6 @@
     transition: transform 0.5s ease;
   }
   .doc-card:hover .doc-preview-placeholder { transform: scale(1.04); }
-
-  .gallery-mosaic {
-    position: absolute; inset: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 2px;
-    padding: 2px;
-  }
-  .gallery-mosaic > div {
-    background-size: cover;
-    background-position: center;
-  }
 
   .doc-badge {
     position: absolute; top: 12px; left: 12px;
@@ -259,16 +280,15 @@
   }
 
   @media (max-width: 900px) {
-    .doc-card.gallery-card .doc-preview { aspect-ratio: 1.414; }
+    .docs-grid { grid-template-columns: repeat(2, 1fr); }
+    .doc-card.gallery-card { grid-column: 1 / -1; max-width: 50%; margin: 0 auto; }
   }
   @media (max-width: 600px) {
-    .docs-grid { grid-template-columns: 1fr; }
-    .doc-card.gallery-card .doc-preview { aspect-ratio: 1.6; }
-    .gallery-mosaic { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); }
+    .docs-grid { grid-template-columns: 1fr; gap: 22px; }
+    .doc-card.gallery-card { grid-column: auto; max-width: none; margin: 0; }
     .page-hero { padding: 30px 24px 24px 24px; }
     .page-hero h1 { font-size: 34px; }
     .docs-container { padding: 10px 20px 60px 20px; }
-    .docs-grid { gap: 22px; }
   }
 </style>
 </head>
@@ -280,8 +300,8 @@
 <script src="../../js/nav.js"></script>
 
 <section class="page-hero">
-  <h1>Documents</h1>
-  <p>Download project documentation</p>
+  <h1>Resources</h1>
+  <p>Project documentation and visuals</p>
 </section>
 
 <div class="docs-container">
@@ -405,7 +425,7 @@
         <div class="doc-type">Gallery</div>
         <div class="doc-title">Villa visuals</div>
         <div class="doc-meta">
-          <span>24 photos · HD</span>
+          <span>Photos · HD</span>
           <span class="doc-meta-right">
             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -415,6 +435,7 @@
         </div>
       </div>
     </a>
+
   </section>
 
 </div>
