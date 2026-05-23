@@ -180,7 +180,9 @@
     display: block;
     transition: transform 0.6s ease;
   }
+  .gallery-img.zoom-in { transform: scale(1.25); transform-origin: center center; }
   .gallery-item:hover .gallery-img { transform: scale(1.05); }
+  .gallery-item:hover .gallery-img.zoom-in { transform: scale(1.32); }
 
   /* Mockup temporaire (placeholder dégradé pur, sans texte) */
   .gallery-mock {
@@ -384,10 +386,10 @@
 
 <!-- FILTRES PRIMAIRES : villa -->
 <nav class="filters-primary">
-  <button class="filter-btn active" data-villa="all">Toutes<span class="filter-count">41</span></button>
+  <button class="filter-btn active" data-villa="all">Toutes<span class="filter-count">56</span></button>
   <button class="filter-btn" data-villa="complexe">Complexe<span class="filter-count">4</span></button>
   <button class="filter-btn" data-villa="elegance">Élégance<span class="filter-count">5</span></button>
-  <button class="filter-btn" data-villa="prestige">Prestige<span class="filter-count">5</span></button>
+  <button class="filter-btn" data-villa="prestige">Prestige<span class="filter-count">20</span></button>
   <button class="filter-btn" data-villa="signature">Signature<span class="filter-count">22</span></button>
   <button class="filter-btn" data-villa="exception">Exception<span class="filter-count">5</span></button>
 </nav>
@@ -471,40 +473,145 @@
   </div>
 
   <!-- PRESTIGE - Intérieur -->
-  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#3a4858; --end:#1f2a36;"></div>
+  <div class="gallery-item large" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/living1-prestige.jpg" alt="Living">
     <div class="gallery-caption">
       <div class="caption-villa">Prestige</div>
-      <div class="caption-title">Living moderne</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/living2-prestige.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/living3-prestige.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Living</div>
     </div>
   </div>
   <div class="gallery-item tall" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#4f5d6e; --end:#293848;"></div>
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/kitchen1-prestige.jpg" alt="Cuisine">
     <div class="gallery-caption">
       <div class="caption-villa">Prestige</div>
-      <div class="caption-title">Cuisine équipée</div>
+      <div class="caption-title">Cuisine</div>
     </div>
   </div>
   <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#5d6e7d; --end:#374858;"></div>
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/kitchen2-prestige.jpg" alt="Cuisine">
     <div class="gallery-caption">
       <div class="caption-villa">Prestige</div>
-      <div class="caption-title">Suite parentale</div>
+      <div class="caption-title">Cuisine</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/dining1-prestige.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/dining2-prestige.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/dining3-prestige.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/dining4-prestige.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/bedroom-prestige.jpg" alt="Chambre">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Chambre</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/bedroom2-prestige.jpg" alt="Chambre">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Chambre</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/bahtroom-prestige.jpg" alt="Salle de bain">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Salle de bain</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img zoom-in" src="../assets/gallery/prestige/interieur/bureau-prestige.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Bureau</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/bureau2-prestige.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Bureau</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/terrace2-prestige.jpg" alt="Terrasse couverte">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Terrasse couverte</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/terrace-prestige.jpg" alt="Terrasse couverte">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Terrasse couverte</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/interieur/toilettes-prestige.jpg" alt="Toilettes">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Toilettes</div>
     </div>
   </div>
   <!-- Prestige - Extérieur -->
-  <div class="gallery-item" data-villa="prestige" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#7e8e98; --end:#3e4e58;"></div>
+  <div class="gallery-item wide" data-villa="prestige" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/exterieur/exterior1-prestige.jpg" alt="Façade extérieure">
     <div class="gallery-caption">
       <div class="caption-villa">Prestige</div>
-      <div class="caption-title">Piscine au coucher de soleil</div>
+      <div class="caption-title">Façade extérieure</div>
     </div>
   </div>
   <div class="gallery-item" data-villa="prestige" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#a8baa8; --end:#5d6f5d;"></div>
+    <img class="gallery-img" src="../assets/gallery/prestige/exterieur/exterior2-prestige.jpg" alt="Façade extérieure">
     <div class="gallery-caption">
       <div class="caption-villa">Prestige</div>
-      <div class="caption-title">Terrasse extérieure</div>
+      <div class="caption-title">Façade extérieure</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/prestige/exterieur/exterior3-prestige.jpg" alt="Façade extérieure">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Façade extérieure</div>
     </div>
   </div>
 
