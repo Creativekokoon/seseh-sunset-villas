@@ -67,17 +67,14 @@
 
   /* CONTAINER + GRID unifié 3 colonnes pour tout */
   .docs-container {
-    max-width: 1180px;
+    max-width: 980px;
     margin: 0 auto;
     padding: 10px 40px 100px 40px;
   }
   .docs-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-  .docs-grid + .docs-grid {
-    margin-top: 28px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
   }
 
   .doc-card {
@@ -193,13 +190,13 @@
     display: flex; flex-direction: column; gap: 4px;
   }
   .doc-type {
-    font-size: 9px; letter-spacing: 0.3em;
+    font-size: 11px; letter-spacing: 0.28em;
     color: var(--accent); text-transform: uppercase;
     font-family: 'Inter', sans-serif; font-weight: 500;
   }
   .doc-title {
-    font-size: 16px; font-weight: 400;
-    letter-spacing: 0.02em; line-height: 1.35;
+    font-size: 20px; font-weight: 400;
+    letter-spacing: 0.02em; line-height: 1.3;
     color: var(--text);
   }
   .doc-meta {
@@ -274,8 +271,7 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    .docs-grid { grid-template-columns: repeat(2, 1fr); }
-    .doc-card.gallery-card .doc-preview { aspect-ratio: 2.2; }
+    .doc-card.gallery-card .doc-preview { aspect-ratio: 1.414; }
   }
   @media (max-width: 600px) {
     .docs-grid { grid-template-columns: 1fr; }
@@ -302,7 +298,6 @@
 
 <div class="docs-container">
 
-  <!-- LIGNE 1 : 3 PDFs -->
   <section class="docs-grid">
 
     <!-- BROCHURE -->
@@ -398,10 +393,7 @@
       </div>
     </div>
 
-  </section>
-
-  <!-- LIGNE 2 : Galerie -->
-  <section class="docs-grid">
+    <!-- GALERIE -->
     <a href="galerie.html" class="doc-card gallery-card">
       <div class="doc-preview">
         <span class="doc-badge gallery">GALERIE</span>
