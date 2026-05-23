@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documents — Seseh Sunset Villas</title>
+<link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f5f1e8;
+    --card-bg: #ffffff;
+    --dark: #1a1815;
+    --text: #3d3934;
+    --text-muted: #8a847a;
+    --accent: #b8a886;
+    --border: rgba(61,57,52,0.12);
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'the-seasons', Georgia, serif;
+    min-height: 100vh;
+    padding-top: 76px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PAGE INTRO ── */
+  .page-intro {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 100vh; height: 100lvh;
+    z-index: 850; background: #242220;
+    animation: introFadeOut 0.4s 0.9s ease forwards;
+    pointer-events: none;
+  }
+  .intro-logo {
+    position: absolute;
+    top: 50%; top: 50svh;
+    left: 50%;
+    height: 96px; width: auto;
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(0.88);
+    animation: introLogoIn 0.5s 0.1s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+  }
+  @keyframes introLogoIn { to { opacity: 1; transform: translate(-50%,-50%) scale(1) } }
+  @keyframes introFadeOut { to { opacity: 0 } }
+
+  /* HERO */
+  .page-hero {
+    text-align: center;
+    padding: 40px 40px 40px 40px;
+    max-width: 800px; margin: 0 auto;
+  }
+  .page-hero h1 {
+    font-family: 'the-seasons', Georgia, serif;
+    font-size: 46px; font-weight: 400; letter-spacing: 0.04em;
+    margin-bottom: 16px; line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .page-hero p {
+    font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-muted); font-family: 'Inter', sans-serif;
+  }
+
+  /* CONTAINER + GRID unifié 3 colonnes pour tout */
+  .docs-container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 10px 40px 100px 40px;
+  }
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .docs-grid + .docs-grid {
+    margin-top: 28px;
+  }
+
+  .doc-card {
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: all 0.35s ease;
+    overflow: hidden;
+    box-shadow: 0 2px 18px rgba(0,0,0,0.04);
+    display: flex; flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+  .doc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.12);
+  }
+
+  /* APERÇU - paysage uniforme pour les 3 PDF */
+  .doc-preview {
+    position: relative;
+    overflow: hidden;
+    background: #f0ebdf;
+    aspect-ratio: 1.414;
+  }
+
+  /* Galerie même ratio que les autres */
+  .doc-card.gallery-card .doc-preview {
+    aspect-ratio: 1.414;
+    background: #2a2622;
+  }
+
+  /* Image réelle */
+  .doc-preview-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .doc-card:hover .doc-preview-img { transform: scale(1.04); }
+
+  /* Placeholder (sera remplacé par <img>) */
+  .doc-preview-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--start, #d4c5a6) 0%, var(--end, #9e8e6e) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.45);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    transition: transform 0.5s ease;
+  }
+  .doc-card:hover .doc-preview-placeholder { transform: scale(1.04); }
+
+  /* Mosaïque galerie : 3 colonnes à 2 lignes = tuiles paysage */
+  .gallery-mosaic {
+    position: absolute; inset: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2px;
+    padding: 2px;
+  }
+  .gallery-mosaic > div {
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* BADGE */
+  .doc-badge {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--dark); color: #fff;
+    padding: 4px 10px;
+    font-size: 9px; letter-spacing: 0.2em;
+    font-family: 'Inter', sans-serif; font-weight: 600;
+    z-index: 2;
+  }
+  .doc-badge.gallery { background: var(--accent); }
+
+  /* OVERLAY hover */
+  .doc-overlay {
+    position: absolute; inset: 0;
+    background: rgba(26,24,21,0.78);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+  }
+  .doc-card:hover .doc-overlay { opacity: 1; }
+  .doc-overlay-icon {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px; color: #fff;
+  }
+  .doc-overlay-text {
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  }
+
+  /* INFOS */
+  .doc-info {
+    padding: 18px 22px 22px 22px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .doc-type {
+    font-size: 9px; letter-spacing: 0.3em;
+    color: var(--accent); text-transform: uppercase;
+    font-family: 'Inter', sans-serif; font-weight: 500;
+  }
+  .doc-title {
+    font-size: 16px; font-weight: 400;
+    letter-spacing: 0.02em; line-height: 1.35;
+    color: var(--text);
+  }
+  .doc-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 10px; font-size: 11px;
+    color: var(--text-muted); letter-spacing: 0.08em;
+    font-family: 'Inter', sans-serif;
+  }
+  .doc-meta-right {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--text);
+  }
+
+  /* MODAL */
+  .pdf-modal {
+    position: fixed; inset: 0;
+    background: rgba(14,11,8,0.94);
+    z-index: 9000;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s ease;
+    display: flex; flex-direction: column;
+    padding: 20px;
+  }
+  .pdf-modal.visible { opacity: 1; pointer-events: all; }
+  .pdf-modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 12px 20px 12px; color: #fff;
+  }
+  .pdf-modal-title small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 4px;
+  }
+  .pdf-modal-title span {
+    font-family: 'the-seasons', Georgia, serif;
+    font-size: 18px; letter-spacing: 0.04em;
+  }
+  .pdf-modal-actions { display: flex; gap: 12px; align-items: center; }
+  .pdf-action-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 10px 16px;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px;
+    transition: all 0.2s;
+  }
+  .pdf-action-btn:hover { background: rgba(255,255,255,0.2); }
+  .pdf-action-btn.close {
+    width: 40px; height: 40px; padding: 0;
+    border-radius: 50%; justify-content: center;
+  }
+  .pdf-action-btn.close:hover { transform: rotate(90deg); }
+  .pdf-viewer {
+    flex: 1; background: #1a1815;
+    overflow: hidden; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pdf-viewer iframe { width: 100%; height: 100%; border: 0; }
+  .pdf-placeholder {
+    color: rgba(255,255,255,0.4);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    text-align: center; padding: 40px;
+  }
+  .pdf-placeholder svg {
+    color: rgba(255,255,255,0.2); margin-bottom: 20px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .docs-grid { grid-template-columns: repeat(2, 1fr); }
+    .doc-card.gallery-card .doc-preview { aspect-ratio: 2.2; }
+  }
+  @media (max-width: 600px) {
+    .docs-grid { grid-template-columns: 1fr; }
+    .doc-card.gallery-card .doc-preview { aspect-ratio: 1.6; }
+    .gallery-mosaic { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(3, 1fr); }
+    .page-hero { padding: 30px 24px 24px 24px; }
+    .page-hero h1 { font-size: 34px; }
+    .docs-container { padding: 10px 20px 60px 20px; }
+    .docs-grid { gap: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-intro"><img class="intro-logo" src="../assets/logos/SS%20logo%20light.svg" alt=""></div>
+
+<div id="nav-root"></div>
+<script src="../js/nav.js"></script>
+
+<section class="page-hero">
+  <h1>Documents</h1>
+  <p>Téléchargez la documentation du projet</p>
+</section>
+
+<div class="docs-container">
+
+  <!-- LIGNE 1 : 3 PDFs -->
+  <section class="docs-grid">
+
+    <!-- BROCHURE -->
+    <div class="doc-card" onclick="openPdf('Brochure du projet', 'Présentation générale', 'brochure-fr.pdf')">
+      <div class="doc-preview">
+        <span class="doc-badge">PDF</span>
+        <!-- TODO : <img class="doc-preview-img" src="../assets/documents/previews/brochure-cover.jpg" alt=""> -->
+        <div class="doc-preview-placeholder" style="--start:#c9b896; --end:#8a7860;">Brochure du projet</div>
+        <div class="doc-overlay">
+          <div class="doc-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <div class="doc-overlay-text">Consulter</div>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="doc-type">Présentation</div>
+        <div class="doc-title">Brochure du projet</div>
+        <div class="doc-meta">
+          <span>PDF · 4.2 MB</span>
+          <span class="doc-meta-right">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            Télécharger
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANALYSE -->
+    <div class="doc-card" onclick="openPdf('Analyse de marché', 'Étude du secteur immobilier Seseh', 'analyse-marche.pdf')">
+      <div class="doc-preview">
+        <span class="doc-badge">PDF</span>
+        <!-- TODO : <img class="doc-preview-img" src="../assets/documents/previews/analyse-cover.jpg" alt=""> -->
+        <div class="doc-preview-placeholder" style="--start:#a8b5b8; --end:#6e7d80;">Analyse de marché</div>
+        <div class="doc-overlay">
+          <div class="doc-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <div class="doc-overlay-text">Consulter</div>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="doc-type">Étude de marché</div>
+        <div class="doc-title">Analyse de marché Seseh</div>
+        <div class="doc-meta">
+          <span>PDF · 2.8 MB</span>
+          <span class="doc-meta-right">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            Télécharger
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRÉVISIONS -->
+    <div class="doc-card" onclick="openPdf('Prévisions financières', 'Rendements et projections', 'previsions-financieres.pdf')">
+      <div class="doc-preview">
+        <span class="doc-badge">PDF</span>
+        <!-- TODO : <img class="doc-preview-img" src="../assets/documents/previews/previsions-cover.jpg" alt=""> -->
+        <div class="doc-preview-placeholder" style="--start:#9e8e7a; --end:#5d4e3e;">Prévisions financières</div>
+        <div class="doc-overlay">
+          <div class="doc-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <div class="doc-overlay-text">Consulter</div>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="doc-type">Investissement</div>
+        <div class="doc-title">Prévisions financières</div>
+        <div class="doc-meta">
+          <span>PDF · 1.6 MB</span>
+          <span class="doc-meta-right">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+            </svg>
+            Télécharger
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- LIGNE 2 : Galerie -->
+  <section class="docs-grid">
+    <a href="galerie.html" class="doc-card gallery-card">
+      <div class="doc-preview">
+        <span class="doc-badge gallery">GALERIE</span>
+        <div class="gallery-mosaic">
+          <div style="background:linear-gradient(135deg, #c9b896 0%, #8a7860 100%);"></div>
+          <div style="background:linear-gradient(135deg, #beb09a 0%, #7d6f5d 100%);"></div>
+          <div style="background:linear-gradient(135deg, #a8b5b8 0%, #6e7d80 100%);"></div>
+          <div style="background:linear-gradient(135deg, #9e8e7a 0%, #5d4e3e 100%);"></div>
+          <div style="background:linear-gradient(135deg, #6b7d6f 0%, #3d4e44 100%);"></div>
+          <div style="background:linear-gradient(135deg, #b8c4a8 0%, #7e8a70 100%);"></div>
+        </div>
+        <div class="doc-overlay">
+          <div class="doc-overlay-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="9" cy="9" r="2"/>
+              <path d="M21 15l-5-5L5 21"/>
+            </svg>
+          </div>
+          <div class="doc-overlay-text">Voir la galerie</div>
+        </div>
+      </div>
+      <div class="doc-info">
+        <div class="doc-type">Galerie</div>
+        <div class="doc-title">Visuels des villas</div>
+        <div class="doc-meta">
+          <span>24 photos · HD</span>
+          <span class="doc-meta-right">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            Explorer
+          </span>
+        </div>
+      </div>
+    </a>
+  </section>
+
+</div>
+
+<!-- MODAL PDF -->
+<div class="pdf-modal" id="pdfModal" onclick="if(event.target===this) closePdf()">
+  <div class="pdf-modal-header">
+    <div class="pdf-modal-title">
+      <small id="pdfSubtitle">Document</small>
+      <span id="pdfTitle">Titre du document</span>
+    </div>
+    <div class="pdf-modal-actions">
+      <a href="#" class="pdf-action-btn" id="pdfDownload" download>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+        </svg>
+        Télécharger
+      </a>
+      <button class="pdf-action-btn close" onclick="closePdf()" aria-label="Fermer">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M2 2 L14 14 M14 2 L2 14"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="pdf-viewer" id="pdfViewer">
+    <div class="pdf-placeholder">
+      <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6"/>
+      </svg>
+      Aperçu du PDF<br>
+      <span style="font-size:9px; opacity:0.6;">Le vrai PDF s'affichera ici via iframe</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openPdf(title, subtitle, file) {
+    document.getElementById('pdfTitle').textContent = title;
+    document.getElementById('pdfSubtitle').textContent = subtitle;
+    // TODO : décommenter quand les PDFs seront disponibles dans ../assets/documents/
+    // const url = '../assets/documents/' + file;
+    // document.getElementById('pdfDownload').href = url;
+    // document.getElementById('pdfViewer').innerHTML = '<iframe src="' + url + '"></iframe>';
+    document.getElementById('pdfModal').classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePdf() {
+    document.getElementById('pdfModal').classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closePdf();
+  });
+</script>
+
+</body>
+</html>

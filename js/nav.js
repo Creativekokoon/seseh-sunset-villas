@@ -19,9 +19,11 @@
     fr: {
       backHome: '← Accueil',
       backVillas: '← Les Villas',
+      backDocuments: '← Documents',
       drawerHome: 'Accueil',
       drawerVillas: 'Explorer les villas',
       drawerSeseh: 'Vivre à Seseh',
+      drawerDocuments: 'Documents',
       drawerTeam: 'Nos Équipes',
       drawerAvailable: 'Villas disponibles',
       drawerPrebook: 'Pré-réserver',
@@ -35,9 +37,11 @@
     en: {
       backHome: '← Home',
       backVillas: '← The Villas',
+      backDocuments: '← Documents',
       drawerHome: 'Home',
       drawerVillas: 'Explore the villas',
       drawerSeseh: 'Living in Seseh',
+      drawerDocuments: 'Documents',
       drawerTeam: 'Our Team',
       drawerAvailable: 'Available villas',
       drawerPrebook: 'Pre-book',
@@ -325,6 +329,12 @@
   } else if (path.includes('equipe.html')) {
     backHref = depth + 'index.html';
     backLabel = t.backHome;
+  } else if (path.includes('documents.html')) {
+    backHref = depth + 'index.html';
+    backLabel = t.backHome;
+  } else if (path.includes('galerie.html')) {
+    backHref = depth + 'pages/documents.html';
+    backLabel = t.backDocuments;
   } else {
     backHref = '';
     backLabel = '';
@@ -369,11 +379,14 @@
         <a class="nav-drawer-link" href="${depth}pages/seseh.html">
           ${t.drawerSeseh} <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="${depth}pages/equipe.html">
-          ${t.drawerTeam} <span class="nav-drawer-arrow">→</span>
-        </a>
         <a class="nav-drawer-link" href="https://canva.link/pktkwf7mjekfmge" target="_blank" rel="noopener noreferrer">
           ${t.drawerAvailable} <span class="nav-drawer-arrow">→</span>
+        </a>
+        <a class="nav-drawer-link" href="${depth}pages/documents.html">
+          ${t.drawerDocuments} <span class="nav-drawer-arrow">→</span>
+        </a>
+        <a class="nav-drawer-link" href="${depth}pages/equipe.html">
+          ${t.drawerTeam} <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="https://bit.ly/sora-immobilier" target="_blank" rel="noopener">
           ${t.drawerPrebook} <span class="nav-drawer-arrow">→</span>

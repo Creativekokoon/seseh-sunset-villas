@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gallery — Seseh Sunset Villas</title>
+<link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f5f1e8;
+    --dark: #1a1815;
+    --text: #3d3934;
+    --text-muted: #8a847a;
+    --accent: #b8a886;
+    --border: rgba(61,57,52,0.12);
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'the-seasons', Georgia, serif;
+    min-height: 100vh;
+    padding-top: 76px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PAGE INTRO ── */
+  .page-intro {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 100vh; height: 100lvh;
+    z-index: 850; background: #242220;
+    animation: introFadeOut 0.4s 0.9s ease forwards;
+    pointer-events: none;
+  }
+  .intro-logo {
+    position: absolute;
+    top: 50%; top: 50svh;
+    left: 50%;
+    height: 96px; width: auto;
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(0.88);
+    animation: introLogoIn 0.5s 0.1s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+  }
+  @keyframes introLogoIn { to { opacity: 1; transform: translate(-50%,-50%) scale(1) } }
+  @keyframes introFadeOut { to { opacity: 0 } }
+
+  .page-hero {
+    text-align: center;
+    padding: 40px 40px 40px 40px;
+    max-width: 800px; margin: 0 auto;
+  }
+  .page-hero h1 {
+    font-family: 'the-seasons', Georgia, serif;
+    font-size: 52px; font-weight: 400; letter-spacing: 0.04em;
+    margin-bottom: 18px; line-height: 1.1;
+    text-transform: uppercase;
+  }
+  .page-hero p {
+    font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-muted); font-family: 'Inter', sans-serif;
+  }
+
+  .filters-primary {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 30px 40px 0 40px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 28px;
+  }
+  .filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 10px 4px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .filter-btn:hover { color: var(--text); }
+  .filter-btn.active {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .filter-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .filter-count {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 9px;
+    opacity: 0.5;
+    vertical-align: super;
+  }
+
+  .filters-secondary {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 40px 0 40px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+  .sub-filter-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 999px;
+  }
+  .sub-filter-btn:hover {
+    border-color: rgba(61,57,52,0.3);
+    color: var(--text);
+  }
+  .sub-filter-btn.active {
+    background: var(--dark);
+    color: #fff;
+    border-color: var(--dark);
+  }
+
+  .gallery-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 40px 100px 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    grid-auto-rows: 240px;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: #2a2622;
+    cursor: pointer;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .gallery-item.hidden {
+    display: none;
+  }
+
+  .gallery-item.tall { grid-row: span 2; }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-item.large { grid-row: span 2; grid-column: span 2; }
+
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .gallery-item:hover .gallery-img { transform: scale(1.05); }
+
+  .gallery-mock {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--start) 0%, var(--end) 100%);
+    transition: transform 0.6s ease;
+  }
+  .gallery-item:hover .gallery-mock { transform: scale(1.05); }
+
+  .gallery-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 18px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+    color: #fff;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  .gallery-item:hover .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .caption-villa {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 4px;
+  }
+  .caption-title {
+    font-family: 'the-seasons', Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(14,11,8,0.96);
+    z-index: 9000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+  }
+  .lightbox.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .lightbox-content {
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+  }
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+  }
+  .lightbox-mock {
+    width: 80vw;
+    max-width: 1200px;
+    height: 80vh;
+    background: linear-gradient(135deg, var(--start) 0%, var(--end) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .lightbox-info {
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+  }
+  .lightbox-info small {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .lightbox-info span {
+    font-family: 'the-seasons', Georgia, serif;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .lightbox-close:hover {
+    background: rgba(255,255,255,0.2);
+    transform: rotate(90deg);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .lightbox-nav:hover { background: rgba(255,255,255,0.18); }
+  .lightbox-prev { left: 30px; }
+  .lightbox-next { right: 30px; }
+
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item.large { grid-column: span 2; }
+  }
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 220px;
+    }
+    .gallery-item.tall, .gallery-item.wide, .gallery-item.large {
+      grid-row: span 1;
+      grid-column: span 1;
+    }
+    .page-hero h1 { font-size: 36px; }
+    .filters-primary { gap: 16px; padding: 24px 20px 20px 20px; }
+    .filter-btn { font-size: 10px; letter-spacing: 0.18em; }
+    .gallery-grid { padding: 24px 16px 60px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="nav-root"></div>
+<script src="../../js/nav.js"></script>
+
+<section class="page-hero">
+  <h1>Gallery</h1>
+  <p>Villa and complex visuals</p>
+</section>
+
+<!-- PRIMARY FILTERS : villa -->
+<nav class="filters-primary">
+  <button class="filter-btn active" data-villa="all">All<span class="filter-count">24</span></button>
+  <button class="filter-btn" data-villa="complexe">Complex<span class="filter-count">4</span></button>
+  <button class="filter-btn" data-villa="elegance">Élégance<span class="filter-count">5</span></button>
+  <button class="filter-btn" data-villa="prestige">Prestige<span class="filter-count">5</span></button>
+  <button class="filter-btn" data-villa="signature">Signature<span class="filter-count">5</span></button>
+  <button class="filter-btn" data-villa="exception">Exception<span class="filter-count">5</span></button>
+</nav>
+
+<!-- SECONDARY FILTERS : interior / exterior -->
+<div class="filters-secondary">
+  <button class="sub-filter-btn active" data-type="all">All</button>
+  <button class="sub-filter-btn" data-type="interieur">Interior</button>
+  <button class="sub-filter-btn" data-type="exterieur">Exterior</button>
+</div>
+
+<!-- GRID -->
+<section class="gallery-grid" id="galleryGrid">
+
+  <!-- COMPLEX -->
+  <div class="gallery-item large" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#6b7d6f; --end:#3d4e44;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Complex</div>
+      <div class="caption-title">Aerial view of the estate</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#9eb3a3; --end:#5d6e64;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Complex</div>
+      <div class="caption-title">Main entrance</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#a8baa4; --end:#6b7d6f;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Complex</div>
+      <div class="caption-title">Central walkway</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#d4cba8; --end:#9e9070;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Complex</div>
+      <div class="caption-title">Estate site plan</div>
+    </div>
+  </div>
+
+  <!-- ÉLÉGANCE - Interior -->
+  <div class="gallery-item tall" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#c9b896; --end:#8a7860;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Living room</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#d4c5a6; --end:#a08e6e;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Open kitchen</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#beb09a; --end:#7d6f5d;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Master bedroom</div>
+    </div>
+  </div>
+  <!-- Élégance - Exterior -->
+  <div class="gallery-item wide" data-villa="elegance" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#a8b5b8; --end:#6e7d80;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Pool & terrace</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#b8c4a8; --end:#7e8a70;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Private garden</div>
+    </div>
+  </div>
+
+  <!-- PRESTIGE - Interior -->
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#3a4858; --end:#1f2a36;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Modern living</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#4f5d6e; --end:#293848;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Fitted kitchen</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#5d6e7d; --end:#374858;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Master suite</div>
+    </div>
+  </div>
+  <!-- Prestige - Exterior -->
+  <div class="gallery-item" data-villa="prestige" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#7e8e98; --end:#3e4e58;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Pool at sunset</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#a8baa8; --end:#5d6f5d;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Outdoor terrace</div>
+    </div>
+  </div>
+
+  <!-- SIGNATURE - Interior -->
+  <div class="gallery-item wide" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#9e8e7a; --end:#5d4e3e;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Spacious living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#b8a896; --end:#7d6e5d;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Open kitchen</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#a89886; --end:#6e5d4e;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Bedroom 1</div>
+    </div>
+  </div>
+  <!-- Signature - Exterior -->
+  <div class="gallery-item" data-villa="signature" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#9eb0a6; --end:#5d6e64;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Private pool</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#beb09a; --end:#7d6f5d;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Tropical garden</div>
+    </div>
+  </div>
+
+  <!-- EXCEPTION - Interior -->
+  <div class="gallery-item tall" data-villa="exception" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#6e5d4e; --end:#3e2e1e;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Exceptional living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#8e7d6e; --end:#4e3e2e;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Premium fitted kitchen</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#a89886; --end:#5e4e3e;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Master suite</div>
+    </div>
+  </div>
+  <!-- Exception - Exterior -->
+  <div class="gallery-item wide" data-villa="exception" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#7e8e9e; --end:#3e4e5e;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Sea-view pool</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="exterieur" onclick="openLightbox(this)">
+    <div class="gallery-mock" style="--start:#b8c4ae; --end:#6e7e64;"></div>
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Garden & terrace</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="if(event.target===this) closeLightbox()">
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)" aria-label="Previous">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+  <div class="lightbox-content">
+    <div class="lightbox-mock" id="lightboxImg" style="--start:#6b7d6f; --end:#3d4e44;">
+      Full-size image
+    </div>
+    <div class="lightbox-info">
+      <small id="lightboxVilla">Villa</small>
+      <span id="lightboxTitle">Title</span>
+    </div>
+  </div>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)" aria-label="Next">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
+  </button>
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M2 2 L14 14 M14 2 L2 14"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  // ── FILTERS ──
+  let activeVilla = 'all';
+  let activeType = 'all';
+
+  function applyFilters() {
+    const items = document.querySelectorAll('.gallery-item');
+    let visibleCount = 0;
+
+    items.forEach(item => {
+      const villa = item.dataset.villa;
+      const type = item.dataset.type;
+      const villaMatch = activeVilla === 'all' || villa === activeVilla;
+      const typeMatch = activeType === 'all' || type === activeType;
+
+      if (villaMatch && typeMatch) {
+        item.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+
+    // When "Complex" is selected, disable int/ext filters
+    const subFilters = document.querySelector('.filters-secondary');
+    if (activeVilla === 'complexe') {
+      subFilters.style.opacity = '0.3';
+      subFilters.style.pointerEvents = 'none';
+    } else {
+      subFilters.style.opacity = '1';
+      subFilters.style.pointerEvents = 'auto';
+    }
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeVilla = btn.dataset.villa;
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('.sub-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.sub-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeType = btn.dataset.type;
+      applyFilters();
+    });
+  });
+
+  // ── LIGHTBOX ──
+  let currentIndex = 0;
+  let visibleItems = [];
+
+  function openLightbox(el) {
+    visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+    currentIndex = visibleItems.indexOf(el);
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function updateLightbox() {
+    const item = visibleItems[currentIndex];
+    if (!item) return;
+    const mock = item.querySelector('.gallery-mock');
+    const lightboxImg = document.getElementById('lightboxImg');
+    lightboxImg.style.setProperty('--start', mock.style.getPropertyValue('--start'));
+    lightboxImg.style.setProperty('--end', mock.style.getPropertyValue('--end'));
+    lightboxImg.textContent = mock.textContent;
+
+    document.getElementById('lightboxVilla').textContent = item.querySelector('.caption-villa').textContent;
+    document.getElementById('lightboxTitle').textContent = item.querySelector('.caption-title').textContent;
+  }
+
+  function navLightbox(direction) {
+    currentIndex = (currentIndex + direction + visibleItems.length) % visibleItems.length;
+    updateLightbox();
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('visible')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navLightbox(-1);
+    if (e.key === 'ArrowRight') navLightbox(1);
+  });
+</script>
+
+</body>
+</html>
