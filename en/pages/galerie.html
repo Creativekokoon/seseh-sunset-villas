@@ -417,12 +417,12 @@
 
 <!-- PRIMARY FILTERS : villa -->
 <nav class="filters-primary">
-  <button class="filter-btn active" data-villa="all">All<span class="filter-count">98</span></button>
-  <button class="filter-btn" data-villa="complexe">Complex<span class="filter-count">4</span></button>
+  <button class="filter-btn active" data-villa="all">All<span class="filter-count">109</span></button>
+  <button class="filter-btn" data-villa="complexe">Complex<span class="filter-count">9</span></button>
   <button class="filter-btn" data-villa="elegance">Élégance<span class="filter-count">17</span></button>
   <button class="filter-btn" data-villa="prestige">Prestige<span class="filter-count">20</span></button>
   <button class="filter-btn" data-villa="signature">Signature<span class="filter-count">22</span></button>
-  <button class="filter-btn" data-villa="exception">Exception<span class="filter-count">35</span></button>
+  <button class="filter-btn" data-villa="exception">Exception<span class="filter-count">41</span></button>
 </nav>
 
 <!-- SECONDARY FILTERS : Type A / Type B (visible only for Exception) -->
@@ -441,33 +441,89 @@
 <!-- GRID -->
 <section class="gallery-grid" id="galleryGrid">
 
-  <!-- COMPLEX -->
-  <div class="gallery-item large" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#6b7d6f; --end:#3d4e44;"></div>
+  <!-- COMPLEX (11 items) -->
+  <div class="gallery-item large" data-villa="complexe" data-type="exterieur"
+       data-sun="../../assets/gallery/complexe/complexe-sun1.jpg"
+       data-sunset="../../assets/gallery/complexe/complexe-sunset1.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/complexe/complexe-sun1.jpg" alt="Aerial view of the estate">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Toggle day / sunset">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
     <div class="gallery-caption">
       <div class="caption-villa">Complex</div>
       <div class="caption-title">Aerial view of the estate</div>
     </div>
   </div>
   <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#9eb3a3; --end:#5d6e64;"></div>
+    <img class="gallery-img" src="../../assets/gallery/complexe/complexe-sun2.jpg" alt="Aerial view">
     <div class="gallery-caption">
       <div class="caption-villa">Complex</div>
-      <div class="caption-title">Main entrance</div>
+      <div class="caption-title">Aerial view</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/complexe/complexe-sun3.jpg" alt="Aerial view">
+    <div class="gallery-caption">
+      <div class="caption-villa">Complex</div>
+      <div class="caption-title">Aerial view</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="complexe" data-type="exterieur"
+       data-sun="../../assets/gallery/complexe/complexe-sun5.jpg"
+       data-sunset="../../assets/gallery/complexe/complexe-sunset5.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/complexe/complexe-sun5.jpg" alt="Aerial view">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Toggle day / sunset">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Complex</div>
+      <div class="caption-title">Aerial view</div>
     </div>
   </div>
   <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#a8baa4; --end:#6b7d6f;"></div>
+    <img class="gallery-img" src="../../assets/gallery/complexe/complexe-sun-riziere1.jpg" alt="Rice fields">
     <div class="gallery-caption">
       <div class="caption-villa">Complex</div>
-      <div class="caption-title">Central walkway</div>
+      <div class="caption-title">Rice fields</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="complexe" data-type="exterieur"
+       data-sun="../../assets/gallery/complexe/complexe-sun4.jpg"
+       data-sunset="../../assets/gallery/complexe/complexe-sunset4.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/complexe/complexe-sun4.jpg" alt="Aerial view">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Toggle day / sunset">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Complex</div>
+      <div class="caption-title">Aerial view</div>
     </div>
   </div>
   <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#d4cba8; --end:#9e9070;"></div>
+    <img class="gallery-img" src="../../assets/gallery/complexe/complexe-sun-riziere2.jpg" alt="Rice fields">
     <div class="gallery-caption">
       <div class="caption-villa">Complex</div>
-      <div class="caption-title">Estate site plan</div>
+      <div class="caption-title">Rice fields</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/complexe/complexe-sun-riziere3.jpg" alt="Rice fields">
+    <div class="gallery-caption">
+      <div class="caption-villa">Complex</div>
+      <div class="caption-title">Rice fields</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/complexe/complexe-other.jpg" alt="Estate">
+    <div class="gallery-caption">
+      <div class="caption-villa">Complex</div>
+      <div class="caption-title">Estate</div>
     </div>
   </div>
 
@@ -1276,6 +1332,58 @@
     </div>
   </div>
 
+  <!-- EXCEPTION Exterior Type A (3 items) -->
+  <div class="gallery-item wide" data-villa="exception" data-type="exterieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/exception/exterieur/A/exterior1-exception.jpg" alt="Exterior facade">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Exterior facade</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="exterieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/exception/exterieur/A/exterior2-exception.jpg" alt="Exterior facade">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Exterior facade</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="exterieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/exception/exterieur/A/exterior3-exception.jpg" alt="Exterior facade">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Exterior facade</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+
+  <!-- EXCEPTION Exterior Type B (3 items) -->
+  <div class="gallery-item wide" data-villa="exception" data-type="exterieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/exception/exterieur/B/exterior1-exception.jpg" alt="Exterior facade">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Exterior facade</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="exterieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/exception/exterieur/B/exterior2-exception.jpg" alt="Exterior facade">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Exterior facade</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="exterieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../../assets/gallery/exception/exterieur/B/exterior3-exception.jpg" alt="Exterior facade">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Exterior facade</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+
 </section>
 
 <!-- LIGHTBOX -->
@@ -1348,12 +1456,12 @@
       }
     });
 
-    // When "Complex" is selected, disable int/ext filters
+    // When "Complex" is selected, hide int/ext filters (not relevant)
     const subFilters = document.querySelector('.filters-secondary');
     if (activeVilla === 'complexe') {
-      subFilters.style.opacity = '0.3';
-      subFilters.style.pointerEvents = 'none';
+      subFilters.style.display = 'none';
     } else {
+      subFilters.style.display = '';
       subFilters.style.opacity = '1';
       subFilters.style.pointerEvents = 'auto';
     }
