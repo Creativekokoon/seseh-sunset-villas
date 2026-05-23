@@ -144,6 +144,17 @@
     border-color: #242220;
   }
 
+  /* Tertiary filters (Exception : Type A / Type B) */
+  .filters-config {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 12px 40px 0 40px;
+    display: none;
+    justify-content: center;
+    gap: 6px;
+  }
+  .filters-config.visible { display: flex; }
+
   /* GRILLE D'IMAGES (masonry-style avec colonnes) */
   .gallery-grid {
     max-width: 1400px;
@@ -417,15 +428,21 @@
 
 <!-- FILTRES PRIMAIRES : villa -->
 <nav class="filters-primary">
-  <button class="filter-btn active" data-villa="all">Toutes<span class="filter-count">68</span></button>
+  <button class="filter-btn active" data-villa="all">Toutes<span class="filter-count">98</span></button>
   <button class="filter-btn" data-villa="complexe">Complexe<span class="filter-count">4</span></button>
   <button class="filter-btn" data-villa="elegance">Élégance<span class="filter-count">17</span></button>
   <button class="filter-btn" data-villa="prestige">Prestige<span class="filter-count">20</span></button>
   <button class="filter-btn" data-villa="signature">Signature<span class="filter-count">22</span></button>
-  <button class="filter-btn" data-villa="exception">Exception<span class="filter-count">5</span></button>
+  <button class="filter-btn" data-villa="exception">Exception<span class="filter-count">35</span></button>
 </nav>
 
-<!-- FILTRES SECONDAIRES : intérieur / extérieur -->
+<!-- FILTRES SECONDAIRES : Type A / Type B (visibles uniquement pour Exception) -->
+<div class="filters-config" id="filtersConfig">
+  <button class="sub-filter-btn active" data-config="A">Type A</button>
+  <button class="sub-filter-btn" data-config="B">Type B</button>
+</div>
+
+<!-- FILTRES TERTIAIRES : intérieur / extérieur -->
 <div class="filters-secondary">
   <button class="sub-filter-btn active" data-type="all">Tous</button>
   <button class="sub-filter-btn" data-type="interieur">Intérieur</button>
@@ -979,41 +996,294 @@
     </div>
   </div>
 
-  <!-- EXCEPTION - Intérieur -->
-  <div class="gallery-item tall" data-villa="exception" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#6e5d4e; --end:#3e2e1e;"></div>
+  <!-- EXCEPTION TYPE A (19 items) -->
+  <div class="gallery-item large" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/living1-exception.jpg" alt="Living">
     <div class="gallery-caption">
       <div class="caption-villa">Exception</div>
-      <div class="caption-title">Living d'exception</div>
+      <div class="caption-title">Living</div>
+      <div class="caption-meta">Type A</div>
     </div>
   </div>
-  <div class="gallery-item" data-villa="exception" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#8e7d6e; --end:#4e3e2e;"></div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/living2-exception.jpg" alt="Living">
     <div class="gallery-caption">
       <div class="caption-villa">Exception</div>
-      <div class="caption-title">Cuisine équipée premium</div>
+      <div class="caption-title">Living</div>
+      <div class="caption-meta">Type A</div>
     </div>
   </div>
-  <div class="gallery-item" data-villa="exception" data-type="interieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#a89886; --end:#5e4e3e;"></div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/living3-exception.jpg" alt="Living">
     <div class="gallery-caption">
       <div class="caption-villa">Exception</div>
-      <div class="caption-title">Suite parentale</div>
+      <div class="caption-title">Living</div>
+      <div class="caption-meta">Type A</div>
     </div>
   </div>
-  <!-- Exception - Extérieur -->
-  <div class="gallery-item wide" data-villa="exception" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#7e8e9e; --end:#3e4e5e;"></div>
+  <div class="gallery-item tall" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/kitchen1-exception.jpg" alt="Cuisine">
     <div class="gallery-caption">
       <div class="caption-villa">Exception</div>
-      <div class="caption-title">Piscine vue mer</div>
+      <div class="caption-title">Cuisine</div>
+      <div class="caption-meta">Type A</div>
     </div>
   </div>
-  <div class="gallery-item" data-villa="exception" data-type="exterieur" onclick="openLightbox(this)">
-    <div class="gallery-mock" style="--start:#b8c4ae; --end:#6e7e64;"></div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/kitchen2-exception.jpg" alt="Cuisine">
     <div class="gallery-caption">
       <div class="caption-villa">Exception</div>
-      <div class="caption-title">Garden & terrasse</div>
+      <div class="caption-title">Cuisine</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="exception" data-type="interieur" data-config="A"
+       data-sun="../assets/gallery/exception/interieur/ExceptionA/dining-sun1-exception.jpg"
+       data-sunset="../assets/gallery/exception/interieur/ExceptionA/dining-sunset1-exception.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/dining-sun1-exception.jpg" alt="Salle à manger">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle à manger</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/dining2-exception.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle à manger</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/masterbedroom1-exception.jpg" alt="Chambre principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Chambre principale</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/masterbathroom1-exception.jpg" alt="Salle de bain principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain principale</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/masterbathroom2-exception.jpg" alt="Salle de bain principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain principale</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/guestbedroom2-exception.jpg" alt="Chambre d'invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Chambre d'invité</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/guestbedroom3-exception.jpg" alt="Chambre d'invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Chambre d'invité</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/guestbathroom1-exception.jpg" alt="Salle de bain invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain invité</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/bureau1-exception.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Bureau</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/bureau2-exception.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Bureau</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/toilet-exception.jpg" alt="Toilettes">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Toilettes</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/pool-exception.jpg" alt="Piscine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Piscine</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionA/terrace-exception.jpg" alt="Terrasse">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Terrasse</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+
+  <!-- EXCEPTION TYPE B (17 items) -->
+  <div class="gallery-item large" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/living1-exception.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Living</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/living2-exception.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Living</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/living-terrace-exception.jpg" alt="Salon-terrasse">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salon-terrasse</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/kitchen-exception.jpg" alt="Cuisine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Cuisine</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/kitchen2-exception.jpg" alt="Cuisine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Cuisine</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/dining-exception.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle à manger</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/dining2-exception.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle à manger</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/dining3-exception.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle à manger</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/masterbedroom-exception.jpg" alt="Chambre principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Chambre principale</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/masterbathroom-exception.jpg" alt="Salle de bain principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain principale</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/masterbathroom2-exception.jpg" alt="Salle de bain principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain principale</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/guestbedroom-exception.jpg" alt="Chambre d'invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Chambre d'invité</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/guestbathroom-exception.jpg" alt="Salle de bain invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain invité</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/bureau-exeption.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Bureau</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/toilettes-exception.jpg" alt="Toilettes">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Toilettes</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/pool-exception.jpg" alt="Piscine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Piscine</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="../assets/gallery/exception/interieur/ExceptionB/terrace-exception.jpg" alt="Terrasse">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Terrasse</div>
+      <div class="caption-meta">Type B</div>
     </div>
   </div>
 
@@ -1052,6 +1322,7 @@
   // ── FILTRAGE ──
   let activeVilla = 'all';
   let activeType = 'all';
+  let activeConfig = 'A';
 
   // Pré-filtre depuis ?villa=xxx
   (function() {
@@ -1075,10 +1346,12 @@
     items.forEach(item => {
       const villa = item.dataset.villa;
       const type = item.dataset.type;
+      const config = item.dataset.config;
       const villaMatch = activeVilla === 'all' || villa === activeVilla;
       const typeMatch = activeType === 'all' || type === activeType;
+      const configMatch = activeConfig === 'all' || activeVilla !== 'exception' || config === activeConfig;
 
-      if (villaMatch && typeMatch) {
+      if (villaMatch && typeMatch && configMatch) {
         item.classList.remove('hidden');
         visibleCount++;
       } else {
@@ -1094,6 +1367,14 @@
     } else {
       subFilters.style.opacity = '1';
       subFilters.style.pointerEvents = 'auto';
+    }
+
+    // Sous-filtre Type A/B : visible uniquement pour Exception
+    const configFilters = document.getElementById('filtersConfig');
+    if (activeVilla === 'exception') {
+      configFilters.classList.add('visible');
+    } else {
+      configFilters.classList.remove('visible');
     }
   }
 
@@ -1121,11 +1402,20 @@
     });
   });
 
-  document.querySelectorAll('.sub-filter-btn').forEach(btn => {
+  document.querySelectorAll('.filters-secondary .sub-filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.sub-filter-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.filters-secondary .sub-filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       activeType = btn.dataset.type;
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('.filters-config .sub-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filters-config .sub-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeConfig = btn.dataset.config;
       applyFilters();
     });
   });
