@@ -247,26 +247,27 @@
   .pdf-modal.visible { opacity: 1; pointer-events: all; }
 
   /* Fail-safe : bouton fermer flottant toujours visible au-dessus de l'iframe.
-     L'iframe PDF peut intercepter les taps sur certains navigateurs (iOS) ;
-     ce bouton-ci est positionné hors-iframe avec un z-index supérieur. */
+     L'iframe PDF peut intercepter les taps sur iOS ; ce bouton est hors-iframe,
+     z-index très élevé, et compatible safe-area (encoches iPad). */
   .pdf-fab-close {
     position: fixed;
-    top: 14px; right: 14px;
-    width: 44px; height: 44px;
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    right: calc(14px + env(safe-area-inset-right, 0px));
+    width: 52px; height: 52px;
     border-radius: 50%;
-    background: rgba(20,17,14,0.85);
-    border: 1px solid rgba(255,255,255,0.45);
-    color: #fff;
+    background: #ffffff;
+    border: none;
+    color: #1a1815;
     cursor: pointer;
     display: none;
     align-items: center; justify-content: center;
     z-index: 10000;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+    -webkit-tap-highlight-color: transparent;
   }
-  .pdf-fab-close svg { width: 16px; height: 16px; }
-  .pdf-modal.visible ~ .pdf-fab-close { display: flex; }
+  .pdf-fab-close.visible { display: flex; }
+  .pdf-fab-close svg { width: 20px; height: 20px; }
+  .pdf-fab-close:active { transform: scale(0.94); }
 
   .pdf-modal-header {
     display: flex; justify-content: space-between; align-items: center;
@@ -620,10 +621,12 @@
     document.getElementById('pdfViewer').innerHTML =
       '<iframe src="' + iframeSrc + '" title="' + title.replace(/"/g, '&quot;') + '"' + iframeAttrs + '></iframe>';
     document.getElementById('pdfModal').classList.add('visible');
+    document.querySelector('.pdf-fab-close').classList.add('visible');
     document.body.style.overflow = 'hidden';
   }
   function closePdf() {
     document.getElementById('pdfModal').classList.remove('visible');
+    document.querySelector('.pdf-fab-close').classList.remove('visible');
     document.body.style.overflow = '';
   }
   // Reset viewer when modal closes (avoid bg PDF playing)

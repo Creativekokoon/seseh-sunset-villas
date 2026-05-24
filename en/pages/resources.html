@@ -235,6 +235,30 @@
     padding: 20px;
   }
   .pdf-modal.visible { opacity: 1; pointer-events: all; }
+
+  /* Fail-safe: floating close always above the iframe.
+     iOS iframes can intercept taps; this button sits outside any iframe,
+     with very high z-index and safe-area awareness for notched iPads. */
+  .pdf-fab-close {
+    position: fixed;
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    right: calc(14px + env(safe-area-inset-right, 0px));
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: none;
+    color: #1a1815;
+    cursor: pointer;
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 10000;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .pdf-fab-close.visible { display: flex; }
+  .pdf-fab-close svg { width: 20px; height: 20px; }
+  .pdf-fab-close:active { transform: scale(0.94); }
+
   .pdf-modal-header {
     display: flex; justify-content: space-between; align-items: center;
     padding: 8px 12px 20px 12px; color: #fff;
@@ -556,6 +580,11 @@
     </div>
   </div>
 </div>
+<button class="pdf-fab-close" onclick="closePdf()" aria-label="Close document">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M2 2 L14 14 M14 2 L2 14"/>
+  </svg>
+</button>
 
 <script>
   function openPdf(title, subtitle, file, zoom) {
@@ -570,10 +599,12 @@
     const iframeSrc = url + '#toolbar=0&navpanes=0&statusbar=0&view=FitH';
     document.getElementById('pdfViewer').innerHTML = '<iframe src="' + iframeSrc + '" title="' + title + '"></iframe>';
     document.getElementById('pdfModal').classList.add('visible');
+    document.querySelector('.pdf-fab-close').classList.add('visible');
     document.body.style.overflow = 'hidden';
   }
   function closePdf() {
     document.getElementById('pdfModal').classList.remove('visible');
+    document.querySelector('.pdf-fab-close').classList.remove('visible');
     document.body.style.overflow = '';
   }
   // Reset viewer when modal closes
