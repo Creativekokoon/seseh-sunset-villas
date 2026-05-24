@@ -561,20 +561,6 @@
   function openPdf(title, subtitle, file, zoom) {
     const url = '../../assets/ressources/' + encodeURIComponent(file);
     const zoomLevel = zoom || 90;
-    // Touch devices (iPad, iPhone, Android tablet): open the PDF via an <a target="_blank">.
-    // In iOS PWA / standalone this triggers a Safari View Controller with a "Done"
-    // button to return, and the PDF scrolls natively.
-    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    if (isTouch) {
-      const a = document.createElement('a');
-      a.href = url;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      return;
-    }
     document.getElementById('pdfTitle').textContent = title;
     document.getElementById('pdfSubtitle').textContent = subtitle;
     document.getElementById('pdfDownload').href = url;

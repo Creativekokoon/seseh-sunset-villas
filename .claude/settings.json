@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(git mv *)",
-      "Bash(grep -n \"Type B</div>\\\\s*$\" \"/Users/petula/Documents/Seseh Sunset Villas/Source code/pages/galerie.html\")"
+      "Bash(grep -n \"Type B</div>\\\\s*$\" \"/Users/petula/Documents/Seseh Sunset Villas/Source code/pages/galerie.html\")",
+      "Bash(grep -n \"</div>$\\\\|pdfViewer\\\\|</script>\" \"/Users/petula/Documents/Seseh Sunset Villas/Source code/pages/ressources.html\")"
     ]
   }
 }

@@ -245,6 +245,29 @@
     padding: 20px;
   }
   .pdf-modal.visible { opacity: 1; pointer-events: all; }
+
+  /* Fail-safe : bouton fermer flottant toujours visible au-dessus de l'iframe.
+     L'iframe PDF peut intercepter les taps sur certains navigateurs (iOS) ;
+     ce bouton-ci est positionné hors-iframe avec un z-index supérieur. */
+  .pdf-fab-close {
+    position: fixed;
+    top: 14px; right: 14px;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: rgba(20,17,14,0.85);
+    border: 1px solid rgba(255,255,255,0.45);
+    color: #fff;
+    cursor: pointer;
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 10000;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  }
+  .pdf-fab-close svg { width: 16px; height: 16px; }
+  .pdf-modal.visible ~ .pdf-fab-close { display: flex; }
+
   .pdf-modal-header {
     display: flex; justify-content: space-between; align-items: center;
     padding: 8px 12px 20px 12px; color: #fff;
@@ -567,26 +590,17 @@
     </div>
   </div>
 </div>
+<button class="pdf-fab-close" onclick="closePdf()" aria-label="Fermer le document">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+    <path d="M2 2 L14 14 M14 2 L2 14"/>
+  </svg>
+</button>
 
 <script>
   function openPdf(title, subtitle, file, zoom) {
     const isUrl = /^https?:\/\//i.test(file);
     const url = isUrl ? file : '../assets/ressources/' + encodeURIComponent(file);
     const zoomLevel = zoom || 90;
-    // Tactile (iPad, iPhone, tablette Android) : on ouvre le PDF via un <a target="_blank">.
-    // En PWA / standalone iOS ça déclenche un Safari View Controller avec un bouton
-    // "Terminé" pour revenir, et le PDF est scrollable nativement.
-    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    if (!isUrl && isTouch) {
-      const a = document.createElement('a');
-      a.href = url;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      return;
-    }
     document.getElementById('pdfTitle').textContent = title;
     document.getElementById('pdfSubtitle').textContent = subtitle;
     const dl = document.getElementById('pdfDownload');
