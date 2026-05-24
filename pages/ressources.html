@@ -602,6 +602,18 @@
     const isUrl = /^https?:\/\//i.test(file);
     const url = isUrl ? file : '../assets/ressources/' + encodeURIComponent(file);
     const zoomLevel = zoom || 90;
+    // Mobile (≤600px) : l'iframe ne scrolle pas sur iOS Safari/petits écrans.
+    // On ouvre nativement dans un nouvel onglet pour permettre le scroll/zoom.
+    if (!isUrl && window.matchMedia('(max-width: 600px)').matches) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      return;
+    }
     document.getElementById('pdfTitle').textContent = title;
     document.getElementById('pdfSubtitle').textContent = subtitle;
     const dl = document.getElementById('pdfDownload');
