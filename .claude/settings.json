@@ -6,7 +6,12 @@
       "Bash(grep -n \"</div>$\\\\|pdfViewer\\\\|</script>\" \"/Users/petula/Documents/Seseh Sunset Villas/Source code/pages/ressources.html\")",
       "Bash(mkdir -p \"/Users/petula/Documents/Seseh Sunset Villas/Source code/assets/pdfjs\")",
       "Bash(curl -fsSL -o pdf.min.js \"https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js\")",
-      "Bash(curl -fsSL -o pdf.worker.min.js \"https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js\")"
+      "Bash(curl -fsSL -o pdf.worker.min.js \"https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js\")",
+      "Bash(grep -l \"favicon\" index.html en/index.html)",
+      "Bash(grep -l \"favicon\" pages/*.html)",
+      "Bash(grep -l \"favicon\" en/pages/*.html)",
+      "Bash(awk -F: '$2==0 {print \"MISSING:\", $1} END {print \"checked\", NR, \"files\"}')",
+      "Bash(sips -g pixelWidth -g pixelHeight \"/Users/petula/Documents/Seseh Sunset Villas/Source code/assets/logos/favicon.png\")"
     ]
   }
 }
