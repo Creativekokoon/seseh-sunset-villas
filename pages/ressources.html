@@ -8,6 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+<script src="../assets/pdfjs/pdf.min.js"></script>
+<script>
+  if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '../assets/pdfjs/pdf.worker.min.js';
+  }
+</script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -279,10 +285,27 @@
   .pdf-action-btn.close:hover { transform: rotate(90deg); }
   .pdf-viewer {
     flex: 1; background: #1a1815;
-    overflow: hidden; border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
+    overflow-y: auto; overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 4px;
+    padding: 16px 0;
+    text-align: center;
   }
   .pdf-viewer iframe { width: 100%; height: 100%; border: 0; }
+  .pdf-viewer canvas {
+    display: block;
+    margin: 0 auto 12px;
+    max-width: calc(100% - 24px);
+    height: auto;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+  }
+  .pdf-loading {
+    color: rgba(255,255,255,0.55);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 60px 20px;
+    text-align: center;
+  }
   .pdf-placeholder {
     color: rgba(255,255,255,0.4);
     font-family: 'Inter', sans-serif;
@@ -543,12 +566,6 @@
       <span id="pdfTitle">Titre du document</span>
     </div>
     <div class="pdf-modal-actions">
-      <a href="#" class="pdf-action-btn" id="pdfFullscreen" target="_blank" rel="noopener" aria-label="Plein écran">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
-        </svg>
-        Plein écran
-      </a>
       <a href="#" class="pdf-action-btn" id="pdfDownload" download>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
@@ -574,50 +591,75 @@
   </div>
 </div>
 <script>
+  // Rendu PDF.js en canvas (scrollable + tactile sur tous les écrans)
+  let currentRenderToken = 0;
+  async function renderPdfCanvas(url, container) {
+    const token = ++currentRenderToken;
+    container.innerHTML = '<div class="pdf-loading">Chargement…</div>';
+    try {
+      if (!window.pdfjsLib) throw new Error('PDF.js non chargé');
+      const pdf = await pdfjsLib.getDocument(url).promise;
+      if (token !== currentRenderToken) return;
+      container.innerHTML = '';
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const targetWidth = Math.min(container.clientWidth - 24, 1100);
+      for (let i = 1; i <= pdf.numPages; i++) {
+        if (token !== currentRenderToken) return;
+        const page = await pdf.getPage(i);
+        const unscaled = page.getViewport({ scale: 1 });
+        const scale = targetWidth / unscaled.width;
+        const viewport = page.getViewport({ scale });
+        const canvas = document.createElement('canvas');
+        canvas.width = viewport.width * dpr;
+        canvas.height = viewport.height * dpr;
+        canvas.style.width = viewport.width + 'px';
+        canvas.style.height = viewport.height + 'px';
+        container.appendChild(canvas);
+        await page.render({
+          canvasContext: canvas.getContext('2d'),
+          viewport,
+          transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null,
+        }).promise;
+      }
+    } catch (e) {
+      console.error('PDF.js render failed, falling back to iframe:', e);
+      if (token === currentRenderToken) {
+        container.innerHTML =
+          '<iframe src="' + url + '#toolbar=0&navpanes=0&statusbar=0&view=FitH" style="width:100%;height:100%;border:0" scrolling="no"></iframe>';
+      }
+    }
+  }
+
   function openPdf(title, subtitle, file, zoom) {
     const isUrl = /^https?:\/\//i.test(file);
     const url = isUrl ? file : '../assets/ressources/' + encodeURIComponent(file);
-    const zoomLevel = zoom || 90;
-    // Mobile (≤600px) : l'iframe ne scrolle pas sur iOS Safari/petits écrans.
-    // On ouvre nativement dans un nouvel onglet pour permettre le scroll/zoom.
-    if (!isUrl && window.matchMedia('(max-width: 600px)').matches) {
-      const a = document.createElement('a');
-      a.href = url;
-      a.target = '_blank';
-      a.rel = 'noopener noreferrer';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      return;
-    }
     document.getElementById('pdfTitle').textContent = title;
     document.getElementById('pdfSubtitle').textContent = subtitle;
     const dl = document.getElementById('pdfDownload');
-    const fs = document.getElementById('pdfFullscreen');
     if (isUrl) {
       dl.style.display = 'none';
-      fs.style.display = 'none';
     } else {
       dl.style.display = '';
       dl.href = url;
       dl.setAttribute('download', file);
-      fs.style.display = '';
-      fs.href = url;
     }
-    const iframeAttrs = isUrl
-      ? ' allow="autoplay; clipboard-read; clipboard-write" allowfullscreen scrolling="no"'
-      : '';
-    // Chromium : masquer la toolbar et adapter à la largeur (FitH = pas de zoom fixe, le PDF
-    // suit le conteneur quel que soit la taille de la fenêtre)
-    const iframeSrc = isUrl ? url : url + '#toolbar=0&navpanes=0&statusbar=0&view=FitH';
-    document.getElementById('pdfViewer').innerHTML =
-      '<iframe src="' + iframeSrc + '" title="' + title.replace(/"/g, '&quot;') + '"' + iframeAttrs + '></iframe>';
+    const viewer = document.getElementById('pdfViewer');
+    if (isUrl) {
+      // URL externe (Canva etc.) : iframe direct
+      viewer.innerHTML =
+        '<iframe src="' + url + '" title="' + title.replace(/"/g, '&quot;') +
+        '" allow="autoplay; clipboard-read; clipboard-write" allowfullscreen style="width:100%;height:100%;border:0"></iframe>';
+    } else {
+      // PDF local : rendu canvas via PDF.js (scroll partout, y compris iPad Safari)
+      renderPdfCanvas(url, viewer);
+    }
     document.getElementById('pdfModal').classList.add('visible');
     document.body.style.overflow = 'hidden';
   }
   function closePdf() {
     document.getElementById('pdfModal').classList.remove('visible');
     document.body.style.overflow = '';
+    currentRenderToken++;
   }
   // Reset viewer when modal closes (avoid bg PDF playing)
   document.getElementById('pdfModal').addEventListener('transitionend', () => {
