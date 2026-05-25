@@ -245,30 +245,6 @@
     padding: 20px;
   }
   .pdf-modal.visible { opacity: 1; pointer-events: all; }
-
-  /* Fail-safe : bouton fermer flottant toujours visible au-dessus de l'iframe.
-     L'iframe PDF peut intercepter les taps sur iOS ; ce bouton est hors-iframe,
-     z-index très élevé, et compatible safe-area (encoches iPad). */
-  .pdf-fab-close {
-    position: fixed;
-    top: calc(14px + env(safe-area-inset-top, 0px));
-    right: calc(14px + env(safe-area-inset-right, 0px));
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    background: #ffffff;
-    border: none;
-    color: #1a1815;
-    cursor: pointer;
-    display: none;
-    align-items: center; justify-content: center;
-    z-index: 10000;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.45);
-    -webkit-tap-highlight-color: transparent;
-  }
-  .pdf-fab-close.visible { display: flex; }
-  .pdf-fab-close svg { width: 20px; height: 20px; }
-  .pdf-fab-close:active { transform: scale(0.94); }
-
   .pdf-modal-header {
     display: flex; justify-content: space-between; align-items: center;
     padding: 8px 12px 20px 12px; color: #fff;
@@ -567,6 +543,12 @@
       <span id="pdfTitle">Titre du document</span>
     </div>
     <div class="pdf-modal-actions">
+      <a href="#" class="pdf-action-btn" id="pdfFullscreen" target="_blank" rel="noopener" aria-label="Plein écran">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+        </svg>
+        Plein écran
+      </a>
       <a href="#" class="pdf-action-btn" id="pdfDownload" download>
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
@@ -591,12 +573,6 @@
     </div>
   </div>
 </div>
-<button class="pdf-fab-close" onclick="closePdf()" aria-label="Fermer le document">
-  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-    <path d="M2 2 L14 14 M14 2 L2 14"/>
-  </svg>
-</button>
-
 <script>
   function openPdf(title, subtitle, file, zoom) {
     const isUrl = /^https?:\/\//i.test(file);
@@ -617,12 +593,16 @@
     document.getElementById('pdfTitle').textContent = title;
     document.getElementById('pdfSubtitle').textContent = subtitle;
     const dl = document.getElementById('pdfDownload');
+    const fs = document.getElementById('pdfFullscreen');
     if (isUrl) {
       dl.style.display = 'none';
+      fs.style.display = 'none';
     } else {
       dl.style.display = '';
       dl.href = url;
       dl.setAttribute('download', file);
+      fs.style.display = '';
+      fs.href = url;
     }
     const iframeAttrs = isUrl
       ? ' allow="autoplay; clipboard-read; clipboard-write" allowfullscreen scrolling="no"'
@@ -633,12 +613,10 @@
     document.getElementById('pdfViewer').innerHTML =
       '<iframe src="' + iframeSrc + '" title="' + title.replace(/"/g, '&quot;') + '"' + iframeAttrs + '></iframe>';
     document.getElementById('pdfModal').classList.add('visible');
-    document.querySelector('.pdf-fab-close').classList.add('visible');
     document.body.style.overflow = 'hidden';
   }
   function closePdf() {
     document.getElementById('pdfModal').classList.remove('visible');
-    document.querySelector('.pdf-fab-close').classList.remove('visible');
     document.body.style.overflow = '';
   }
   // Reset viewer when modal closes (avoid bg PDF playing)
