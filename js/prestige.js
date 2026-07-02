@@ -71,11 +71,7 @@ window.addEventListener('load', () => {
 // ── VISITE VIRTUELLE ──
 const VR_URL = 'https://showreel.d5render.com/personal-krpano?directory=https://usa.asset.d5cdn.com/tourProject/pano_roam_1777631813915_3226505/&tourId=2050163455791652866';
 function openVR() {
-  const modal = document.getElementById('vrModal');
-  const frame = document.getElementById('vrFrame');
-  frame.src = VR_URL;
-  modal.classList.add('visible');
-  document.body.style.overflow = 'hidden';
+  window.open(VR_URL, '_blank', 'noopener,noreferrer');
 }
 function closeVR() {
   const modal = document.getElementById('vrModal');

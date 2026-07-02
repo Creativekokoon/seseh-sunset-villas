@@ -11,7 +11,8 @@
       "Bash(grep -l \"favicon\" pages/*.html)",
       "Bash(grep -l \"favicon\" en/pages/*.html)",
       "Bash(awk -F: '$2==0 {print \"MISSING:\", $1} END {print \"checked\", NR, \"files\"}')",
-      "Bash(sips -g pixelWidth -g pixelHeight \"/Users/petula/Documents/Seseh Sunset Villas/Source code/assets/logos/favicon.png\")"
+      "Bash(sips -g pixelWidth -g pixelHeight \"/Users/petula/Documents/Seseh Sunset Villas/Source code/assets/logos/favicon.png\")",
+      "Bash(curl -sI \"https://showreel.d5render.com/personal-krpano?directory=https://usa.asset.d5cdn.com/tourProject/pano_roam_1777619069214_3226505/&tourId=2050110281898713090\")"
     ]
   }
 }
