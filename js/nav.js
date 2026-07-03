@@ -6,13 +6,12 @@
 
 (function() {
 
-  // ── Detect path depth to set correct relative links ──
-  // depth     → racine de la langue courante (FR ou EN), pour les liens internes
-  // assetRoot → racine du projet (pour assets/, css/, js/ partagés)
+  // ── Toutes les pages sont désormais à la racine de la langue courante
+  // (plus de sous-dossier /pages/). assetRoot pointe vers la racine projet.
   const navPath = window.location.pathname;
   const navIsEn = /\/en(\/|$)/.test(navPath);
-  const depth = navPath.includes('/pages/') ? '../' : '';
-  const assetRoot = depth + (navIsEn ? '../' : '');
+  const depth = '';
+  const assetRoot = navIsEn ? '../' : '';
 
   // ── Translations ──
   const t = ({
@@ -321,7 +320,7 @@
     backLabel = t.backHome;
   } else if (path.includes('prestige.html') || path.includes('elegance.html') ||
              path.includes('signature.html') || path.includes('exception.html')) {
-    backHref = depth + 'pages/villas.html';
+    backHref = 'villas.html';
     backLabel = t.backVillas;
   } else if (path.includes('seseh.html') || path.includes('bali.html')) {
     backHref = depth + 'index.html';
@@ -333,7 +332,7 @@
     backHref = depth + 'index.html';
     backLabel = t.backHome;
   } else if (path.includes('galerie.html') || path.includes('gallery.html')) {
-    backHref = depth + 'pages/' + (navIsEn ? 'resources.html' : 'ressources.html');
+    backHref = (navIsEn ? 'resources.html' : 'ressources.html');
     backLabel = t.backDocuments;
   } else {
     backHref = '';
@@ -373,19 +372,19 @@
         <a class="nav-drawer-link" href="${depth}index.html">
           ${t.drawerHome} <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="${depth}pages/villas.html">
+        <a class="nav-drawer-link" href="villas.html">
           ${t.drawerVillas} <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="${depth}pages/seseh.html">
+        <a class="nav-drawer-link" href="seseh.html">
           ${t.drawerSeseh} <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="https://canva.link/pktkwf7mjekfmge" target="_blank" rel="noopener noreferrer">
           ${t.drawerAvailable} <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="${depth}pages/${navIsEn ? 'resources.html' : 'ressources.html'}">
+        <a class="nav-drawer-link" href="${navIsEn ? 'resources.html' : 'ressources.html'}">
           ${t.drawerDocuments} <span class="nav-drawer-arrow">→</span>
         </a>
-        <a class="nav-drawer-link" href="${depth}pages/${navIsEn ? 'team.html' : 'equipe.html'}">
+        <a class="nav-drawer-link" href="${navIsEn ? 'team.html' : 'equipe.html'}">
           ${t.drawerTeam} <span class="nav-drawer-arrow">→</span>
         </a>
         <a class="nav-drawer-link" href="https://bit.ly/sora-immobilier" target="_blank" rel="noopener">
@@ -472,38 +471,21 @@
       const frToEn = { 'galerie.html': 'gallery.html', 'ressources.html': 'resources.html', 'equipe.html': 'team.html' };
       const enToFr = { 'gallery.html': 'galerie.html', 'resources.html': 'ressources.html', 'team.html': 'equipe.html' };
 
+      // Sépare répertoire et nom de fichier de currentPath
+      const m = currentPath.match(/^(.*\/)([^\/]*)$/);
+      const dir = m ? m[1] : '/';
+      let file = m && m[2] ? m[2] : 'index.html';
+
       if (targetLang === 'en' && !isCurrentlyEn) {
-        // FR → EN : insérer /en/ avant le segment de page (préfixe projet préservé)
-        if (currentPath.includes('/pages/')) {
-          targetPath = currentPath.replace('/pages/', '/en/pages/');
-          for (const [fr, en] of Object.entries(frToEn)) {
-            if (targetPath.endsWith('/' + fr)) {
-              targetPath = targetPath.slice(0, -fr.length) + en;
-              break;
-            }
-          }
-        } else if (/\/index\.html$/.test(currentPath)) {
-          targetPath = currentPath.replace(/\/index\.html$/, '/en/index.html');
-        } else if (currentPath.endsWith('/')) {
-          targetPath = currentPath + 'en/index.html';
-        } else {
-          targetPath = currentPath + '/en/index.html';
-        }
+        // FR → EN : insérer /en/ avant le fichier, mapper le nom si nécessaire
+        file = frToEn[file] || file;
+        targetPath = dir + 'en/' + file;
       } else if (targetLang === 'fr' && isCurrentlyEn) {
-        // EN → FR : retirer /en/ tout en gardant le préfixe projet
-        if (currentPath.includes('/en/pages/')) {
-          targetPath = currentPath.replace('/en/pages/', '/pages/');
-          for (const [en, fr] of Object.entries(enToFr)) {
-            if (targetPath.endsWith('/' + en)) {
-              targetPath = targetPath.slice(0, -en.length) + fr;
-              break;
-            }
-          }
-        } else if (/\/en\/index\.html$/.test(currentPath)) {
-          targetPath = currentPath.replace(/\/en\/index\.html$/, '/index.html');
-        } else {
-          targetPath = currentPath.replace(/\/en\/?$/, '/');
-        }
+        // EN → FR : retirer /en/, mapper le nom si nécessaire
+        file = enToFr[file] || file;
+        // dir se termine par ".../en/" — on remonte d'un niveau
+        const parentDir = dir.replace(/en\/$/, '');
+        targetPath = parentDir + file;
       } else {
         return;
       }
@@ -569,7 +551,7 @@
     styleEl.textContent = arrowsCSS;
     document.head.appendChild(styleEl);
     const arrowsHTML = `
-      <a class="villa-nav-arrow villa-nav-prev" href="${depth}pages/${prev}.html" aria-label="${t.villaPrev}: ${villaLabels[prev]}">
+      <a class="villa-nav-arrow villa-nav-prev" href="${prev}.html" aria-label="${t.villaPrev}: ${villaLabels[prev]}">
         <span class="van-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="20" y1="12" x2="4" y2="12"/>
@@ -578,7 +560,7 @@
         </span>
         <span class="van-label">${villaLabels[prev]}</span>
       </a>
-      <a class="villa-nav-arrow villa-nav-next" href="${depth}pages/${next}.html" aria-label="${t.villaNext}: ${villaLabels[next]}">
+      <a class="villa-nav-arrow villa-nav-next" href="${next}.html" aria-label="${t.villaNext}: ${villaLabels[next]}">
         <span class="van-label">${villaLabels[next]}</span>
         <span class="van-arrow">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">

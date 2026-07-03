@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <link rel="icon" type="image/png" href="../assets/logos/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/logos/favicon.png">
+  <title>Our Team — Seseh Sunset Villas</title>
+  <link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --serif:'the-seasons',Georgia,serif;
+      --sans:'Inter','Helvetica Neue',Arial,sans-serif;
+      --gold:#c8a86a;
+      --cream:#E8E4DC;
+    }
+
+    html,body{
+      width:100%;
+      min-height:100%;
+      background:var(--cream);
+      -webkit-font-smoothing:antialiased;
+      font-family:var(--sans);
+      overflow-x:hidden;
+    }
+
+    /* ── PAGE INTRO ── */
+    .page-intro{
+      position:fixed;top:0;left:0;right:0;
+      height:100vh;height:100lvh;
+      z-index:850;background:#242220;
+      animation:introFadeOut 0.4s 0.9s ease forwards;
+      pointer-events:none;
+    }
+    .intro-logo{
+      position:absolute;
+      top:50%;top:50svh;
+      left:50%;
+      height:96px;width:auto;
+      opacity:0;
+      transform:translate(-50%,-50%) scale(0.88);
+      animation:introLogoIn 0.5s 0.1s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+    }
+    @keyframes introLogoIn{to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+    @keyframes introFadeOut{to{opacity:0}}
+
+    /* ── BG ── */
+    .bg{
+      position:fixed;inset:0;z-index:0;
+      background:var(--cream) url('../assets/images/background/villa-bg.jpg') center/cover no-repeat;
+      opacity:0.4;
+    }
+
+    /* ── PAGE ── */
+    .page{
+      position:relative;
+      z-index:10;
+      margin-top:76px;
+      padding:0 28px 24px;
+      max-width:1320px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    /* ── TITLE BLOCK ── */
+    .team-title{
+      font-family:var(--serif);
+      font-size:2.8rem;font-weight:500;
+      letter-spacing:0.11em;text-transform:uppercase;
+      color:rgba(52,48,44,0.92);
+      text-align:center;
+      padding:48px 0 12px;
+    }
+    .team-intro{
+      font-family:var(--sans);
+      font-size:0.92rem;line-height:1.55;
+      color:rgba(94,89,82,0.85);
+      text-align:center;
+      max-width:620px;
+      margin:0 auto 42px;
+    }
+
+    /* ── PILLARS GRID ── */
+    .pillars-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+      max-width:1280px;
+      margin:0 auto 36px;
+    }
+
+    /* ── FLIP CARD ── */
+    .pillar{
+      position:relative;
+      height:380px;
+      perspective:1400px;
+      cursor:pointer;
+      background:transparent;
+    }
+    .pillar:focus-visible{outline:none}
+    .pillar:focus-visible .pillar-inner{box-shadow:0 0 0 2px var(--gold)}
+
+    .pillar-inner{
+      position:relative;
+      width:100%;height:100%;
+      transition:transform 0.8s cubic-bezier(0.4,0,0.2,1);
+      transform-style:preserve-3d;
+    }
+    .pillar.flipped .pillar-inner{transform:rotateY(180deg)}
+
+    .pillar-front,
+    .pillar-back{
+      position:absolute;
+      inset:0;
+      width:100%;height:100%;
+      -webkit-backface-visibility:hidden;
+      backface-visibility:hidden;
+      border:1px solid rgba(62,58,54,0.08);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+
+    .pillar-front{
+      background:rgba(255,255,255,0.5);
+      transition:box-shadow 0.4s ease, transform 0.4s ease;
+    }
+    .pillar:hover .pillar-front{
+      box-shadow:0 12px 36px rgba(52,48,44,0.1);
+    }
+
+    .pillar-number{
+      position:absolute;
+      top:14px;left:14px;
+      font-family:var(--serif);
+      font-size:0.85rem;font-weight:500;
+      color:var(--gold);
+      letter-spacing:0.1em;
+      z-index:2;
+      background:rgba(232,228,220,0.85);
+      padding:3px 8px;
+      backdrop-filter:blur(4px);
+    }
+
+    .pillar-image{
+      width:100%;
+      height:250px;
+      background:var(--gold);
+      overflow:hidden;
+      position:relative;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+    .pillar-image img{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    /* Top crop for Gabriel Lapierre (1st pillar) */
+    .pillar:nth-child(1) .pillar-image img{
+      object-position:center 20%;
+    }
+    /* Zoom-in on Julie Chatelain's photo (4th pillar) */
+    .pillar:nth-child(4) .pillar-image img{
+      transform:scale(1.2);
+      transform-origin:center 30%;
+    }
+    /* ILA logo (3rd pillar) — white background */
+    .pillar:nth-child(3) .pillar-image{
+      background:#ffffff;
+    }
+    .pillar:nth-child(3) .pillar-image img{
+      object-fit:contain;
+      padding:28px;
+      background:transparent;
+    }
+    .pillar-image-fallback{
+      font-family:var(--serif);
+      font-size:2.4rem;font-weight:500;
+      letter-spacing:0.06em;
+      color:rgba(255,252,248,0.95);
+    }
+
+    .pillar-front-body{
+      flex:1;
+      padding:14px 22px 18px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      gap:3px;
+    }
+
+    .pillar-front-role{
+      font-family:var(--sans);
+      font-size:0.6rem;font-weight:500;
+      letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:3px;
+    }
+    .pillar-front-title{
+      font-family:var(--serif);
+      font-size:1.3rem;font-weight:500;
+      color:rgba(52,48,44,0.95);
+      letter-spacing:0.02em;
+      line-height:1.2;
+    }
+    .pillar-front-person{
+      font-family:var(--sans);
+      font-size:0.82rem;font-weight:500;
+      letter-spacing:0.04em;
+      color:rgba(52,48,44,0.62);
+      margin-top:2px;
+    }
+
+    .pillar-flip-hint{
+      position:absolute;
+      bottom:12px;right:14px;
+      width:30px;height:30px;
+      border-radius:50%;
+      border:1px solid rgba(201,168,106,0.45);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--gold);
+      font-size:1.1rem;font-weight:300;line-height:1;
+      transition:background 0.25s, transform 0.25s, border-color 0.25s;
+      pointer-events:none;
+    }
+    .pillar:hover .pillar-flip-hint{
+      background:rgba(201,168,106,0.18);
+      border-color:var(--gold);
+      transform:scale(1.1);
+    }
+
+    /* Back face — dark with details */
+    .pillar-back{
+      transform:rotateY(180deg);
+      background:#242220;
+      border-color:rgba(201,168,106,0.25);
+      padding:34px 26px 26px;
+      color:rgba(255,252,248,0.92);
+    }
+    .pillar-back-role{
+      font-family:var(--sans);
+      font-size:0.62rem;font-weight:500;
+      letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--gold);
+      margin-bottom:10px;
+    }
+    .pillar-back-title{
+      font-family:var(--serif);
+      font-size:1.35rem;font-weight:500;
+      color:rgba(255,252,248,0.96);
+      letter-spacing:0.02em;
+      line-height:1.2;
+    }
+    .pillar-back-person{
+      font-family:var(--sans);
+      font-size:0.8rem;font-weight:500;
+      letter-spacing:0.04em;
+      color:rgba(255,252,248,0.62);
+      margin-top:2px;
+      margin-bottom:14px;
+    }
+    .pillar-back-desc{
+      font-family:var(--sans);
+      font-size:0.84rem;line-height:1.6;
+      color:rgba(255,252,248,0.78);
+      flex:1;
+    }
+    .pillar-back-link{
+      font-family:var(--sans);
+      font-size:0.58rem;font-weight:500;
+      letter-spacing:0.18em;text-transform:uppercase;
+      color:var(--gold);
+      text-decoration:none;
+      align-self:flex-start;
+      margin-top:10px;
+      padding:5px 0;
+      border-bottom:1px solid rgba(201,168,106,0.45);
+      transition:color 0.22s, border-color 0.22s;
+    }
+    .pillar-back-link:hover{
+      color:rgba(201,168,106,0.75);
+      border-color:var(--gold);
+    }
+    .pillar-back-close{
+      position:absolute;
+      top:14px;right:14px;
+      width:26px;height:26px;
+      border-radius:50%;
+      border:1px solid rgba(255,252,248,0.3);
+      background:transparent;
+      color:rgba(255,252,248,0.65);
+      font-size:0.8rem;line-height:1;
+      cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      transition:background 0.2s, color 0.2s, border-color 0.2s;
+      padding:0;
+    }
+    .pillar-back-close:hover{
+      background:rgba(255,255,255,0.08);
+      color:#fff;
+      border-color:rgba(255,252,248,0.6);
+    }
+
+    /* ── PRE-BOOK ── */
+    .prereserver-wrap{
+      display:flex;justify-content:center;
+      padding:8px 20px 4px;
+    }
+    .prereserver-btn{
+      font-family:var(--sans);font-size:0.72rem;
+      letter-spacing:0.24em;text-transform:uppercase;
+      color:rgba(249,245,239,0.98);
+      border:none;
+      padding:14px 52px;border-radius:0;text-decoration:none;
+      position:relative;
+      display:inline-block;
+      overflow:hidden;
+      background:linear-gradient(
+        90deg,
+        #3c3935 0%,
+        #3c3935 30%,
+        #5a5550 48%,
+        #6b6460 54%,
+        #5a5550 60%,
+        #3c3935 78%,
+        #3c3935 100%
+      );
+      background-size:250% 100%;
+      background-position:100% 0;
+      animation:shimmer 2.4s ease-in-out infinite alternate;
+      transition:color 0.25s;
+    }
+    @keyframes shimmer{
+      0%{background-position:0% 0}
+      100%{background-position:100% 0}
+    }
+    .prereserver-btn:hover{
+      color:#fff;
+      animation-play-state:paused;
+      background-position:50% 0;
+    }
+
+    /* ── ENTRANCE ANIMATIONS ── */
+    .team-title,.team-intro{
+      opacity:0;
+      transform:translateY(10px);
+      animation:fadeUp 0.85s ease forwards;
+    }
+    .team-title{animation-delay:1.0s}
+    .team-intro{animation-delay:1.2s}
+    .pillar{
+      opacity:0;
+      transform:translateY(18px);
+      animation:fadeUp 0.6s ease-out forwards;
+    }
+    .pillar:nth-child(1){animation-delay:1.4s}
+    .pillar:nth-child(2){animation-delay:1.7s}
+    .pillar:nth-child(3){animation-delay:2.0s}
+    .pillar:nth-child(4){animation-delay:2.3s}
+    .prereserver-wrap{
+      opacity:0;
+      animation:fadeUp 0.6s 2.7s ease-out forwards;
+    }
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+    /* ── RESPONSIVE ── */
+    /* Tablet portrait — 2 columns */
+    @media (max-width:1023px) and (min-width:768px){
+      .team-title{font-size:2.4rem;padding:42px 0 12px}
+      .team-intro{margin-bottom:36px}
+      .pillars-grid{
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+        max-width:680px;
+      }
+      .pillar{height:280px}
+      .pillar-image{height:180px}
+      .pillar-front-body{padding:12px 16px 14px;gap:2px;justify-content:flex-start}
+      .pillar-front-title{font-size:1.15rem}
+      .pillar-back-title{font-size:1.2rem}
+    }
+
+    /* Mobile (portrait + landscape) — 1 column */
+    @media (max-width:767px){
+      .page{padding:0 16px 40px}
+      .team-title{font-size:1.8rem;padding:36px 0 12px;letter-spacing:0.11em}
+      .team-intro{font-size:0.86rem;margin-bottom:42px}
+
+      .pillars-grid{
+        grid-template-columns:1fr;
+        gap:14px;
+        margin-bottom:36px;
+        max-width:420px;
+        margin-left:auto;
+        margin-right:auto;
+      }
+      .pillar{height:170px}
+      .pillar-front{flex-direction:row}
+      .pillar-image{
+        width:160px;height:100%;
+        flex-shrink:0;
+      }
+      .pillar:nth-child(3) .pillar-image img{padding:18px}
+      .pillar-front-body{
+        flex:1;min-width:0;
+        padding:14px 16px 14px;
+        gap:2px;
+        justify-content:center;
+      }
+      .pillar-front-role{font-size:0.5rem;letter-spacing:0.18em;margin-bottom:1px}
+      .pillar-front-title{font-size:1rem;line-height:1.15}
+      .pillar-front-person{font-size:0.7rem;margin-top:2px}
+      .pillar-number{
+        font-size:0.7rem;
+        top:8px;left:8px;
+        padding:2px 6px;
+      }
+      .pillar-flip-hint{
+        bottom:8px;right:10px;
+        width:24px;height:24px;
+        font-size:0.9rem;
+      }
+      .pillar-back{
+        flex-direction:column;
+        padding:18px 18px 16px;
+        overflow-y:auto;
+      }
+      .pillar-back-role{font-size:0.5rem;letter-spacing:0.18em;margin-bottom:4px}
+      .pillar-back-title{font-size:1rem;line-height:1.15}
+      .pillar-back-person{font-size:0.66rem;margin-top:1px;margin-bottom:8px}
+      .pillar-back-desc{font-size:0.7rem;line-height:1.4}
+      .pillar-back-link{font-size:0.5rem;margin-top:6px;padding:3px 0}
+      .pillar-back-close{
+        top:8px;right:8px;
+        width:22px;height:22px;
+        font-size:0.7rem;
+      }
+
+      .prereserver-btn{padding:12px 36px;font-size:0.66rem}
+    }
+
+    /* iPad Pro 13" portrait */
+    @media (min-width:1024px) and (max-width:1400px) and (min-height:1100px){
+      .page{max-width:1180px}
+      .team-title{padding:56px 0 14px}
+      .team-intro{font-size:1.05rem;margin-bottom:64px;max-width:680px}
+      .pillars-grid{gap:18px;max-width:960px;margin-bottom:44px}
+      .pillar{height:480px}
+      .pillar-image{height:300px}
+      .pillar-front-body{padding:18px 20px 20px;gap:4px;justify-content:flex-start}
+      .pillar-front-role{font-size:0.58rem;margin-bottom:0}
+      .pillar-front-title{font-size:1.25rem}
+      .pillar-front-person{font-size:0.82rem}
+      .pillar-back{padding:30px 24px 24px}
+      .pillar-back-title{font-size:1.35rem}
+      .pillar-back-person{font-size:0.8rem}
+      .pillar-back-desc{font-size:0.85rem;line-height:1.55}
+    }
+
+    /* iPad Pro 13" landscape */
+    @media (min-width:1024px) and (max-width:1400px) and (min-height:900px) and (max-height:1099px){
+      .page{max-width:1180px}
+      .team-title{padding:40px 0 10px}
+      .team-intro{font-size:0.96rem;margin-bottom:48px;max-width:640px}
+      .pillars-grid{gap:18px;max-width:960px;margin-bottom:36px}
+      .pillar{height:380px}
+      .pillar-image{height:240px}
+      .pillar-front-body{padding:16px 18px 18px;gap:4px;justify-content:flex-start}
+      .pillar-front-role{margin-bottom:0}
+      .pillar-front-title{font-size:1.2rem}
+      .pillar-back{padding:28px 22px 22px}
+      .pillar-back-desc{font-size:0.8rem;line-height:1.55}
+    }
+
+    /* iPad 11" portrait */
+    @media (min-width:780px) and (max-width:880px) and (min-height:1150px){
+      .team-title{padding:36px 0 10px}
+      .team-intro{margin-bottom:32px}
+      .pillars-grid{
+        grid-template-columns:1fr 1fr;
+        gap:18px;
+        max-width:680px;
+        margin-bottom:24px;
+      }
+      .pillar{height:280px}
+      .pillar-image{height:180px}
+      .pillar-front-body{padding:12px 16px 14px;gap:2px}
+      .pillar-front-title{font-size:1.15rem}
+      .pillar-back{padding:24px 20px 18px}
+      .pillar-back-title{font-size:1.2rem}
+      .pillar-back-desc{font-size:0.78rem;line-height:1.5}
+      .prereserver-wrap{padding:8px 20px 16px}
+    }
+
+    /* iPad 11" landscape */
+    @media (min-width:1150px) and (max-width:1250px) and (min-height:780px) and (max-height:900px){
+      .page{max-width:1140px;padding:0 24px 16px}
+      .team-title{padding:32px 0 8px}
+      .team-intro{font-size:0.92rem;margin-bottom:32px;max-width:620px}
+      .pillars-grid{gap:16px;max-width:960px;margin-bottom:24px}
+      .pillar{height:340px}
+      .pillar-image{height:200px}
+      .pillar-front-body{padding:14px 16px 16px;gap:3px}
+      .pillar-front-title{font-size:1.15rem}
+      .pillar-back{padding:24px 20px 20px}
+      .pillar-back-title{font-size:1.2rem}
+      .pillar-back-desc{font-size:0.78rem;line-height:1.5}
+      .prereserver-wrap{padding:8px 20px 14px}
+    }
+
+    /* Large desktop */
+    @media (min-width:1920px){
+      .team-title{font-size:3.4rem;padding:56px 0 14px}
+      .team-intro{margin-bottom:64px}
+      .pillars-grid{gap:24px;max-width:1200px;margin-bottom:44px}
+      .pillar{height:340px}
+      .pillar-image{height:240px}
+      .pillar-front-body{padding:14px 18px 16px;gap:3px;justify-content:flex-start}
+      .pillar-front-title{font-size:1.25rem}
+      .pillar-back-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-root"></div>
+  <script src="../js/nav.js"></script>
+
+  <div class="page-intro"><img class="intro-logo" src="../assets/logos/SS%20logo%20light.svg" alt=""></div>
+  <div class="bg"></div>
+
+  <main class="page">
+
+    <h1 class="team-title">Our Team</h1>
+    <p class="team-intro">Four complementary pillars to bring your project to life: from development to delivery, from law to interior design.</p>
+
+    <div class="pillars-grid">
+
+      <!-- Pillar 1: Sora Immobilier -->
+      <article class="pillar" role="button" tabindex="0" aria-label="Sora Immobilier — See details">
+        <div class="pillar-inner">
+          <div class="pillar-front">
+            <div class="pillar-image">
+              <img src="../assets/images/team/Gabriel-lapierre.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'GL'}))">
+            </div>
+            <div class="pillar-front-body">
+              <div class="pillar-front-role">Project Management</div>
+              <h2 class="pillar-front-title">Sora Immobilier</h2>
+              <div class="pillar-front-person">Gabriel Lapierre</div>
+            </div>
+            <div class="pillar-flip-hint" aria-hidden="true">+</div>
+          </div>
+          <div class="pillar-back">
+            <button class="pillar-back-close" aria-label="Close" type="button">×</button>
+            <div class="pillar-back-role">Project Management</div>
+            <div class="pillar-back-title">Sora Immobilier</div>
+            <div class="pillar-back-person">Gabriel Lapierre</div>
+            <p class="pillar-back-desc">Project leader and developer, Sora Immobilier oversees the entire project from start to finish. Coordinating stakeholders, tracking each phase, and guaranteeing delivery.</p>
+            <a class="pillar-back-link" href="https://sora-immobilier.com/" target="_blank" rel="noopener">sora-immobilier.com →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Pillar 2: Vienna Lux Cooperation -->
+      <article class="pillar" role="button" tabindex="0" aria-label="Vienna Lux Cooperation — See details">
+        <div class="pillar-inner">
+          <div class="pillar-front">
+            <div class="pillar-image">
+              <img src="../assets/images/team/vienna-lux-logo.png" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'VLC'}))">
+            </div>
+            <div class="pillar-front-body">
+              <div class="pillar-front-role">Construction Manager</div>
+              <h2 class="pillar-front-title">Vienna Lux Cooperation</h2>
+              <div class="pillar-front-person">Architecture &amp; Engineering</div>
+            </div>
+            <div class="pillar-flip-hint" aria-hidden="true">+</div>
+          </div>
+          <div class="pillar-back">
+            <button class="pillar-back-close" aria-label="Close" type="button">×</button>
+            <div class="pillar-back-role">Construction Manager</div>
+            <div class="pillar-back-title">Vienna Lux Cooperation</div>
+            <div class="pillar-back-person">Architecture &amp; Engineering</div>
+            <p class="pillar-back-desc">As construction project manager, Vienna Lux Cooperation manages all works: architectural design, engineering and on-site execution.</p>
+            <a class="pillar-back-link" href="https://www.viennaluxcooperation.com/" target="_blank" rel="noopener">viennaluxcooperation.com →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Pillar 3: ILA -->
+      <article class="pillar" role="button" tabindex="0" aria-label="ILA — See details">
+        <div class="pillar-inner">
+          <div class="pillar-front">
+            <div class="pillar-image">
+              <img src="../assets/images/team/ILA_Logo.webp" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'ILA'}))">
+            </div>
+            <div class="pillar-front-body">
+              <div class="pillar-front-role">Legal Framework</div>
+              <h2 class="pillar-front-title">ILA</h2>
+              <div class="pillar-front-person">Legal &amp; tax security</div>
+            </div>
+            <div class="pillar-flip-hint" aria-hidden="true">+</div>
+          </div>
+          <div class="pillar-back">
+            <button class="pillar-back-close" aria-label="Close" type="button">×</button>
+            <div class="pillar-back-role">Legal Framework</div>
+            <div class="pillar-back-title">ILA</div>
+            <div class="pillar-back-person">Legal &amp; tax security</div>
+            <p class="pillar-back-desc">ILA provides the legal, tax and notarial framework for the project: securing deeds, supporting buyers, and ensuring regulatory compliance in both Indonesia and France.</p>
+            <a class="pillar-back-link" href="https://ilaglobalconsulting.com/fr/legal-advisory/" target="_blank" rel="noopener">ilaglobalconsulting.com →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Pillar 4: Julie Chatelain -->
+      <article class="pillar" role="button" tabindex="0" aria-label="Julie Chatelain — See details">
+        <div class="pillar-inner">
+          <div class="pillar-front">
+            <div class="pillar-image">
+              <img src="../assets/images/team/Julie_Chatelain.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pillar-image-fallback',textContent:'JC'}))">
+            </div>
+            <div class="pillar-front-body">
+              <div class="pillar-front-role">Interior Design</div>
+              <h2 class="pillar-front-title">Julie Chatelain</h2>
+              <div class="pillar-front-person">Interior Designer</div>
+            </div>
+            <div class="pillar-flip-hint" aria-hidden="true">+</div>
+          </div>
+          <div class="pillar-back">
+            <button class="pillar-back-close" aria-label="Close" type="button">×</button>
+            <div class="pillar-back-role">Interior Design</div>
+            <div class="pillar-back-title">Julie Chatelain</div>
+            <div class="pillar-back-person">Interior Designer</div>
+            <p class="pillar-back-desc">An internationally recognized designer (50 min Inside, Decoration section), Julie Chatelain designs the interiors of the villas and works with buyers to personalize their future home.</p>
+            <a class="pillar-back-link" href="https://www.juliechatelain.com/" target="_blank" rel="noopener">juliechatelain.com →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <script>
+      document.querySelectorAll('.pillar').forEach(card => {
+        const flip = () => card.classList.toggle('flipped');
+        card.addEventListener('click', e => {
+          // Don't flip when clicking external links
+          if (e.target.closest('a')) return;
+          flip();
+        });
+        card.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            flip();
+          }
+        });
+      });
+    </script>
+
+    <div class="prereserver-wrap">
+      <a class="prereserver-btn" href="https://bit.ly/sora-immobilier" target="_blank" rel="noopener">Pre-book</a>
+    </div>
+
+  </main>
+
+</body>
+</html>

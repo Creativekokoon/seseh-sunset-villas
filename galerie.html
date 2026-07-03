@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="assets/logos/favicon.png">
+<link rel="apple-touch-icon" href="assets/logos/favicon.png">
+<title>Galerie — Seseh Sunset Villas</title>
+<link rel="stylesheet" href="https://use.typekit.net/xkb5dqg.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f5f1e8;
+    --dark: #1a1815;
+    --text: #3d3934;
+    --text-muted: #8a847a;
+    --accent: #b8a886;
+    --border: rgba(61,57,52,0.12);
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'the-seasons', Georgia, serif;
+    min-height: 100vh;
+    padding-top: 76px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PAGE INTRO ── */
+  .page-intro {
+    position: fixed; top: 0; left: 0; right: 0;
+    height: 100vh; height: 100lvh;
+    z-index: 850; background: #242220;
+    animation: introFadeOut 0.4s 0.9s ease forwards;
+    pointer-events: none;
+  }
+  .intro-logo {
+    position: absolute;
+    top: 50%; top: 50svh;
+    left: 50%;
+    height: 96px; width: auto;
+    opacity: 0;
+    transform: translate(-50%,-50%) scale(0.88);
+    animation: introLogoIn 0.5s 0.1s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
+  }
+  @keyframes introLogoIn { to { opacity: 1; transform: translate(-50%,-50%) scale(1) } }
+  @keyframes introFadeOut { to { opacity: 0 } }
+
+  /* HERO */
+  .page-hero {
+    text-align: center;
+    padding: 40px 40px 40px 40px;
+    max-width: 800px; margin: 0 auto;
+  }
+  .page-hero h1 {
+    font-family: 'the-seasons', Georgia, serif;
+    font-size: 2.8rem; font-weight: 500; letter-spacing: 0.11em;
+    margin-bottom: 18px; line-height: 1.1;
+    text-transform: uppercase;
+    color: rgba(52,48,44,0.92);
+  }
+  .page-hero p {
+    font-size: 14px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--text-muted); font-family: 'Inter', sans-serif;
+  }
+
+  /* FILTRES - PRIMAIRES (villas) */
+  .filters-primary {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 30px 40px 0 40px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 28px;
+  }
+  .filter-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 10px 4px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+  }
+  .filter-btn:hover { color: var(--text); }
+  .filter-btn.active {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .filter-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--accent);
+  }
+  .filter-count {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: 9px;
+    opacity: 0.5;
+    vertical-align: super;
+  }
+
+  /* DROPDOWN MOBILE (remplace les boutons sur petits écrans) */
+  .filters-primary-mobile {
+    display: none;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 22px 20px 18px 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .filters-primary-mobile select {
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 13px 38px 13px 16px;
+    cursor: pointer;
+    border-radius: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='none'><path d='M1 1l4 4 4-4' stroke='%233d3934' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+  .filters-primary-mobile select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  /* FILTRES SECONDAIRES (intérieur/extérieur) */
+  .filters-secondary {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 40px 0 40px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+  .sub-filter-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 999px;
+  }
+  .sub-filter-btn:hover {
+    border-color: rgba(61,57,52,0.3);
+    color: var(--text);
+  }
+  .sub-filter-btn.active {
+    background: #242220;
+    color: #fff;
+    border-color: #242220;
+  }
+
+  /* Tertiary filters (Exception : Type A / Type B) */
+  .filters-config {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 12px 40px 0 40px;
+    display: none;
+    justify-content: center;
+    gap: 6px;
+  }
+  .filters-config.visible { display: flex; }
+
+  /* GRILLE D'IMAGES (masonry-style avec colonnes) */
+  .gallery-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 60px 100px 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    grid-auto-rows: 260px;
+    grid-auto-flow: dense;
+  }
+
+  .gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: #2a2622;
+    cursor: pointer;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .gallery-item.hidden {
+    display: none;
+  }
+
+  /* Variations de tailles pour effet masonry */
+  .gallery-item.tall { grid-row: span 2; }
+  .gallery-item.wide { grid-column: span 2; grid-row: span 2; }
+  .gallery-item.large { grid-row: span 2; grid-column: span 2; }
+
+  /* Image */
+  .gallery-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .gallery-img.zoom-in { transform: scale(1.25); transform-origin: center center; }
+  .gallery-item:hover .gallery-img { transform: scale(1.05); }
+  .gallery-item:hover .gallery-img.zoom-in { transform: scale(1.32); }
+  @media (max-width: 600px) {
+    .gallery-img.focus-left-mobile { object-position: 25% center; }
+  }
+
+  /* Sun / Sunset toggle */
+  .time-toggle {
+    position: absolute;
+    top: 12px; right: 12px;
+    z-index: 4;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(36,34,32,0.55);
+    border: 1px solid rgba(255,255,255,0.22);
+    color: #fff;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(6px);
+  }
+  .time-toggle:hover { background: rgba(36,34,32,0.88); transform: scale(1.08); }
+  .time-toggle svg { display: block; width: 14px; height: 14px; }
+  .time-toggle .moon-icon { display: none; }
+  .gallery-item.is-sunset .time-toggle .sun-icon { display: none; }
+  .gallery-item.is-sunset .time-toggle .moon-icon { display: block; }
+
+  /* Sun/Sunset toggle inside lightbox */
+  .lightbox-time-toggle {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 4;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: rgba(36,34,32,0.55);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: #fff;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(6px);
+  }
+  .lightbox-time-toggle:hover { background: rgba(36,34,32,0.88); transform: scale(1.08); }
+  .lightbox-time-toggle svg { display: block; width: 16px; height: 16px; }
+  .lightbox-time-toggle .moon-icon { display: none; }
+  .lightbox-time-toggle.is-sunset .sun-icon { display: none; }
+  .lightbox-time-toggle.is-sunset .moon-icon { display: block; }
+  .caption-meta {
+    position: absolute;
+    bottom: 20px;
+    right: 18px;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Mockup temporaire (placeholder dégradé pur, sans texte) */
+  .gallery-mock {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--start) 0%, var(--end) 100%);
+    transition: transform 0.6s ease;
+  }
+  .gallery-item:hover .gallery-mock { transform: scale(1.05); }
+
+  /* Caption au hover */
+  .gallery-caption {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 18px;
+    background: linear-gradient(0deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%);
+    color: #fff;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+  .gallery-item:hover .gallery-caption {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .caption-villa {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #e8d6ad;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 4px;
+  }
+  .caption-title {
+    font-family: 'the-seasons', Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+
+  /* LIGHTBOX */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(14,11,8,0.96);
+    z-index: 9000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+  }
+  .lightbox.visible {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .lightbox-content {
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+  }
+  .lightbox-img {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+  }
+  .lightbox-mock {
+    width: 80vw;
+    max-width: 1200px;
+    height: 80vh;
+    background: linear-gradient(135deg, var(--start) 0%, var(--end) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .lightbox-info {
+    text-align: center;
+    margin-top: 20px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+  }
+  .lightbox-info small {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .lightbox-info span {
+    font-family: 'the-seasons', Georgia, serif;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .lightbox-close:hover {
+    background: rgba(255,255,255,0.2);
+    transform: rotate(90deg);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .lightbox-nav:hover { background: rgba(255,255,255,0.18); }
+  .lightbox-prev { left: 30px; }
+  .lightbox-next { right: 30px; }
+
+  /* MESSAGE empty state */
+  .empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item.large { grid-column: span 2; }
+  }
+  /* Tablet (incl. iPad Pro 13" en paysage) : on rétrécit l'image dans la lightbox pour les flèches */
+  @media (min-width: 601px) and (max-width: 1366px),
+         (hover: none) and (pointer: coarse) {
+    .lightbox-img { max-width: 78%; max-height: 72vh; margin: 0 auto; }
+    .lightbox-mock { width: 78%; height: 72vh; }
+    .lightbox-prev { left: 20px; }
+    .lightbox-next { right: 20px; }
+  }
+  @media (max-width: 600px) {
+    .gallery-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: 180px;
+      gap: 14px;
+    }
+    .gallery-item.tall { grid-row: span 2; grid-column: span 1; }
+    .gallery-item.wide,
+    .gallery-item.large {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+    .page-hero h1 { font-size: 36px; }
+    .filters-primary { display: none; }
+    .filters-primary-mobile { display: block; }
+    .gallery-grid { padding: 24px 16px 60px 16px; }
+
+    /* Lightbox mobile : flèches sous l'image, image plus grande */
+    .lightbox { padding: 40px 10px 100px 10px; }
+    .lightbox-img { max-height: 70vh; max-width: 100%; }
+    .lightbox-mock { width: 92vw; height: 60vh; max-width: none; }
+    .lightbox-nav {
+      top: auto; bottom: 70px;
+      transform: none;
+      width: 44px; height: 44px;
+    }
+    .lightbox-prev { left: 50%; margin-left: -56px; right: auto; }
+    .lightbox-next { left: 50%; margin-left: 12px; right: auto; }
+    .lightbox-close { top: 12px; right: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div id="nav-root"></div>
+<script src="js/nav.js"></script>
+
+<section class="page-hero">
+  <h1>Galerie</h1>
+  <p>Explorer les photos des villas et du complexe</p>
+</section>
+
+<!-- FILTRES PRIMAIRES : villa -->
+<nav class="filters-primary">
+  <button class="filter-btn active" data-villa="all">Toutes<span class="filter-count">108</span></button>
+  <button class="filter-btn" data-villa="complexe">Complexe<span class="filter-count">8</span></button>
+  <button class="filter-btn" data-villa="elegance">Élégance<span class="filter-count">17</span></button>
+  <button class="filter-btn" data-villa="prestige">Prestige<span class="filter-count">20</span></button>
+  <button class="filter-btn" data-villa="signature">Signature<span class="filter-count">22</span></button>
+  <button class="filter-btn" data-villa="exception">Exception<span class="filter-count">41</span></button>
+</nav>
+
+<!-- FILTRE PRIMAIRE MOBILE : dropdown -->
+<div class="filters-primary-mobile">
+  <select id="villaFilterMobile" aria-label="Filtrer par villa">
+    <option value="all">Toutes (108)</option>
+    <option value="complexe">Complexe (8)</option>
+    <option value="elegance">Élégance (17)</option>
+    <option value="prestige">Prestige (20)</option>
+    <option value="signature">Signature (22)</option>
+    <option value="exception">Exception (41)</option>
+  </select>
+</div>
+
+<!-- FILTRES SECONDAIRES : Type A / Type B (visibles uniquement pour Exception) -->
+<div class="filters-config" id="filtersConfig">
+  <button class="sub-filter-btn active" data-config="A">Type A</button>
+  <button class="sub-filter-btn" data-config="B">Type B</button>
+</div>
+
+<!-- FILTRES TERTIAIRES : intérieur / extérieur -->
+<div class="filters-secondary">
+  <button class="sub-filter-btn active" data-type="all">Tous</button>
+  <button class="sub-filter-btn" data-type="interieur">Intérieur</button>
+  <button class="sub-filter-btn" data-type="exterieur">Extérieur</button>
+</div>
+
+<!-- GRILLE -->
+<section class="gallery-grid" id="galleryGrid">
+
+  <!-- COMPLEXE (11 items) -->
+  <div class="gallery-item large" data-villa="complexe" data-type="exterieur"
+       data-sun="assets/gallery/complexe/complexe-sun1.jpg"
+       data-sunset="assets/gallery/complexe/complexe-sunset1.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/complexe/complexe-sun1.jpg" alt="Vue aérienne du domaine">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Complexe</div>
+      <div class="caption-title">Vue aérienne du domaine</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/complexe/complexe-sun2.jpg" alt="Vue aérienne">
+    <div class="gallery-caption">
+      <div class="caption-villa">Complexe</div>
+      <div class="caption-title">Vue aérienne</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/complexe/complexe-sun3.jpg" alt="Vue aérienne">
+    <div class="gallery-caption">
+      <div class="caption-villa">Complexe</div>
+      <div class="caption-title">Vue aérienne</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="complexe" data-type="exterieur"
+       data-sun="assets/gallery/complexe/complexe-sun5.jpg"
+       data-sunset="assets/gallery/complexe/complexe-sunset5.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/complexe/complexe-sun5.jpg" alt="Vue aérienne">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Complexe</div>
+      <div class="caption-title">Vue aérienne</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/complexe/complexe-sun-riziere1.jpg" alt="Rizières">
+    <div class="gallery-caption">
+      <div class="caption-villa">Complexe</div>
+      <div class="caption-title">Rizières</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="complexe" data-type="exterieur"
+       data-sun="assets/gallery/complexe/complexe-sun4.jpg"
+       data-sunset="assets/gallery/complexe/complexe-sunset4.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/complexe/complexe-sun4.jpg" alt="Vue aérienne">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Complexe</div>
+      <div class="caption-title">Vue aérienne</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/complexe/complexe-other.jpg" alt="Domaine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Complexe</div>
+      <div class="caption-title">Domaine</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="complexe" data-type="exterieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/complexe/complexe-sun-riziere3.jpg" alt="Rizières">
+    <div class="gallery-caption">
+      <div class="caption-villa">Complexe</div>
+      <div class="caption-title">Rizières</div>
+    </div>
+  </div>
+
+  <!-- ÉLÉGANCE - Intérieur -->
+  <div class="gallery-item large" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/living-elegance.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/living2-elegance.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/living3-elegance.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/dining-elegance.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/dining2-elegance.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img focus-left-mobile" src="assets/gallery/elegance/interieur/bedroom-elegance.jpg" alt="Chambre">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Chambre</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur"
+       data-sun="assets/gallery/elegance/interieur/bedroom-sun2-elegance.jpg"
+       data-sunset="assets/gallery/elegance/interieur/bedroom-sunset2-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/bedroom-sun2-elegance.jpg" alt="Chambre">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Chambre</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/bedroom3-elegance.jpg" alt="Chambre">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Chambre</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/bathroom-elegance.jpg" alt="Salle de bain">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Salle de bain</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/terrace-elegance.jpg" alt="Terrasse couverte">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Terrasse couverte</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/terrace2-elegance.jpg" alt="Terrasse couverte">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Terrasse couverte</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/interieur/terrace3-elegance.jpg" alt="Terrasse couverte">
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Terrasse couverte</div>
+    </div>
+  </div>
+
+  <!-- Élégance - Extérieur (Type A : E1-E5, E9-E12) -->
+  <div class="gallery-item wide" data-villa="elegance" data-type="exterieur"
+       data-sun="assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun1-elegance.jpg"
+       data-sunset="assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sunset1-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun1-elegance.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type A · E1–E5, E9–E12</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="exterieur"
+       data-sun="assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun2-elegance.jpg"
+       data-sunset="assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sunset2-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun2-elegance.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type A · E1–E5, E9–E12</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="exterieur"
+       data-sun="assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun3-elegance.jpg"
+       data-sunset="assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sunset3-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/exterieur/E1-E5_E9-E12/exterior-sun3-elegance.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type A · E1–E5, E9–E12</div>
+    </div>
+  </div>
+
+  <!-- Élégance - Extérieur (Type B : E6-E8) -->
+  <div class="gallery-item" data-villa="elegance" data-type="exterieur"
+       data-sun="assets/gallery/elegance/exterieur/E6-E8/exterior-sun1-elegance.jpg"
+       data-sunset="assets/gallery/elegance/exterieur/E6-E8/exterior-sunset1-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/exterieur/E6-E8/exterior-sun1-elegance.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type B · E6–E8</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="elegance" data-type="exterieur"
+       data-sun="assets/gallery/elegance/exterieur/E6-E8/exterior-sun2-elegance.jpg"
+       data-sunset="assets/gallery/elegance/exterieur/E6-E8/exterior-sunset2-elegance.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/elegance/exterieur/E6-E8/exterior-sun2-elegance.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Élégance</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type B · E6–E8</div>
+    </div>
+  </div>
+
+  <!-- PRESTIGE - Intérieur -->
+  <div class="gallery-item large" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/living1-prestige.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/living2-prestige.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/living3-prestige.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/kitchen1-prestige.jpg" alt="Cuisine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Cuisine</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/kitchen2-prestige.jpg" alt="Cuisine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Cuisine</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/dining1-prestige.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/dining2-prestige.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/dining3-prestige.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/dining-sun4-prestige.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/bedroom-prestige.jpg" alt="Chambre">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Chambre</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/bedroom2-prestige.jpg" alt="Chambre">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Chambre</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/bahtroom-prestige.jpg" alt="Salle de bain">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Salle de bain</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img zoom-in" src="assets/gallery/prestige/interieur/bureau-prestige.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Bureau</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/bureau2-prestige.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Bureau</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/terrace2-prestige.jpg" alt="Terrasse couverte">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Terrasse couverte</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/terrace-prestige.jpg" alt="Terrasse couverte">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Terrasse couverte</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/interieur/toilettes-prestige.jpg" alt="Toilettes">
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Toilettes</div>
+    </div>
+  </div>
+  <!-- Prestige - Extérieur -->
+  <div class="gallery-item wide" data-villa="prestige" data-type="exterieur"
+       data-sun="assets/gallery/prestige/exterieur/exterior-sun1-prestige.jpg"
+       data-sunset="assets/gallery/prestige/exterieur/exterior-sunset1-prestige.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/exterieur/exterior-sun1-prestige.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Façade extérieure</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="exterieur"
+       data-sun="assets/gallery/prestige/exterieur/exterior-sun2-prestige.jpg"
+       data-sunset="assets/gallery/prestige/exterieur/exterior-sunset2-prestige.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/exterieur/exterior-sun2-prestige.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Façade extérieure</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="prestige" data-type="exterieur"
+       data-sun="assets/gallery/prestige/exterieur/exterior-sun3-prestige.jpg"
+       data-sunset="assets/gallery/prestige/exterieur/exterior-sunset3-prestige.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/prestige/exterieur/exterior-sun3-prestige.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Prestige</div>
+      <div class="caption-title">Façade extérieure</div>
+    </div>
+  </div>
+
+  <!-- SIGNATURE - Intérieur -->
+  <div class="gallery-item large" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/living-signature.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/living2-signature.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Living</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/kitchen-signature.jpg" alt="Cuisine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Cuisine</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/kitchen2-signature.jpg" alt="Cuisine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Cuisine</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/dining-signature.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/dining2-signature.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/dining3-signature.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Salle à manger</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/master-bedroom-signature.jpg" alt="Chambre principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Chambre principale</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/master-bedroom2-signature.jpg" alt="Chambre principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Chambre principale</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/master-bathroom-signature.jpg" alt="Salle de bain principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Salle de bain principale</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/master-bathroom2-signature.jpg" alt="Salle de bain principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Salle de bain principale</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/guest-bedroom-signature.jpg" alt="Chambre d'invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Chambre d'invité</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/guest-bedroom2-signature.jpg" alt="Chambre d'invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Chambre d'invité</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/guest-bathroom-signature.jpg" alt="Salle de bain invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Salle de bain invité</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/guest-bathroom2-signature.jpg" alt="Salle de bain invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Salle de bain invité</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/working-space-signature.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Bureau</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/working-space2-signature.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Bureau</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/powder-room-signature.jpg" alt="Toilettes">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Toilettes</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="signature" data-type="interieur" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/interieur/terrace-signature.jpg" alt="Terrasse couverte">
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Terrasse couverte</div>
+    </div>
+  </div>
+  <!-- Signature - Extérieur -->
+  <div class="gallery-item wide" data-villa="signature" data-type="exterieur"
+       data-sun="assets/gallery/signature/exterieur/exterior-sun1-signature.jpg"
+       data-sunset="assets/gallery/signature/exterieur/exterior-sunset1-signature.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/exterieur/exterior-sun1-signature.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Façade extérieure</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="exterieur"
+       data-sun="assets/gallery/signature/exterieur/exterior-sun2-signature.jpg"
+       data-sunset="assets/gallery/signature/exterieur/exterior-sunset2-signature.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/exterieur/exterior-sun2-signature.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Façade extérieure</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="signature" data-type="exterieur"
+       data-sun="assets/gallery/signature/exterieur/exterior-sun3-signature.jpg"
+       data-sunset="assets/gallery/signature/exterieur/exterior-sunset3-signature.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/signature/exterieur/exterior-sun3-signature.jpg" alt="Façade extérieure">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Signature</div>
+      <div class="caption-title">Façade extérieure</div>
+    </div>
+  </div>
+
+  <!-- EXCEPTION TYPE A (19 items) -->
+  <div class="gallery-item large" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/living1-exception.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Living</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/living2-exception.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Living</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/living3-exception.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Living</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/kitchen1-exception.jpg" alt="Cuisine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Cuisine</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/kitchen2-exception.jpg" alt="Cuisine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Cuisine</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="exception" data-type="interieur" data-config="A"
+       data-sun="assets/gallery/exception/interieur/ExceptionA/dining-sun1-exception.jpg"
+       data-sunset="assets/gallery/exception/interieur/ExceptionA/dining-sunset1-exception.jpg"
+       onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/dining-sun1-exception.jpg" alt="Salle à manger">
+    <button class="time-toggle" onclick="toggleTime(event, this)" aria-label="Basculer jour / coucher de soleil">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle à manger</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/dining2-exception.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle à manger</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/masterbedroom1-exception.jpg" alt="Chambre principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Chambre principale</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/masterbathroom1-exception.jpg" alt="Salle de bain principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain principale</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/masterbathroom2-exception.jpg" alt="Salle de bain principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain principale</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/guestbedroom2-exception.jpg" alt="Chambre d'invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Chambre d'invité</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/guestbedroom3-exception.jpg" alt="Chambre d'invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Chambre d'invité</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/guestbathroom1-exception.jpg" alt="Salle de bain invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain invité</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/bureau1-exception.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Bureau</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/bureau2-exception.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Bureau</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/toilet-exception.jpg" alt="Toilettes">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Toilettes</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/pool-exception.jpg" alt="Piscine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Piscine</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionA/terrace-exception.jpg" alt="Terrasse">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Terrasse</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+
+  <!-- EXCEPTION TYPE B (17 items) -->
+  <div class="gallery-item large" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/living1-exception.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Living</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/living2-exception.jpg" alt="Living">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Living</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/living-terrace-exception.jpg" alt="Salon-terrasse">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salon-terrasse</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/kitchen-exception.jpg" alt="Cuisine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Cuisine</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/kitchen2-exception.jpg" alt="Cuisine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Cuisine</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/dining-exception.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle à manger</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/dining2-exception.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle à manger</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/dining3-exception.jpg" alt="Salle à manger">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle à manger</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item tall" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/masterbedroom-exception.jpg" alt="Chambre principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Chambre principale</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/masterbathroom-exception.jpg" alt="Salle de bain principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain principale</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/masterbathroom2-exception.jpg" alt="Salle de bain principale">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain principale</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/guestbedroom-exception.jpg" alt="Chambre d'invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Chambre d'invité</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/guestbathroom-exception.jpg" alt="Salle de bain invité">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Salle de bain invité</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/bureau-exeption.jpg" alt="Bureau">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Bureau</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/toilettes-exception.jpg" alt="Toilettes">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Toilettes</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item wide" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/pool-exception.jpg" alt="Piscine">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Piscine</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="interieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/interieur/ExceptionB/terrace-exception.jpg" alt="Terrasse">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Terrasse</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+
+  <!-- EXCEPTION Extérieur Type A (3 items) -->
+  <div class="gallery-item wide" data-villa="exception" data-type="exterieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/exterieur/A/exterior1-exception.jpg" alt="Façade extérieure">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="exterieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/exterieur/A/exterior2-exception.jpg" alt="Façade extérieure">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="exterieur" data-config="A" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/exterieur/A/exterior3-exception.jpg" alt="Façade extérieure">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type A</div>
+    </div>
+  </div>
+
+  <!-- EXCEPTION Extérieur Type B (3 items) -->
+  <div class="gallery-item wide" data-villa="exception" data-type="exterieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/exterieur/B/exterior1-exception.jpg" alt="Façade extérieure">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="exterieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/exterieur/B/exterior2-exception.jpg" alt="Façade extérieure">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+  <div class="gallery-item" data-villa="exception" data-type="exterieur" data-config="B" onclick="openLightbox(this)">
+    <img class="gallery-img" src="assets/gallery/exception/exterieur/B/exterior3-exception.jpg" alt="Façade extérieure">
+    <div class="gallery-caption">
+      <div class="caption-villa">Exception</div>
+      <div class="caption-title">Façade extérieure</div>
+      <div class="caption-meta">Type B</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="if(event.target===this) closeLightbox()">
+  <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)" aria-label="Précédent">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+  <div class="lightbox-content">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" style="display:none">
+    <div class="lightbox-mock" id="lightboxMock" style="--start:#6b7d6f; --end:#3d4e44; display:none">
+      Image en grand format
+    </div>
+    <button class="lightbox-time-toggle" id="lightboxTimeToggle" onclick="toggleLightboxTime()" aria-label="Basculer jour / coucher de soleil" style="display:none">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <div class="lightbox-info">
+      <small id="lightboxVilla">Villa</small>
+      <span id="lightboxTitle">Titre</span>
+    </div>
+  </div>
+  <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)" aria-label="Suivant">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
+  </button>
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Fermer">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <path d="M2 2 L14 14 M14 2 L2 14"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  // ── FILTRAGE ──
+  let activeVilla = 'all';
+  let activeType = 'all';
+  let activeConfig = 'A';
+
+  // Pré-filtre depuis ?villa=xxx
+  (function() {
+    const params = new URLSearchParams(window.location.search);
+    const villaParam = params.get('villa');
+    if (!villaParam) return;
+    const validVillas = ['complexe', 'elegance', 'prestige', 'signature', 'exception'];
+    if (!validVillas.includes(villaParam)) return;
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.classList.remove('active');
+      if (btn.dataset.villa === villaParam) btn.classList.add('active');
+    });
+    activeVilla = villaParam;
+    const sel = document.getElementById('villaFilterMobile');
+    if (sel) sel.value = villaParam;
+    // Si on vient d'une page villa via le + : back-link pointe vers cette villa,
+    // restauré dès que l'utilisateur change de filtre
+    const villaLabels = { elegance: 'Élégance', prestige: 'Prestige', signature: 'Signature', exception: 'Exception' };
+    if (villaLabels[villaParam]) {
+      const navBack = document.querySelector('.nav-back');
+      if (navBack) {
+        navBack.dataset.originalHref = navBack.getAttribute('href') || '';
+        navBack.dataset.originalText = navBack.textContent;
+        navBack.setAttribute('href', villaParam + '.html');
+        navBack.textContent = '← ' + villaLabels[villaParam];
+      }
+    }
+    applyFilters();
+  })();
+
+  function restoreNavBack() {
+    const navBack = document.querySelector('.nav-back');
+    if (navBack && navBack.dataset.originalHref !== undefined) {
+      navBack.setAttribute('href', navBack.dataset.originalHref);
+      navBack.textContent = navBack.dataset.originalText;
+      delete navBack.dataset.originalHref;
+      delete navBack.dataset.originalText;
+    }
+  }
+
+  function applyFilters() {
+    const items = document.querySelectorAll('.gallery-item');
+    let visibleCount = 0;
+
+    items.forEach(item => {
+      const villa = item.dataset.villa;
+      const type = item.dataset.type;
+      const config = item.dataset.config;
+      const villaMatch = activeVilla === 'all' || villa === activeVilla;
+      const typeMatch = activeType === 'all' || type === activeType;
+      const configMatch = activeConfig === 'all' || activeVilla !== 'exception' || config === activeConfig;
+
+      if (villaMatch && typeMatch && configMatch) {
+        item.classList.remove('hidden');
+        visibleCount++;
+      } else {
+        item.classList.add('hidden');
+      }
+    });
+
+    // Si "Complexe" est sélectionné, cacher les filtres int/ext (pas pertinent)
+    const subFilters = document.querySelector('.filters-secondary');
+    if (activeVilla === 'complexe') {
+      subFilters.style.display = 'none';
+    } else {
+      subFilters.style.display = '';
+      subFilters.style.opacity = '1';
+      subFilters.style.pointerEvents = 'auto';
+    }
+
+    // Sous-filtre Type A/B : visible uniquement pour Exception
+    const configFilters = document.getElementById('filtersConfig');
+    if (activeVilla === 'exception') {
+      configFilters.classList.add('visible');
+    } else {
+      configFilters.classList.remove('visible');
+    }
+  }
+
+  // ── SUN / SUNSET TOGGLE ──
+  function toggleTime(event, btn) {
+    event.stopPropagation();
+    const item = btn.closest('.gallery-item');
+    const img = item.querySelector('.gallery-img');
+    if (!item.dataset.sun || !item.dataset.sunset) return;
+    if (item.classList.contains('is-sunset')) {
+      img.src = item.dataset.sun;
+      item.classList.remove('is-sunset');
+    } else {
+      img.src = item.dataset.sunset;
+      item.classList.add('is-sunset');
+    }
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeVilla = btn.dataset.villa;
+      const sel = document.getElementById('villaFilterMobile');
+      if (sel) sel.value = activeVilla;
+      restoreNavBack();
+      applyFilters();
+    });
+  });
+
+  // Dropdown mobile : sync vers activeVilla + boutons
+  const villaFilterMobile = document.getElementById('villaFilterMobile');
+  if (villaFilterMobile) {
+    villaFilterMobile.addEventListener('change', () => {
+      activeVilla = villaFilterMobile.value;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.villa === activeVilla);
+      });
+      restoreNavBack();
+      applyFilters();
+    });
+  }
+
+  document.querySelectorAll('.filters-secondary .sub-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filters-secondary .sub-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeType = btn.dataset.type;
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('.filters-config .sub-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filters-config .sub-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeConfig = btn.dataset.config;
+      applyFilters();
+    });
+  });
+
+  // ── LIGHTBOX ──
+  let currentIndex = 0;
+  let visibleItems = [];
+
+  function openLightbox(el) {
+    visibleItems = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+    currentIndex = visibleItems.indexOf(el);
+    updateLightbox();
+    document.getElementById('lightbox').classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function updateLightbox() {
+    const item = visibleItems[currentIndex];
+    if (!item) return;
+    const img = item.querySelector('.gallery-img');
+    const mock = item.querySelector('.gallery-mock');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbMock = document.getElementById('lightboxMock');
+
+    if (img) {
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lbImg.style.display = '';
+      lbMock.style.display = 'none';
+    } else if (mock) {
+      lbMock.style.setProperty('--start', mock.style.getPropertyValue('--start'));
+      lbMock.style.setProperty('--end', mock.style.getPropertyValue('--end'));
+      lbImg.style.display = 'none';
+      lbMock.style.display = '';
+    }
+
+    document.getElementById('lightboxVilla').textContent = item.querySelector('.caption-villa').textContent;
+    document.getElementById('lightboxTitle').textContent = item.querySelector('.caption-title').textContent;
+
+    // Sun / Sunset toggle dans la lightbox
+    const lbToggle = document.getElementById('lightboxTimeToggle');
+    if (item.dataset.sun && item.dataset.sunset) {
+      lbToggle.style.display = '';
+      lbToggle.classList.toggle('is-sunset', item.classList.contains('is-sunset'));
+    } else {
+      lbToggle.style.display = 'none';
+      lbToggle.classList.remove('is-sunset');
+    }
+  }
+
+  function toggleLightboxTime() {
+    const item = visibleItems[currentIndex];
+    if (!item || !item.dataset.sun || !item.dataset.sunset) return;
+    const img = item.querySelector('.gallery-img');
+    const lbImg = document.getElementById('lightboxImg');
+    const lbToggle = document.getElementById('lightboxTimeToggle');
+    if (item.classList.contains('is-sunset')) {
+      item.classList.remove('is-sunset');
+      lbToggle.classList.remove('is-sunset');
+      if (img) img.src = item.dataset.sun;
+      lbImg.src = item.dataset.sun;
+    } else {
+      item.classList.add('is-sunset');
+      lbToggle.classList.add('is-sunset');
+      if (img) img.src = item.dataset.sunset;
+      lbImg.src = item.dataset.sunset;
+    }
+  }
+
+  function navLightbox(direction) {
+    currentIndex = (currentIndex + direction + visibleItems.length) % visibleItems.length;
+    updateLightbox();
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => {
+    if (!document.getElementById('lightbox').classList.contains('visible')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navLightbox(-1);
+    if (e.key === 'ArrowRight') navLightbox(1);
+  });
+</script>
+
+</body>
+</html>
